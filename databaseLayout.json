@@ -1,0 +1,51 @@
+{
+  "Users": [
+    {
+      "Name": "string",
+      "Email": "string",
+      "Mode": "string",
+      "Admin": "boolean",
+      "Friends": ["strings"],
+      "Followers": ["strings"],
+      "Following":["strings"]
+    }
+  ],
+  "Worlds": [
+    {
+      "Identifier": "string",
+      "Creator": "string",
+      "Name": "string",
+      "Members": ["strings"],
+      "Schedule": ["strings"],
+      "Invitecode": "string"
+    }
+  ],
+  "Characters": [
+    {
+      "Identifier": "string",
+      "Creator": "string",
+      "Name": "string",
+      "High-Concept": "string",
+      "Trouble": "string",
+      "Aspect1": "string",
+      "Aspect2": "string",
+      "Appearance": "string",
+	  "Portrait": "Image",
+	  "Skills": ["strings"],
+	  "Shield": "string",
+	  "Weapon": "string",
+	  "Armor": "string",
+	  "Fate Points": "string",
+	  "Resolve": "string",
+	  "Vigor": "string",
+	  "Money": "string",
+	  "AP": "string",
+	  "Attributes": ["strings"]
+    }
+  ],
+  "JoinKeys": [
+    {
+      "Code": "string"
+    }
+  ]
+}
