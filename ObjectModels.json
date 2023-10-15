@@ -1,0 +1,124 @@
+[
+    {
+        "Users": [
+            {
+                "Username": "",
+                "Email": "",
+                "Light Mode": "",
+                "Admin status": "",
+                "Friends": [],
+                "Followers": [],
+                "Following": [],
+                "Characters": []
+            },
+            {
+                "Username": "",
+                "Email": "",
+                "Light Mode": "",
+                "Admin status": "",
+                "Friends": [],
+                "Followers": [],
+                "Following": [],
+                "Characters": []
+            }
+        ]
+    },
+    {
+        "Characters": [
+            {
+                "General": {
+                    "Name": "",
+                    "High Concept": "",
+                    "Portrait": "",
+                    "Trouble": "",
+                    "Aspect 1": "",
+                    "Aspect 2": "",
+                    "Physical Appearance": "",
+                    "Background": "",
+                    "Major Relationships": "",
+                    "Other": "",
+                    "Fate Points": "",
+                    "Money": ""
+                },
+                "Equipment": {
+                    "Weapon Equipped": "",
+                    "Weapon Modification Slots": "",
+                    "Shield Equipped": "",
+                    "Shield Modification Slots": "",
+                    "Armor Equipped": "",
+                    "Armor Modification Slots": "",
+                    "Inventory": ""
+                },
+                "Skills": {
+                    "Alchemy": "",
+                    "Arcana": "",
+                    "Athletics": "",
+                    "Burglary": "",
+                    "Deceive": "",
+                    "Empathy": "",
+                    "Engineering": "",
+                    "Fight": "",
+                    "Hunting": "",
+                    "Lore": "",
+                    "Physique": "",
+                    "Rapport": "",
+                    "Shooting": "",
+                    "Stealth": "",
+                    "Survival": "",
+                    "Will": "",
+                    "Learned Abilities": ""
+                },
+                "Attributes": {
+                    "Awareness": "",
+                    "Charisma": "",
+                    "Defense": "",
+                    "Endurance": "",
+                    "Health": "",
+                    "Knowledge": "",
+                    "Magic Attack": "",
+                    "Magic Defense": "",
+                    "Magic Heal": "",
+                    "Magic Reach": "",
+                    "Melee Attack": "",
+                    "Ranged Attack": "",
+                    "Max Action Points (AP)": "",
+                    "Max Vigor": "",
+                    "Max Resolve": "",
+                    "Magic Range": "",
+                    "Movement": ""
+                }
+            }
+        ]
+    },
+    {
+        "Worlds": [
+            {
+                "Name": "",
+                "Schedule": "",
+                "Invite Code": "",
+                "Members": []
+            },
+            {
+                "Name": "",
+                "Schedule": "",
+                "Invite Code": "",
+                "Members": []
+            }
+        ]
+    },
+    {
+        "Codes": [
+            "Code",
+            "Code",
+            "Code"
+        ]
+    },
+    {
+        "Item Information": {
+            "Object Name1": "object info",
+            "Object Name2": "object info",
+            "Object Name3": "object info",
+            "Object Name4": "object info"
+        }
+    }
+]

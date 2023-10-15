@@ -22,14 +22,14 @@
   ],
   "Characters": [
     {
-      "Identifier": "string",
-      "Creator": "string",
-      "Name": "string",
-      "High-Concept": "string",
-      "Trouble": "string",
-      "Aspect1": "string",
-      "Aspect2": "string",
-      "Appearance": "string",
+    "Identifier": "string",
+    "Creator": "string",
+    "Name": "string",
+    "High-Concept": "string",
+    "Trouble": "string",
+    "Aspect1": "string",
+    "Aspect2": "string",
+    "Appearance": "string",
 	  "Portrait": "Image",
 	  "Skills": ["strings"],
 	  "Shield": "string",
@@ -43,7 +43,7 @@
 	  "Attributes": ["strings"]
     }
   ],
-  "JoinKeys": [
+  "JoinCodes": [
     {
       "Code": "string"
     }
