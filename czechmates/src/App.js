@@ -22,6 +22,7 @@ import ValidationForm from './components/ValidationForm';
 import ControlledTabs from './components/Tabs';
 import TooltipPositions from './components/ToolTip';
 import PopoverPositions from './components/Popover';
+import Spacer from './components/Spacer';
 
 function App() {
     return (
@@ -36,11 +37,17 @@ function App() {
                     <Route path='/profilePage' element={<Profile />} />
                 </Routes>
             </Router>
+            <Spacer/>
             <Dropdown/>
+            <Spacer/>
             <Form/>
+            <Spacer/>
             <ValidationForm/>
+            <Spacer/>
             <ControlledTabs/>
+            <Spacer/>
             <TooltipPositions/>
+            <Spacer/>
             <PopoverPositions/>
 
 
