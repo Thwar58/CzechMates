@@ -15,10 +15,18 @@ import Home from './pages';
 import Characters from './pages/charactersPage';
 import Profile from './pages/profilePage';
 import Worlds from './pages/worldsPage';
+import Dropdown from './components/Dropdown';
+import NavWithDD from './components/NavWithDropdown';
+import Form from './components/Form';
+import ValidationForm from './components/ValidationForm';
+import ControlledTabs from './components/Tabs';
+import TooltipPositions from './components/ToolTip';
+import PopoverPositions from './components/Popover';
 
 function App() {
     return (
         <>
+            <NavWithDD/>
             <Router>
                 <Navbar />
                 <Routes>
@@ -28,6 +36,13 @@ function App() {
                     <Route path='/profilePage' element={<Profile />} />
                 </Routes>
             </Router>
+            <Dropdown/>
+            <Form/>
+            <ValidationForm/>
+            <ControlledTabs/>
+            <TooltipPositions/>
+            <PopoverPositions/>
+
 
             <div className='App'>
                 <header className='App-header'>
