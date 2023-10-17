@@ -23,6 +23,7 @@ import ControlledTabs from './components/Tabs';
 import TooltipPositions from './components/ToolTip';
 import PopoverPositions from './components/Popover';
 import Spacer from './components/Spacer';
+import Popup from './components/Modal';
 
 function App() {
     return (
@@ -49,6 +50,9 @@ function App() {
             <TooltipPositions/>
             <Spacer/>
             <PopoverPositions/>
+            <Spacer/>
+            <Popup/>
+
 
 
             <div className='App'>
