@@ -1,7 +1,7 @@
 
 import React from "react";
 import Dropdown from "../components/Dropdown";
-
+import Character from "../components/Character";
 
 
 const CharactersPage = () => {
@@ -11,13 +11,10 @@ const CharactersPage = () => {
                 Character List
             </h1>
             <Dropdown text="Order by..." actions={["level", "recently used", "alphabetically"]}/>
-            <div style={{backgroundColor: "lightblue"}}>
-                Character Name
-                <button type="button" class="btn btn-primary">Copy</button>
-                <button type="button" class="btn btn-primary">Edit</button>
-                <button type="button" class="btn btn-primary">Remove</button>
-                <button type="button" class="btn btn-primary">Print</button>
-            </div>
+            <Character/>
+            <Character/>
+            <Character/>
+            <Character/>
             <h1>
                 <button type="button" class="btn btn-primary">Plus sign icon</button>
             </h1>
