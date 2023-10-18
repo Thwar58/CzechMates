@@ -11,7 +11,7 @@ const CharactersPage = () => {
                 World List
             </h1>
             <p>Invite Code<input type="text" placeholder="enter code here" />
-            <button type="button" class="btn btn-primary">Enter code</button>
+            <button type="button" className="btn btn-primary">Enter code</button>
             </p>
             
             
@@ -21,7 +21,7 @@ const CharactersPage = () => {
             <World/>
             <World/>
             <h1>
-                <button type="button" class="btn btn-primary">Plus sign icon</button>
+                <button type="button" className="btn btn-primary">Plus sign icon</button>
             </h1>
 
         </div>

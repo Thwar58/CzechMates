@@ -23,7 +23,7 @@ const Home = () => {
             <Spacer />
             <ValidationForm />
             <Spacer />
-            <ControlledTabs />
+            {/* <ControlledTabs /> */}
             <Spacer />
             <TooltipPositions />
             <Spacer />
@@ -35,7 +35,7 @@ const Home = () => {
 
             <div className='App'>
                 <header className='App-header'>
-                    <div class='alert alert-primary' role='alert'>
+                    <div className='alert alert-primary' role='alert'>
                         <p style={{ display: "none" }} className='d-block'>
                             Bootstrap is now successfully installed 😃
                         </p>

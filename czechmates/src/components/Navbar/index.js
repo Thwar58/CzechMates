@@ -7,16 +7,16 @@ function Navbar(){
         <>
             <Nav>
                 <NavMenu>
-                    <NavLink to="/" activeStyle>
+                    <NavLink to="/" activestyle = "true">
                         Home
                     </NavLink>
-                    <NavLink to="/charactersPage" activeStyle>
+                    <NavLink to="/charactersPage" activestyle = "true">
                         Characters
                     </NavLink>
-                    <NavLink to="/worldsPage" activeStyle>
+                    <NavLink to="/worldsPage" activestyle = "true">
                         Worlds
                     </NavLink>
-                    <NavLink to="/profilePage" activeStyle>
+                    <NavLink to="/profilePage" activestyle = "true">
                         Profile
                     </NavLink>
                 </NavMenu>

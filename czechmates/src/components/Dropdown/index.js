@@ -2,7 +2,7 @@
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
-function BasicExample({text, actions}) {
+function dDown({text, actions}) {
   return (
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -11,12 +11,12 @@ function BasicExample({text, actions}) {
 
       <Dropdown.Menu>
         {actions?.map((name, index) => (
-          <Dropdown.Item href={`#/action-${index}`}>{name}</Dropdown.Item>
+          <Dropdown.Item key={index}>{name}</Dropdown.Item>
         ))}
       </Dropdown.Menu>
     </Dropdown>
   );
 }
 
-export default BasicExample;
+export default dDown;
 
