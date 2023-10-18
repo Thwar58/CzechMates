@@ -21,9 +21,10 @@ import NavWithDD from './components/NavWithDropdown';
 function App() {
     return (
         <>
-            <NavWithDD/>
+           
             <Router>
                 {/* <Navbar /> */}
+                <NavWithDD/>
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/charactersPage' element={<Characters />} />
