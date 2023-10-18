@@ -1,4 +1,5 @@
 import React from "react";
+import ConfirmationPopup from "../ConfirmationPopup";
 
 const Character = () => {
     return (
@@ -7,7 +8,7 @@ const Character = () => {
                 Character Name
                 <button type="button" className="btn btn-primary">Copy</button>
                 <button type="button" className="btn btn-primary">Edit</button>
-                <button type="button" className="btn btn-primary">Remove</button>
+                <ConfirmationPopup name="Remove"/>
                 <button type="button" className="btn btn-primary">Print</button>
             </div>
 
