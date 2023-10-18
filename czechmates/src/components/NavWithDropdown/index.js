@@ -4,12 +4,22 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button';
+
 
 function NavWithDD() {
   return (
     <Navbar variant="dark" bg="dark" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="/">Home</Navbar.Brand>
+        <Navbar.Brand href="charactersPage">Characters</Navbar.Brand>
+        <Navbar.Brand href="worldsPage">Worlds</Navbar.Brand>
+        <Navbar.Brand href="profilePage">Profiles</Navbar.Brand>
+        {/* button options below */}
+        {/* <Button href="/">Home</Button>
+        <Button href="charactersPage">Characters</Button>
+        <Button href="worldsPage">Worlds</Button>
+        <Button href="profilePage">Profiles</Button> */}
         <Navbar.Toggle aria-controls="navbar-dark-example" />
         <Navbar.Collapse id="navbar-dark-example">
           <Nav>
@@ -18,14 +28,14 @@ function NavWithDD() {
               title="Dropdown"
               menuVariant="dark"
             >
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+              <NavDropdown.Item href="#action/3.1">
+              <Button>Light Mode</Button>
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item href="#action/3.2">
+              <Button>Log Out</Button>
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">
+              <Button>Admin</Button>  
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
