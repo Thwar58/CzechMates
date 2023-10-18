@@ -3,7 +3,7 @@
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-function BasicExample() {
+function InputForm() {
   return (
     <>
       <InputGroup className="mb-3">
@@ -46,4 +46,4 @@ function BasicExample() {
   );
 }
 
-export default BasicExample;
+export default InputForm;

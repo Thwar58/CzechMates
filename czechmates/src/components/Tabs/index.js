@@ -4,8 +4,13 @@ import { useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-function ControlledTabs() {
-  const [key, setKey] = useState('home');
+function ControlledTabs({text, content}) {
+  const [key, setKey] = useState(text[0]);
+  // console.log(text[0]);
+  // console.log(text[1]);
+  // console.log(text[2]);
+
+  // console.log("check here", text[0]);
 
   return (
     <Tabs
@@ -13,16 +18,16 @@ function ControlledTabs() {
       activeKey={key}
       onSelect={(k) => setKey(k)}
       className="mb-3"
+      defaultActiveKey={text[0]}
     >
-      <Tab eventKey="home" title="Home">
-        Tab content for Home
-      </Tab>
-      <Tab eventKey="profile" title="Profile">
-        Tab content for Profile
-      </Tab>
-      <Tab eventKey="contact" title="Contact" disabled>
-        Tab content for Contact
-      </Tab>
+
+      {content?.map((tcontent, index) => (
+          <Tab key={text[index]} eventKey={text[index]} title={text[index]}>
+            Tab content for {tcontent}
+          </Tab>
+        ))}
+
+
     </Tabs>
   );
 }

@@ -5,10 +5,10 @@ const Character = () => {
         <div>
             <div style={{backgroundColor: "lightblue"}}>
                 Character Name
-                <button type="button" class="btn btn-primary">Copy</button>
-                <button type="button" class="btn btn-primary">Edit</button>
-                <button type="button" class="btn btn-primary">Remove</button>
-                <button type="button" class="btn btn-primary">Print</button>
+                <button type="button" className="btn btn-primary">Copy</button>
+                <button type="button" className="btn btn-primary">Edit</button>
+                <button type="button" className="btn btn-primary">Remove</button>
+                <button type="button" className="btn btn-primary">Print</button>
             </div>
 
         </div>

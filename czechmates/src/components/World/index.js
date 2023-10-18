@@ -8,8 +8,8 @@ const World = () => {
                 {/* check if they own the world
                 if they do then add a star
                 set the button names accordingly */}
-                <button type="button" class="btn btn-primary">Manage/View</button>
-                <button type="button" class="btn btn-primary">Remove/Leave</button>
+                <button type="button" className="btn btn-primary">Manage/View</button>
+                <button type="button" className="btn btn-primary">Remove/Leave</button>
             </div>
 
         </div>
