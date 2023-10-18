@@ -1,4 +1,5 @@
 import React from "react";
+import ConfirmationPopup from "../ConfirmationPopup";
 
 const World = () => {
     return (
@@ -9,7 +10,7 @@ const World = () => {
                 if they do then add a star
                 set the button names accordingly */}
                 <button type="button" className="btn btn-primary">Manage/View</button>
-                <button type="button" className="btn btn-primary">Remove/Leave</button>
+                <ConfirmationPopup name={"Remove/Leave"}/>
             </div>
 
         </div>

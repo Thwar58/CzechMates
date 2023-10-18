@@ -6,6 +6,7 @@ import { useState } from "react";
 import TypeAhead from "../components/TypeAhead";
 import Spacer from '../components/Spacer';
 import TypeAheadWithButton from "../components/TypeAheadWithButton";
+import Social from '../components/Social';
 
 const ProfilePage = () => {
     const posts = [
@@ -65,7 +66,7 @@ const ProfilePage = () => {
                 // this line below is what is leading to that error message in the console, 
                 // it is because the users do not have distinguishing information yet, that
                 // will be remidied when we pull in actual information instead of using dummies
-                content={[[<User />], [<User />, <User />], [<User />, <User />, <User />]]} />
+                content={[[<Social />], [<Social />, <Social />], [<Social />, <Social />, <Social />]]} />
 
         </div>
     );
