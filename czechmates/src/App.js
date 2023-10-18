@@ -17,12 +17,14 @@ import Profile from './pages/profilePage';
 import Worlds from './pages/worldsPage';
 import NavWithDD from './components/NavWithDropdown';
 
+
 function App() {
     return (
         <>
-            <NavWithDD/>
+           
             <Router>
-                <Navbar />
+                {/* <Navbar /> */}
+                <NavWithDD/>
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/charactersPage' element={<Characters />} />
