@@ -5,8 +5,7 @@ import Searchbar from '../components/Searchbar';
 import { useState } from "react";
 import TypeAhead from "../components/TypeAhead";
 import Spacer from '../components/Spacer';
-import OtherTypeAhead from '../components/OtherTypeAhead';
-
+import TypeAheadWithButton from "../components/TypeAheadWithButton";
 
 const ProfilePage = () => {
     const posts = [
@@ -16,19 +15,19 @@ const ProfilePage = () => {
         { id: '4', name: 'This is the fourth and final post' },
     ];
 
-    
+
 
     const filterPosts = (posts, query) => {
         if (!query) {
             return posts;
         }
-    
+
         return posts.filter((post) => {
             const postName = post.name.toLowerCase();
             return postName.includes(query);
         });
     };
-    
+
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
@@ -38,33 +37,35 @@ const ProfilePage = () => {
             <h1 style={{ color: "green" }}>
                 Account information
             </h1>
-            <User/>
-            <User/>
-           
+            <User />
+            <User />
+
             <h1 style={{ color: "green" }}>
                 Social
             </h1>
-            
+
             <Searchbar
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
             />
             <ul>
                 {filteredPosts.map(post => (
-                    <li key={post.id}>{post.name}</li>
+                    <li key={post.id}>{post.name}
+                        <button type="button" className="btn btn-primary">Follow</button>
+                    </li>
                 ))}
             </ul>
-            <Spacer/>
-            <TypeAhead/>
-            <Spacer/>
-            <OtherTypeAhead/>
+            <Spacer />
+            <TypeAhead />
+            <Spacer />
+            <TypeAheadWithButton />
 
-            <ControlledTabs text = {["Friends", "Following", "Followers"]} 
-            // content = {["Friends", "Following", "Followers"]}/>
-            // this line below is what is leading to that error message in the console, 
-            // it is because the users do not have distinguishing information yet, that
-            // will be remidied when we pull in actual information instead of using dummies
-            content = {[[<User/>], [<User/>, <User/>], [<User/>, <User/>, <User/>]]}/>
+            <ControlledTabs text={["Friends", "Following", "Followers"]}
+                // content = {["Friends", "Following", "Followers"]}/>
+                // this line below is what is leading to that error message in the console, 
+                // it is because the users do not have distinguishing information yet, that
+                // will be remidied when we pull in actual information instead of using dummies
+                content={[[<User />], [<User />, <User />], [<User />, <User />, <User />]]} />
 
         </div>
     );

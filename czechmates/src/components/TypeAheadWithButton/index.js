@@ -7,15 +7,20 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-const TypeAhead = () => {
+const TypeAheadWithButton = () => {
   const [singleSelections, setSingleSelections] = useState([]);
   // const [multiSelections, setMultiSelections] = useState([]);
   const options = ["Friend1", "Friend2", "Friend3"];
 
   return (
     <>
-      <Form.Group>
-        <Form.Label>Search here</Form.Label>
+
+      <InputGroup className="mb-3">
+        {/* <Form.Control
+          placeholder="Recipient's username"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+        /> */}
         <Typeahead
           id="basic-typeahead-single"
           labelKey="name"
@@ -24,9 +29,12 @@ const TypeAhead = () => {
           placeholder="Choose a friend..."
           selected={singleSelections}
         />
-      </Form.Group>
+        <Button variant="outline-secondary" id="button-addon2">
+          Button
+        </Button>
+      </InputGroup>
     </>
   );
 }
 
-export default TypeAhead;
+export default TypeAheadWithButton;
