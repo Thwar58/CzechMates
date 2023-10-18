@@ -3,6 +3,9 @@ import User from "../components/User";
 import ControlledTabs from '../components/Tabs';
 import Searchbar from '../components/Searchbar';
 import { useState } from "react";
+import TypeAhead from "../components/TypeAhead";
+import Spacer from '../components/Spacer';
+import OtherTypeAhead from '../components/OtherTypeAhead';
 
 
 const ProfilePage = () => {
@@ -51,6 +54,10 @@ const ProfilePage = () => {
                     <li key={post.id}>{post.name}</li>
                 ))}
             </ul>
+            <Spacer/>
+            <TypeAhead/>
+            <Spacer/>
+            <OtherTypeAhead/>
 
             <ControlledTabs text = {["Friends", "Following", "Followers"]} 
             // content = {["Friends", "Following", "Followers"]}/>
