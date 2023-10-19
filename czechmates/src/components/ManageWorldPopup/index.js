@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import TypeAheadWithButton from "../TypeAheadWithButton";
-import Member from '../Member';
+import EUWithButtons from '../UEWithTwoButtons';
 import UEInput from '../UEInput';
 
 function MWPopup({ name }) {
@@ -40,9 +40,9 @@ function MWPopup({ name }) {
               />
             </Form.Group>
             <Form.Label>Members</Form.Label>
-            <Member value={"member 1"} />
-            <Member value={"member 2"} />
-            <Member value={"member 3"} />
+            <EUWithButtons value={"member 1"} />
+            <EUWithButtons value={"member 2"} />
+            <EUWithButtons value={"member 3"} />
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Invite Friends</Form.Label>
               <TypeAheadWithButton />
