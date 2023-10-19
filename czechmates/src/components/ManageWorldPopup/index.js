@@ -7,7 +7,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import TypeAheadWithButton from "../TypeAheadWithButton";
-import InputGroup from 'react-bootstrap/InputGroup';
+import Member from '../Member';
+import UEInput from '../UEInput';
 
 function MWPopup({ name }) {
   const [show, setShow] = useState(false);
@@ -39,40 +40,16 @@ function MWPopup({ name }) {
               />
             </Form.Group>
             <Form.Label>Members</Form.Label>
-            <InputGroup className="mb-3">
-              <Form.Control
-                placeholder="member name"
-                aria-describedby="basic-addon2"
-              />
-              <Button variant="outline-secondary" id="button-addon2">
-                View
-              </Button>
-              <Button variant="outline-secondary" id="button-addon2">
-                Remove
-              </Button>
-            </InputGroup>
-            <InputGroup className="mb-3">
-              <Form.Control
-                placeholder="member name"
-                aria-describedby="basic-addon2"
-              />
-              <Button variant="outline-secondary" id="button-addon2">
-                View
-              </Button>
-              <Button variant="outline-secondary" id="button-addon2">
-                Remove
-              </Button>
-            </InputGroup>
+            <Member value={"member 1"} />
+            <Member value={"member 2"} />
+            <Member value={"member 3"} />
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Invite Friends</Form.Label>
               <TypeAheadWithButton />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Invite Code</Form.Label>
-              <Form.Control
-                value="code here"
-                disabled="true"
-              />
+              <UEInput value={"Code here"} />
             </Form.Group>
           </Form>
         </Modal.Body>
