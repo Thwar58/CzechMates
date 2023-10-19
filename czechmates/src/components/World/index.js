@@ -1,5 +1,7 @@
 import React from "react";
 import ConfirmationPopup from "../ConfirmationPopup";
+import ViewWorldPopup from '../ViewWorldPopup';
+import ManageWorldPopup from '../ManageWorldPopup';
 
 const World = () => {
     return (
@@ -9,7 +11,8 @@ const World = () => {
                 {/* check if they own the world
                 if they do then add a star
                 set the button names accordingly */}
-                <button type="button" className="btn btn-primary">Manage/View</button>
+                <ManageWorldPopup name="World Name"/>
+                <ViewWorldPopup name={"World Name"}/>
                 <ConfirmationPopup name={"Remove/Leave"}/>
             </div>
 
