@@ -40,9 +40,9 @@ function MWPopup({ name }) {
               />
             </Form.Group>
             <Form.Label>Members</Form.Label>
-            <EUWithButtons value={"member 1"} />
-            <EUWithButtons value={"member 2"} />
-            <EUWithButtons value={"member 3"} />
+            <EUWithButtons value={"member 1"} button1={"View"} button2={"Remove"}/>
+            <EUWithButtons value={"member 2"} button1={"View"} button2={"Remove"}/>
+            <EUWithButtons value={"member 3"} button1={"View"} button2={"Remove"}/>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Invite Friends</Form.Label>
               <TypeAheadWithButton />

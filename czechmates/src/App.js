@@ -16,6 +16,7 @@ import Characters from './pages/charactersPage';
 import Profile from './pages/profilePage';
 import Worlds from './pages/worldsPage';
 import NavWithDD from './components/NavWithDropdown';
+import SubCharacterPages from './pages/subCharacterPages';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                     <Route path='/charactersPage' element={<Characters />} />
                     <Route path='/worldsPage' element={<Worlds />} />
                     <Route path='/profilePage' element={<Profile />} />
+                    <Route path='/subCharacterPages' element={<SubCharacterPages />} />
                 </Routes>
             </Router>
         </>

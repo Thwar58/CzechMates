@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
-function UEWithTwoButtons({ value, button1, button2 }) {
+function SkillsComp({ value, button1, button2 }) {
 
     return (
         <>
@@ -15,12 +15,14 @@ function UEWithTwoButtons({ value, button1, button2 }) {
                 <Button variant="outline-secondary" id="button-addon2">
                     {button1}
                 </Button>
+                <InputGroup.Text id="basic-addon2">number</InputGroup.Text>
                 <Button variant="outline-secondary" id="button-addon2">
                     {button2}
                 </Button>
+                
             </InputGroup>
         </>
     );
 }
 
-export default UEWithTwoButtons;
+export default SkillsComp;
