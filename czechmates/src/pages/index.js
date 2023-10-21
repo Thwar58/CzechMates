@@ -8,6 +8,7 @@ import TooltipPositions from '../components/ToolTip';
 import PopoverPositions from '../components/Popover';
 import Spacer from '../components/Spacer';
 import Popup from '../components/Modal';
+import Test from '../components/Test';
 
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
             <div>
                 <h1>This is the Home page</h1>
             </div>
+            <Test text="Test" actions={["a", "b", "c"]}></Test>
             <Spacer />
             <Dropdown />
             <Spacer />

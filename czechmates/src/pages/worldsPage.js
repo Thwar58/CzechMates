@@ -3,6 +3,7 @@ import React from "react";
 import Dropdown from "../components/Dropdown";
 import World from "../components/World";
 import ManageWorldPopup from '../components/ManageWorldPopup';
+import JoinCodePopup from "../components/JoinCodePopup";
 
 
 const CharactersPage = () => {
@@ -12,7 +13,7 @@ const CharactersPage = () => {
                 World List
             </h1>
             <p>Invite Code<input type="text" placeholder="enter code here" />
-            <button type="button" className="btn btn-primary">Enter code</button>
+            <JoinCodePopup name={"World Name"}/>
             </p>
             
             
