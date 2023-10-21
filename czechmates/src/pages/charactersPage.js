@@ -2,8 +2,7 @@
 import React from "react";
 import Dropdown from "../components/Dropdown";
 import Character from "../components/Character";
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import SubCharacterPages from './subCharacterPages';
+import {useNavigate } from 'react-router-dom';
 
 
 const CharactersPage = () => {

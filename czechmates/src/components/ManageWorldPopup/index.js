@@ -10,7 +10,7 @@ import TypeAheadWithButton from "../TypeAheadWithButton";
 import EUWithButtons from '../UEWithTwoButtons';
 import UEInput from '../UEInput';
 
-function MWPopup({ name }) {
+function MWPopup({ title, button }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,12 +18,12 @@ function MWPopup({ name }) {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Manage
+        {button}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{name}</Modal.Title>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
