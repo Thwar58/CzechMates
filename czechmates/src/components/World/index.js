@@ -11,7 +11,7 @@ const World = () => {
                 {/* check if they own the world
                 if they do then add a star
                 set the button names accordingly */}
-                <ManageWorldPopup name="World Name"/>
+                <ManageWorldPopup title="World Name" button={"Manage"}/>
                 <ViewWorldPopup name={"World Name"}/>
                 <ConfirmationPopup name={"Remove/Leave"}/>
             </div>

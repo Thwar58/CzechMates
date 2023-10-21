@@ -2,6 +2,7 @@
 import React from "react";
 import Dropdown from "../components/Dropdown";
 import World from "../components/World";
+import ManageWorldPopup from '../components/ManageWorldPopup';
 
 
 const CharactersPage = () => {
@@ -20,9 +21,8 @@ const CharactersPage = () => {
             <World/>
             <World/>
             <World/>
-            <h1>
-                <button type="button" className="btn btn-primary">Plus sign icon</button>
-            </h1>
+            <ManageWorldPopup title="World Name" button={"Plus Sign"}/>
+
 
         </div>
     );
