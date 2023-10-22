@@ -20,16 +20,16 @@ const EquipmentPage = () => {
             </h1>
             <Dropdown text="Equipped Weapon" actions={dummyWep}/>
             <Form.Label>Weapon Modification Slots</Form.Label>
-            <InputWithLabel label={"Slot 1"} placeholder={"modification here"}/>
-            <InputWithLabel label={"Slot 2"} placeholder={"modification here"}/>
-            <InputWithLabel label={"Slot 3"} placeholder={"modification here"}/>
+            <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
+            <InputWithLabel label={"Slot 2"} placeholder={"modification here"} disabled={false}/>
+            <InputWithLabel label={"Slot 3"} placeholder={"modification here"} disabled={false}/>
             <Dropdown text="Equipped Shield" actions={dummyShield}/>
             <Form.Label>Shield Modification Slots</Form.Label>
-            <InputWithLabel label={"Slot 1"} placeholder={"modification here"}/>
+            <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false}/>
             <Dropdown text="Equipped Armor" actions={dummyArmor}/>
             <Form.Label>Armor Modification Slots</Form.Label>
-            <InputWithLabel label={"Slot 1"} placeholder={"modification here"}/>
-            <InputWithLabel label={"Slot 2"} placeholder={"modification here"}/>
+            <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false}/>
+            <InputWithLabel label={"Slot 2"} placeholder={"modification here"} disabled={false}/>
         </div>
     );
 };

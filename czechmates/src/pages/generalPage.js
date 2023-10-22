@@ -10,18 +10,18 @@ const GeneralPage = () => {
                 General
             </h1>
             <p>Image here</p>
-            <InputWithLabel label={"Name"} placeholder={"Type here"}/>
-            <InputWithLabel label={"High Concept"} placeholder={"Type here"}/>
-            <InputWithLabel label={"Trouble"} placeholder={"Type here"}/>
-            <InputWithLabel label={"Aspect 1"} placeholder={"Type here"}/>
-            <InputWithLabel label={"Aspect 2"} placeholder={"Type here"}/>
-            <InputWithLabel label={"Fate Points"} placeholder={"Type here"}/>
-            <InputWithLabel label={"Money"} placeholder={"Type here"}/>
+            <InputWithLabel label={"Name"} placeholder={"Type here"} disabled={false}/>
+            <InputWithLabel label={"High Concept"} placeholder={"Type here"} disabled={false}/>
+            <InputWithLabel label={"Trouble"} placeholder={"Type here"} disabled={false}/>
+            <InputWithLabel label={"Aspect 1"} placeholder={"Type here"} disabled={false}/>
+            <InputWithLabel label={"Aspect 2"} placeholder={"Type here"} disabled={false}/>
+            <InputWithLabel label={"Fate Points"} placeholder={"Type here"} disabled={false}/>
+            <InputWithLabel label={"Money"} placeholder={"Type here"} disabled={false}/>
             <Form.Label htmlFor="this">Description</Form.Label>
-            <InputWithLabel label={"Physical Appearance"} placeholder={"Type here"}/>
-            <InputWithLabel label={"Background"} placeholder={"Type here"}/>
-            <InputWithLabel label={"Major Relationships"} placeholder={"Type here"}/>
-            <InputWithLabel label={"Other"} placeholder={"Type here"}/>
+            <InputWithLabel label={"Physical Appearance"} placeholder={"Type here"} disabled={false}/>
+            <InputWithLabel label={"Background"} placeholder={"Type here"} disabled={false}/>
+            <InputWithLabel label={"Major Relationships"} placeholder={"Type here"} disabled={false}/>
+            <InputWithLabel label={"Other"} placeholder={"Type here"} disabled={false}/>
 
         </div>
     );

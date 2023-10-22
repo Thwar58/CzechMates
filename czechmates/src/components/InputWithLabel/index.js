@@ -3,7 +3,7 @@ import React from "react";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-const InputWithLabel = ({label, placeholder}) => {
+const InputWithLabel = ({label, placeholder, disabled}) => {
     return (
         <div>
             <InputGroup className="mb-3">
@@ -12,6 +12,7 @@ const InputWithLabel = ({label, placeholder}) => {
                 </InputGroup.Text>
                 <Form.Control
                     placeholder={placeholder}
+                    disabled={disabled}
                 />
             </InputGroup>
 
