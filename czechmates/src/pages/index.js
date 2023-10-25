@@ -10,7 +10,7 @@ import Spacer from '../components/Spacer';
 import Popup from '../components/Modal';
 import DropDownShowsValue from '../components/DropDownShowsValue';
 
-
+// this is the home page, as of now it is mostly reference material and will be largely removed
 const Home = () => {
     return (
         <>
@@ -48,7 +48,8 @@ const Home = () => {
                 </header>
             </div>
         </>
-);}
+    );
+}
 
 
 export default Home;

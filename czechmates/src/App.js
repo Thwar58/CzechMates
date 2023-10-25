@@ -18,14 +18,15 @@ import Worlds from './pages/worldsPage';
 import NavWithDD from './components/NavWithDropdown';
 import SubCharacterPages from './pages/subCharacterPages';
 
-
+// anything in this app script will appear/be available on every page
 function App() {
     return (
         <>
-           
+            {/* router handles all of the page rerouting */}
             <Router>
-                {/* <Navbar /> */}
-                <NavWithDD/>
+                {/* the navigation bar */}
+                <NavWithDD />
+                {/* routes are the paths to the pages with their export value */}
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/charactersPage' element={<Characters />} />

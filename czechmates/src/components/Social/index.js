@@ -1,15 +1,14 @@
 import React from "react";
 import ConfirmationPopup from "../ConfirmationPopup";
 
-// DISCARD
 
 const User = () => {
     return (
         <div>
-            <div style={{backgroundColor: "lightblue"}}>
+            <div style={{ backgroundColor: "lightblue" }}>
                 <p>Label<input type="text" placeholder="some information" />
-            <ConfirmationPopup name={"Remove"}/>
-            </p>
+                    <ConfirmationPopup name={"Remove"} />
+                </p>
             </div>
 
         </div>

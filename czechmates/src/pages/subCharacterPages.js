@@ -25,8 +25,8 @@ const SubCharacterPages = () => {
                 Character Name
             </h1>
             {/* tabs for each page, passing in the labels and the page objects */}
-            <ControlledTabs text={["General", "Equipment", "Skills", "Attributes", "Sheet"]} 
-            content={[<GeneralPage/>, <EquipmentPage/>, <SkillsPage/>, <AttributesPage/>, <SheetPage/>]} />
+            <ControlledTabs text={["General", "Equipment", "Skills", "Attributes", "Sheet"]}
+                content={[<GeneralPage />, <EquipmentPage />, <SkillsPage />, <AttributesPage />, <SheetPage />]} />
             {/* a button that redirects to the character page when clicked */}
             <Button onClick={navigateToCharPage}>Done</Button>
         </div>
