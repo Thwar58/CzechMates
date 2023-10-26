@@ -10,48 +10,63 @@ import TypeAheadWithButton from "../TypeAheadWithButton";
 import EUWithButtons from '../UEWithTwoButtons';
 import UEInput from '../UEInput';
 
+// a function for the manage/add world modal, you pass in the title and the button display
 function MWPopup({ title, button }) {
+  // sets the initial state of the modal to hidden
   const [show, setShow] = useState(false);
+  // handles the opening and closing of the modal
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
+      {/* the button that triggers the modal */}
       <Button variant="primary" onClick={handleShow}>
         {button}
       </Button>
 
+      {/* the modal */}
       <Modal show={show} onHide={handleClose}>
+        {/* set the modal header */}
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
+        {/* the modal body with the world information (editable by the user) */}
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            {/* world name info */}
+            <Form.Group className="mb-3" controlId="Name">
               <Form.Label>World Name</Form.Label>
               <Form.Control
                 placeholder="example name"
               />
+              {/* world schedule */}
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="Schedule">
               <Form.Label>Schedule</Form.Label>
               <Form.Control
                 placeholder="meeting days"
               />
             </Form.Group>
+            {/* world members, which the user can view the character of or remove */}
+            {/* future: add confirmation modal for remove */}
             <Form.Label>Members</Form.Label>
-            <EUWithButtons value={"member 1"} button1={"View"} button2={"Remove"}/>
-            <EUWithButtons value={"member 2"} button1={"View"} button2={"Remove"}/>
-            <EUWithButtons value={"member 3"} button1={"View"} button2={"Remove"}/>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <EUWithButtons value={"member 1"} button1={"View"} button2={"Remove"} />
+            <EUWithButtons value={"member 2"} button1={"View"} button2={"Remove"} />
+            <EUWithButtons value={"member 3"} button1={"View"} button2={"Remove"} />
+            {/* friend invitation search */}
+            {/* future: decide on search bar */}
+            <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>
               <TypeAheadWithButton />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            {/* the search code */}
+            <Form.Group className="mb-3" controlId="Code">
               <Form.Label>Invite Code</Form.Label>
               <UEInput value={"Code here"} />
             </Form.Group>
           </Form>
+          {/* the footer with the close button */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

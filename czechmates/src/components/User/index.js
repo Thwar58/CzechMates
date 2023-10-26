@@ -1,6 +1,7 @@
 import React from "react";
-import ConfirmationPopup from "../ConfirmationPopup";
 
+// a component used in the user portion of the profile page
+// future: subject to revamp with reusable components
 const User = () => {
     return (
         <div>

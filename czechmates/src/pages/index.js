@@ -8,16 +8,16 @@ import TooltipPositions from '../components/ToolTip';
 import PopoverPositions from '../components/Popover';
 import Spacer from '../components/Spacer';
 import Popup from '../components/Modal';
-import Test from '../components/Test';
+import DropDownShowsValue from '../components/DropDownShowsValue';
 
-
+// this is the home page, as of now it is mostly reference material and will be largely removed
 const Home = () => {
     return (
         <>
             <div>
                 <h1>This is the Home page</h1>
             </div>
-            <Test text="Test" actions={["a", "b", "c"]}></Test>
+            <DropDownShowsValue text="Test" actions={["a", "b", "c"]}></DropDownShowsValue>
             <Spacer />
             <Dropdown />
             <Spacer />
@@ -48,7 +48,8 @@ const Home = () => {
                 </header>
             </div>
         </>
-);}
+    );
+}
 
 
 export default Home;

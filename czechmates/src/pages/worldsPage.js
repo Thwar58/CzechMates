@@ -5,28 +5,30 @@ import World from "../components/World";
 import ManageWorldPopup from '../components/ManageWorldPopup';
 import JoinCodePopup from "../components/JoinCodePopup";
 
-
-const CharactersPage = () => {
+// this is the world page
+const WorldPage = () => {
     return (
         <div>
             <h1 style={{ color: "green" }}>
                 World List
             </h1>
-            <p>Invite Code<input type="text" placeholder="enter code here" />
-            <JoinCodePopup name={"World Name"}/>
+            {/* the invite code input section */}
+            <p>Invite Code
+                <input type="text" placeholder="enter code here" />
+                {/* the button triggers the join from code modal */}
+                <JoinCodePopup name={"World Name"} />
             </p>
-            
-            
-            <Dropdown text="Order by..." actions={["Owned", "Participating", "Alphabetically"]}/>
-            <World/>
-            <World/>
-            <World/>
-            <World/>
-            <ManageWorldPopup title="World Name" button={"Plus Sign"}/>
-
-
+            {/* dropdown for world sorting options */}
+            <Dropdown text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
+            {/* future: generage dynamically instead of hardcoding */}
+            <World />
+            <World />
+            <World />
+            <World />
+            {/* this brings up the modal for creating a world */}
+            <ManageWorldPopup title="World Name" button={"Plus Sign"} />
         </div>
     );
 };
 
-export default CharactersPage;
+export default WorldPage;
