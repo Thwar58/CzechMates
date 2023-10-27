@@ -6,10 +6,10 @@ import { useState } from 'react';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 // a dropdown that updates the text of the dropdown button with the selected option
-function DropDownShowsValue({actions}) {
+function DropDownShowsValue({actions, text}) {
 
   // sets the default value of the dropdown button
-  const [value, setValue] = useState('select here');
+  const [value, setValue] = useState(text);
   // changes the button to match the selection
   const handleSelect = (e) => {
     setValue(e)

@@ -26,12 +26,12 @@ const TypeAheadWithButton = () => {
           labelKey="name"
           onChange={setSingleSelections}
           options={options}
-          placeholder="Choose a friend..."
+          placeholder="Search"
           selected={singleSelections}
         />
-        <Button variant="outline-secondary" id="button-addon2">
+        {/* <Button variant="outline-secondary" id="button-addon2">
           Button
-        </Button>
+        </Button> */}
       </InputGroup>
     </>
   );
