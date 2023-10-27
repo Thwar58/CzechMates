@@ -3,6 +3,7 @@ import React from "react";
 import Dropdown from '../components/Dropdown';
 import InputWithLabel from "../components/InputWithLabel";
 import Form from 'react-bootstrap/Form';
+import DropDownShowsValue from "../components/DropDownShowsValue";
 
 // this component houses the content for the character equipment
 const EquipmentPage = () => {
@@ -19,19 +20,19 @@ const EquipmentPage = () => {
             </h1>
             {/* future: generate dynamically instead of hardcoding */}
             {/* dropdown for the weapons */}
-            <Dropdown text="Equipped Weapon" actions={dummyWep} />
+            <DropDownShowsValue text="Equipped Weapon" actions={dummyWep} />
             {/* Weapon Modifications */}
             <Form.Label>Weapon Modification Slots</Form.Label>
             <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
             <InputWithLabel label={"Slot 2"} placeholder={"modification here"} disabled={false} />
             <InputWithLabel label={"Slot 3"} placeholder={"modification here"} disabled={false} />
             {/* dropdown for the shield */}
-            <Dropdown text="Equipped Shield" actions={dummyShield} />
+            <DropDownShowsValue text="Equipped Shield" actions={dummyShield} />
             {/* Weapon Modifications */}
             <Form.Label>Shield Modification Slots</Form.Label>
             <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
             {/* dropdown for the armor */}
-            <Dropdown text="Equipped Armor" actions={dummyArmor} />
+            <DropDownShowsValue text="Equipped Armor" actions={dummyArmor} />
             {/* Weapon Modifications */}
             <Form.Label>Armor Modification Slots</Form.Label>
             <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />

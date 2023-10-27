@@ -4,6 +4,7 @@ import Dropdown from "../components/Dropdown";
 import World from "../components/World";
 import ManageWorldPopup from '../components/ManageWorldPopup';
 import JoinCodePopup from "../components/JoinCodePopup";
+import DropDownShowsValue from "../components/DropDownShowsValue";
 
 // this is the world page
 const WorldPage = () => {
@@ -19,7 +20,7 @@ const WorldPage = () => {
                 <JoinCodePopup name={"World Name"} />
             </p>
             {/* dropdown for world sorting options */}
-            <Dropdown text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
+            <DropDownShowsValue text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
             {/* future: generage dynamically instead of hardcoding */}
             <World />
             <World />

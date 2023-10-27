@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import DropDown from '../Dropdown';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
+import DropDownShowsValue from '../DropDownShowsValue';
 
 // a component for the modal when you try to join a world from a code, you pass in the world name
 function JoinCodePopup({ name }) {
@@ -43,7 +44,7 @@ function JoinCodePopup({ name }) {
                     <Form.Group className="mb-3" controlId="ChooseCharacter">
                         {/* choosing an existing one from a dropdown (from the players character list) */}
                         <Form.Label>Choose an existing character</Form.Label>
-                        <DropDown text={"Chosen: None"} actions={dummyCharacters} />
+                        <DropDownShowsValue text={"Chosen: None"} actions={dummyCharacters} />
                         {/* future: we can move the button under the label with css */}
                         {/* creating a new character, this brings the user to the general sub character page */}
                         <Form.Label>Create a new character</Form.Label>
