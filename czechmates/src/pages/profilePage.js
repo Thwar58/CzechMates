@@ -38,14 +38,14 @@ const ProfilePage = () => {
             </h1>
             {/* future: generate dynamically instead of hardcoding */}
             {/* future: pass information in */}
-            <User />
-            <User />
+            <User label={"Username"} content={"Filler username"} />
+            <User label={"Email"} content={"Filler email"} />
             <h1 style={{ color: "green" }}>
                 Social
             </h1>
             {/* future: choose one search bar and remove the rest */}
             {/* search bar options start here */}
-            <Searchbar
+            {/* <Searchbar
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
             />
@@ -56,16 +56,16 @@ const ProfilePage = () => {
                     </li>
                 ))}
             </ul>
-            <Spacer />
-            <TypeAhead />
-            <Spacer />
+            <Spacer /> */}
+            {/* <TypeAhead />
+            <Spacer /> */}
             <TypeAheadWithButton />
             {/* end search bar options */}
 
             {/* tabs for the friends, following, and followers */}
             {/* hardcoded social components for now */}
             <ControlledTabs text={["Friends", "Following", "Followers"]}
-                content={[[<Social />], [<Social />, <Social />], [<Social />, <Social />, <Social />]]} />
+                content={[[<Social content={"Sample Name"} />], [<Social content={"Sample Name"} />, <Social content={"Sample Name"} />], [<Social content={"Sample Name"} />, <Social content={"Sample Name"} />, <Social content={"Sample Name"} />]]} />
         </div>
     );
 };
