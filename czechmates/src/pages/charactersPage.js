@@ -1,6 +1,5 @@
 
 import React from "react";
-import Dropdown from "../components/Dropdown";
 import Character from "../components/Character";
 import { useNavigate } from 'react-router-dom';
 import DropDownShowsValue from "../components/DropDownShowsValue";
@@ -14,6 +13,7 @@ const CharactersPage = () => {
         // navigate to /subCharacterPage
         navigate('/subCharacterPages');
     }
+
     return (
         <div>
             <h1 style={{ color: "green" }}>
@@ -23,10 +23,10 @@ const CharactersPage = () => {
             <DropDownShowsValue text="Order by..." actions={["level", "recently used", "alphabetically"]} />
             {/* future: pass information in */}
             {/* future: generate dynamically instead of hardcoding */}
+            <div id="characters">
             <Character />
-            <Character />
-            <Character />
-            <Character />
+            </div>
+            
             {/* button that redirects to the subchar pages */}
             <div>
                 <button onClick={navigateToGeneral} type="button" className="btn btn-primary">Plus sign icon</button>
