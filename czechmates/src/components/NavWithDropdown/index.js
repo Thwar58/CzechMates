@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 // a component for the navigation bar with a dropdown button incorperated
 function NavWithDD() {
   return (
-    <Navbar variant="dark" bg="dark" expand="lg">
+    <Navbar variant="dark" bg="dark" sticky='top'>
       {/* all of the nav bar links */}
       <Container fluid>
         <Navbar.Brand href="/">Home</Navbar.Brand>

@@ -24,9 +24,9 @@ const CharactersPage = () => {
             {/* future: pass information in */}
             {/* future: generate dynamically instead of hardcoding */}
             <div id="characters">
-            <Character />
+                <Character charName={"filler name"} />
             </div>
-            
+
             {/* button that redirects to the subchar pages */}
             <div>
                 <button onClick={navigateToGeneral} type="button" className="btn btn-primary">Plus sign icon</button>

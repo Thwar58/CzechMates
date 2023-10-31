@@ -8,7 +8,7 @@ function UEInput({ value }) {
             {/* set the value and disable the form input */}
             <Form.Control
                 value={value}
-                disabled="true"
+                disabled={true}
             />
         </>
     );
