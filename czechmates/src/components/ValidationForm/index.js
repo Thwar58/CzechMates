@@ -7,6 +7,8 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 
+// DISCARD
+
 function ValidationForm() {
   const [validated, setValidated] = useState(false);
 

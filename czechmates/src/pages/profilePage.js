@@ -16,8 +16,6 @@ const ProfilePage = () => {
         { id: '4', name: 'This is the fourth and final post' },
     ];
 
-
-
     const filterPosts = (posts, query) => {
         if (!query) {
             return posts;
@@ -38,14 +36,16 @@ const ProfilePage = () => {
             <h1 style={{ color: "green" }}>
                 Account information
             </h1>
-            <User />
-            <User />
-
+            {/* future: generate dynamically instead of hardcoding */}
+            {/* future: pass information in */}
+            <User label={"Username"} content={"Filler username"} />
+            <User label={"Email"} content={"Filler email"} />
             <h1 style={{ color: "green" }}>
                 Social
             </h1>
-
-            <Searchbar
+            {/* future: choose one search bar and remove the rest */}
+            {/* search bar options start here */}
+            {/* <Searchbar
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
             />
@@ -56,18 +56,16 @@ const ProfilePage = () => {
                     </li>
                 ))}
             </ul>
-            <Spacer />
-            <TypeAhead />
-            <Spacer />
+            <Spacer /> */}
+            {/* <TypeAhead />
+            <Spacer /> */}
             <TypeAheadWithButton />
+            {/* end search bar options */}
 
+            {/* tabs for the friends, following, and followers */}
+            {/* hardcoded social components for now */}
             <ControlledTabs text={["Friends", "Following", "Followers"]}
-                // content = {["Friends", "Following", "Followers"]}/>
-                // this line below is what is leading to that error message in the console, 
-                // it is because the users do not have distinguishing information yet, that
-                // will be remidied when we pull in actual information instead of using dummies
-                content={[[<Social />], [<Social />, <Social />], [<Social />, <Social />, <Social />]]} />
-
+                content={[[<Social content={"Sample Name"} />], [<Social content={"Sample Name"} />, <Social content={"Sample Name"} />], [<Social content={"Sample Name"} />, <Social content={"Sample Name"} />, <Social content={"Sample Name"} />]]} />
         </div>
     );
 };

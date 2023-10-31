@@ -2,32 +2,32 @@
 import React from "react";
 import AttributesComp from "../components/AttributesComp";
 
-
+// this component houses the content for the character attributes
 const AttributesPage = () => {
     return (
         <div>
             <h1 style={{ color: "green" }}>
                 Attributes
             </h1>
-            {/* same as skills, we can split it up into divs and display side by side */}
-            <AttributesComp value={"Awareness"}/>
-            <AttributesComp value={"Charisma"}/>
-            <AttributesComp value={"Defense"}/>
-            <AttributesComp value={"Endurance"}/>
-            <AttributesComp value={"Health"}/>
-            <AttributesComp value={"Knowledge"}/>
-            <AttributesComp value={"Magic Attack"}/>
-            <AttributesComp value={"Magic Defense"}/>
-            <AttributesComp value={"Magic Heal"}/>
-            <AttributesComp value={"Magic Reach"}/>
-            <AttributesComp value={"Melee Attack"}/>
-            <AttributesComp value={"Ranged Attack"}/>
-            <AttributesComp value={"Max Action Points (AP)"}/>
-            <AttributesComp value={"Max Vigor"}/>
-            <AttributesComp value={"Max Resolve"}/>
-            <AttributesComp value={"Magic Range"}/>
-            <AttributesComp value={"Movement"}/>
-            
+            {/* future: split into two sections (ref. Func. Spec.) */}
+            {/* future: generate dynamically instead of hardcoding */}
+            <AttributesComp value={"5"} name={"Awareness"} />
+            <AttributesComp value={"5"} name={"Charisma"} />
+            <AttributesComp value={"5"} name={"Defense"} />
+            <AttributesComp value={"5"} name={"Endurance"} />
+            <AttributesComp value={"5"} name={"Health"} />
+            <AttributesComp value={"5"} name={"Knowledge"} />
+            <AttributesComp value={"5"} name={"Magic Attack"} />
+            <AttributesComp value={"5"} name={"Magic Defense"} />
+            <AttributesComp value={"5"} name={"Magic Heal"} />
+            <AttributesComp value={"5"} name={"Magic Reach"} />
+            <AttributesComp value={"5"} name={"Melee Attack"} />
+            <AttributesComp value={"5"} name={"Ranged Attack"} />
+            <AttributesComp value={"5"} name={"Max Action Points (AP)"} />
+            <AttributesComp value={"5"} name={"Max Vigor"} />
+            <AttributesComp value={"5"} name={"Max Resolve"} />
+            <AttributesComp value={"5"} name={"Magic Range"} />
+            <AttributesComp value={"5"} name={"Movement"} />
         </div>
     );
 };
