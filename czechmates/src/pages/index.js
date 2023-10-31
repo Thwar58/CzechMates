@@ -3,7 +3,6 @@ import React from 'react';
 import Dropdown from '../components/Dropdown';
 import Form from '../components/Form';
 import ValidationForm from '../components/ValidationForm';
-import ControlledTabs from '../components/Tabs';
 import TooltipPositions from '../components/ToolTip';
 import PopoverPositions from '../components/Popover';
 import Spacer from '../components/Spacer';
