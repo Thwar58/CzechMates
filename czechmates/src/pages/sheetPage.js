@@ -2,6 +2,9 @@
 import React from "react";
 import InputWithLabel from "../components/InputWithLabel";
 import FillTable from "../components/Table";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 // this component has all of the character information, uneditable
 const SheetPage = () => {
@@ -49,41 +52,102 @@ const SheetPage = () => {
 
     return (
         <div>
-            <h1 style={{ color: "green" }}>
-                Sheet
-            </h1>
-            <p>Image here</p>
-            {/* future: generate dynamically instead of hardcoding */}
-            {/* general information */}
-            <p>General</p>
-            <InputWithLabel label={"Name"} placeholder={"Type here"} disabled={true} />
-            <InputWithLabel label={"High Concept"} placeholder={"Type here"} disabled={true} />
-            <InputWithLabel label={"Trouble"} placeholder={"Type here"} disabled={true} />
-            <InputWithLabel label={"Aspect 1"} placeholder={"Type here"} disabled={true} />
-            <InputWithLabel label={"Aspect 2"} placeholder={"Type here"} disabled={true} />
-            <InputWithLabel label={"Fate Points"} placeholder={"Type here"} disabled={true} />
-            <InputWithLabel label={"Money"} placeholder={"Type here"} disabled={true} />
-            <InputWithLabel label={"Physical Appearance"} placeholder={"Type here"} disabled={true} />
-            <InputWithLabel label={"Background"} placeholder={"Type here"} disabled={true} />
-            <InputWithLabel label={"Major Relationships"} placeholder={"Type here"} disabled={true} />
-            <InputWithLabel label={"Other"} placeholder={"Type here"} disabled={true} />
-            {/* equipment information */}
-            <p>Equipment</p>
-            <InputWithLabel label={"Equipped Weapon"} placeholder={"weapon"} disabled={true} />
-            <InputWithLabel label={"Weapon Modification 1"} placeholder={"modification here"} disabled={true} />
-            <InputWithLabel label={"Weapon Modification 2"} placeholder={"modification here"} disabled={true} />
-            <InputWithLabel label={"Weapon Modification 3"} placeholder={"modification here"} disabled={true} />
-            <InputWithLabel label={"Equipped Shield"} placeholder={"weapon"} disabled={true} />
-            <InputWithLabel label={"Shield Modification 1"} placeholder={"modification here"} disabled={true} />
-            <InputWithLabel label={"Equipped Armor"} placeholder={"weapon"} disabled={true} />
-            <InputWithLabel label={"Armor Modification 1"} placeholder={"modification here"} disabled={true} />
-            <InputWithLabel label={"Armor Modification 2"} placeholder={"modification here"} disabled={true} />
-            {/* skills information in a table */}
-            <p>Skills</p>
-            <FillTable type={"Skill"} data={skills}></FillTable>
-            {/* attributes information in a table */}
-            <p>Equipment</p>
-            <FillTable type={"Attribute"} data={attributes}></FillTable>
+            <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <Row>
+                    <Col>
+                    </Col>
+                    <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        {/* title */}
+                        <h1 style={{ color: "green", textAlign: "center" }}>
+                            Sheet
+                        </h1>
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    </Col>
+                    <Col style={{ textAlign: "center", borderStyle: "solid" }}>
+                        <p>Image here</p>
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <InputWithLabel label={"Name"} placeholder={"Type here"} disabled={true} />
+                    </Col>
+                    <Col>
+                        <InputWithLabel label={"High Concept"} placeholder={"Type here"} disabled={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <InputWithLabel label={"Trouble"} placeholder={"Type here"} disabled={true} />
+                    </Col>
+                    <Col>
+                        <InputWithLabel label={"Aspect 1"} placeholder={"Type here"} disabled={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <InputWithLabel label={"Aspect 2"} placeholder={"Type here"} disabled={true} />
+                    </Col>
+                    <Col>
+                        <InputWithLabel label={"Fate Points"} placeholder={"Type here"} disabled={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    <InputWithLabel label={"Money"} placeholder={"Type here"} disabled={true} />
+                    <InputWithLabel label={"Physical Appearance"} placeholder={"Type here"} disabled={true} />
+                    <InputWithLabel label={"Background"} placeholder={"Type here"} disabled={true} />
+                    <InputWithLabel label={"Major Relationships"} placeholder={"Type here"} disabled={true} />
+                    <InputWithLabel label={"Other"} placeholder={"Type here"} disabled={true} />
+                </Row>
+                {/* future: generate dynamically instead of hardcoding */}
+                {/* general information */}
+                {/* equipment information */}
+                <p style={{textAlign:"center"}}>Equipment</p>
+                <Row>
+                    <Col>
+                        <InputWithLabel label={"Equipped Weapon"} placeholder={"weapon"} disabled={true} />
+                    </Col>
+                    <Col>
+                        <InputWithLabel label={"Weapon Modification 1"} placeholder={"modification here"} disabled={true} />
+                        <InputWithLabel label={"Weapon Modification 2"} placeholder={"modification here"} disabled={true} />
+                        <InputWithLabel label={"Weapon Modification 3"} placeholder={"modification here"} disabled={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <InputWithLabel label={"Equipped Shield"} placeholder={"weapon"} disabled={true} />
+                    </Col>
+                    <Col>
+                        <InputWithLabel label={"Shield Modification 1"} placeholder={"modification here"} disabled={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <InputWithLabel label={"Equipped Armor"} placeholder={"weapon"} disabled={true} />
+                    </Col>
+                    <Col>
+                        <InputWithLabel label={"Armor Modification 1"} placeholder={"modification here"} disabled={true} />
+                        <InputWithLabel label={"Armor Modification 2"} placeholder={"modification here"} disabled={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    {/* skills information in a table */}
+                    <p style={{textAlign: "center"}}>Skills</p>
+                    <FillTable type={"Skill"} data={skills}></FillTable>
+                </Row>
+                <Row>
+                    {/* attributes information in a table */}
+                    <p style={{textAlign: "center"}}>Equipment</p>
+                    <FillTable type={"Attribute"} data={attributes}></FillTable>
+                </Row>
+            </Container>
+
         </div>
     );
 };

@@ -4,6 +4,9 @@ import Dropdown from '../components/Dropdown';
 import InputWithLabel from "../components/InputWithLabel";
 import Form from 'react-bootstrap/Form';
 import DropDownShowsValue from "../components/DropDownShowsValue";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 // this component houses the content for the character equipment
 const EquipmentPage = () => {
@@ -15,28 +18,67 @@ const EquipmentPage = () => {
 
     return (
         <div>
-            <h1 style={{ color: "green" }}>
-                Equipment
-            </h1>
-            {/* future: generate dynamically instead of hardcoding */}
-            {/* dropdown for the weapons */}
-            <DropDownShowsValue text="Equipped Weapon" actions={dummyWep} />
-            {/* Weapon Modifications */}
-            <Form.Label>Weapon Modification Slots</Form.Label>
-            <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
-            <InputWithLabel label={"Slot 2"} placeholder={"modification here"} disabled={false} />
-            <InputWithLabel label={"Slot 3"} placeholder={"modification here"} disabled={false} />
-            {/* dropdown for the shield */}
-            <DropDownShowsValue text="Equipped Shield" actions={dummyShield} />
-            {/* Weapon Modifications */}
-            <Form.Label>Shield Modification Slots</Form.Label>
-            <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
-            {/* dropdown for the armor */}
-            <DropDownShowsValue text="Equipped Armor" actions={dummyArmor} />
-            {/* Weapon Modifications */}
-            <Form.Label>Armor Modification Slots</Form.Label>
-            <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
-            <InputWithLabel label={"Slot 2"} placeholder={"modification here"} disabled={false} />
+            <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <Row>
+                    <Col>
+                    </Col>
+                    <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        {/* title */}
+                        <h1 style={{ color: "green", textAlign: "center" }}>
+                            Equipment
+                        </h1>
+
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+                <Row style={{borderBottom: "solid", borderTop: "solid"}}>
+                    <Col>
+                        {/* future: generate dynamically instead of hardcoding */}
+                        {/* dropdown for the weapons */}
+                        <Form.Label>Weapon</Form.Label>
+                        <DropDownShowsValue text="Equipped Weapon" actions={dummyWep} />
+                    </Col>
+                    <Col className="col-sm-8 col-md-8 col-lg-8">
+                        {/* Weapon Modifications */}
+                        <Form.Label>Weapon Modification Slots</Form.Label>
+                        <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
+                        <InputWithLabel label={"Slot 2"} placeholder={"modification here"} disabled={false} />
+                        <InputWithLabel label={"Slot 3"} placeholder={"modification here"} disabled={false} />
+                    </Col>
+                </Row>
+                <Row style={{borderBottom: "solid"}}>
+                    <Col>
+                        {/* dropdown for the shield */}
+                        <Form.Label>Shield</Form.Label>
+                        <DropDownShowsValue text="Equipped Shield" actions={dummyShield} />
+                    </Col>
+                    <Col className="col-sm-8 col-md-8 col-lg-8">
+                        {/* Weapon Modifications */}
+                        <Form.Label>Shield Modification Slots</Form.Label>
+                        <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
+                    </Col>
+                </Row>
+                <Row style={{borderBottom: "solid"}}>
+                    <Col>
+                        {/* dropdown for the armor */}
+                        <Form.Label>Armor</Form.Label>
+                        <DropDownShowsValue text="Equipped Armor" actions={dummyArmor} />
+                    </Col>
+                    <Col className="col-sm-8 col-md-8 col-lg-8">
+                        {/* Weapon Modifications */}
+                        <Form.Label>Armor Modification Slots</Form.Label>
+                        <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
+                        <InputWithLabel label={"Slot 2"} placeholder={"modification here"} disabled={false} />
+                    </Col>
+                </Row>
+
+
+
+
+
+            </Container>
+
         </div>
     );
 };

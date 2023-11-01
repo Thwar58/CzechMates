@@ -7,7 +7,9 @@ import DropDown from '../Dropdown';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import DropDownShowsValue from '../DropDownShowsValue';
-
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 // a component for the modal when you try to join a world from a code, you pass in the world name
@@ -43,15 +45,35 @@ function JoinCodePopup({ name }) {
                 </Modal.Header>
                 {/* the body with 2 options for choosing a character: */}
                 <Modal.Body>
-                    <Form.Group className="mb-3" controlId="ChooseCharacter">
-                        {/* choosing an existing one from a dropdown (from the players character list) */}
-                        <Form.Label>Choose an existing character</Form.Label>
-                        <DropDownShowsValue text={"Chosen: None"} actions={dummyCharacters} />
-                        {/* future: we can move the button under the label with css */}
-                        {/* creating a new character, this brings the user to the general sub character page */}
-                        <Form.Label>Create a new character</Form.Label>
-                        <Button onClick={navigateToGeneral}>Create New</Button>
-                    </Form.Group>
+                    <Container  fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <Form.Group className="mb-3" controlId="ChooseCharacter">
+                            <Row>
+                                <Col>
+                                    {/* choosing an existing one from a dropdown (from the players character list) */}
+                                    <Form.Label>Choose an existing character</Form.Label>
+                                    <DropDownShowsValue text={"Chosen: None"} actions={dummyCharacters} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    {/* future: we can move the button under the label with css */}
+                                    {/* creating a new character, this brings the user to the general sub character page */}
+                                    <Form.Label>Create a new character</Form.Label>
+                                   
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                <Button onClick={navigateToGeneral}>Create New</Button>
+                                </Col>
+                            </Row>
+
+
+                        </Form.Group>
+                    </Container>
+
+
+
                 </Modal.Body>
                 {/* the modal footer with the closing buttons */}
                 <Modal.Footer>

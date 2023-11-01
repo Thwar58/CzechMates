@@ -23,30 +23,35 @@ const SubCharacterPages = () => {
     // returns a div with the character name and the tabs for each of the pages
     return (
         <div>
-             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-            <Row>
-                <Col>
-                </Col>
-                <Col className= "col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                      {/* title */}
-            <h1 style={{ color: "green", textAlign: "center"}}>
-                Character Name
-            </h1>
+            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <Row>
+                    <Col>
+                    </Col>
+                    <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        {/* title */}
+                        <h1 style={{ color: "green", textAlign: "center" }}>
+                            Character Name
+                        </h1>
 
-                </Col>
-                <Col>
-                </Col>
-            </Row>
-           
-            {/* tabs for each page, passing in the labels and the page objects */}
-            <ControlledTabs text={["General", "Equipment", "Skills", "Attributes", "Sheet"]}
-                content={[<GeneralPage />, <EquipmentPage />, <SkillsPage />, <AttributesPage />, <SheetPage />]} />
-            {/* a button that redirects to the character page when clicked */}
-            <Button onClick={navigateToCharPage}>Done</Button>
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+                <Row>
+                    {/* tabs for each page, passing in the labels and the page objects */}
+                    <ControlledTabs text={["General", "Equipment", "Skills", "Attributes", "Sheet"]}
+                        content={[<GeneralPage />, <EquipmentPage />, <SkillsPage />, <AttributesPage />, <SheetPage />]} />
+                </Row>
+                <Row>
+                    <Col>
+                     {/* a button that redirects to the character page when clicked */}
+                     <Button style={{float: "right"}} onClick={navigateToCharPage}>Done</Button>
+                    </Col>
+                   
+                </Row>
 
+            </Container>
 
-             </Container>
-           
         </div>
     );
 };
