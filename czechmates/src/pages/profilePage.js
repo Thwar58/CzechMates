@@ -1,4 +1,4 @@
-import React from "react";
+import React, { cloneElement } from "react";
 import User from "../components/User";
 import ControlledTabs from '../components/Tabs';
 import Searchbar from '../components/Searchbar';
@@ -7,6 +7,9 @@ import TypeAhead from "../components/TypeAhead";
 import Spacer from '../components/Spacer';
 import TypeAheadWithButton from "../components/TypeAheadWithButton";
 import Social from '../components/Social';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const ProfilePage = () => {
     const posts = [
@@ -33,19 +36,60 @@ const ProfilePage = () => {
     const filteredPosts = filterPosts(posts, searchQuery);
     return (
         <div>
-            <h1 style={{ color: "green" }}>
-                Account information
-            </h1>
-            {/* future: generate dynamically instead of hardcoding */}
-            {/* future: pass information in */}
-            <User label={"Username"} content={"Filler username"} />
-            <User label={"Email"} content={"Filler email"} />
-            <h1 style={{ color: "green" }}>
-                Social
-            </h1>
-            {/* future: choose one search bar and remove the rest */}
-            {/* search bar options start here */}
-            {/* <Searchbar
+
+            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <Row>
+                    <Col>
+                    </Col>
+                    <Col>
+                        <h1 style={{ color: "green", textAlign: "center" }}>
+                            Account information
+                        </h1>
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+                <Row>
+                    <User label={"Username"} content={"Filler username"} />
+                </Row>
+                <Row>
+                    <User label={"Email"} content={"Filler email"} />
+                </Row>
+                <Row>
+                    <Col>
+                    </Col>
+                    <Col>
+                        <h1 style={{ color: "green", textAlign: "center" }}>
+                            Social
+                        </h1>
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    </Col>
+                    <Col md={10}>
+                        <TypeAheadWithButton />
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+                <Row>
+                <ControlledTabs text={["Friends", "Following", "Followers"]}
+                    content={[[<Social content={"Sample Name"} />], [<Social content={"Sample Name"} />, <Social content={"Sample Name"} />], [<Social content={"Sample Name"} />, <Social content={"Sample Name"} />, <Social content={"Sample Name"} />]]} />
+
+
+                </Row>
+
+                {/* future: generate dynamically instead of hardcoding */}
+                {/* future: pass information in */}
+
+
+
+                {/* future: choose one search bar and remove the rest */}
+                {/* search bar options start here */}
+                {/* <Searchbar
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
             />
@@ -57,15 +101,15 @@ const ProfilePage = () => {
                 ))}
             </ul>
             <Spacer /> */}
-            {/* <TypeAhead />
+                {/* <TypeAhead />
             <Spacer /> */}
-            <TypeAheadWithButton />
-            {/* end search bar options */}
 
-            {/* tabs for the friends, following, and followers */}
-            {/* hardcoded social components for now */}
-            <ControlledTabs text={["Friends", "Following", "Followers"]}
-                content={[[<Social content={"Sample Name"} />], [<Social content={"Sample Name"} />, <Social content={"Sample Name"} />], [<Social content={"Sample Name"} />, <Social content={"Sample Name"} />, <Social content={"Sample Name"} />]]} />
+                {/* end search bar options */}
+
+                {/* tabs for the friends, following, and followers */}
+                {/* hardcoded social components for now */} 
+            </Container>
+
         </div>
     );
 };

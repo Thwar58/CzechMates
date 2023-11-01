@@ -22,6 +22,7 @@ const TypeAheadWithButton = () => {
           aria-describedby="basic-addon2"
         /> */}
         <Typeahead
+          style={{width: "100%"}}
           id="basic-typeahead-single"
           labelKey="name"
           onChange={setSingleSelections}
