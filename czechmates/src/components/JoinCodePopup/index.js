@@ -31,7 +31,7 @@ function JoinCodePopup({ name }) {
         <>
             {/* the button that triggers the modal */}
             <Button variant="primary" onClick={handleShow}>
-                Enter Join Code
+                Join
             </Button>
             {/* the modal  */}
             <Modal show={show} onHide={handleClose}>
