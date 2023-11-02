@@ -16,15 +16,12 @@ import Profile from './pages/profilePage';
 import Worlds from './pages/worldsPage';
 import NavWithDD from './components/NavWithDropdown';
 import SubCharacterPages from './pages/subCharacterPages';
-// import { funA, doSomething } from "./utils/attributeFunctions";
 import Func from './utils/attributeFunctions';
 
 
 // anything in this app script will appear/be available on every page
 function App() {
-    // doSomething();
-    // funA();
-    // doSomething();
+    // examples of calling the attribute calculation methods
     Func.calcAwareness();
     Func.calcMovement();
     return (
