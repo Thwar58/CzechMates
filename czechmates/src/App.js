@@ -17,10 +17,48 @@ import Worlds from './pages/worldsPage';
 import NavWithDD from './components/NavWithDropdown';
 import SubCharacterPages from './pages/subCharacterPages';
 import Func from './utils/attributeFunctions';
-
+import { ref, set } from "firebase/database";
+import { db } from './firebase';
+import { onValue } from "firebase/database";
+import {child, get } from "firebase/database";
 
 // anything in this app script will appear/be available on every page
 function App() {
+
+   // https://firebase.google.com/docs/database/web/read-and-write
+    function writeUserData(userId, name, email, imageUrl) {
+        set(ref(db, 'users/' + userId), {
+            username: name,
+            email: email,
+            profile_picture: imageUrl
+        });
+    }
+
+    // writeUserData("1", "2", "3", "4");
+
+    // const starCountRef = ref(db, 'users/');
+    // console.log(starCountRef);
+    // onValue(starCountRef, (snapshot) => {
+    //     console.log("in");
+    //     const data = snapshot.val();
+    //     console.log(data);
+    //     // updateStarCount(postElement, data);
+    // });
+
+    // https://firebase.google.com/docs/database/web/read-and-write
+    const dbRef = ref(db);
+    get(child(dbRef, `users/`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            console.log(snapshot.val());
+        } else {
+            console.log("No data available");
+        }
+    }).catch((error) => {
+        console.error(error);
+    });
+
+
+
     // examples of calling the attribute calculation methods
     Func.calcAwareness();
     Func.calcMovement();
