@@ -73,7 +73,7 @@ const CharactersPage = () => {
                     {/* future: generate dynamically instead of hardcoding */}
                     <div>
                         {charInfo?.map((item) => (
-                            <Character charName={item.General.Name} />
+                            <Character charName={item.General.Name} lastIndex={charInfo.length} />
                         ))}
                     </div>
                 </Row>

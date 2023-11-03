@@ -11,7 +11,7 @@ import DBFunctions from "../../utils/firebaseQueries";
 
 
 // the character component
-const Character = ({ charName }) => {
+const Character = ({ charName, lastIndex }) => {
     // handle page navigations
     const navigate = useNavigate();
     const navigateToGeneral = () => {
@@ -25,7 +25,7 @@ const Character = ({ charName }) => {
     //     addChar(charDiv.concat(<Character charName={"filler name copy"} />));
     // };
     const onAddBtnClick = event => {
-        DBFunctions.writeCharacterData("User1", "2", "test", "concept");
+        DBFunctions.writeCharacterData("User1", lastIndex, "test", "concept");
         // addChar(charDiv.concat(<Character charName={"filler name copy"} />));
     };
 
