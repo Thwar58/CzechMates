@@ -29,10 +29,8 @@ var DBFunctions = {
 
     // writeUserData("User3", "False", "user3@gmail.com", ["F1"], ["F2"], ["F3"], "Dark", "User3");
 
-
-    // change this cause of the new array stuff, botching it right now just for a test
-    writeWorldData: function (userId, index, inviteCode, members, name, schedule) {
-        set(ref(db, 'Worlds/' + userId + "/" + index),
+    writeWorldData: function (userId, worldId, inviteCode, members, name, schedule) {
+        set(ref(db, 'Worlds/' + userId + "/" + worldId),
             {
                 Invite_Code: inviteCode,
                 Members: members,
@@ -45,9 +43,8 @@ var DBFunctions = {
 
 
     // I got lazy and only did the minimum in general but the rest should be the same
-    // needs to be fixed for array as well
-    writeCharacterData: function (userID, index, name, concept) {
-        set(ref(db, 'Characters/' + userID + '/' + index + "/General"),
+    writeCharacterData: function (userID, charId, name, concept) {
+        set(ref(db, 'Characters/' + userID + "/" + charId + "/General"),
             {
                 Name: name,
                 High_Concept: concept

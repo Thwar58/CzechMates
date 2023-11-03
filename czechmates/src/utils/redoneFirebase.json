@@ -44,8 +44,8 @@
         }
     },
     "Characters": {
-        "User1": [
-             {
+        "User1": {
+            "CharID1": {
                 "General": {
                     "Name": "Character1 (1.1)",
                     "High_Concept": "High Concept (1.1)",
@@ -120,7 +120,7 @@
                     "Movement": "1"
                 }
             },
-            {
+            "CharID2": {
                 "General": {
                     "Name": "Charcter2 (1.2)",
                     "High_Concept": "High Concept (1.2)",
@@ -195,9 +195,9 @@
                     "Movement": "2"
                 }
             }
-        ],
-        "User2": [
-             {
+        },
+        "User2": {
+            "CharID1": {
                 "General": {
                     "Name": "Character1 (2.1)",
                     "High_Concept": "High Concept (2.1)",
@@ -272,7 +272,7 @@
                     "Movement": "5"
                 }
             },
-            {
+            "CharID2": {
                 "General": {
                     "Name": "Charcter2 (2.2)",
                     "High_Concept": "High Concept (2.2)",
@@ -347,11 +347,11 @@
                     "Movement": "5"
                 }
             }
-        ]
+        }
     },
     "Worlds": {
-        "User1": [
-            {
+        "User1": {
+            "WorldID1": {
                 "Name": "World1 (1)",
                 "Schedule": "day",
                 "Invite_Code": "code",
@@ -361,7 +361,7 @@
                     "M3"
                 ]
             },
-            {
+            "WorldID2": {
                 "Name": "World2 (1)",
                 "Schedule": "day",
                 "Invite_Code": "code",
@@ -371,9 +371,9 @@
                     "M3"
                 ]
             }
-        ],
-        "User2": [
-             {
+        },
+        "User2": {
+            "WorldID1": {
                 "Name": "World1 (2)",
                 "Schedule": "day",
                 "Invite_Code": "code",
@@ -383,7 +383,7 @@
                     "M3"
                 ]
             },
-            {
+            "WorldID2": {
                 "Name": "World2 (2)",
                 "Schedule": "day",
                 "Invite_Code": "code",
@@ -393,7 +393,7 @@
                     "M3"
                 ]
             }
-        ]
+        }
     },
     "Codes": [
         "Code1",
