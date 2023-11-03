@@ -19,14 +19,8 @@ const Character = ({ charName, lastIndex }) => {
         navigate('/subCharacterPages');
     }
 
-    // const [charDiv, addChar] = useState([]);
-
-    // const onAddBtnClick = event => {
-    //     addChar(charDiv.concat(<Character charName={"filler name copy"} />));
-    // };
     const onAddBtnClick = event => {
-        DBFunctions.writeCharacterData("User1", lastIndex, "test", "concept");
-        // addChar(charDiv.concat(<Character charName={"filler name copy"} />));
+        DBFunctions.writeCharacterData("User1", "CharID3", "test", "concept");
     };
 
     // return a div with the character name and buttons for each option

@@ -28,20 +28,16 @@ const CharactersPage = () => {
     useEffect(() => {
         const charRef = ref(db, 'Characters/' + userId);
         onValue(charRef, (snapshot) => {
-            setCharInfo(snapshot.val());
-          });
+            console.log(snapshot.val());
+            var arr = [];
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+            for (const [key, value] of Object.entries(snapshot.val())) {
+                console.log(`${key}: `, value);
+                arr.push(value);
+              }
+            setCharInfo(arr);
+        });
 
-
-        // const dbRef = ref(db);
-        // get(child(dbRef, `Characters/` + userId)).then((snapshot) => {
-        //     if (snapshot.exists()) {
-        //         setCharInfo(snapshot.val());
-        //     } else {
-        //         console.log("No data available");
-        //     }
-        // }).catch((error) => {
-        //     console.error(error);
-        // });
     }, []);
 
     useEffect(() => {

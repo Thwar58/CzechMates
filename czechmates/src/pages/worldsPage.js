@@ -23,22 +23,19 @@ const WorldPage = () => {
 
 
     useEffect(() => {
-        
         const worldsRef = ref(db, 'Worlds/' + userId);
         onValue(worldsRef, (snapshot) => {
-            setWorldInfo(snapshot.val());
-          });
+            console.log(snapshot.val());
+            var arr = [];
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+            for (const [key, value] of Object.entries(snapshot.val())) {
+                console.log(`${key}: `, value);
+                arr.push(value);
+              }
+            setWorldInfo(arr);
+        });
 
-        //   const dbRef = ref(db);
-        // get(child(dbRef, `Worlds/` + userId)).then((snapshot) => {
-        //     if (snapshot.exists()) {
-        //         setWorldInfo(snapshot.val());
-        //     } else {
-        //         console.log("No data available");
-        //     }
-        // }).catch((error) => {
-        //     console.error(error);
-        // });
+      
     }, []);
 
     useEffect(() => {
