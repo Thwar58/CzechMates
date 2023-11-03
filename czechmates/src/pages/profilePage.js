@@ -13,7 +13,7 @@ import Col from 'react-bootstrap/Col';
 import DBFunctions from "../utils/firebaseQueries";
 import { useEffect } from "react";
 import { db } from '../firebase';
-import { child, get, ref } from "firebase/database";
+import { child, get, ref, onValue } from "firebase/database";
 
 const ProfilePage = () => {
 
@@ -23,20 +23,27 @@ const ProfilePage = () => {
     var [userId] = useState("User1");
 
     useEffect(() => {
-        setUserInfo(DBFunctions.readUserData("User1"));
+
+        const userRef = ref(db, 'Users/' + userId);
+        onValue(userRef, (snapshot) => {
+            setUserInfo(snapshot.val());
+          });
+
+        // const dbRef = ref(db);
+        // get(child(dbRef, `Users/` + userId)).then((snapshot) => {
+        //     if (snapshot.exists()) {
+        //         setUserInfo(snapshot.val());
+        //     } else {
+        //         console.log("No data available");
+        //     }
+        // }).catch((error) => {
+        //     console.error(error);
+        // });
+
     }, []);
 
     useEffect(() => {
-        const dbRef = ref(db);
-        get(child(dbRef, `Users/` + userId)).then((snapshot) => {
-            if (snapshot.exists()) {
-                setUserInfo(snapshot.val());
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
+        console.log(userInfo);
     }, [userInfo]);
 
 

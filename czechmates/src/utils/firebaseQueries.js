@@ -73,9 +73,26 @@ var DBFunctions = {
         }).catch((error) => {
             console.error(error);
         });
-    }
+    },
 
     // readUserData("User1");
+
+    readWorldData: function (userId) {
+        const dbRef = ref(db);
+        var data = null;
+        get(child(dbRef, `Worlds/` + userId)).then((snapshot) => {
+            if (snapshot.exists()) {
+                data = snapshot.val();
+                // console.log("snapshot ", snapshot.val());
+                // console.log("data: ", data);
+                return data;
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
 
 }
 
