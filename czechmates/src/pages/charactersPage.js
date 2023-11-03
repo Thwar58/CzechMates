@@ -6,6 +6,10 @@ import DropDownShowsValue from "../components/DropDownShowsValue";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { db } from '../firebase';
+import { child, get, ref, onValue } from "firebase/database";
+import { useState } from "react";
+import { useEffect } from "react";
 
 // a component for the main character page
 const CharactersPage = () => {
@@ -16,6 +20,35 @@ const CharactersPage = () => {
         // navigate to /subCharacterPage
         navigate('/subCharacterPages');
     }
+
+    var [charInfo, setCharInfo] = useState([]);
+    var [userId] = useState("User1");
+
+
+    useEffect(() => {
+        const charRef = ref(db, 'Characters/' + userId);
+        onValue(charRef, (snapshot) => {
+            setCharInfo(snapshot.val());
+          });
+
+
+        // const dbRef = ref(db);
+        // get(child(dbRef, `Characters/` + userId)).then((snapshot) => {
+        //     if (snapshot.exists()) {
+        //         setCharInfo(snapshot.val());
+        //     } else {
+        //         console.log("No data available");
+        //     }
+        // }).catch((error) => {
+        //     console.error(error);
+        // });
+    }, []);
+
+    useEffect(() => {
+        console.log(charInfo);
+
+    }, [charInfo]);
+
 
     return (
         <div>
@@ -38,8 +71,10 @@ const CharactersPage = () => {
                 <Row>
                     {/* future: pass information in */}
                     {/* future: generate dynamically instead of hardcoding */}
-                    <div id="characters">
-                        <Character charName={"filler name"} />
+                    <div>
+                        {charInfo?.map((item) => (
+                            <Character charName={item.General.Name} lastIndex={charInfo.length} />
+                        ))}
                     </div>
                 </Row>
                 <Row>

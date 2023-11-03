@@ -9,13 +9,45 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { useEffect } from "react";
+import { db } from '../firebase';
+import { child, get, ref, onValue } from "firebase/database";
+import { useState } from "react";
 
 // this is the world page
 const WorldPage = () => {
 
+
+    var [worldInfo, setWorldInfo] = useState([]);
+    var [userId] = useState("User1");
+
+
+    useEffect(() => {
+        
+        const worldsRef = ref(db, 'Worlds/' + userId);
+        onValue(worldsRef, (snapshot) => {
+            setWorldInfo(snapshot.val());
+          });
+
+        //   const dbRef = ref(db);
+        // get(child(dbRef, `Worlds/` + userId)).then((snapshot) => {
+        //     if (snapshot.exists()) {
+        //         setWorldInfo(snapshot.val());
+        //     } else {
+        //         console.log("No data available");
+        //     }
+        // }).catch((error) => {
+        //     console.error(error);
+        // });
+    }, []);
+
+    useEffect(() => {
+        console.log(worldInfo);
+
+    }, [worldInfo]);
+
     return (
         <div>
-
 
             {/* future: generage dynamically instead of hardcoding 
             its too much trouble doing this in a faked way, wait until
@@ -55,9 +87,11 @@ const WorldPage = () => {
                     </Col>
                 </Row>
                 <Row>
-                    <World worldName={"filler name"} />
-                    <World worldName={"filler name 2"} />
-                    <World worldName={"filler name 3"} />
+                    <div>
+                        {worldInfo?.map((item) => (
+                            <World worldName={item.Name} />
+                        ))}
+                    </div>
                     {/* this brings up the modal for creating a world */}
                     <Col>
                         <ManageWorldPopup title="World Name" button={"Plus Sign"} />

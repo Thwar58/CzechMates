@@ -7,10 +7,11 @@ import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import DBFunctions from "../../utils/firebaseQueries";
 
 
 // the character component
-const Character = ({ charName }) => {
+const Character = ({ charName, lastIndex }) => {
     // handle page navigations
     const navigate = useNavigate();
     const navigateToGeneral = () => {
@@ -18,10 +19,14 @@ const Character = ({ charName }) => {
         navigate('/subCharacterPages');
     }
 
-    const [charDiv, addChar] = useState([]);
+    // const [charDiv, addChar] = useState([]);
 
+    // const onAddBtnClick = event => {
+    //     addChar(charDiv.concat(<Character charName={"filler name copy"} />));
+    // };
     const onAddBtnClick = event => {
-        addChar(charDiv.concat(<Character charName={"filler name copy"} />));
+        DBFunctions.writeCharacterData("User1", lastIndex, "test", "concept");
+        // addChar(charDiv.concat(<Character charName={"filler name copy"} />));
     };
 
     // return a div with the character name and buttons for each option
@@ -66,7 +71,7 @@ const Character = ({ charName }) => {
             {/* <button id="printButton" type="button" className="btn btn-primary">Print</button> */}
             {/* {charDiv} */}
             {/* </div> */}
-            {charDiv}
+            {/* {charDiv} */}
         </div>
     );
 };
