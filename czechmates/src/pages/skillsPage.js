@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 
 
 // this component houses the content for the character skills
-const SkillsPage = () => {
+const SkillsPage = ({skillInfo}) => {
     return (
         <div>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -27,24 +27,24 @@ const SkillsPage = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <SkillsComp value={"0"} name={"Alchemy"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Arcana"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Athletics"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Burglary"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Deceive"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Empathy"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Engineering"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Fight"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Alchemy ?? "Loading..."} name={"Alchemy"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Arcana ?? "Loading..."} name={"Arcana"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Athletics ?? "Loading..."} name={"Athletics"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Burglary ?? "Loading..."} name={"Burglary"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Deceive ?? "Loading..."} name={"Deceive"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Empathy ?? "Loading..."} name={"Empathy"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Engineering ?? "Loading..."} name={"Engineering"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Fight ?? "Loading..."} name={"Fight"} button1={"up"} button2={"down"} />
                     </Col>
                     <Col>
-                        <SkillsComp value={"0"} name={"Hunting"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Lore"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Physique"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Rapport"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Shooting"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Stealth"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Survival"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={"0"} name={"Will"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Hunting ?? "Loading..."} name={"Hunting"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Lore ?? "Loading..."} name={"Lore"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Physique ?? "Loading..."} name={"Physique"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Rapport ?? "Loading..."} name={"Rapport"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Shooting ?? "Loading..."} name={"Shooting"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Stealth ?? "Loading..."} name={"Stealth"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Survival ?? "Loading..."} name={"Survival"} button1={"up"} button2={"down"} />
+                        <SkillsComp value={skillInfo?.Will ?? "Loading..."} name={"Will"} button1={"up"} button2={"down"} />
                     </Col>
                 </Row>
 

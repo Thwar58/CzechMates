@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // this component houses the content for the character attributes
-const AttributesPage = () => {
+const AttributesPage = ({attrInfo}) => {
     return (
         <div>
 
@@ -26,31 +26,31 @@ const AttributesPage = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <AttributesComp value={"5"} name={"Awareness"} />
-                        <AttributesComp value={"5"} name={"Charisma"} />
-                        <AttributesComp value={"5"} name={"Defense"} />
-                        <AttributesComp value={"5"} name={"Endurance"} />
-                        <AttributesComp value={"5"} name={"Health"} />
-                        <AttributesComp value={"5"} name={"Knowledge"} />
-                        <AttributesComp value={"5"} name={"Magic Attack"} />
-                        <AttributesComp value={"5"} name={"Magic Defense"} />
+                        <AttributesComp value={attrInfo?.Awareness ?? "Loading..."} name={"Awareness"} />
+                        <AttributesComp value={attrInfo?.Charisma ?? "Loading..."} name={"Charisma"} />
+                        <AttributesComp value={attrInfo?.Defense ?? "Loading..."} name={"Defense"} />
+                        <AttributesComp value={attrInfo?.Endurance ?? "Loading..."} name={"Endurance"} />
+                        <AttributesComp value={attrInfo?.Health ?? "Loading..."} name={"Health"} />
+                        <AttributesComp value={attrInfo?.Knowledge ?? "Loading..."} name={"Knowledge"} />
+                        <AttributesComp value={attrInfo?.Magic_Attack ?? "Loading..."} name={"Magic Attack"} />
+                        <AttributesComp value={attrInfo?.Magic_Defense ?? "Loading..."} name={"Magic Defense"} />
                     </Col>
                     <Col>
-                        <AttributesComp value={"5"} name={"Magic Heal"} />
-                        <AttributesComp value={"5"} name={"Magic Reach"} />
-                        <AttributesComp value={"5"} name={"Melee Attack"} />
-                        <AttributesComp value={"5"} name={"Ranged Attack"} />
-                        <AttributesComp value={"5"} name={"Max Action Points (AP)"} />
-                        <AttributesComp value={"5"} name={"Max Vigor"} />
-                        <AttributesComp value={"5"} name={"Max Resolve"} />
-                        <AttributesComp value={"5"} name={"Magic Range"} />
+                        <AttributesComp value={attrInfo?.Magic_Heal ?? "Loading..."} name={"Magic Heal"} />
+                        <AttributesComp value={attrInfo?.Magic_Reach ?? "Loading..."} name={"Magic Reach"} />
+                        <AttributesComp value={attrInfo?.Melee_Attack ?? "Loading..."} name={"Melee Attack"} />
+                        <AttributesComp value={attrInfo?.Ranged_Attack ?? "Loading..."} name={"Ranged Attack"} />
+                        <AttributesComp value={attrInfo?.Max_Action_Points_AP ?? "Loading..."} name={"Max Action Points (AP)"} />
+                        <AttributesComp value={attrInfo?.Max_Vigor ?? "Loading..."} name={"Max Vigor"} />
+                        <AttributesComp value={attrInfo?.Max_Resolve ?? "Loading..."} name={"Max Resolve"} />
+                        <AttributesComp value={attrInfo?.Magic_Range ?? "Loading..."} name={"Magic Range"} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
                     </Col>
                     <Col className="col-xs-12 col-sm-10 col-md-7 col-lg-7">
-                        <AttributesComp value={"5"} name={"Movement"} />
+                        <AttributesComp value={attrInfo?.Movement ?? "Loading..."} name={"Movement"} />
                     </Col>
                     <Col>
                     </Col>
