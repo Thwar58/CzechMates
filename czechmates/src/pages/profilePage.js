@@ -10,8 +10,38 @@ import Social from '../components/Social';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import DBFunctions from "../utils/firebaseQueries";
+import { useEffect } from "react";
+import { db } from '../firebase';
+import { child, get, ref } from "firebase/database";
 
 const ProfilePage = () => {
+
+    // pretend we know this is user 1 because they logged in already
+
+    var [userInfo, setUserInfo] = useState("");
+    var [userId] = useState("User1");
+
+    useEffect(() => {
+        setUserInfo(DBFunctions.readUserData("User1"));
+    }, []);
+
+    useEffect(() => {
+        const dbRef = ref(db);
+        get(child(dbRef, `Users/` + userId)).then((snapshot) => {
+            if (snapshot.exists()) {
+                setUserInfo(snapshot.val());
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    }, [userInfo]);
+
+
+
+
     const posts = [
         { id: '1', name: 'This first post is about React' },
         { id: '2', name: 'This next post is about Preact' },
@@ -50,10 +80,11 @@ const ProfilePage = () => {
                     </Col>
                 </Row>
                 <Row>
-                    <User label={"Username"} content={"Filler username"} />
+                    {/* https://daveceddia.com/react-before-render/ */}
+                    <User label={"Username"} content={userInfo?.Name ?? "Loading..."} />
                 </Row>
                 <Row>
-                    <User label={"Email"} content={"Filler email"} />
+                    <User label={"Email"} content={userInfo?.Email ?? "Loading..."} />
                 </Row>
                 <Row>
                     <Col>
@@ -76,8 +107,29 @@ const ProfilePage = () => {
                     </Col>
                 </Row>
                 <Row>
-                <ControlledTabs text={["Friends", "Following", "Followers"]}
-                    content={[[<Social content={"Sample Name"} />], [<Social content={"Sample Name"} />, <Social content={"Sample Name"} />], [<Social content={"Sample Name"} />, <Social content={"Sample Name"} />, <Social content={"Sample Name"} />]]} />
+                    <ControlledTabs text={["Friends", "Following", "Followers"]}
+                        content={[[
+                            <div>
+                                {/* {userInfo?.Email ?? "Loading..."} */}
+                                {userInfo?.Friends?.map((name) => (
+                                    <Social content={name} />
+                                ))}
+                            </div>
+                        ], [
+                            <div>
+                                {/* {userInfo?.Email ?? "Loading..."} */}
+                                {userInfo?.Following?.map((name) => (
+                                    <Social content={name} />
+                                ))}
+                            </div>
+                        ], [
+                            <div>
+                                {/* {userInfo?.Email ?? "Loading..."} */}
+                                {userInfo?.Followers?.map((name) => (
+                                    <Social content={name} />
+                                ))}
+                            </div>
+                        ]]} />
 
 
                 </Row>
@@ -107,7 +159,7 @@ const ProfilePage = () => {
                 {/* end search bar options */}
 
                 {/* tabs for the friends, following, and followers */}
-                {/* hardcoded social components for now */} 
+                {/* hardcoded social components for now */}
             </Container>
 
         </div>

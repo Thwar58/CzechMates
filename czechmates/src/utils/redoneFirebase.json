@@ -7,18 +7,18 @@
             "Admin_status": "False",
             "Friends": [
                 "User2",
-                "F2",
-                "F3"
+                "User3",
+                "User4"
             ],
             "Followers": [
-                "F1",
-                "F2",
-                "F3"
+                "User5",
+                "User6",
+                "User7"
             ],
             "Following": [
-                "F1",
-                "F2",
-                "F3"
+                "User8",
+                "User9",
+                "User10"
             ]
         },
         "User2": {
