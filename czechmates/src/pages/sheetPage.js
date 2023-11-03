@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // this component has all of the character information, uneditable
-const SheetPage = () => {
+const SheetPage = ({sheetInfo}) => {
 
     // dummy skill data
     const skills = [
@@ -76,34 +76,34 @@ const SheetPage = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel label={"Name"} placeholder={"Type here"} disabled={true} />
+                        <InputWithLabel label={"Name"} placeholder={sheetInfo?.General?.Name ?? "Loading..."} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"High Concept"} placeholder={"Type here"} disabled={true} />
+                        <InputWithLabel label={"High Concept"} placeholder={sheetInfo?.General?.High_Concept ?? "Loading..."} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel label={"Trouble"} placeholder={"Type here"} disabled={true} />
+                        <InputWithLabel label={"Trouble"} placeholder={sheetInfo?.General?.Trouble ?? "Loading..."} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Aspect 1"} placeholder={"Type here"} disabled={true} />
+                        <InputWithLabel label={"Aspect 1"} placeholder={sheetInfo?.General?.Aspect_1 ?? "Loading..."} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel label={"Aspect 2"} placeholder={"Type here"} disabled={true} />
+                        <InputWithLabel label={"Aspect 2"} placeholder={sheetInfo?.General?.Aspect_2 ?? "Loading..."} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Fate Points"} placeholder={"Type here"} disabled={true} />
+                        <InputWithLabel label={"Fate Points"} placeholder={sheetInfo?.General?.Fate_Points ?? "Loading..."} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
-                    <InputWithLabel label={"Money"} placeholder={"Type here"} disabled={true} />
-                    <InputWithLabel label={"Physical Appearance"} placeholder={"Type here"} disabled={true} />
-                    <InputWithLabel label={"Background"} placeholder={"Type here"} disabled={true} />
-                    <InputWithLabel label={"Major Relationships"} placeholder={"Type here"} disabled={true} />
-                    <InputWithLabel label={"Other"} placeholder={"Type here"} disabled={true} />
+                    <InputWithLabel label={"Money"} placeholder={sheetInfo?.General?.Money ?? "Loading..."} disabled={true} />
+                    <InputWithLabel label={"Physical Appearance"} placeholder={sheetInfo?.General?.Physical_Appearance ?? "Loading..."} disabled={true} />
+                    <InputWithLabel label={"Background"} placeholder={sheetInfo?.General?.Background ?? "Loading..."} disabled={true} />
+                    <InputWithLabel label={"Major Relationships"} placeholder={sheetInfo?.General?.Major_Relationships ?? "Loading..."} disabled={true} />
+                    <InputWithLabel label={"Other"} placeholder={sheetInfo?.General?.Other ?? "Loading..."} disabled={true} />
                 </Row>
                 {/* future: generate dynamically instead of hardcoding */}
                 {/* general information */}

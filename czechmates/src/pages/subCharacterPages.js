@@ -76,7 +76,7 @@ const SubCharacterPages = () => {
                 <Row>
                     {/* tabs for each page, passing in the labels and the page objects */}
                     <ControlledTabs text={["General", "Equipment", "Skills", "Attributes", "Sheet"]}
-                        content={[<GeneralPage generalInfo={charInfo.General} />, <EquipmentPage />, <SkillsPage skillInfo={charInfo.Skills} />, <AttributesPage attrInfo={charInfo.Attributes} />, <SheetPage />]} />
+                        content={[<GeneralPage generalInfo={charInfo.General} />, <EquipmentPage />, <SkillsPage skillInfo={charInfo.Skills} />, <AttributesPage attrInfo={charInfo.Attributes} />, <SheetPage sheetInfo={charInfo} />]} />
                 </Row>
                 <Row>
                     <Col>
