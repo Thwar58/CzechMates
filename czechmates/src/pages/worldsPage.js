@@ -18,25 +18,40 @@ import { useState } from "react";
 const WorldPage = () => {
 
 
-    var [worldInfo, setWorldInfo] = useState([]);
+    var [worldInfo, setWorldInfo] = useState({});
     var [userId] = useState("User1");
+
+
+    function addWorlds() {
+        var arr = [];
+        // https://flexiple.com/javascript/loop-through-object-javascript
+        Object.values(worldInfo).forEach(val =>
+            arr.push(<World key={val.Name} worldName={val.Name}> </World>));
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+        // for (const [value] of Object.entries(worldInfo)) {
+        //     // console.log(`${key}: `, value);
+        //     arr.push(<World key={value.Name} worldName={value.Name}> </World>);
+        //   }
+        // console.log("test");
+        return arr;
+    }
 
 
     useEffect(() => {
         const worldsRef = ref(db, 'Worlds/' + userId);
         onValue(worldsRef, (snapshot) => {
             // console.log(snapshot.val());
-            var arr = [];
+            // var arr = [];
             // https://flexiple.com/javascript/loop-through-object-javascript
-            Object.values(snapshot.val()).forEach(val =>arr.push(val));
-            setWorldInfo(arr);
+            // Object.values(snapshot.val()).forEach(val =>arr.push(val));
+            // setWorldInfo(arr);
+            setWorldInfo(snapshot.val());
         });
 
     }, [userId]);
 
     useEffect(() => {
-        // console.log(worldInfo);
-
+        console.log(worldInfo);
     }, [worldInfo]);
 
     return (
@@ -81,9 +96,12 @@ const WorldPage = () => {
                 </Row>
                 <Row>
                     <div>
-                        {worldInfo?.map((item) => (
+                        {/* {worldInfo?.map((item) => (
                             <World key={item.Name} worldName={item.Name} />
-                        ))}
+                        ))} */}
+                        {
+                            addWorlds()
+                        }
                     </div>
                     {/* this brings up the modal for creating a world */}
                     <Col>
