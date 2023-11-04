@@ -65,6 +65,12 @@ var DBFunctions = {
             );
     },
 
+    // updateMultPlaces: function (arr) {
+        // update(ref(db), updates);
+    // },
+
+
+
 
 
     // writeCharacterData("User3", "CharID1", "Char1", "rogue");
