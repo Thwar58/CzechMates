@@ -9,13 +9,30 @@ import Modal from 'react-bootstrap/Modal';
 import UEInput from '../UEInput';
 
 // a component for viewing world information (not editable by the user)
-function VWPopup({ name }) {
+function VWPopup({ name, members }) {
   // set the default state of the modal to hidden
   const [show, setShow] = useState(false);
 
   // functions to handle opening and closing the modal
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  function addMems() {
+    if (members !== undefined) {
+      var arr = [];
+      // https://flexiple.com/javascript/loop-through-object-javascript
+      Object.values(members).forEach(val =>
+        arr.push(<UEInput key={val} value={val}></UEInput>));
+      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+      // for (const [value] of Object.entries(worldInfo)) {
+      //     // console.log(`${key}: `, value);
+      //     arr.push(<World key={value.Name} worldName={value.Name}> </World>);
+      //   }
+      // console.log("test");
+      return arr;
+    }
+
+  }
 
   return (
     <>
@@ -47,9 +64,9 @@ function VWPopup({ name }) {
             {/* future: generate dynamically instead of hardcoding */}
             <Form.Group className="mb-3" controlId="Members">
               <Form.Label>Members</Form.Label>
-              <UEInput value={"Member 1"} />
-              <UEInput value={"Member 2"} />
-              <UEInput value={"Member 3"} />
+              {
+                addMems()
+              }
             </Form.Group>
           </Form>
         </Modal.Body>

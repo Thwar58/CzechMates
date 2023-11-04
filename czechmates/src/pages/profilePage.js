@@ -17,12 +17,29 @@ const ProfilePage = () => {
     var [userInfo, setUserInfo] = useState("");
     var [userId] = useState("User1");
 
+    function addF(type) {
+        if (type !== undefined) {
+            var arr = [];
+            // https://flexiple.com/javascript/loop-through-object-javascript
+            Object.values(type).forEach(val => 
+                arr.push(<Social key={val} content={val}> </Social>));
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+            // for (const [value] of Object.entries(worldInfo)) {
+            //     // console.log(`${key}: `, value);
+            //     arr.push(<World key={value.Name} worldName={value.Name}> </World>);
+            //   }
+            // console.log("test");
+            return arr;
+        }
+
+    }
+
     useEffect(() => {
 
         const userRef = ref(db, 'Users/' + userId);
         onValue(userRef, (snapshot) => {
             setUserInfo(snapshot.val());
-          });
+        });
 
         // const dbRef = ref(db);
         // get(child(dbRef, `Users/` + userId)).then((snapshot) => {
@@ -41,7 +58,7 @@ const ProfilePage = () => {
         // console.log(userInfo);
     }, [userInfo]);
 
-   
+
     return (
         <div>
 
@@ -88,24 +105,24 @@ const ProfilePage = () => {
                     <ControlledTabs text={["Friends", "Following", "Followers"]}
                         content={[[
                             <div key={"Friends"} >
-                                {/* {userInfo?.Email ?? "Loading..."} */}
-                                {userInfo?.Friends?.map((name) => (
+                                {/* {userInfo?.Friends?.map((name) => (
                                     <Social key={name} content={name} />
-                                ))}
+                                ))} */}
+                                {addF(userInfo.Friends)}
                             </div>
                         ], [
                             <div key={"Following"} >
-                                {/* {userInfo?.Email ?? "Loading..."} */}
-                                {userInfo?.Following?.map((name) => (
+                                {/* {userInfo?.Following?.map((name) => (
                                     <Social key={name} content={name} />
-                                ))}
+                                ))} */}
+                                {addF(userInfo.Following)}
                             </div>
                         ], [
                             <div key={"Followers"}>
-                                {/* {userInfo?.Email ?? "Loading..."} */}
-                                {userInfo?.Followers?.map((name) => (
+                                {/* {userInfo?.Followers?.map((name) => (
                                     <Social key={name} content={name} />
-                                ))}
+                                ))} */}
+                                {addF(userInfo.Followers)}
                             </div>
                         ]]} />
 

@@ -22,6 +22,18 @@ const Character = ({ charName }) => {
         DBFunctions.writeCharacterData("User1", "CharID3", "test", "concept");
     };
 
+    const removeOrEdit = event => {
+        // DBFunctions.removeFromDB('Characters/User1/CharID3/General');
+        DBFunctions.editInDB('Characters/User1/CharID3/General/Name', "test2");
+        // DBFunctions.removeFromDB('Users/User1/Followers/User7');
+        // const updates = {};
+        // updates['User/'] = "New Name";
+        // updates['Characters'] = "New Name";
+        // DBFunctions.updateMultPlaces(updates);
+
+    };
+    
+
     // return a div with the character name and buttons for each option
     return (
         <div>
@@ -44,7 +56,7 @@ const Character = ({ charName }) => {
                         Edit
                     </Button>
                     <ConfirmationPopup id="removeButton" name="Remove" />
-                    <Button variant="outline-secondary" id="button-addon2">
+                    <Button onClick={removeOrEdit} variant="outline-secondary" id="button-addon2">
                         Print
                     </Button>
                 </InputGroup>
