@@ -27,7 +27,7 @@ function NewTable({ data, type }) {
     }, [data]);
 
     useEffect(() => {
-        console.log(dataArr);
+        // console.log(dataArr);
     }, [dataArr]);
 
 

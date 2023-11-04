@@ -97,29 +97,29 @@ const SheetPage = ({ sheetInfo }) => {
                 <p style={{ textAlign: "center" }}>Equipment</p>
                 <Row>
                     <Col>
-                        <InputWithLabel label={"Equipped Weapon"} placeholder={"weapon"} disabled={true} />
+                        <InputWithLabel label={"Equipped Weapon"} placeholder={sheetInfo?.Equipment?.Weapon_Equipped ?? "Loading..."} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Weapon Modification 1"} placeholder={"modification here"} disabled={true} />
-                        <InputWithLabel label={"Weapon Modification 2"} placeholder={"modification here"} disabled={true} />
-                        <InputWithLabel label={"Weapon Modification 3"} placeholder={"modification here"} disabled={true} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <InputWithLabel label={"Equipped Shield"} placeholder={"weapon"} disabled={true} />
-                    </Col>
-                    <Col>
-                        <InputWithLabel label={"Shield Modification 1"} placeholder={"modification here"} disabled={true} />
+                        <InputWithLabel label={"Weapon Mod 1"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[0] ?? "Loading..."} disabled={true}/>
+                        <InputWithLabel label={"Weapon Mod 2"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[1] ?? "Loading..."} disabled={true}/>
+                        <InputWithLabel label={"Weapon Mod 3"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[2] ?? "Loading..."} disabled={true}/>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel label={"Equipped Armor"} placeholder={"weapon"} disabled={true} />
+                        <InputWithLabel label={"Equipped Shield"} placeholder={sheetInfo?.Equipment?.Shield_Equipped ?? "Loading..."} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Armor Modification 1"} placeholder={"modification here"} disabled={true} />
-                        <InputWithLabel label={"Armor Modification 2"} placeholder={"modification here"} disabled={true} />
+                        <InputWithLabel label={"Shield Mod 1"} placeholder={sheetInfo?.Equipment?.Shield_Modification_Slots[0] ?? "Loading..."} disabled={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <InputWithLabel label={"Equipped Armor"} placeholder={sheetInfo?.Equipment?.Armor_Equipped ?? "Loading..."} disabled={true} />
+                    </Col>
+                    <Col>
+                        <InputWithLabel label={"Armor Mod 1"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots[0] ?? "Loading..."} disabled={true} />
+                        <InputWithLabel label={"Armor Mod 2"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots[1] ?? "Loading..."} disabled={true} />
                     </Col>
                 </Row>
                 <Row>

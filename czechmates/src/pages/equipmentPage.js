@@ -9,8 +9,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // this component houses the content for the character equipment
-const EquipmentPage = () => {
-
+const EquipmentPage = ({equipInfo}) => {
+    
+    // console.log(equipInfo);
     // future: pass in information instead of using dummy data
     const dummyWep = ["Beginner Bow", "Beginner Sword", "Beginner Spear", "Epic Healing Staff"];
     const dummyShield = ["Shield", "Big Shield", "Tall Shield"];
@@ -42,9 +43,9 @@ const EquipmentPage = () => {
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
                         <Form.Label>Weapon Modification Slots</Form.Label>
-                        <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
-                        <InputWithLabel label={"Slot 2"} placeholder={"modification here"} disabled={false} />
-                        <InputWithLabel label={"Slot 3"} placeholder={"modification here"} disabled={false} />
+                        <InputWithLabel label={"Slot 1"} placeholder={equipInfo?.Weapon_Modification_Slots[0] ?? "Loading..."} disabled={false} />
+                        <InputWithLabel label={"Slot 2"} placeholder={equipInfo?.Weapon_Modification_Slots[1] ?? "Loading..."} disabled={false} />
+                        <InputWithLabel label={"Slot 3"} placeholder={equipInfo?.Weapon_Modification_Slots[2] ?? "Loading..."} disabled={false} />
                     </Col>
                 </Row>
                 <Row style={{borderBottom: "solid"}}>
@@ -56,7 +57,7 @@ const EquipmentPage = () => {
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
                         <Form.Label>Shield Modification Slots</Form.Label>
-                        <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
+                        <InputWithLabel label={"Slot 1"} placeholder={equipInfo?.Shield_Modification_Slots[0] ?? "Loading..."} disabled={false} />
                     </Col>
                 </Row>
                 <Row style={{borderBottom: "solid"}}>
@@ -68,8 +69,8 @@ const EquipmentPage = () => {
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
                         <Form.Label>Armor Modification Slots</Form.Label>
-                        <InputWithLabel label={"Slot 1"} placeholder={"modification here"} disabled={false} />
-                        <InputWithLabel label={"Slot 2"} placeholder={"modification here"} disabled={false} />
+                        <InputWithLabel label={"Slot 1"} placeholder={equipInfo?.Armor_Modification_Slots[0] ?? "Loading..."} disabled={false} />
+                        <InputWithLabel label={"Slot 2"} placeholder={equipInfo?.Armor_Modification_Slots[1] ?? "Loading..."} disabled={false} />
                     </Col>
                 </Row>
 
