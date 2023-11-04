@@ -26,7 +26,7 @@ const WorldPage = () => {
         var arr = [];
         // https://flexiple.com/javascript/loop-through-object-javascript
         Object.values(worldInfo).forEach(val =>
-            arr.push(<World key={val.Name} worldName={val.Name}> </World>));
+            arr.push(<World key={val.Name} worldName={val.Name} members={val.Members} > </World>));
         //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         // for (const [value] of Object.entries(worldInfo)) {
         //     // console.log(`${key}: `, value);
@@ -51,7 +51,7 @@ const WorldPage = () => {
     }, [userId]);
 
     useEffect(() => {
-        console.log(worldInfo);
+        // console.log(worldInfo);
     }, [worldInfo]);
 
     return (
@@ -108,8 +108,6 @@ const WorldPage = () => {
                         <ManageWorldPopup title="World Name" button={"Plus Sign"} />
                     </Col>
                 </Row>
-
-
             </Container>
 
 

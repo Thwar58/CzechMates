@@ -10,7 +10,7 @@
                 "User3": "User3",
                 "User4": "User4"
             },
-            "Followers":{
+            "Followers": {
                 "User5": "User5",
                 "User6": "User6",
                 "User7": "User7"
@@ -31,7 +31,7 @@
                 "User3": "User3",
                 "User4": "User4"
             },
-            "Followers":{
+            "Followers": {
                 "User5": "User5",
                 "User6": "User6",
                 "User7": "User7"
@@ -343,20 +343,20 @@
                 "Name": "World1 (1)",
                 "Schedule": "day",
                 "Invite_Code": "code",
-                "Members": [
-                    "M1",
-                    "M2",
-                    "M3"
-                ]
+                "Members": {
+                    "M1": "M1",
+                    "M2": "M2",
+                    "M3": "M3"
+            }
             },
             "WorldID2": {
                 "Name": "World2 (1)",
                 "Schedule": "day",
                 "Invite_Code": "code",
                 "Members": {
-                    "Char1": "Char",
-                    "Char2": "Char",
-                    "Char3": "Char"
+                    "M1": "M1",
+                    "M2": "M2",
+                    "M3": "M3"
             }
             }
         },
@@ -365,21 +365,21 @@
                 "Name": "World1 (2)",
                 "Schedule": "day",
                 "Invite_Code": "code",
-                "Members": [
-                    "M1",
-                    "M2",
-                    "M3"
-                ]
+                "Members": {
+                    "M1": "M1",
+                    "M2": "M2",
+                    "M3": "M3"
+            }
             },
             "WorldID2": {
                 "Name": "World2 (2)",
                 "Schedule": "day",
                 "Invite_Code": "code",
-                "Members": [
-                    "M1",
-                    "M2",
-                    "M3"
-                ]
+                "Members": {
+                    "M1": "M1",
+                    "M2": "M2",
+                    "M3": "M3"
+            }
             }
         }
     },
