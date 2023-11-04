@@ -13,7 +13,6 @@ import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
-import Func from "../utils/attributeFunctions";
 
 // this is the world page
 const WorldPage = () => {
@@ -23,7 +22,7 @@ const WorldPage = () => {
     var [userId] = useState("User1");
 
 
-    function test() {
+    function addWorlds() {
         var arr = [];
         // https://flexiple.com/javascript/loop-through-object-javascript
         Object.values(worldInfo).forEach(val =>
@@ -101,7 +100,7 @@ const WorldPage = () => {
                             <World key={item.Name} worldName={item.Name} />
                         ))} */}
                         {
-                            test()
+                            addWorlds()
                         }
                     </div>
                     {/* this brings up the modal for creating a world */}

@@ -24,15 +24,30 @@ const CharactersPage = () => {
     var [charInfo, setCharInfo] = useState([]);
     var [userId] = useState("User1");
 
+    function addChars() {
+        var arr = [];
+        // https://flexiple.com/javascript/loop-through-object-javascript
+        Object.values(charInfo).forEach(val =>
+            arr.push(<Character key={val.General.Name} charName={val.General.Name} />));
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+        // for (const [value] of Object.entries(worldInfo)) {
+        //     // console.log(`${key}: `, value);
+        //     arr.push(<World key={value.Name} worldName={value.Name}> </World>);
+        //   }
+        // console.log("test");
+        return arr;
+    }
+
 
     useEffect(() => {
         const charRef = ref(db, 'Characters/' + userId);
         onValue(charRef, (snapshot) => {
             // console.log(snapshot.val());
-            var arr = [];
-           // https://flexiple.com/javascript/loop-through-object-javascript
-           Object.values(snapshot.val()).forEach(val =>arr.push(val));
-            setCharInfo(arr);
+            // var arr = [];
+            // https://flexiple.com/javascript/loop-through-object-javascript
+            //    Object.values(snapshot.val()).forEach(val =>arr.push(val));
+            // setCharInfo(arr);
+            setCharInfo(snapshot.val());
         });
 
     }, [userId]);
@@ -65,9 +80,13 @@ const CharactersPage = () => {
                     {/* future: pass information in */}
                     {/* future: generate dynamically instead of hardcoding */}
                     <div>
-                        {charInfo?.map((item) => (
+                        {/* {charInfo?.map((item) => (
                             <Character key={item.General.Name} charName={item.General.Name} />
-                        ))}
+                        ))} */} 
+                        {
+                            addChars()
+                        }
+
                     </div>
                 </Row>
                 <Row>
