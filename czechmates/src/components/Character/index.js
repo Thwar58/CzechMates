@@ -22,23 +22,37 @@ const Character = ({ charName }) => {
         DBFunctions.writeCharacterData("User1", "CharID3", "test", "concept");
     };
 
-    const charData = [
-        ["Name", "Konan"],
-        ["Level", "12"],
-        ["Class", "Barbarian"],
+    const charData = {
+        name: "Konan",
+        level: "12",
+        class: "Barbarian"
         // Add more data as needed
-      ];
+    };
 
-      //prints the character as a csv
     function printChar() {
-        const csvContent = charData.map((row) => row.join(",")).join("\n");
-        const blob = new Blob([csvContent], { type: "text/csv" });
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "CharTest.csv";
-        a.click();
-        window.URL.revokeObjectURL(url);
+        
+        const printWindow = window.open('', '', 'width=800,height=600');
+        const htmlContent = `
+    <html>
+      <head>
+        <title>Print Character Sheet</title>
+      </head>
+      <body>
+        <h1>Character Name: ${charData.name}</h1>
+        <p>Class: ${charData.class}</p>
+        <p>Level: ${charData.level}</p>
+        <!-- Add your HTML content here -->
+      </body>
+    </html>
+  `;
+
+        // Set the content of the new window to the CSV data
+        printWindow.document.open();
+        printWindow.document.write(htmlContent);
+        printWindow.document.close();
+        
+        // Trigger the print dialog
+        printWindow.print();
       }
 
     const removeOrEdit = event => {
