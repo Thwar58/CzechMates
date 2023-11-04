@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { db } from '../firebase';
-import { child, get, ref, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -28,20 +28,17 @@ const CharactersPage = () => {
     useEffect(() => {
         const charRef = ref(db, 'Characters/' + userId);
         onValue(charRef, (snapshot) => {
-            console.log(snapshot.val());
+            // console.log(snapshot.val());
             var arr = [];
-            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-            for (const [key, value] of Object.entries(snapshot.val())) {
-                console.log(`${key}: `, value);
-                arr.push(value);
-              }
+           // https://flexiple.com/javascript/loop-through-object-javascript
+           Object.values(snapshot.val()).forEach(val =>arr.push(val));
             setCharInfo(arr);
         });
 
-    }, []);
+    }, [userId]);
 
     useEffect(() => {
-        console.log(charInfo);
+        // console.log(charInfo);
 
     }, [charInfo]);
 
@@ -69,7 +66,7 @@ const CharactersPage = () => {
                     {/* future: generate dynamically instead of hardcoding */}
                     <div>
                         {charInfo?.map((item) => (
-                            <Character charName={item.General.Name} lastIndex={charInfo.length} />
+                            <Character key={item.General.Name} charName={item.General.Name} />
                         ))}
                     </div>
                 </Row>

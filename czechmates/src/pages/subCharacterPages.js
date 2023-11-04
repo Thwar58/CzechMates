@@ -11,6 +11,10 @@ import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useEffect } from "react";
+import { db } from '../firebase';
+import { ref, onValue } from "firebase/database";
+import { useState } from "react";
 
 // a page that contains all of the sub character pages as tabs (i.e. equipment, general)
 const SubCharacterPages = () => {
@@ -20,6 +24,38 @@ const SubCharacterPages = () => {
         // navigate to /characterPage
         navigate('/charactersPage');
     }
+
+
+
+    var [charInfo, setCharInfo] = useState([]);
+
+    var [userId] = useState("User1");
+    var [charId] = useState("CharID1");
+
+    useEffect(() => {
+
+        const charRef = ref(db, 'Characters/' + userId + '/' + charId);
+        onValue(charRef, (snapshot) => {
+            setCharInfo(snapshot.val());
+          });
+
+        // const dbRef = ref(db);
+        // get(child(dbRef, `Users/` + userId)).then((snapshot) => {
+        //     if (snapshot.exists()) {
+        //         setUserInfo(snapshot.val());
+        //     } else {
+        //         console.log("No data available");
+        //     }
+        // }).catch((error) => {
+        //     console.error(error);
+        // });
+
+    }, [userId, charId]);
+
+    useEffect(() => {
+        // console.log(charInfo);
+    }, [charInfo]);
+
     // returns a div with the character name and the tabs for each of the pages
     return (
         <div>
@@ -40,7 +76,7 @@ const SubCharacterPages = () => {
                 <Row>
                     {/* tabs for each page, passing in the labels and the page objects */}
                     <ControlledTabs text={["General", "Equipment", "Skills", "Attributes", "Sheet"]}
-                        content={[<GeneralPage />, <EquipmentPage />, <SkillsPage />, <AttributesPage />, <SheetPage />]} />
+                        content={[<GeneralPage generalInfo={charInfo.General} />, <EquipmentPage equipInfo={charInfo.Equipment} />, <SkillsPage skillInfo={charInfo.Skills} />, <AttributesPage attrInfo={charInfo.Attributes} />, <SheetPage sheetInfo={charInfo} />]} />
                 </Row>
                 <Row>
                     <Col>
