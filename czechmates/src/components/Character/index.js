@@ -22,6 +22,25 @@ const Character = ({ charName }) => {
         DBFunctions.writeCharacterData("User1", "CharID3", "test", "concept");
     };
 
+    const charData = [
+        ["Name", "Konan"],
+        ["Level", "12"],
+        ["Class", "Barbarian"],
+        // Add more data as needed
+      ];
+
+      //prints the character as a csv
+    function printChar() {
+        const csvContent = charData.map((row) => row.join(",")).join("\n");
+        const blob = new Blob([csvContent], { type: "text/csv" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "CharTest.csv";
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }
+
     const removeOrEdit = event => {
         // DBFunctions.removeFromDB('Characters/User1/CharID3/General');
         DBFunctions.editInDB('Characters/User1/CharID3/General/Name', "test2");
@@ -33,6 +52,7 @@ const Character = ({ charName }) => {
 
     };
     
+
 
     // return a div with the character name and buttons for each option
     return (
@@ -56,7 +76,7 @@ const Character = ({ charName }) => {
                         Edit
                     </Button>
                     <ConfirmationPopup id="removeButton" name="Remove" />
-                    <Button onClick={removeOrEdit} variant="outline-secondary" id="button-addon2">
+                    <Button variant="outline-secondary" id="button-addon2" onClick={printChar}>
                         Print
                     </Button>
                 </InputGroup>
