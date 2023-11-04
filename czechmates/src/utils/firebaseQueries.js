@@ -51,6 +51,22 @@ var DBFunctions = {
             });
     },
 
+    // you pass in the path to what you want to remove and it sets it to null, which removes it from the database
+    removeFromDB: function (path) {
+        set(ref(db, path),  
+                null
+            );
+    },
+
+    // you pass in the path to what you want to remove and it sets it to null, which removes it from the database
+    editInDB: function (path, value) {
+        set(ref(db, path),  
+                value
+            );
+    },
+
+
+
     // writeCharacterData("User3", "CharID1", "Char1", "rogue");
 
 
