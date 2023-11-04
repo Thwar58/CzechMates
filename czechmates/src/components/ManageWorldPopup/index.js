@@ -11,12 +11,29 @@ import EUWithButtons from '../UEWithTwoButtons';
 import UEInput from '../UEInput';
 
 // a function for the manage/add world modal, you pass in the title and the button display
-function MWPopup({ title, button }) {
+function MWPopup({ title, button, members }) {
   // sets the initial state of the modal to hidden
   const [show, setShow] = useState(false);
   // handles the opening and closing of the modal
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  function addMems() {
+    if (members !== undefined) {
+      var arr = [];
+      // https://flexiple.com/javascript/loop-through-object-javascript
+      Object.values(members).forEach(val =>
+        arr.push(<EUWithButtons key={val} value={val} button1={"View"} button2={"Remove"} />));
+      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+      // for (const [value] of Object.entries(worldInfo)) {
+      //     // console.log(`${key}: `, value);
+      //     arr.push(<World key={value.Name} worldName={value.Name}> </World>);
+      //   }
+      // console.log("test");
+      return arr;
+    }
+
+  }
 
   return (
     <>
@@ -51,10 +68,9 @@ function MWPopup({ title, button }) {
             {/* world members, which the user can view the character of or remove */}
             {/* future: add confirmation modal for remove */}
             <Form.Label>Members</Form.Label>
-            <EUWithButtons value={"member 1"} button1={"View"} button2={"Remove"} />
-            <EUWithButtons value={"member 2"} button1={"View"} button2={"Remove"} />
-            <EUWithButtons value={"member 3"} button1={"View"} button2={"Remove"} />
-            {/* friend invitation search */}
+            {
+              addMems()
+            }
             {/* future: decide on search bar */}
             <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>

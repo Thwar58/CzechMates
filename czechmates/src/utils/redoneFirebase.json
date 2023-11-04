@@ -5,42 +5,42 @@
             "Email": "user1@gmail.com",
             "Light_Mode": "Dark",
             "Admin_status": "False",
-            "Friends": [
-                "User2",
-                "User3",
-                "User4"
-            ],
-            "Followers": [
-                "User5",
-                "User6",
-                "User7"
-            ],
-            "Following": [
-                "User8",
-                "User9",
-                "User10"
-            ]
+            "Friends": {
+                "User2": "User2",
+                "User3": "User3",
+                "User4": "User4"
+            },
+            "Followers": {
+                "User5": "User5",
+                "User6": "User6",
+                "User7": "User7"
+            },
+            "Following": {
+                "User8": "User8",
+                "User9": "User9",
+                "User10": "User10"
+            }
         },
         "User2": {
             "Name": "User2",
             "Email": "user2@gmail.com",
             "Light_Mode": "Light",
             "Admin_status": "True",
-            "Friends": [
-                "User1",
-                "F2",
-                "F3"
-            ],
-            "Followers": [
-                "F1",
-                "F2",
-                "F3"
-            ],
-            "Following": [
-                "F1",
-                "F2",
-                "F3"
-            ]
+            "Friends": {
+                "User2": "User2",
+                "User3": "User3",
+                "User4": "User4"
+            },
+            "Followers": {
+                "User5": "User5",
+                "User6": "User6",
+                "User7": "User7"
+            },
+            "Following": {
+                "User8": "User8",
+                "User9": "User9",
+                "User10": "User10"
+            }
         }
     },
     "Characters": {
@@ -343,21 +343,21 @@
                 "Name": "World1 (1)",
                 "Schedule": "day",
                 "Invite_Code": "code",
-                "Members": [
-                    "M1",
-                    "M2",
-                    "M3"
-                ]
+                "Members": {
+                    "M1": "M1",
+                    "M2": "M2",
+                    "M3": "M3"
+            }
             },
             "WorldID2": {
                 "Name": "World2 (1)",
                 "Schedule": "day",
                 "Invite_Code": "code",
-                "Members": [
-                    "M1",
-                    "M2",
-                    "M3"
-                ]
+                "Members": {
+                    "M1": "M1",
+                    "M2": "M2",
+                    "M3": "M3"
+            }
             }
         },
         "User2": {
@@ -365,21 +365,21 @@
                 "Name": "World1 (2)",
                 "Schedule": "day",
                 "Invite_Code": "code",
-                "Members": [
-                    "M1",
-                    "M2",
-                    "M3"
-                ]
+                "Members": {
+                    "M1": "M1",
+                    "M2": "M2",
+                    "M3": "M3"
+            }
             },
             "WorldID2": {
                 "Name": "World2 (2)",
                 "Schedule": "day",
                 "Invite_Code": "code",
-                "Members": [
-                    "M1",
-                    "M2",
-                    "M3"
-                ]
+                "Members": {
+                    "M1": "M1",
+                    "M2": "M2",
+                    "M3": "M3"
+            }
             }
         }
     },
