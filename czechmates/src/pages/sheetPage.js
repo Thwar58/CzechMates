@@ -1,33 +1,17 @@
 
-import React from "react";
+import React, { useState } from "react";
 import InputWithLabel from "../components/InputWithLabel";
 import FillTable from "../components/Table";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useEffect } from "react";
+import NewTable from "../components/NewTable";
 
 // this component has all of the character information, uneditable
-const SheetPage = ({sheetInfo}) => {
+const SheetPage = ({ sheetInfo }) => {
 
-    // dummy skill data
-    const skills = [
-        { name: 'Alchemy', points: '0' },
-        { name: 'Arcana', points: '0' },
-        { name: 'Athletics', points: '0' },
-        { name: 'Burglary', points: '0' },
-        { name: 'Deceive', points: '0' },
-        { name: 'Empathy', points: '0' },
-        { name: 'Engineering', points: '0' },
-        { name: 'Fight', points: '0' },
-        { name: 'Hunting', points: '0' },
-        { name: 'Lore', points: '0' },
-        { name: 'Physique', points: '0' },
-        { name: 'Rapport', points: '0' },
-        { name: 'Shooting', points: '0' },
-        { name: 'Stealth', points: '0' },
-        { name: 'Survival', points: '0' },
-        { name: 'Will', points: '0' }
-    ];
+
 
     // dummy attribute data
     const attributes = [
@@ -52,6 +36,8 @@ const SheetPage = ({sheetInfo}) => {
 
     return (
         <div>
+
+           
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <Row>
                     <Col>
@@ -108,7 +94,7 @@ const SheetPage = ({sheetInfo}) => {
                 {/* future: generate dynamically instead of hardcoding */}
                 {/* general information */}
                 {/* equipment information */}
-                <p style={{textAlign:"center"}}>Equipment</p>
+                <p style={{ textAlign: "center" }}>Equipment</p>
                 <Row>
                     <Col>
                         <InputWithLabel label={"Equipped Weapon"} placeholder={"weapon"} disabled={true} />
@@ -138,13 +124,13 @@ const SheetPage = ({sheetInfo}) => {
                 </Row>
                 <Row>
                     {/* skills information in a table */}
-                    <p style={{textAlign: "center"}}>Skills</p>
-                    <FillTable type={"Skill"} data={skills}></FillTable>
+                    <p style={{ textAlign: "center" }}>Skills</p>
+                    <NewTable data={sheetInfo.Skills} type={"Skills"}></NewTable>
                 </Row>
                 <Row>
                     {/* attributes information in a table */}
-                    <p style={{textAlign: "center"}}>Equipment</p>
-                    <FillTable type={"Attribute"} data={attributes}></FillTable>
+                    <p style={{ textAlign: "center" }}>Equipment</p>
+                    <NewTable type={"Attribute"} data={sheetInfo.Attributes}></NewTable>
                 </Row>
             </Container>
 

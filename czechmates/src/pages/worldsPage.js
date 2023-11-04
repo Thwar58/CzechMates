@@ -25,11 +25,11 @@ const WorldPage = () => {
     useEffect(() => {
         const worldsRef = ref(db, 'Worlds/' + userId);
         onValue(worldsRef, (snapshot) => {
-            console.log(snapshot.val());
+            // console.log(snapshot.val());
             var arr = [];
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(snapshot.val())) {
-                console.log(`${key}: `, value);
+                // console.log(`${key}: `, value);
                 arr.push(value);
               }
             setWorldInfo(arr);
@@ -39,7 +39,7 @@ const WorldPage = () => {
     }, []);
 
     useEffect(() => {
-        console.log(worldInfo);
+        // console.log(worldInfo);
 
     }, [worldInfo]);
 

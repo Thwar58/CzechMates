@@ -53,7 +53,7 @@ const SubCharacterPages = () => {
     }, []);
 
     useEffect(() => {
-        console.log(charInfo);
+        // console.log(charInfo);
     }, [charInfo]);
 
     // returns a div with the character name and the tabs for each of the pages

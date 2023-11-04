@@ -28,11 +28,11 @@ const CharactersPage = () => {
     useEffect(() => {
         const charRef = ref(db, 'Characters/' + userId);
         onValue(charRef, (snapshot) => {
-            console.log(snapshot.val());
+            // console.log(snapshot.val());
             var arr = [];
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(snapshot.val())) {
-                console.log(`${key}: `, value);
+                // console.log(`${key}: `, value);
                 arr.push(value);
               }
             setCharInfo(arr);
@@ -41,7 +41,7 @@ const CharactersPage = () => {
     }, []);
 
     useEffect(() => {
-        console.log(charInfo);
+        // console.log(charInfo);
 
     }, [charInfo]);
 

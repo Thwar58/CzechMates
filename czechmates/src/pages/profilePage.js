@@ -43,7 +43,7 @@ const ProfilePage = () => {
     }, []);
 
     useEffect(() => {
-        console.log(userInfo);
+        // console.log(userInfo);
     }, [userInfo]);
 
 
