@@ -1,38 +1,12 @@
 
-import React, { useState } from "react";
 import InputWithLabel from "../components/InputWithLabel";
-import FillTable from "../components/Table";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useEffect } from "react";
 import NewTable from "../components/NewTable";
 
 // this component has all of the character information, uneditable
 const SheetPage = ({ sheetInfo }) => {
-
-
-
-    // dummy attribute data
-    const attributes = [
-        { name: 'Awareness', points: '5' },
-        { name: 'Charisma', points: '5' },
-        { name: 'Defense', points: '5' },
-        { name: 'Endurance', points: '5' },
-        { name: 'Health', points: '5' },
-        { name: 'Knowledge', points: '5' },
-        { name: 'Magic Attack', points: '5' },
-        { name: 'Magic Defense', points: '5' },
-        { name: 'Magic Heal', points: '5' },
-        { name: 'Magic Reach', points: '5' },
-        { name: 'Melee Attack', points: '5' },
-        { name: 'Ranged Attack', points: '5' },
-        { name: 'Max Action Points (AP)', points: '5' },
-        { name: 'Max Vigor', points: '5' },
-        { name: 'Max Resolve', points: '5' },
-        { name: 'Magic Range', points: '5' },
-        { name: "Movement", points: "5" }
-    ];
 
     return (
         <div>

@@ -13,7 +13,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect } from "react";
 import { db } from '../firebase';
-import { child, get, ref, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 
 // a page that contains all of the sub character pages as tabs (i.e. equipment, general)
@@ -50,7 +50,7 @@ const SubCharacterPages = () => {
         //     console.error(error);
         // });
 
-    }, []);
+    }, [userId, charId]);
 
     useEffect(() => {
         // console.log(charInfo);

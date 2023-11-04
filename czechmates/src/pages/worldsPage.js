@@ -11,7 +11,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useEffect } from "react";
 import { db } from '../firebase';
-import { child, get, ref, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 
 // this is the world page
@@ -27,16 +27,12 @@ const WorldPage = () => {
         onValue(worldsRef, (snapshot) => {
             // console.log(snapshot.val());
             var arr = [];
-            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-            for (const [key, value] of Object.entries(snapshot.val())) {
-                // console.log(`${key}: `, value);
-                arr.push(value);
-              }
+            // https://flexiple.com/javascript/loop-through-object-javascript
+            Object.values(snapshot.val()).forEach(val =>arr.push(val));
             setWorldInfo(arr);
         });
 
-      
-    }, []);
+    }, [userId]);
 
     useEffect(() => {
         // console.log(worldInfo);
@@ -86,7 +82,7 @@ const WorldPage = () => {
                 <Row>
                     <div>
                         {worldInfo?.map((item) => (
-                            <World worldName={item.Name} />
+                            <World key={item.Name} worldName={item.Name} />
                         ))}
                     </div>
                     {/* this brings up the modal for creating a world */}

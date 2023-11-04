@@ -14,7 +14,7 @@ function NewTable({ data, type }) {
 
 
     useEffect(() => {
-        if (data != undefined) {
+        if (data !== undefined) {
             var arr = [];
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(data)) {

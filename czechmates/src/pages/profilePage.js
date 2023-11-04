@@ -1,19 +1,14 @@
-import React, { cloneElement } from "react";
 import User from "../components/User";
 import ControlledTabs from '../components/Tabs';
-import Searchbar from '../components/Searchbar';
 import { useState } from "react";
-import TypeAhead from "../components/TypeAhead";
-import Spacer from '../components/Spacer';
 import TypeAheadWithButton from "../components/TypeAheadWithButton";
 import Social from '../components/Social';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import DBFunctions from "../utils/firebaseQueries";
 import { useEffect } from "react";
 import { db } from '../firebase';
-import { child, get, ref, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 const ProfilePage = () => {
 
@@ -40,37 +35,13 @@ const ProfilePage = () => {
         //     console.error(error);
         // });
 
-    }, []);
+    }, [userId]);
 
     useEffect(() => {
         // console.log(userInfo);
     }, [userInfo]);
 
-
-
-
-    const posts = [
-        { id: '1', name: 'This first post is about React' },
-        { id: '2', name: 'This next post is about Preact' },
-        { id: '3', name: 'We have yet another React post!' },
-        { id: '4', name: 'This is the fourth and final post' },
-    ];
-
-    const filterPosts = (posts, query) => {
-        if (!query) {
-            return posts;
-        }
-
-        return posts.filter((post) => {
-            const postName = post.name.toLowerCase();
-            return postName.includes(query);
-        });
-    };
-
-    const { search } = window.location;
-    const query = new URLSearchParams(search).get('s');
-    const [searchQuery, setSearchQuery] = useState(query || '');
-    const filteredPosts = filterPosts(posts, searchQuery);
+   
     return (
         <div>
 
@@ -116,24 +87,24 @@ const ProfilePage = () => {
                 <Row>
                     <ControlledTabs text={["Friends", "Following", "Followers"]}
                         content={[[
-                            <div>
+                            <div key={"Friends"} >
                                 {/* {userInfo?.Email ?? "Loading..."} */}
                                 {userInfo?.Friends?.map((name) => (
-                                    <Social content={name} />
+                                    <Social key={name} content={name} />
                                 ))}
                             </div>
                         ], [
-                            <div>
+                            <div key={"Following"} >
                                 {/* {userInfo?.Email ?? "Loading..."} */}
                                 {userInfo?.Following?.map((name) => (
-                                    <Social content={name} />
+                                    <Social key={name} content={name} />
                                 ))}
                             </div>
                         ], [
-                            <div>
+                            <div key={"Followers"}>
                                 {/* {userInfo?.Email ?? "Loading..."} */}
                                 {userInfo?.Followers?.map((name) => (
-                                    <Social content={name} />
+                                    <Social key={name} content={name} />
                                 ))}
                             </div>
                         ]]} />

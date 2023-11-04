@@ -3,7 +3,6 @@
 import React from "react";
 import ConfirmationPopup from "../ConfirmationPopup";
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
@@ -11,7 +10,7 @@ import DBFunctions from "../../utils/firebaseQueries";
 
 
 // the character component
-const Character = ({ charName, lastIndex }) => {
+const Character = ({ charName }) => {
     // handle page navigations
     const navigate = useNavigate();
     const navigateToGeneral = () => {
