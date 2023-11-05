@@ -1,14 +1,43 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import SkillsComp from "../components/SkillsComp";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useState } from "react";
+
 
 
 // this component houses the content for the character skills
-const SkillsPage = ({skillInfo}) => {
+const SkillsPage = ({skillInfo, charId, userId}) => {
+    console.log(skillInfo);
+
+    var [left, setLeft] = useState([]);
+    var [right, setRight] = useState([]);
+    
+    useEffect(() => {
+        if (skillInfo!==undefined){
+            console.log(skillInfo);
+            var arr = [];
+            // https://flexiple.com/javascript/loop-through-object-javascript
+            // Object.values(skillsInfo).forEach(val =>
+            //     arr.push(<Character key={val.General.Name} charName={val.General.Name} />));
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+            for (const [key, value] of Object.entries(skillInfo)) {
+                // console.log(`${key}: `, value);
+                arr.push(<SkillsComp key={key} userId={userId} charId={charId} value={value ?? "Loading..."} name={key} />);
+              }
+            // console.log(arr);
+            var left = arr.slice(0, 8);
+            var right = arr.slice(8);
+            // return [left, right];
+            setLeft(left);
+            setRight(right);
+        }      
+        
+    }, [skillInfo]);
+
     return (
         <div>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -27,24 +56,10 @@ const SkillsPage = ({skillInfo}) => {
                 </Row>
                 <Row>
                     <Col>
-                        <SkillsComp value={skillInfo?.Alchemy ?? "Loading..."} name={"Alchemy"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Arcana ?? "Loading..."} name={"Arcana"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Athletics ?? "Loading..."} name={"Athletics"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Burglary ?? "Loading..."} name={"Burglary"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Deceive ?? "Loading..."} name={"Deceive"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Empathy ?? "Loading..."} name={"Empathy"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Engineering ?? "Loading..."} name={"Engineering"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Fight ?? "Loading..."} name={"Fight"} button1={"up"} button2={"down"} />
+                    {left}
                     </Col>
                     <Col>
-                        <SkillsComp value={skillInfo?.Hunting ?? "Loading..."} name={"Hunting"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Lore ?? "Loading..."} name={"Lore"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Physique ?? "Loading..."} name={"Physique"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Rapport ?? "Loading..."} name={"Rapport"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Shooting ?? "Loading..."} name={"Shooting"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Stealth ?? "Loading..."} name={"Stealth"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Survival ?? "Loading..."} name={"Survival"} button1={"up"} button2={"down"} />
-                        <SkillsComp value={skillInfo?.Will ?? "Loading..."} name={"Will"} button1={"up"} button2={"down"} />
+                    {right}
                     </Col>
                 </Row>
 

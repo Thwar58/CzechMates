@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import TypeAheadWithButton from "../TypeAheadWithButton";
 import EUWithButtons from '../UEWithTwoButtons';
 import UEInput from '../UEInput';
+import { useEffect } from 'react';
 
 // a function for the manage/add world modal, you pass in the title and the button display
 function MWPopup({ title, button, members }) {
@@ -18,22 +19,19 @@ function MWPopup({ title, button, members }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  function addMems() {
+  var [mems, setMems] = useState([]);
+
+  useEffect(() => {
     if (members !== undefined) {
+      // console.log(charInfo);
       var arr = [];
       // https://flexiple.com/javascript/loop-through-object-javascript
       Object.values(members).forEach(val =>
         arr.push(<EUWithButtons key={val} value={val} button1={"View"} button2={"Remove"} />));
-      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-      // for (const [value] of Object.entries(worldInfo)) {
-      //     // console.log(`${key}: `, value);
-      //     arr.push(<World key={value.Name} worldName={value.Name}> </World>);
-      //   }
-      // console.log("test");
-      return arr;
+      setMems(arr);
     }
+  }, [members]);
 
-  }
 
   return (
     <>
@@ -69,7 +67,7 @@ function MWPopup({ title, button, members }) {
             {/* future: add confirmation modal for remove */}
             <Form.Label>Members</Form.Label>
             {
-              addMems()
+              mems
             }
             {/* future: decide on search bar */}
             <Form.Group className="mb-3" controlId="Friends">

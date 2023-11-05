@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import UEInput from '../UEInput';
+import { useEffect } from 'react';
 
 // a component for viewing world information (not editable by the user)
 function VWPopup({ name, members }) {
@@ -16,23 +17,19 @@ function VWPopup({ name, members }) {
   // functions to handle opening and closing the modal
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  var [mems, setMems] = useState([]);
 
-  function addMems() {
+  useEffect(() => {
     if (members !== undefined) {
+      // console.log(charInfo);
       var arr = [];
       // https://flexiple.com/javascript/loop-through-object-javascript
       Object.values(members).forEach(val =>
         arr.push(<UEInput key={val} value={val}></UEInput>));
-      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-      // for (const [value] of Object.entries(worldInfo)) {
-      //     // console.log(`${key}: `, value);
-      //     arr.push(<World key={value.Name} worldName={value.Name}> </World>);
-      //   }
-      // console.log("test");
-      return arr;
+      setMems(arr);
     }
+  }, [members]);
 
-  }
 
   return (
     <>
@@ -65,7 +62,7 @@ function VWPopup({ name, members }) {
             <Form.Group className="mb-3" controlId="Members">
               <Form.Label>Members</Form.Label>
               {
-                addMems()
+                mems
               }
             </Form.Group>
           </Form>
