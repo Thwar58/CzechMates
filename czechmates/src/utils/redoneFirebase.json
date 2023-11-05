@@ -62,20 +62,20 @@
                 },
                 "Equipment": {
                     "Weapon_Equipped": "Weapon (1.1)",
-                    "Weapon_Modification_Slots": [
-                        " ",
-                        " ",
-                        " (1.1)"
-                    ],
+                    "Weapon_Modification_Slots": {
+                        "Slot1": "(1.1)",
+                        "Slot2": "(1.1)",
+                        "Slot3": "(1.1)"
+                },
                     "Shield_Equipped": "Shield (1.1)",
-                    "Shield_Modification_Slots": [
-                        " (1.1)"
-                    ],
+                    "Shield_Modification_Slots": {
+                        "Slot1": "(1.1)"
+                },
                     "Armor_Equipped": "Armor (1.1)",
-                    "Armor_Modification_Slots": [
-                        " ",
-                        " (1.1)"
-                    ],
+                    "Armor_Modification_Slots": {
+                        "Slot1": "(1.1)",
+                        "Slot2": "(1.1)"
+                },
                     "Inventory": "Some random stuff in their inventory (1.1)"
                 },
                 "Skills": {
@@ -134,20 +134,20 @@
                 },
                 "Equipment": {
                     "Weapon_Equipped": "Weapon (1.2)",
-                    "Weapon_Modification_Slots": [
-                        " ",
-                        " ",
-                        " "
-                    ],
+                    "Weapon_Modification_Slots": {
+                        "Slot1": "(1.1)",
+                        "Slot2": "(1.1)",
+                        "Slot3": "(1.1)"
+                },
                     "Shield_Equipped": "Shield (1.2)",
-                    "Shield_Modification_Slots": [
-                        " "
-                    ],
+                    "Shield_Modification_Slots": {
+                        "Slot1": "(1.1)"
+                },
                     "Armor_Equipped": "Armor (1.2)",
-                    "Armor_Modification_Slots": [
-                        " ",
-                        " "
-                    ],
+                    "Armor_Modification_Slots": {
+                        "Slot1": "(1.1)",
+                        "Slot2": "(1.1)"
+                },
                     "Inventory": "Some random stuff in their inventory (1.2)"
                 },
                 "Skills": {
@@ -208,20 +208,20 @@
                 },
                 "Equipment": {
                     "Weapon_Equipped": "Weapon (2.1)",
-                    "Weapon_Modification_Slots": [
-                        " ",
-                        " ",
-                        " "
-                    ],
+                    "Weapon_Modification_Slots": {
+                        "Slot1": "(1.1)",
+                        "Slot2": "(1.1)",
+                        "Slot3": "(1.1)"
+                },
                     "Shield_Equipped": "Shield (2.1)",
-                    "Shield_Modification_Slots": [
-                        " "
-                    ],
+                    "Shield_Modification_Slots": {
+                        "Slot1": "(1.1)"
+                },
                     "Armor_Equipped": "Armor (2.1)",
-                    "Armor_Modification_Slots": [
-                        " ",
-                        " "
-                    ],
+                    "Armor_Modification_Slots": {
+                        "Slot1": "(1.1)",
+                        "Slot2": "(1.1)"
+                },
                     "Inventory": "Some random stuff in their inventory (2.1)"
                 },
                 "Skills": {
@@ -280,20 +280,20 @@
                 },
                 "Equipment": {
                     "Weapon_Equipped": "Weapon (2.2)",
-                    "Weapon_Modification_Slots": [
-                        " ",
-                        " ",
-                        " "
-                    ],
+                    "Weapon_Modification_Slots": {
+                        "Slot1": "(1.1)",
+                        "Slot2": "(1.1)",
+                        "Slot3": "(1.1)"
+                },
                     "Shield_Equipped": "Shield (2.2)",
-                    "Shield_Modification_Slots": [
-                        " "
-                    ],
+                    "Shield_Modification_Slots": {
+                        "Slot1": "(1.1)"
+                },
                     "Armor_Equipped": "Armor (2.2)",
-                    "Armor_Modification_Slots": [
-                        " ",
-                        " "
-                    ],
+                    "Armor_Modification_Slots": {
+                        "Slot1": "(1.1)",
+                        "Slot2": "(1.1)"
+                },
                     "Inventory": "Some random stuff in their inventory (2.2)"
                 },
                 "Skills": {
