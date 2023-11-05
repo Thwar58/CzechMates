@@ -21,7 +21,6 @@ import { useState } from 'react';
 // anything in this app script will appear/be available on every page
 function App() {
 
-
     // set the user id here according to either a db query or the OAuth
     const [userId] = useState("User1");
 

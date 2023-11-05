@@ -2,11 +2,11 @@ import React from 'react';
 
 import Dropdown from '../components/Reference/Dropdown';
 import Form from '../components/Reference/Form';
-import ValidationForm from '../components/ValidationForm';
-import TooltipPositions from '../components/ToolTip';
-import PopoverPositions from '../components/Popover';
-import Spacer from '../components/Spacer';
-import Popup from '../components/Modal';
+import ValidationForm from '../components/Reference/ValidationForm';
+import TooltipPositions from '../components/Reference/ToolTip';
+import PopoverPositions from '../components/Reference/Popover';
+import Spacer from '../components/Reference/Spacer';
+import Popup from '../components/Reference/Modal';
 import DropDownShowsValue from '../components/DropDownShowsValue';
 
 // this is the home page, as of now it is mostly reference material and will be largely removed
