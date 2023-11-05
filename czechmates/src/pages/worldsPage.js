@@ -20,22 +20,7 @@ const WorldPage = () => {
 
     var [worldInfo, setWorldInfo] = useState({});
     var [userId] = useState("User1");
-
-
-    function addWorlds() {
-        var arr = [];
-        // https://flexiple.com/javascript/loop-through-object-javascript
-        Object.values(worldInfo).forEach(val =>
-            arr.push(<World key={val.Name} worldName={val.Name} members={val.Members} > </World>));
-        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-        // for (const [value] of Object.entries(worldInfo)) {
-        //     // console.log(`${key}: `, value);
-        //     arr.push(<World key={value.Name} worldName={value.Name}> </World>);
-        //   }
-        // console.log("test");
-        return arr;
-    }
-
+    var [worlds, setWorlds] = useState([]);
 
     useEffect(() => {
         const worldsRef = ref(db, 'Worlds/' + userId);
@@ -52,6 +37,12 @@ const WorldPage = () => {
 
     useEffect(() => {
         // console.log(worldInfo);
+        var arr = [];
+        // https://flexiple.com/javascript/loop-through-object-javascript
+        Object.values(worldInfo).forEach(val =>
+            arr.push(<World key={val.Name} worldName={val.Name} members={val.Members} > </World>));
+
+        setWorlds(arr);
     }, [worldInfo]);
 
     return (
@@ -100,7 +91,7 @@ const WorldPage = () => {
                             <World key={item.Name} worldName={item.Name} />
                         ))} */}
                         {
-                            addWorlds()
+                            worlds
                         }
                     </div>
                     {/* this brings up the modal for creating a world */}

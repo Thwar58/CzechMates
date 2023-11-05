@@ -23,20 +23,8 @@ const CharactersPage = () => {
 
     var [charInfo, setCharInfo] = useState([]);
     var [userId] = useState("User1");
+    var [chars, setChars] = useState([]);
 
-    function addChars() {
-        var arr = [];
-        // https://flexiple.com/javascript/loop-through-object-javascript
-        Object.values(charInfo).forEach(val =>
-            arr.push(<Character key={val.General.Name} charName={val.General.Name} />));
-        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-        // for (const [value] of Object.entries(worldInfo)) {
-        //     // console.log(`${key}: `, value);
-        //     arr.push(<World key={value.Name} worldName={value.Name}> </World>);
-        //   }
-        // console.log("test");
-        return arr;
-    }
 
 
     useEffect(() => {
@@ -54,7 +42,11 @@ const CharactersPage = () => {
 
     useEffect(() => {
         // console.log(charInfo);
-
+        var arr = [];
+        // https://flexiple.com/javascript/loop-through-object-javascript
+        Object.values(charInfo).forEach(val =>
+            arr.push(<Character key={val.General.Name} charName={val.General.Name} />));
+        setChars(arr);
     }, [charInfo]);
 
 
@@ -80,11 +72,8 @@ const CharactersPage = () => {
                     {/* future: pass information in */}
                     {/* future: generate dynamically instead of hardcoding */}
                     <div>
-                        {/* {charInfo?.map((item) => (
-                            <Character key={item.General.Name} charName={item.General.Name} />
-                        ))} */} 
                         {
-                            addChars()
+                            chars
                         }
 
                     </div>

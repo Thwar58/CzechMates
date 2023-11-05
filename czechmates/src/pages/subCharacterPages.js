@@ -28,7 +28,6 @@ const SubCharacterPages = () => {
 
 
     var [charInfo, setCharInfo] = useState([]);
-
     var [userId] = useState("User1");
     var [charId] = useState("CharID1");
 
@@ -76,7 +75,11 @@ const SubCharacterPages = () => {
                 <Row>
                     {/* tabs for each page, passing in the labels and the page objects */}
                     <ControlledTabs text={["General", "Equipment", "Skills", "Attributes", "Sheet"]}
-                        content={[<GeneralPage generalInfo={charInfo.General} />, <EquipmentPage equipInfo={charInfo.Equipment} />, <SkillsPage skillInfo={charInfo.Skills} />, <AttributesPage attrInfo={charInfo.Attributes} />, <SheetPage sheetInfo={charInfo} />]} />
+                        content={[<GeneralPage generalInfo={charInfo.General} />, 
+                        <EquipmentPage equipInfo={charInfo.Equipment} />, 
+                        <SkillsPage skillInfo={charInfo.Skills} charId={charId} userId={userId} />, 
+                        <AttributesPage attrInfo={charInfo.Attributes} />, 
+                        <SheetPage sheetInfo={charInfo} />]} />
                 </Row>
                 <Row>
                     <Col>
