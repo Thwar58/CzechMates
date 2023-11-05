@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 
 
 // this component houses the content for the general character info
-const GeneralPage = ({generalInfo}) => {
+const GeneralPage = ({ generalInfo }) => {
     return (
         <div>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -25,7 +25,7 @@ const GeneralPage = ({generalInfo}) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col style={{borderStyle: "solid", textAlign: "center"}}>
+                    <Col style={{ borderStyle: "solid", textAlign: "center" }}>
                         {/* future: actually have an image here not a placeholder */}
                         <p>Image here</p>
                     </Col>
@@ -34,10 +34,7 @@ const GeneralPage = ({generalInfo}) => {
                         <InputWithLabel label={"High Concept"} placeholder={generalInfo?.High_Concept ?? "Loading..."} disabled={false} />
                     </Col>
                 </Row>
-
-                {/* future: generate dynamically instead of hardcoding */}
                 {/* each one is editable and has a label as well as a placeholder value */}
-
                 <InputWithLabel label={"Trouble"} placeholder={generalInfo?.Trouble ?? "Loading..."} disabled={false} />
                 <InputWithLabel label={"Aspect 1"} placeholder={generalInfo?.Aspect_1 ?? "Loading..."} disabled={false} />
                 <InputWithLabel label={"Aspect 2"} placeholder={generalInfo?.Aspect_2 ?? "Loading..."} disabled={false} />
@@ -50,8 +47,6 @@ const GeneralPage = ({generalInfo}) => {
                 <InputWithLabel label={"Major Relationships"} placeholder={generalInfo?.Major_Relationships ?? "Loading..."} disabled={false} />
                 <InputWithLabel label={"Other"} placeholder={generalInfo?.Other ?? "Loading..."} disabled={false} />
             </Container>
-
-
         </div>
     );
 };

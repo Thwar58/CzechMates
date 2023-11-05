@@ -15,11 +15,10 @@ import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 
 // this is the world page
-const WorldPage = () => {
+const WorldPage = ({userId}) => {
 
 
     var [worldInfo, setWorldInfo] = useState({});
-    var [userId] = useState("User1");
     var [worlds, setWorlds] = useState([]);
 
     useEffect(() => {
@@ -47,10 +46,6 @@ const WorldPage = () => {
 
     return (
         <div>
-
-            {/* future: generage dynamically instead of hardcoding 
-            its too much trouble doing this in a faked way, wait until
-            we are actually pulling data from the database to handle it*/}
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                 <Row>
                     <Col>
@@ -62,7 +57,6 @@ const WorldPage = () => {
                     </Col>
                     <Col>
                     </Col>
-
                 </Row>
                 <Row>
                     {/* dropdown for world sorting options */}
@@ -87,9 +81,6 @@ const WorldPage = () => {
                 </Row>
                 <Row>
                     <div>
-                        {/* {worldInfo?.map((item) => (
-                            <World key={item.Name} worldName={item.Name} />
-                        ))} */}
                         {
                             worlds
                         }
@@ -100,9 +91,6 @@ const WorldPage = () => {
                     </Col>
                 </Row>
             </Container>
-
-
-
         </div>
     );
 };

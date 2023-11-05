@@ -57,8 +57,6 @@ function VWPopup({ name, members }) {
               <UEInput value={"Meeting day"} />
             </Form.Group>
             {/* members */}
-            {/* future: add view character button here */}
-            {/* future: generate dynamically instead of hardcoding */}
             <Form.Group className="mb-3" controlId="Members">
               <Form.Label>Members</Form.Label>
               {

@@ -17,7 +17,7 @@ import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 
 // a page that contains all of the sub character pages as tabs (i.e. equipment, general)
-const SubCharacterPages = () => {
+const SubCharacterPages = ({userId}) => {
     // handles page changes
     const navigate = useNavigate();
     const navigateToCharPage = () => {
@@ -25,10 +25,7 @@ const SubCharacterPages = () => {
         navigate('/charactersPage');
     }
 
-
-
     var [charInfo, setCharInfo] = useState([]);
-    var [userId] = useState("User1");
     var [charId] = useState("CharID1");
 
     useEffect(() => {
@@ -37,17 +34,6 @@ const SubCharacterPages = () => {
         onValue(charRef, (snapshot) => {
             setCharInfo(snapshot.val());
           });
-
-        // const dbRef = ref(db);
-        // get(child(dbRef, `Users/` + userId)).then((snapshot) => {
-        //     if (snapshot.exists()) {
-        //         setUserInfo(snapshot.val());
-        //     } else {
-        //         console.log("No data available");
-        //     }
-        // }).catch((error) => {
-        //     console.error(error);
-        // });
 
     }, [userId, charId]);
 
