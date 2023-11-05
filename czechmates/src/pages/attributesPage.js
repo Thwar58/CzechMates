@@ -4,9 +4,38 @@ import AttributesComp from "../components/AttributesComp";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useState } from "react";
+import { useEffect } from "react";
 
 // this component houses the content for the character attributes
 const AttributesPage = ({ attrInfo }) => {
+
+    var [left, setLeft] = useState([]);
+    var [right, setRight] = useState([]);
+    var [bottom, setBottom] = useState([]);
+
+
+    useEffect(() => {
+        if (attrInfo !== undefined) {
+            // console.log(attrInfo);
+            var arr = [];
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+            for (const [key, value] of Object.entries(attrInfo)) {
+                // console.log(`${key}: `, value);
+                var underScoreRemoved=key.replace(/_/g," ");
+                arr.push(<AttributesComp key={key} value={value ?? "Loading..."} name={underScoreRemoved} />);
+            }
+
+            var left = arr.slice(0, 8);
+            var right = arr.slice(8, 16);
+            var bottom = arr.slice(16);
+            setLeft(left);
+            setRight(right);
+            setBottom(bottom);
+        }
+
+    }, [attrInfo]);
+
     return (
         <div>
 
@@ -26,31 +55,17 @@ const AttributesPage = ({ attrInfo }) => {
                 </Row>
                 <Row>
                     <Col>
-                        <AttributesComp value={attrInfo?.Awareness ?? "Loading..."} name={"Awareness"} />
-                        <AttributesComp value={attrInfo?.Charisma ?? "Loading..."} name={"Charisma"} />
-                        <AttributesComp value={attrInfo?.Defense ?? "Loading..."} name={"Defense"} />
-                        <AttributesComp value={attrInfo?.Endurance ?? "Loading..."} name={"Endurance"} />
-                        <AttributesComp value={attrInfo?.Health ?? "Loading..."} name={"Health"} />
-                        <AttributesComp value={attrInfo?.Knowledge ?? "Loading..."} name={"Knowledge"} />
-                        <AttributesComp value={attrInfo?.Magic_Attack ?? "Loading..."} name={"Magic Attack"} />
-                        <AttributesComp value={attrInfo?.Magic_Defense ?? "Loading..."} name={"Magic Defense"} />
+                        {left}
                     </Col>
                     <Col>
-                        <AttributesComp value={attrInfo?.Magic_Heal ?? "Loading..."} name={"Magic Heal"} />
-                        <AttributesComp value={attrInfo?.Magic_Reach ?? "Loading..."} name={"Magic Reach"} />
-                        <AttributesComp value={attrInfo?.Melee_Attack ?? "Loading..."} name={"Melee Attack"} />
-                        <AttributesComp value={attrInfo?.Ranged_Attack ?? "Loading..."} name={"Ranged Attack"} />
-                        <AttributesComp value={attrInfo?.Max_Action_Points_AP ?? "Loading..."} name={"Max Action Points (AP)"} />
-                        <AttributesComp value={attrInfo?.Max_Vigor ?? "Loading..."} name={"Max Vigor"} />
-                        <AttributesComp value={attrInfo?.Max_Resolve ?? "Loading..."} name={"Max Resolve"} />
-                        <AttributesComp value={attrInfo?.Magic_Range ?? "Loading..."} name={"Magic Range"} />
+                        {right}
                     </Col>
                 </Row>
                 <Row>
                     <Col>
                     </Col>
                     <Col className="col-xs-12 col-sm-10 col-md-7 col-lg-7">
-                        <AttributesComp value={attrInfo?.Movement ?? "Loading..."} name={"Movement"} />
+                        {bottom}
                     </Col>
                     <Col>
                     </Col>

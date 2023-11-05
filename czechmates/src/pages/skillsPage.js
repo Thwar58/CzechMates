@@ -11,14 +11,14 @@ import { useState } from "react";
 
 // this component houses the content for the character skills
 const SkillsPage = ({ skillInfo, charId, userId }) => {
-    console.log(skillInfo);
+    // console.log(skillInfo);
 
     var [left, setLeft] = useState([]);
     var [right, setRight] = useState([]);
 
     useEffect(() => {
         if (skillInfo !== undefined) {
-            console.log(skillInfo);
+            // console.log(skillInfo);
             var arr = [];
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(skillInfo)) {

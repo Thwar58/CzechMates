@@ -17,11 +17,13 @@ function NewTable({ data, type }) {
         if (data !== undefined) {
             var arr = [];
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-            for (const [key, value] of Object.entries(data)) {
+            for (const [oldKey, value] of Object.entries(data)) {
                 // console.log(key, value);
+                var key =oldKey.replace(/_/g," ");
                 arr.push({key, value});
             }
             setDataArr(arr);
+            console.log(arr);
         }
 
     }, [data]);
