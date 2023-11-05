@@ -10,12 +10,11 @@ import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 
-const ProfilePage = () => {
+const ProfilePage = ({userId}) => {
 
     // pretend we know this is user 1 because they logged in already
 
     var [userInfo, setUserInfo] = useState("");
-    var [userId] = useState("User1");
 
     function addF(type) {
         if (type !== undefined) {

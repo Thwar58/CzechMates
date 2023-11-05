@@ -15,11 +15,10 @@ import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 
 // this is the world page
-const WorldPage = () => {
+const WorldPage = ({userId}) => {
 
 
     var [worldInfo, setWorldInfo] = useState({});
-    var [userId] = useState("User1");
     var [worlds, setWorlds] = useState([]);
 
     useEffect(() => {

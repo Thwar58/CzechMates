@@ -17,7 +17,7 @@ import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 
 // a page that contains all of the sub character pages as tabs (i.e. equipment, general)
-const SubCharacterPages = () => {
+const SubCharacterPages = ({userId}) => {
     // handles page changes
     const navigate = useNavigate();
     const navigateToCharPage = () => {
@@ -28,7 +28,6 @@ const SubCharacterPages = () => {
 
 
     var [charInfo, setCharInfo] = useState([]);
-    var [userId] = useState("User1");
     var [charId] = useState("CharID1");
 
     useEffect(() => {

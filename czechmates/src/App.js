@@ -16,10 +16,14 @@ import Profile from './pages/profilePage';
 import Worlds from './pages/worldsPage';
 import NavWithDD from './components/NavWithDropdown';
 import SubCharacterPages from './pages/subCharacterPages';
+import { useState } from 'react';
 
 // anything in this app script will appear/be available on every page
 function App() {
 
+
+    // set the user id here according to either a db query or the OAuth
+    const [userId] = useState("User2");
 
     // examples of calling the attribute calculation methods
     // Func.calcAwareness();
@@ -32,11 +36,11 @@ function App() {
                 <NavWithDD />
                 {/* routes are the paths to the pages with their export value */}
                 <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/charactersPage' element={<Characters />} />
-                    <Route path='/worldsPage' element={<Worlds />} />
-                    <Route path='/profilePage' element={<Profile />} />
-                    <Route path='/subCharacterPages' element={<SubCharacterPages />} />
+                    <Route path='/' element={<Home userId={userId} />} />
+                    <Route path='/charactersPage' element={<Characters userId={userId}/>} />
+                    <Route path='/worldsPage' element={<Worlds userId={userId}/>} />
+                    <Route path='/profilePage' element={<Profile userId={userId}/>} />
+                    <Route path='/subCharacterPages' element={<SubCharacterPages userId={userId}/>} />
                 </Routes>
             </Router>
         </>
