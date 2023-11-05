@@ -81,22 +81,6 @@ const Character = ({ charName }) => {
                     </Button>
                 </InputGroup>
             </>
-
-
-
-            {/* future: add char name to div id */}
-            {/* <div style={{backgroundColor: "lightblue"}}> */}
-            {/* Character Name */}
-            {/* copy, edit, remove, and buttons */}
-            {/* <button onClick={onAddBtnClick} id="copyButton" type="button" className="btn btn-primary">Copy</button> */}
-            {/* edit navigates to the general subcharacter page */}
-            {/* <button id="editButton" onClick={navigateToGeneral} type="button" className="btn btn-primary">Edit</button> */}
-            {/* remove triggers a confirmation modal */}
-            {/* <ConfirmationPopup id="removeButton" name="Remove"/> */}
-            {/* <button id="printButton" type="button" className="btn btn-primary">Print</button> */}
-            {/* {charDiv} */}
-            {/* </div> */}
-            {/* {charDiv} */}
         </div>
     );
 };

@@ -52,14 +52,6 @@ function NewTable({ data, type }) {
                             <td>{obj.value}</td>
                         </tr>
                     ))}
-                    {/* {tableData.map(arrayData => {
-                        return (
-                            <tr>
-                                <td>arrayData</td>
-                            </tr>
-                        )
-                    }
-                    )} */}
                 </tbody>
             </Table>
         </>
