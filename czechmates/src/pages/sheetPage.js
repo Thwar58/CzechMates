@@ -71,9 +71,9 @@ const SheetPage = ({ sheetInfo }) => {
                         <InputWithLabel label={"Equipped Weapon"} placeholder={sheetInfo?.Equipment?.Weapon_Equipped ?? "Loading..."} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Weapon Mod 1"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[0] ?? "Loading..."} disabled={true} />
-                        <InputWithLabel label={"Weapon Mod 2"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[1] ?? "Loading..."} disabled={true} />
-                        <InputWithLabel label={"Weapon Mod 3"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[2] ?? "Loading..."} disabled={true} />
+                        <InputWithLabel label={"Weapon Mod 1"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot1  ?? "Loading..."} disabled={true} />
+                        <InputWithLabel label={"Weapon Mod 2"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot2  ?? "Loading..."} disabled={true} />
+                        <InputWithLabel label={"Weapon Mod 3"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot3 ?? "Loading..."} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
@@ -81,7 +81,7 @@ const SheetPage = ({ sheetInfo }) => {
                         <InputWithLabel label={"Equipped Shield"} placeholder={sheetInfo?.Equipment?.Shield_Equipped ?? "Loading..."} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Shield Mod 1"} placeholder={sheetInfo?.Equipment?.Shield_Modification_Slots[0] ?? "Loading..."} disabled={true} />
+                        <InputWithLabel label={"Shield Mod 1"} placeholder={sheetInfo?.Equipment?.Shield_Modification_Slots.Slot1  ?? "Loading..."} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
@@ -89,8 +89,8 @@ const SheetPage = ({ sheetInfo }) => {
                         <InputWithLabel label={"Equipped Armor"} placeholder={sheetInfo?.Equipment?.Armor_Equipped ?? "Loading..."} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Armor Mod 1"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots[0] ?? "Loading..."} disabled={true} />
-                        <InputWithLabel label={"Armor Mod 2"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots[1] ?? "Loading..."} disabled={true} />
+                        <InputWithLabel label={"Armor Mod 1"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot1  ?? "Loading..."} disabled={true} />
+                        <InputWithLabel label={"Armor Mod 2"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot2  ?? "Loading..."} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
