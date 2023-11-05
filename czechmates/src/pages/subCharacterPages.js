@@ -25,8 +25,6 @@ const SubCharacterPages = ({userId}) => {
         navigate('/charactersPage');
     }
 
-
-
     var [charInfo, setCharInfo] = useState([]);
     var [charId] = useState("CharID1");
 
@@ -36,17 +34,6 @@ const SubCharacterPages = ({userId}) => {
         onValue(charRef, (snapshot) => {
             setCharInfo(snapshot.val());
           });
-
-        // const dbRef = ref(db);
-        // get(child(dbRef, `Users/` + userId)).then((snapshot) => {
-        //     if (snapshot.exists()) {
-        //         setUserInfo(snapshot.val());
-        //     } else {
-        //         console.log("No data available");
-        //     }
-        // }).catch((error) => {
-        //     console.error(error);
-        // });
 
     }, [userId, charId]);
 

@@ -10,46 +10,26 @@ import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 
-const ProfilePage = ({userId}) => {
-
-    // pretend we know this is user 1 because they logged in already
+const ProfilePage = ({ userId }) => {
 
     var [userInfo, setUserInfo] = useState("");
 
     function addF(type) {
+        console.log(type);
         if (type !== undefined) {
             var arr = [];
             // https://flexiple.com/javascript/loop-through-object-javascript
-            Object.values(type).forEach(val => 
+            Object.values(type).forEach(val =>
                 arr.push(<Social key={val} content={val}> </Social>));
-            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-            // for (const [value] of Object.entries(worldInfo)) {
-            //     // console.log(`${key}: `, value);
-            //     arr.push(<World key={value.Name} worldName={value.Name}> </World>);
-            //   }
-            // console.log("test");
             return arr;
         }
-
     }
 
     useEffect(() => {
-
         const userRef = ref(db, 'Users/' + userId);
         onValue(userRef, (snapshot) => {
             setUserInfo(snapshot.val());
         });
-
-        // const dbRef = ref(db);
-        // get(child(dbRef, `Users/` + userId)).then((snapshot) => {
-        //     if (snapshot.exists()) {
-        //         setUserInfo(snapshot.val());
-        //     } else {
-        //         console.log("No data available");
-        //     }
-        // }).catch((error) => {
-        //     console.error(error);
-        // });
 
     }, [userId]);
 
@@ -60,7 +40,6 @@ const ProfilePage = ({userId}) => {
 
     return (
         <div>
-
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                 <Row>
                     <Col>
@@ -104,56 +83,18 @@ const ProfilePage = ({userId}) => {
                     <ControlledTabs text={["Friends", "Following", "Followers"]}
                         content={[[
                             <div key={"Friends"} >
-                                {/* {userInfo?.Friends?.map((name) => (
-                                    <Social key={name} content={name} />
-                                ))} */}
                                 {addF(userInfo.Friends)}
                             </div>
                         ], [
                             <div key={"Following"} >
-                                {/* {userInfo?.Following?.map((name) => (
-                                    <Social key={name} content={name} />
-                                ))} */}
                                 {addF(userInfo.Following)}
                             </div>
                         ], [
                             <div key={"Followers"}>
-                                {/* {userInfo?.Followers?.map((name) => (
-                                    <Social key={name} content={name} />
-                                ))} */}
                                 {addF(userInfo.Followers)}
                             </div>
                         ]]} />
-
-
                 </Row>
-
-                {/* future: generate dynamically instead of hardcoding */}
-                {/* future: pass information in */}
-
-
-
-                {/* future: choose one search bar and remove the rest */}
-                {/* search bar options start here */}
-                {/* <Searchbar
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-            />
-            <ul>
-                {filteredPosts.map(post => (
-                    <li key={post.id}>{post.name}
-                        <button type="button" className="btn btn-primary">Follow</button>
-                    </li>
-                ))}
-            </ul>
-            <Spacer /> */}
-                {/* <TypeAhead />
-            <Spacer /> */}
-
-                {/* end search bar options */}
-
-                {/* tabs for the friends, following, and followers */}
-                {/* hardcoded social components for now */}
             </Container>
 
         </div>

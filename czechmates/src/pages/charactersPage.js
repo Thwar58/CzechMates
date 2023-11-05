@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 // a component for the main character page
-const CharactersPage = ({userId}) => {
+const CharactersPage = ({ userId }) => {
 
     // handles page navigation
     const navigate = useNavigate();
@@ -68,8 +68,6 @@ const CharactersPage = ({userId}) => {
                     <DropDownShowsValue text="Order by..." actions={["level", "recently used", "alphabetically"]} />
                 </Row>
                 <Row>
-                    {/* future: pass information in */}
-                    {/* future: generate dynamically instead of hardcoding */}
                     <div>
                         {
                             chars

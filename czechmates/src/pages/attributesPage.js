@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // this component houses the content for the character attributes
-const AttributesPage = ({attrInfo}) => {
+const AttributesPage = ({ attrInfo }) => {
     return (
         <div>
 
@@ -57,12 +57,6 @@ const AttributesPage = ({attrInfo}) => {
 
                 </Row>
             </Container>
-
-            {/* future: split into two sections (ref. Func. Spec.) */}
-            {/* future: generate dynamically instead of hardcoding */}
-
-
-
         </div>
     );
 };

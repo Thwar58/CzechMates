@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Dropdown from '../components/Dropdown';
-import Form from '../components/Form';
+import Dropdown from '../components/Reference/Dropdown';
+import Form from '../components/Reference/Form';
 import ValidationForm from '../components/ValidationForm';
 import TooltipPositions from '../components/ToolTip';
 import PopoverPositions from '../components/Popover';

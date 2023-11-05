@@ -23,7 +23,7 @@ function App() {
 
 
     // set the user id here according to either a db query or the OAuth
-    const [userId] = useState("User2");
+    const [userId] = useState("User1");
 
     // examples of calling the attribute calculation methods
     // Func.calcAwareness();
@@ -37,10 +37,10 @@ function App() {
                 {/* routes are the paths to the pages with their export value */}
                 <Routes>
                     <Route path='/' element={<Home userId={userId} />} />
-                    <Route path='/charactersPage' element={<Characters userId={userId}/>} />
-                    <Route path='/worldsPage' element={<Worlds userId={userId}/>} />
-                    <Route path='/profilePage' element={<Profile userId={userId}/>} />
-                    <Route path='/subCharacterPages' element={<SubCharacterPages userId={userId}/>} />
+                    <Route path='/charactersPage' element={<Characters userId={userId} />} />
+                    <Route path='/worldsPage' element={<Worlds userId={userId} />} />
+                    <Route path='/profilePage' element={<Profile userId={userId} />} />
+                    <Route path='/subCharacterPages' element={<SubCharacterPages userId={userId} />} />
                 </Routes>
             </Router>
         </>

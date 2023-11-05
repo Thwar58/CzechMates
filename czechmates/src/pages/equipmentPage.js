@@ -8,9 +8,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // this component houses the content for the character equipment
-const EquipmentPage = ({equipInfo}) => {
-    
-    // console.log(equipInfo);
+const EquipmentPage = ({ equipInfo }) => {
+
     // future: pass in information instead of using dummy data
     const dummyWep = ["Beginner Bow", "Beginner Sword", "Beginner Spear", "Epic Healing Staff"];
     const dummyShield = ["Shield", "Big Shield", "Tall Shield"];
@@ -32,9 +31,8 @@ const EquipmentPage = ({equipInfo}) => {
                     <Col>
                     </Col>
                 </Row>
-                <Row style={{borderBottom: "solid", borderTop: "solid"}}>
+                <Row style={{ borderBottom: "solid", borderTop: "solid" }}>
                     <Col>
-                        {/* future: generate dynamically instead of hardcoding */}
                         {/* dropdown for the weapons */}
                         <Form.Label>Weapon</Form.Label>
                         <DropDownShowsValue text="Equipped Weapon" actions={dummyWep} />
@@ -47,7 +45,7 @@ const EquipmentPage = ({equipInfo}) => {
                         <InputWithLabel label={"Slot 3"} placeholder={equipInfo?.Weapon_Modification_Slots[2] ?? "Loading..."} disabled={false} />
                     </Col>
                 </Row>
-                <Row style={{borderBottom: "solid"}}>
+                <Row style={{ borderBottom: "solid" }}>
                     <Col>
                         {/* dropdown for the shield */}
                         <Form.Label>Shield</Form.Label>
@@ -59,7 +57,7 @@ const EquipmentPage = ({equipInfo}) => {
                         <InputWithLabel label={"Slot 1"} placeholder={equipInfo?.Shield_Modification_Slots[0] ?? "Loading..."} disabled={false} />
                     </Col>
                 </Row>
-                <Row style={{borderBottom: "solid"}}>
+                <Row style={{ borderBottom: "solid" }}>
                     <Col>
                         {/* dropdown for the armor */}
                         <Form.Label>Armor</Form.Label>

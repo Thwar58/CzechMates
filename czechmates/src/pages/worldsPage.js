@@ -46,10 +46,6 @@ const WorldPage = ({userId}) => {
 
     return (
         <div>
-
-            {/* future: generage dynamically instead of hardcoding 
-            its too much trouble doing this in a faked way, wait until
-            we are actually pulling data from the database to handle it*/}
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                 <Row>
                     <Col>
@@ -61,7 +57,6 @@ const WorldPage = ({userId}) => {
                     </Col>
                     <Col>
                     </Col>
-
                 </Row>
                 <Row>
                     {/* dropdown for world sorting options */}
@@ -86,9 +81,6 @@ const WorldPage = ({userId}) => {
                 </Row>
                 <Row>
                     <div>
-                        {/* {worldInfo?.map((item) => (
-                            <World key={item.Name} worldName={item.Name} />
-                        ))} */}
                         {
                             worlds
                         }
@@ -99,9 +91,6 @@ const WorldPage = ({userId}) => {
                     </Col>
                 </Row>
             </Container>
-
-
-
         </div>
     );
 };

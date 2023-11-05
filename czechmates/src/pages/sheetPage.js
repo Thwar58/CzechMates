@@ -10,8 +10,6 @@ const SheetPage = ({ sheetInfo }) => {
 
     return (
         <div>
-
-           
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <Row>
                     <Col>
@@ -34,6 +32,7 @@ const SheetPage = ({ sheetInfo }) => {
                     <Col>
                     </Col>
                 </Row>
+                {/* general information */}
                 <Row>
                     <Col>
                         <InputWithLabel label={"Name"} placeholder={sheetInfo?.General?.Name ?? "Loading..."} disabled={true} />
@@ -65,8 +64,6 @@ const SheetPage = ({ sheetInfo }) => {
                     <InputWithLabel label={"Major Relationships"} placeholder={sheetInfo?.General?.Major_Relationships ?? "Loading..."} disabled={true} />
                     <InputWithLabel label={"Other"} placeholder={sheetInfo?.General?.Other ?? "Loading..."} disabled={true} />
                 </Row>
-                {/* future: generate dynamically instead of hardcoding */}
-                {/* general information */}
                 {/* equipment information */}
                 <p style={{ textAlign: "center" }}>Equipment</p>
                 <Row>
@@ -74,9 +71,9 @@ const SheetPage = ({ sheetInfo }) => {
                         <InputWithLabel label={"Equipped Weapon"} placeholder={sheetInfo?.Equipment?.Weapon_Equipped ?? "Loading..."} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Weapon Mod 1"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[0] ?? "Loading..."} disabled={true}/>
-                        <InputWithLabel label={"Weapon Mod 2"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[1] ?? "Loading..."} disabled={true}/>
-                        <InputWithLabel label={"Weapon Mod 3"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[2] ?? "Loading..."} disabled={true}/>
+                        <InputWithLabel label={"Weapon Mod 1"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[0] ?? "Loading..."} disabled={true} />
+                        <InputWithLabel label={"Weapon Mod 2"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[1] ?? "Loading..."} disabled={true} />
+                        <InputWithLabel label={"Weapon Mod 3"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots[2] ?? "Loading..."} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
