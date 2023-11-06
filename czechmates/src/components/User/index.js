@@ -14,8 +14,6 @@ const User = ({ label, content, path }) => {
     // the value in the form
     var [formValue, setFormValue] = useState(content);
 
-    // Problem: now the info in the page will not update on the page until you reload
-
     // for typing
     // when the db gets new information, it triggers this 
     useEffect(() => {
@@ -42,12 +40,13 @@ const User = ({ label, content, path }) => {
 
     }, [formValue]);
 
-    // youll need this later
+
+    // if you want it to trigger on click, comment this in and comment out the code above, and add the onclick below
     //https://upmostly.com/tutorials/pass-a-parameter-through-onclick-in-react
     // for button click
     // function click(){
     //     const updates = {};
-    //     updates['Users/User1/Name'] = value;
+    //     updates['Users/User1/Name'] = formValue;
     //     update(charRef, updates);
     //     console.log(updates);
     // }
