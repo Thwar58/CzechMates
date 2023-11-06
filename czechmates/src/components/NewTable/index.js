@@ -23,7 +23,7 @@ function NewTable({ data, type }) {
                 arr.push({key, value});
             }
             setDataArr(arr);
-            console.log(arr);
+            // console.log(arr);
         }
 
     }, [data]);

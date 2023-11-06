@@ -41,16 +41,15 @@ const Character = ({ charName }) => {
         window.URL.revokeObjectURL(url);
       }
 
-    const removeOrEdit = event => {
-        // DBFunctions.removeFromDB('Characters/User1/CharID3/General');
-        DBFunctions.editInDB('Characters/User1/CharID3/General/Name', "test2");
-        // DBFunctions.removeFromDB('Users/User1/Followers/User7');
-        // const updates = {};
-        // updates['User/'] = "New Name";
-        // updates['Characters'] = "New Name";
-        // DBFunctions.updateMultPlaces(updates);
-
-    };
+    // const removeOrEdit = event => {
+    //     // DBFunctions.removeFromDB('Characters/User1/CharID3/General');
+    //     DBFunctions.editInDB('Characters/User1/CharID3/General/Name', "test2");
+    //     // DBFunctions.removeFromDB('Users/User1/Followers/User7');
+    //     // const updates = {};
+    //     // updates['User/'] = "New Name";
+    //     // updates['Characters'] = "New Name";
+    //     // DBFunctions.updateMultPlaces(updates);
+    // };
     
 
 
