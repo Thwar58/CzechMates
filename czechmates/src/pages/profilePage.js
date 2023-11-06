@@ -9,13 +9,17 @@ import Col from 'react-bootstrap/Col';
 import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
+import { child, get } from "firebase/database";
+
 
 const ProfilePage = ({ userId }) => {
 
-    var [userInfo, setUserInfo] = useState("");
+    const [userInfo, setUserInfo] = useState("");
+    const [loading, setLoading] = useState(true);
+
 
     function addF(type) {
-        console.log(type);
+        // console.log(type);
         if (type !== undefined) {
             var arr = [];
             // https://flexiple.com/javascript/loop-through-object-javascript
@@ -31,13 +35,35 @@ const ProfilePage = ({ userId }) => {
             setUserInfo(snapshot.val());
         });
 
+
+        // // https://firebase.google.com/docs/database/web/read-and-write
+        // get(child(dbRef, 'Users/' + userId)).then((snapshot) => {
+        //     if (snapshot.exists()) {
+        //         setUserInfo(snapshot.val());
+        //     } else {
+        //         console.log("No data available");
+        //     }
+        // }).catch((error) => {
+        //     console.error(error);
+        // });
+
     }, [userId]);
 
     useEffect(() => {
-        // console.log(userInfo);
+        if (userInfo !== "") {
+            // console.log("final check ", userInfo);
+            setLoading(false);
+        }
+
+        // console.log("userInfo ", userInfo);
     }, [userInfo]);
 
-
+// https://www.reddit.com/r/reactjs/comments/z3ue4o/useeffect_and_map_function_not_working_well/
+    if (loading) {
+        return (
+            <div></div>
+        )
+    }
     return (
         <div>
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
@@ -54,10 +80,10 @@ const ProfilePage = ({ userId }) => {
                 </Row>
                 <Row>
                     {/* https://daveceddia.com/react-before-render/ */}
-                    <User label={"Username"} content={userInfo?.Name ?? "Loading..."} />
+                    <User label={"Username"} content={userInfo?.Name} path={`${userId}/Name`} />
                 </Row>
                 <Row>
-                    <User label={"Email"} content={userInfo?.Email ?? "Loading..."} />
+                    <User label={"Email"} content={userInfo?.Email} path={`${userId}/Email`} />
                 </Row>
                 <Row>
                     <Col>

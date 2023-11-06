@@ -2,27 +2,76 @@ import React from "react";
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useState } from "react";
+import { useEffect } from "react";
+import { db } from '../../firebase';
+import { increment, ref, update } from "firebase/database";
 
 // a component used in the user portion of the profile page
 // future: subject to revamp with reusable components
-const User = ({ label, content }) => {
+const User = ({ label, content, path }) => {
+    const charRef = ref(db);
+    // the value in the form
+    var [formValue, setFormValue] = useState(content);
+
+    // Problem: now the info in the page will not update on the page until you reload
+
+    // for typing
+    // when the db gets new information, it triggers this 
+    useEffect(() => {
+        console.log("compare", content, formValue);
+        // if the form does not match the new input, then the form gets set to this new content
+        if (content != formValue) {
+            console.log("different");
+            setFormValue(content);
+        }
+        else{
+            console.log("same");
+        }
+    }, [content]);
+
+     // for typing
+    // when the form value changes, this is triggers
+    useEffect(() => {
+        // console.log("update");
+        // it writes the new form information to the database
+        const updates = {};
+        updates[`Users/${path}`] = formValue;
+        update(charRef, updates);
+        // console.log(updates);
+
+    }, [formValue]);
+
+    // youll need this later
+    //https://upmostly.com/tutorials/pass-a-parameter-through-onclick-in-react
+    // for button click
+    // function click(){
+    //     const updates = {};
+    //     updates['Users/User1/Name'] = value;
+    //     update(charRef, updates);
+    //     console.log(updates);
+    // }
+
     return (
         <div>
-                {/* input group to surround the elements */}
-                <InputGroup className="mb-3">
-                    {/* mane the text the label */}
-                    <InputGroup.Text id="basic-addon3">
-                        {label}
-                    </InputGroup.Text>
-                    {/* add the placeholder and set whether it is enabled or disabled */}
-                    <Form.Control
-                        value={content}
-                        disabled={true}
-                    />
-                    <Button variant="outline-secondary" id="button-addon2">
+            {/* input group to surround the elements */}
+            <InputGroup className="mb-3">
+                {/* mane the text the label */}
+                <InputGroup.Text id="basic-addon3">
+                    {label}
+                </InputGroup.Text>
+                {/* add the placeholder and set whether it is enabled or disabled */}
+                <Form.Control
+                    value={formValue}
+                    disabled={false}
+                    // https://www.reddit.com/r/reactjs/comments/153ndzq/how_to_refer_to_an_input_field_by_its_id_in_react/
+                    onChange={e => setFormValue(e.target.value)}
+                />
+                {/* onClick={click} */}
+                <Button variant="outline-secondary" id="button-addon2">
                     Edit
                 </Button>
-                </InputGroup>
+            </InputGroup>
         </div>
     );
 };
