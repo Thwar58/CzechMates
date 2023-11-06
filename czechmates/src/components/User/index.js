@@ -23,33 +23,22 @@ const User = ({ label, content, path }) => {
             // console.log("different");
             setFormValue(content);
         }
-        else{
+        else {
             // console.log("same");
         }
     }, [content]);
 
-     // for typing
-    // when the form value changes, this is triggers
-    useEffect(() => {
-        // console.log("update");
-        // it writes the new form information to the database
-        const updates = {};
-        updates[`Users/${path}`] = formValue;
-        update(charRef, updates);
-        // console.log(updates);
-
-    }, [formValue]);
 
 
     // if you want it to trigger on click, comment this in and comment out the code above, and add the onclick below
     //https://upmostly.com/tutorials/pass-a-parameter-through-onclick-in-react
     // for button click
-    // function click(){
-    //     const updates = {};
-    //     updates['Users/User1/Name'] = formValue;
-    //     update(charRef, updates);
-    //     console.log(updates);
-    // }
+    function click() {
+        const updates = {};
+        updates['Users/User1/Name'] = formValue;
+        update(charRef, updates);
+        console.log(updates);
+    }
 
     return (
         <div>
@@ -66,8 +55,8 @@ const User = ({ label, content, path }) => {
                     // https://www.reddit.com/r/reactjs/comments/153ndzq/how_to_refer_to_an_input_field_by_its_id_in_react/
                     onChange={e => setFormValue(e.target.value)}
                 />
-                {/* onClick={click} */}
-                <Button variant="outline-secondary" id="button-addon2">
+                {/* */}
+                <Button onClick={click} variant="outline-secondary" id="button-addon2">
                     Edit
                 </Button>
             </InputGroup>
