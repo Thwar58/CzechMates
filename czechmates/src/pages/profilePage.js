@@ -9,8 +9,6 @@ import Col from 'react-bootstrap/Col';
 import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
-import { child, get } from "firebase/database";
-
 
 const ProfilePage = ({ userId }) => {
 
@@ -34,18 +32,6 @@ const ProfilePage = ({ userId }) => {
         onValue(userRef, (snapshot) => {
             setUserInfo(snapshot.val());
         });
-
-
-        // // https://firebase.google.com/docs/database/web/read-and-write
-        // get(child(dbRef, 'Users/' + userId)).then((snapshot) => {
-        //     if (snapshot.exists()) {
-        //         setUserInfo(snapshot.val());
-        //     } else {
-        //         console.log("No data available");
-        //     }
-        // }).catch((error) => {
-        //     console.error(error);
-        // });
 
     }, [userId]);
 
