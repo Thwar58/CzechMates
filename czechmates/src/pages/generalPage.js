@@ -9,6 +9,8 @@ import Col from 'react-bootstrap/Col';
 
 // this component houses the content for the general character info
 const GeneralPage = ({ generalInfo }) => {
+
+    console.log("check info ", generalInfo);
     return (
         <div>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -30,22 +32,22 @@ const GeneralPage = ({ generalInfo }) => {
                         <p>Image here</p>
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
-                        <InputWithLabel label={"Name"} placeholder={generalInfo?.Name ?? "Loading..."} disabled={false} />
-                        <InputWithLabel label={"High Concept"} placeholder={generalInfo?.High_Concept ?? "Loading..."} disabled={false} />
+                        <InputWithLabel category={"General"} label={"Name"} content={generalInfo?.Name} disabled={false} />
+                        <InputWithLabel category={"General"} label={"High Concept"} content={generalInfo?.High_Concept} disabled={false} />
                     </Col>
                 </Row>
                 {/* each one is editable and has a label as well as a placeholder value */}
-                <InputWithLabel label={"Trouble"} placeholder={generalInfo?.Trouble ?? "Loading..."} disabled={false} />
-                <InputWithLabel label={"Aspect 1"} placeholder={generalInfo?.Aspect_1 ?? "Loading..."} disabled={false} />
-                <InputWithLabel label={"Aspect 2"} placeholder={generalInfo?.Aspect_2 ?? "Loading..."} disabled={false} />
-                <InputWithLabel label={"Fate Points"} placeholder={generalInfo?.Fate_Points ?? "Loading..."} disabled={false} />
-                <InputWithLabel label={"Money"} placeholder={generalInfo?.Money ?? "Loading..."} disabled={false} />
+                <InputWithLabel category={"General"} label={"Trouble"} content={generalInfo?.Trouble} disabled={false} />
+                <InputWithLabel category={"General"} label={"Aspect 1"} content={generalInfo?.Aspect_1} disabled={false} />
+                <InputWithLabel category={"General"} label={"Aspect 2"} content={generalInfo?.Aspect_2} disabled={false} />
+                <InputWithLabel category={"General"} label={"Fate Points"} content={generalInfo?.Fate_Points} disabled={false} />
+                <InputWithLabel category={"General"} label={"Money"} content={generalInfo?.Money} disabled={false} />
                 {/* the description section is labeled individually */}
                 <Form.Label htmlFor="this">Description</Form.Label>
-                <InputWithLabel label={"Physical Appearance"} placeholder={generalInfo?.Physical_Appearance ?? "Loading..."} disabled={false} />
-                <InputWithLabel label={"Background"} placeholder={generalInfo?.Background ?? "Loading..."} disabled={false} />
-                <InputWithLabel label={"Major Relationships"} placeholder={generalInfo?.Major_Relationships ?? "Loading..."} disabled={false} />
-                <InputWithLabel label={"Other"} placeholder={generalInfo?.Other ?? "Loading..."} disabled={false} />
+                <InputWithLabel category={"General"} label={"Physical Appearance"} content={generalInfo?.Physical_Appearance} disabled={false} />
+                <InputWithLabel category={"General"} label={"Background"} content={generalInfo?.Background} disabled={false} />
+                <InputWithLabel category={"General"} label={"Major Relationships"} content={generalInfo?.Major_Relationships} disabled={false} />
+                <InputWithLabel category={"General"} label={"Other"} content={generalInfo?.Other} disabled={false} />
             </Container>
         </div>
     );

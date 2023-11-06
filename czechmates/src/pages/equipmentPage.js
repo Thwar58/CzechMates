@@ -40,9 +40,9 @@ const EquipmentPage = ({ equipInfo }) => {
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
                         <Form.Label>Weapon Modification Slots</Form.Label>
-                        <InputWithLabel label={"Slot 1"} placeholder={equipInfo?.Weapon_Modification_Slots.Slot1 ?? "Loading..."} disabled={false} />
-                        <InputWithLabel label={"Slot 2"} placeholder={equipInfo?.Weapon_Modification_Slots.Slot2  ?? "Loading..."} disabled={false} />
-                        <InputWithLabel label={"Slot 3"} placeholder={equipInfo?.Weapon_Modification_Slots.Slot3  ?? "Loading..."} disabled={false} />
+                        <InputWithLabel category={"Equipment"} label={"Slot 1"} content={equipInfo?.Weapon_Modification_Slots.Slot1} disabled={false} />
+                        <InputWithLabel category={"Equipment"} label={"Slot 2"} content={equipInfo?.Weapon_Modification_Slots.Slot2} disabled={false} />
+                        <InputWithLabel category={"Equipment"} label={"Slot 3"} content={equipInfo?.Weapon_Modification_Slots.Slot3} disabled={false} />
                     </Col>
                 </Row>
                 <Row style={{ borderBottom: "solid" }}>
@@ -54,7 +54,7 @@ const EquipmentPage = ({ equipInfo }) => {
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
                         <Form.Label>Shield Modification Slots</Form.Label>
-                        <InputWithLabel label={"Slot 1"} placeholder={equipInfo?.Shield_Modification_Slots.Slot1  ?? "Loading..."} disabled={false} />
+                        <InputWithLabel category={"Equipment"} label={"Slot 1"} content={equipInfo?.Shield_Modification_Slots.Slot1} disabled={false} />
                     </Col>
                 </Row>
                 <Row style={{ borderBottom: "solid" }}>
@@ -66,8 +66,8 @@ const EquipmentPage = ({ equipInfo }) => {
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
                         <Form.Label>Armor Modification Slots</Form.Label>
-                        <InputWithLabel label={"Slot 1"} placeholder={equipInfo?.Armor_Modification_Slots.Slot1  ?? "Loading..."} disabled={false} />
-                        <InputWithLabel label={"Slot 2"} placeholder={equipInfo?.Armor_Modification_Slots.Slot2  ?? "Loading..."} disabled={false} />
+                        <InputWithLabel category={"Equipment"} label={"Slot 1"} content={equipInfo?.Armor_Modification_Slots.Slot1} disabled={false} />
+                        <InputWithLabel category={"Equipment"} label={"Slot 2"} content={equipInfo?.Armor_Modification_Slots.Slot2} disabled={false} />
                     </Col>
                 </Row>
 

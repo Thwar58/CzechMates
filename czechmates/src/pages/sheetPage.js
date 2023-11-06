@@ -35,62 +35,62 @@ const SheetPage = ({ sheetInfo }) => {
                 {/* general information */}
                 <Row>
                     <Col>
-                        <InputWithLabel label={"Name"} placeholder={sheetInfo?.General?.Name ?? "Loading..."} disabled={true} />
+                        <InputWithLabel category={"General"} label={"Name"} content={sheetInfo?.General?.Name} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"High Concept"} placeholder={sheetInfo?.General?.High_Concept ?? "Loading..."} disabled={true} />
+                        <InputWithLabel category={"General"} label={"High Concept"} content={sheetInfo?.General?.High_Concept} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel label={"Trouble"} placeholder={sheetInfo?.General?.Trouble ?? "Loading..."} disabled={true} />
+                        <InputWithLabel category={"General"} label={"Trouble"} content={sheetInfo?.General?.Trouble} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Aspect 1"} placeholder={sheetInfo?.General?.Aspect_1 ?? "Loading..."} disabled={true} />
+                        <InputWithLabel category={"General"} label={"Aspect 1"} content={sheetInfo?.General?.Aspect_1} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel label={"Aspect 2"} placeholder={sheetInfo?.General?.Aspect_2 ?? "Loading..."} disabled={true} />
+                        <InputWithLabel category={"General"} label={"Aspect 2"} content={sheetInfo?.General?.Aspect_2} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Fate Points"} placeholder={sheetInfo?.General?.Fate_Points ?? "Loading..."} disabled={true} />
+                        <InputWithLabel category={"General"} label={"Fate Points"} content={sheetInfo?.General?.Fate_Points} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
-                    <InputWithLabel label={"Money"} placeholder={sheetInfo?.General?.Money ?? "Loading..."} disabled={true} />
-                    <InputWithLabel label={"Physical Appearance"} placeholder={sheetInfo?.General?.Physical_Appearance ?? "Loading..."} disabled={true} />
-                    <InputWithLabel label={"Background"} placeholder={sheetInfo?.General?.Background ?? "Loading..."} disabled={true} />
-                    <InputWithLabel label={"Major Relationships"} placeholder={sheetInfo?.General?.Major_Relationships ?? "Loading..."} disabled={true} />
-                    <InputWithLabel label={"Other"} placeholder={sheetInfo?.General?.Other ?? "Loading..."} disabled={true} />
+                    <InputWithLabel category={"General"} label={"Money"} content={sheetInfo?.General?.Money} disabled={true} />
+                    <InputWithLabel category={"General"} label={"Physical Appearance"} content={sheetInfo?.General?.Physical_Appearance} disabled={true} />
+                    <InputWithLabel category={"General"} label={"Background"} content={sheetInfo?.General?.Background} disabled={true} />
+                    <InputWithLabel category={"General"} label={"Major Relationships"} content={sheetInfo?.General?.Major_Relationships} disabled={true} />
+                    <InputWithLabel category={"General"} label={"Other"} content={sheetInfo?.General?.Other} disabled={true} />
                 </Row>
                 {/* equipment information */}
                 <p style={{ textAlign: "center" }}>Equipment</p>
                 <Row>
                     <Col>
-                        <InputWithLabel label={"Equipped Weapon"} placeholder={sheetInfo?.Equipment?.Weapon_Equipped ?? "Loading..."} disabled={true} />
+                        <InputWithLabel category={"Equipment"} label={"Equipped Weapon"} content={sheetInfo?.Equipment?.Weapon_Equipped} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Weapon Mod 1"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot1  ?? "Loading..."} disabled={true} />
-                        <InputWithLabel label={"Weapon Mod 2"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot2  ?? "Loading..."} disabled={true} />
-                        <InputWithLabel label={"Weapon Mod 3"} placeholder={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot3 ?? "Loading..."} disabled={true} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <InputWithLabel label={"Equipped Shield"} placeholder={sheetInfo?.Equipment?.Shield_Equipped ?? "Loading..."} disabled={true} />
-                    </Col>
-                    <Col>
-                        <InputWithLabel label={"Shield Mod 1"} placeholder={sheetInfo?.Equipment?.Shield_Modification_Slots.Slot1  ?? "Loading..."} disabled={true} />
+                        <InputWithLabel category={"Equipment"} label={"Weapon Mod 1"} content={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot1} disabled={true} />
+                        <InputWithLabel category={"Equipment"} label={"Weapon Mod 2"} content={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot2} disabled={true} />
+                        <InputWithLabel category={"Equipment"} label={"Weapon Mod 3"} content={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot3} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel label={"Equipped Armor"} placeholder={sheetInfo?.Equipment?.Armor_Equipped ?? "Loading..."} disabled={true} />
+                        <InputWithLabel category={"Equipment"} label={"Equipped Shield"} placeholder={sheetInfo?.Equipment?.Shield_Equipped} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel label={"Armor Mod 1"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot1  ?? "Loading..."} disabled={true} />
-                        <InputWithLabel label={"Armor Mod 2"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot2  ?? "Loading..."} disabled={true} />
+                        <InputWithLabel category={"Equipment"} label={"Shield Mod 1"} placeholder={sheetInfo?.Equipment?.Shield_Modification_Slots.Slot1} disabled={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <InputWithLabel category={"Equipment"} label={"Equipped Armor"} placeholder={sheetInfo?.Equipment?.Armor_Equipped} disabled={true} />
+                    </Col>
+                    <Col>
+                        <InputWithLabel category={"Equipment"} label={"Armor Mod 1"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot1} disabled={true} />
+                        <InputWithLabel category={"Equipment"} label={"Armor Mod 2"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot2} disabled={true} />
                     </Col>
                 </Row>
                 <Row>

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useState } from "react";
 import { useEffect } from "react";
 import { db } from '../../firebase';
-import { increment, ref, update } from "firebase/database";
+import { ref, update } from "firebase/database";
 
 // a component used in the user portion of the profile page
 // future: subject to revamp with reusable components
@@ -17,14 +17,14 @@ const User = ({ label, content, path }) => {
     // for typing
     // when the db gets new information, it triggers this 
     useEffect(() => {
-        console.log("compare", content, formValue);
+        // console.log("compare", content, formValue);
         // if the form does not match the new input, then the form gets set to this new content
         if (content != formValue) {
-            console.log("different");
+            // console.log("different");
             setFormValue(content);
         }
         else{
-            console.log("same");
+            // console.log("same");
         }
     }, [content]);
 
