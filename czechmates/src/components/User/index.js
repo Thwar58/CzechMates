@@ -35,7 +35,7 @@ const User = ({ label, content, path }) => {
     // for button click
     function click() {
         const updates = {};
-        updates['Users/User1/Name'] = formValue;
+        updates[`Users/${path}`] = formValue;
         update(charRef, updates);
         console.log(updates);
     }
