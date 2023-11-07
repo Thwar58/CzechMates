@@ -10,7 +10,6 @@ import Col from 'react-bootstrap/Col';
 // this component houses the content for the general character info
 const GeneralPage = ({ generalInfo, userId, charId }) => {
 
-    console.log("check info ", generalInfo);
     return (
         <div>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">

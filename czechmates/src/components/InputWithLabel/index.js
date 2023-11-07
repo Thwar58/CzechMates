@@ -59,6 +59,7 @@ const InputWithLabel = ({ label, content, disabled, category, userId, charId }) 
                 {/* add the placeholder and set whether it is enabled or disabled */}
                 <Form.Control
                     value={formValue}
+                    placeholder={`Input ${label}`}
                     disabled={disabled}
                     // https://www.reddit.com/r/reactjs/comments/153ndzq/how_to_refer_to_an_input_field_by_its_id_in_react/
                     onChange={e => setFormValue(e.target.value)}

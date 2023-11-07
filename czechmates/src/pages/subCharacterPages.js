@@ -35,7 +35,6 @@ const SubCharacterPages = ({ userId }) => {
 
 
     useEffect(() => {
-        console.log(location.state.charId);
 
         const charRef = ref(db, 'Characters/' + userId + '/' + charId);
         onValue(charRef, (snapshot) => {
