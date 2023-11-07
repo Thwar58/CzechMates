@@ -10,13 +10,13 @@ import DBFunctions from "../../utils/firebaseQueries";
 
 
 // the character component
-const Character = ({ charName }) => {
+const Character = ({ charName, charId, userId }) => {
     // handle page navigations
     const navigate = useNavigate();
-    const navigateToGeneral = () => {
-        // navigate to /subCharacterPages
-        navigate('/subCharacterPages');
-    }
+
+    const toSubPage=()=>{
+        navigate('/subCharacterPages',{state:{charId:charId}});
+          }
 
     const onAddBtnClick = event => {
         DBFunctions.writeCharacterData("User1", "CharID3", "test", "concept");
@@ -71,7 +71,7 @@ const Character = ({ charName }) => {
                         Copy
                     </Button>
                     {/* second button */}
-                    <Button onClick={navigateToGeneral} variant="outline-secondary" id="button-addon2">
+                    <Button onClick={()=>{toSubPage()}} variant="outline-secondary" id="button-addon2">
                         Edit
                     </Button>
                     <ConfirmationPopup id="removeButton" name="Remove" />

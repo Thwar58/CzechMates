@@ -42,10 +42,18 @@ const CharactersPage = ({ userId }) => {
 
     useEffect(() => {
         // console.log(charInfo);
-        var arr = [];
+        // var arr = [];
         // https://flexiple.com/javascript/loop-through-object-javascript
-        Object.values(charInfo).forEach(val =>
-            arr.push(<Character key={val.General.Name} charName={val.General.Name} />));
+        // Object.values(charInfo).forEach(val =>
+        //     arr.push(<Character key={val.General.Name} charName={val.General.Name} />));
+        // setChars(arr);
+
+        var arr = [];
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+        for (const [key, value] of Object.entries(charInfo)) {
+            console.log(`${key}: `, value);
+            arr.push(<Character key={key} charId={key} charName={value.General.Name} />);
+        }
         setChars(arr);
     }, [charInfo]);
 
