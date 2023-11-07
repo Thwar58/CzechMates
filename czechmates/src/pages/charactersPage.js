@@ -21,8 +21,9 @@ const CharactersPage = ({ userId }) => {
         navigate('/subCharacterPages');
     }
 
-    var [charInfo, setCharInfo] = useState([]);
+    var [charInfo, setCharInfo] = useState("");
     var [chars, setChars] = useState([]);
+    const [loading, setLoading] = useState(true);
 
 
 
@@ -47,6 +48,21 @@ const CharactersPage = ({ userId }) => {
             arr.push(<Character key={val.General.Name} charName={val.General.Name} />));
         setChars(arr);
     }, [charInfo]);
+
+    useEffect(() => {
+        if (charInfo !== "") {
+            // console.log("final check ", userInfo);
+            setLoading(false);
+        }
+        // console.log(charInfo);
+    }, [charInfo]);
+
+
+    if (loading) {
+        return (
+            <div></div>
+        )
+    }
 
 
     return (
