@@ -24,7 +24,7 @@ const Character = ({ charName, charId, userId, charInfo }) => {
         var copy = charInfo;
         copy.General.Name = `${charName} Copy`;
         console.log(copy);
-        DBFunctions.writeCharacterData(userId, "CharID3", copy);
+        DBFunctions.copyCharacter(userId, copy);
     };
 
     const charData = [

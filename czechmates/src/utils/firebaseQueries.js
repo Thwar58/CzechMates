@@ -1,5 +1,5 @@
 import { db } from '../firebase';
-import { child, get, ref, set } from "firebase/database";
+import { child, get, ref, set, push } from "firebase/database";
 
 // this didnt do well cause of the useffect nonsense, you have to put the function in the useffect itself for to work
 var DBFunctions = {
@@ -43,8 +43,9 @@ var DBFunctions = {
 
 
     // I got lazy and only did the minimum in general but the rest should be the same
-    writeCharacterData: function (userID, charId, content) {
-        set(ref(db, 'Characters/' + userID + "/" + charId),
+    copyCharacter: function (userID, content) {
+        const newPostKey = push(child(ref(db), 'posts')).key;
+        set(ref(db, 'Characters/' + userID + "/" + newPostKey),
                 content
             );
     },
