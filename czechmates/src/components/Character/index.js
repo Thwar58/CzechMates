@@ -69,7 +69,9 @@ const Character = ({ charName, charId, userId, charInfo }) => {
                     {/* input the value and disable the input */}
                     <Form.Control
                         value={charName}
-                        disabled={true}
+                        // disabled={true}
+                        readOnly={true}
+                        onClick={()=>{toSubPage()}}
                     />
                     {/* first button */}
                     <Button onClick={copyChara} variant="outline-secondary" id="button-addon2">
