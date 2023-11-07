@@ -10,16 +10,21 @@ import DBFunctions from "../../utils/firebaseQueries";
 
 
 // the character component
-const Character = ({ charName, charId, userId }) => {
+const Character = ({ charName, charId, userId, charInfo }) => {
     // handle page navigations
     const navigate = useNavigate();
 
+    // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
     const toSubPage=()=>{
         navigate('/subCharacterPages',{state:{charId:charId}});
           }
 
     const onAddBtnClick = event => {
-        DBFunctions.writeCharacterData("User1", "CharID3", "test", "concept");
+        // console.log(charInfo);
+        var copy = charInfo;
+        copy.General.Name = `${charName} Copy`;
+        console.log(copy);
+        DBFunctions.writeCharacterData(userId, "CharID3", copy);
     };
 
     const charData = [

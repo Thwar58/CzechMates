@@ -26,6 +26,7 @@ const SubCharacterPages = ({ userId }) => {
         // navigate to /characterPage
         navigate('/charactersPage');
     }
+    // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
     const location = useLocation();
 
     var [charInfo, setCharInfo] = useState("");

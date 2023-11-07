@@ -52,7 +52,7 @@ const CharactersPage = ({ userId }) => {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(charInfo)) {
             console.log(`${key}: `, value);
-            arr.push(<Character key={key} charId={key} charName={value.General.Name} />);
+            arr.push(<Character key={key} charInfo={value} userId={userId} charId={key} charName={value.General.Name} />);
         }
         setChars(arr);
     }, [charInfo]);

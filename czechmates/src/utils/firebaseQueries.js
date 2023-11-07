@@ -43,12 +43,10 @@ var DBFunctions = {
 
 
     // I got lazy and only did the minimum in general but the rest should be the same
-    writeCharacterData: function (userID, charId, name, concept) {
-        set(ref(db, 'Characters/' + userID + "/" + charId + "/General"),
-            {
-                Name: name,
-                High_Concept: concept
-            });
+    writeCharacterData: function (userID, charId, content) {
+        set(ref(db, 'Characters/' + userID + "/" + charId),
+                content
+            );
     },
 
     // you pass in the path to what you want to remove and it sets it to null, which removes it from the database
