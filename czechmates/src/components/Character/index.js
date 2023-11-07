@@ -10,16 +10,21 @@ import DBFunctions from "../../utils/firebaseQueries";
 
 
 // the character component
-const Character = ({ charName }) => {
+const Character = ({ charName, charId, userId, charInfo }) => {
     // handle page navigations
     const navigate = useNavigate();
-    const navigateToGeneral = () => {
-        // navigate to /subCharacterPages
-        navigate('/subCharacterPages');
-    }
 
-    const onAddBtnClick = event => {
-        DBFunctions.writeCharacterData("User1", "CharID3", "test", "concept");
+    // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
+    const toSubPage=()=>{
+        navigate('/subCharacterPages',{state:{charId:charId}});
+          }
+
+    const copyChara = event => {
+        // console.log(charInfo);
+        var copy = charInfo;
+        copy.General.Name = `${charName} Copy`;
+        console.log(copy);
+        DBFunctions.copyCharacter(userId, copy);
     };
 
     const charData = [
@@ -64,14 +69,16 @@ const Character = ({ charName }) => {
                     {/* input the value and disable the input */}
                     <Form.Control
                         value={charName}
-                        disabled={true}
+                        // disabled={true}
+                        readOnly={true}
+                        onClick={()=>{toSubPage()}}
                     />
                     {/* first button */}
-                    <Button onClick={onAddBtnClick} variant="outline-secondary" id="button-addon2">
+                    <Button onClick={copyChara} variant="outline-secondary" id="button-addon2">
                         Copy
                     </Button>
                     {/* second button */}
-                    <Button onClick={navigateToGeneral} variant="outline-secondary" id="button-addon2">
+                    <Button onClick={()=>{toSubPage()}} variant="outline-secondary" id="button-addon2">
                         Edit
                     </Button>
                     <ConfirmationPopup id="removeButton" name="Remove" />

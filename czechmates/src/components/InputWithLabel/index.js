@@ -8,7 +8,7 @@ import { db } from '../../firebase';
 import { ref, update } from "firebase/database";
 
 // components that have a label and a placeholder and can be enabled or disabled
-const InputWithLabel = ({ label, content, disabled, category }) => {
+const InputWithLabel = ({ label, content, disabled, category, userId, charId }) => {
 
     const charRef = ref(db);
     // the value in the form
@@ -37,8 +37,8 @@ const InputWithLabel = ({ label, content, disabled, category }) => {
             var underScoreAdded = label.replace(/ /g, "_");
             if (!underScoreAdded.includes("Slot")){
                 const updates = {};
-                updates[`Characters/User1/CharID1/${category}/${underScoreAdded}`] = formValue;
-                console.log(updates);
+                updates[`Characters/${userId}/${charId}/${category}/${underScoreAdded}`] = formValue;
+                // console.log(updates);
                 // updates[`Users/${path}`] = formValue;
                 update(charRef, updates);
                 // console.log(updates);
@@ -59,6 +59,7 @@ const InputWithLabel = ({ label, content, disabled, category }) => {
                 {/* add the placeholder and set whether it is enabled or disabled */}
                 <Form.Control
                     value={formValue}
+                    placeholder={`Input ${label}`}
                     disabled={disabled}
                     // https://www.reddit.com/r/reactjs/comments/153ndzq/how_to_refer_to_an_input_field_by_its_id_in_react/
                     onChange={e => setFormValue(e.target.value)}

@@ -18,8 +18,9 @@ import { useState } from "react";
 const WorldPage = ({userId}) => {
 
 
-    var [worldInfo, setWorldInfo] = useState({});
+    var [worldInfo, setWorldInfo] = useState("");
     var [worlds, setWorlds] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const worldsRef = ref(db, 'Worlds/' + userId);
@@ -43,6 +44,22 @@ const WorldPage = ({userId}) => {
 
         setWorlds(arr);
     }, [worldInfo]);
+
+    useEffect(() => {
+        if (worldInfo !== "") {
+            // console.log("final check ", userInfo);
+            setLoading(false);
+        }
+        // console.log(charInfo);
+    }, [worldInfo]);
+
+
+    
+    if (loading) {
+        return (
+            <div></div>
+        )
+    }
 
     return (
         <div>

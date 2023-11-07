@@ -15,6 +15,8 @@ import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
+import {useLocation} from 'react-router-dom';
+
 
 // a page that contains all of the sub character pages as tabs (i.e. equipment, general)
 const SubCharacterPages = ({ userId }) => {
@@ -24,9 +26,11 @@ const SubCharacterPages = ({ userId }) => {
         // navigate to /characterPage
         navigate('/charactersPage');
     }
+    // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
+    const location = useLocation();
 
     var [charInfo, setCharInfo] = useState("");
-    var [charId] = useState("CharID1");
+    var [charId] = useState(location.state.charId);
     const [loading, setLoading] = useState(true);
 
 

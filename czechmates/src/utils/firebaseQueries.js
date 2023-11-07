@@ -1,5 +1,6 @@
 import { db } from '../firebase';
-import { child, get, ref, set } from "firebase/database";
+import { child, get, ref, set, push } from "firebase/database";
+
 
 // this didnt do well cause of the useffect nonsense, you have to put the function in the useffect itself for to work
 var DBFunctions = {
@@ -43,12 +44,19 @@ var DBFunctions = {
 
 
     // I got lazy and only did the minimum in general but the rest should be the same
-    writeCharacterData: function (userID, charId, name, concept) {
-        set(ref(db, 'Characters/' + userID + "/" + charId + "/General"),
-            {
-                Name: name,
-                High_Concept: concept
-            });
+    copyCharacter: function (userID, content) {
+        const newPostKey = push(child(ref(db), 'posts')).key;
+        set(ref(db, 'Characters/' + userID + "/" + newPostKey),
+                content
+            );
+    },
+
+    createNewCharacter: function (userID, charTemplate) {
+        const newPostKey = push(child(ref(db), 'posts')).key;
+        set(ref(db, 'Characters/' + userID + "/" + newPostKey),
+            charTemplate
+            );
+        return newPostKey;
     },
 
     // you pass in the path to what you want to remove and it sets it to null, which removes it from the database
