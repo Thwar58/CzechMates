@@ -10,6 +10,8 @@ import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 import { useEffect } from "react";
+import DBFunctions from "../utils/firebaseQueries";
+const charTemplate = require('./../utils/characterTemplate.json');
 
 // a component for the main character page
 const CharactersPage = ({ userId }) => {
@@ -24,6 +26,17 @@ const CharactersPage = ({ userId }) => {
     var [charInfo, setCharInfo] = useState("");
     var [chars, setChars] = useState([]);
     const [loading, setLoading] = useState(true);
+
+
+    function addChara(){
+        // console.log(charTemplate);
+        var id = DBFunctions.createNewCharacter(userId, charTemplate);
+        // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
+        navigate('/subCharacterPages',{state:{charId:id}});
+        // navigateToGeneral();
+    }
+
+    
 
 
 
@@ -102,7 +115,7 @@ const CharactersPage = ({ userId }) => {
                 <Row>
                     {/* button that redirects to the subchar pages */}
                     <div>
-                        <button onClick={navigateToGeneral} type="button" className="btn btn-primary">Plus sign icon</button>
+                        <button onClick={addChara} type="button" className="btn btn-primary">Plus sign icon</button>
                     </div>
 
                 </Row>

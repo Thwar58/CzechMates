@@ -19,7 +19,7 @@ const Character = ({ charName, charId, userId, charInfo }) => {
         navigate('/subCharacterPages',{state:{charId:charId}});
           }
 
-    const onAddBtnClick = event => {
+    const copyChara = event => {
         // console.log(charInfo);
         var copy = charInfo;
         copy.General.Name = `${charName} Copy`;
@@ -72,7 +72,7 @@ const Character = ({ charName, charId, userId, charInfo }) => {
                         disabled={true}
                     />
                     {/* first button */}
-                    <Button onClick={onAddBtnClick} variant="outline-secondary" id="button-addon2">
+                    <Button onClick={copyChara} variant="outline-secondary" id="button-addon2">
                         Copy
                     </Button>
                     {/* second button */}

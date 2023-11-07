@@ -1,6 +1,7 @@
 import { db } from '../firebase';
 import { child, get, ref, set, push } from "firebase/database";
 
+
 // this didnt do well cause of the useffect nonsense, you have to put the function in the useffect itself for to work
 var DBFunctions = {
 
@@ -48,6 +49,14 @@ var DBFunctions = {
         set(ref(db, 'Characters/' + userID + "/" + newPostKey),
                 content
             );
+    },
+
+    createNewCharacter: function (userID, charTemplate) {
+        const newPostKey = push(child(ref(db), 'posts')).key;
+        set(ref(db, 'Characters/' + userID + "/" + newPostKey),
+            charTemplate
+            );
+        return newPostKey;
     },
 
     // you pass in the path to what you want to remove and it sets it to null, which removes it from the database
