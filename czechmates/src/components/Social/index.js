@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 // a component used for the social portion of the profile page
-// future: subject to revamp later to use reuable elements
+// input: the name of the (friend/follower/following) user
 const Social = ({content}) => {
     return (
         <div>

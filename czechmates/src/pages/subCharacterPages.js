@@ -15,27 +15,29 @@ import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 // a page that contains all of the sub character pages as tabs (i.e. equipment, general)
+// input: the user id AND location stores the character id
 const SubCharacterPages = ({ userId }) => {
     // handles page changes
     const navigate = useNavigate();
     const navigateToCharPage = () => {
-        // navigate to /characterPage
         navigate('/charactersPage');
     }
+    // location is used to pass information from the character page to the sub page
     // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
     const location = useLocation();
-
+    // variables to track the character information and the loading state
     var [charInfo, setCharInfo] = useState("");
     var [charId] = useState(location.state.charId);
     const [loading, setLoading] = useState(true);
 
 
+    // when the userid or the character id change, this is triggered and queries the database
     useEffect(() => {
-
+        // use this path and onValue monitors for changes
         const charRef = ref(db, 'Characters/' + userId + '/' + charId);
         onValue(charRef, (snapshot) => {
             setCharInfo(snapshot.val());
@@ -43,14 +45,15 @@ const SubCharacterPages = ({ userId }) => {
 
     }, [userId, charId]);
 
+    // set the loading state to false when the information loads
     useEffect(() => {
         if (charInfo !== "") {
-            // console.log("final check ", userInfo);
             setLoading(false);
         }
         // console.log(charInfo);
     }, [charInfo]);
 
+    // render the blank loading screen if the data hasn't loaded yet
     // https://www.reddit.com/r/reactjs/comments/z3ue4o/useeffect_and_map_function_not_working_well/
     if (loading) {
         return (
@@ -75,7 +78,7 @@ const SubCharacterPages = ({ userId }) => {
                     </Col>
                 </Row>
                 <Row>
-                    {/* tabs for each page, passing in the labels and the page objects */}
+                    {/* tabs for each page, passing in the relevant character information */}
                     <ControlledTabs text={["General", "Equipment", "Skills", "Attributes", "Sheet"]}
                         content={[<GeneralPage generalInfo={charInfo.General} charId={charId} userId={userId} />,
                         <EquipmentPage equipInfo={charInfo.Equipment} charId={charId} userId={userId} />,

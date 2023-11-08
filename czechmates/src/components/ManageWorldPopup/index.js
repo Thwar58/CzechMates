@@ -12,21 +12,25 @@ import UEInput from '../UEInput';
 import { useEffect } from 'react';
 
 // a function for the manage/add world modal, you pass in the title and the button display
+// input: the title of the popup, the button to trigger the modal, and the members to display
 function MWPopup({ title, button, members }) {
   // sets the initial state of the modal to hidden
   const [show, setShow] = useState(false);
   // handles the opening and closing of the modal
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  // a variable to set and track the members of a world
   var [mems, setMems] = useState([]);
 
+  // when members changes, this is triggered
   useEffect(() => {
+    // check that members is not undefined otherwise it will throw an error
     if (members !== undefined) {
-      // console.log(charInfo);
+      // loop through the members objects and create components to display them, set the members array at the end
       var arr = [];
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
       for (const [key, value] of Object.entries(members)) {
+        // pass in the key, the character name, and the id of who created the character
         arr.push(<EUWithButtons key={key} value={value.CharacterName} creatorId={value.CreatorId} button1={"View"} button2={"Remove"} />);
       }
       setMems(arr);
@@ -68,6 +72,7 @@ function MWPopup({ title, button, members }) {
             {/* world members, which the user can view the character of or remove */}
             {/* future: add confirmation modal for remove */}
             <Form.Label>Members</Form.Label>
+            {/* the array of members components */}
             {
               mems
             }

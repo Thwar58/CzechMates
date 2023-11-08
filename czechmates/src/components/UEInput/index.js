@@ -1,10 +1,8 @@
 import Form from 'react-bootstrap/Form';
 
 // component to display an input that is not editable
-// given the value to display
+// input: the value of the input and the creator id for later use
 function UEInput({ value, creatorId }) {
-
-    // console.log(creatorId);
 
     return (
         <>

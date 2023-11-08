@@ -10,23 +10,27 @@ import { useState } from "react";
 
 
 // this component houses the content for the character skills
+// input: the skill information for a character, the character id, and the user id
 const SkillsPage = ({ skillInfo, charId, userId }) => {
-    // console.log(skillInfo);
 
+    // variables to track the skills and position them
     var [left, setLeft] = useState([]);
     var [right, setRight] = useState([]);
 
+    // when the skills information changes, this is triggered
     useEffect(() => {
         if (skillInfo !== undefined) {
-            // console.log(skillInfo);
+            // loop through all the character's skills and make components for them
             var arr = [];
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(skillInfo)) {
                 // console.log(`${key}: `, value);
                 arr.push(<SkillsComp key={key} userId={userId} charId={charId} value={value ?? "Loading..."} name={key} />);
             }
+            // splice the array for positioning
             var left = arr.slice(0, 8);
             var right = arr.slice(8);
+            // assign the positioning variable
             setLeft(left);
             setRight(right);
         }
@@ -50,6 +54,7 @@ const SkillsPage = ({ skillInfo, charId, userId }) => {
                     </Col>
                 </Row>
                 <Row>
+                    {/* the acutal positioning of the skill components */}
                     <Col>
                         {left}
                     </Col>

@@ -5,14 +5,9 @@ const sample = require('./firebaseInfo.json');
 var skills = sample.Users[0].Characters[0].Skills;
 var attributes = sample.Users[0].Characters[0].Attributes;
 
-// https://stackoverflow.com/questions/62494929/how-to-execute-a-js-file-containing-multiple-functions-via-react-jsx
-// exports.funA = () => {
-//     console.log("This is from Function A");
-// };
-
 // https://stackoverflow.com/questions/18899873/multiple-functions-inside-variable
 // these all use the global skills and attributes for ease right now, that will change in the future
-// note: two word attributes must be accessed through array notatation rather than dot
+// future: decide how to map these functions to attributes and recalculating
 var Func = {
     calcAwareness: function () {
         attributes.Awareness = skills.Burglary + skills.Hunting + 2 * skills.Shooting;

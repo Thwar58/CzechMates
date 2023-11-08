@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import NewTable from "../components/NewTable";
 
 // this component has all of the character information, uneditable
+// input: all of the info for a character
 const SheetPage = ({ sheetInfo }) => {
 
     return (
