@@ -25,10 +25,12 @@ function MWPopup({ title, button, members }) {
     if (members !== undefined) {
       // console.log(charInfo);
       var arr = [];
-      // https://flexiple.com/javascript/loop-through-object-javascript
-      Object.values(members).forEach(val =>
-        arr.push(<EUWithButtons key={val} value={val} button1={"View"} button2={"Remove"} />));
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+      for (const [key, value] of Object.entries(members)) {
+        arr.push(<EUWithButtons key={key} value={value.CharacterName} creatorId={value.CreatorId} button1={"View"} button2={"Remove"} />);
+      }
       setMems(arr);
+
     }
   }, [members]);
 

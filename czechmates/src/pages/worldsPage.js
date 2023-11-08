@@ -15,7 +15,7 @@ import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 
 // this is the world page
-const WorldPage = ({userId}) => {
+const WorldPage = ({ userId }) => {
 
 
     var [worldInfo, setWorldInfo] = useState("");
@@ -25,7 +25,6 @@ const WorldPage = ({userId}) => {
     useEffect(() => {
         const worldsRef = ref(db, 'Worlds/' + userId);
         onValue(worldsRef, (snapshot) => {
-            // console.log(snapshot.val());
             // var arr = [];
             // https://flexiple.com/javascript/loop-through-object-javascript
             // Object.values(snapshot.val()).forEach(val =>arr.push(val));
@@ -36,13 +35,16 @@ const WorldPage = ({userId}) => {
     }, [userId]);
 
     useEffect(() => {
-        // console.log(worldInfo);
-        var arr = [];
-        // https://flexiple.com/javascript/loop-through-object-javascript
-        Object.values(worldInfo).forEach(val =>
-            arr.push(<World key={val.Name} worldName={val.Name} members={val.Members} > </World>));
+        if (worldInfo !== "") {
+            var arr = [];
+            // https://flexiple.com/javascript/loop-through-object-javascript
+            Object.values(worldInfo.Created).forEach(val =>
+                arr.push(<World key={val.Name} worldName={val.Name} members={val.Members} > </World>));
 
-        setWorlds(arr);
+            setWorlds(arr);
+
+        }
+
     }, [worldInfo]);
 
     useEffect(() => {
@@ -54,7 +56,7 @@ const WorldPage = ({userId}) => {
     }, [worldInfo]);
 
 
-    
+
     if (loading) {
         return (
             <div></div>

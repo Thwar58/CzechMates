@@ -23,10 +23,14 @@ function VWPopup({ name, members }) {
     if (members !== undefined) {
       // console.log(charInfo);
       var arr = [];
-      // https://flexiple.com/javascript/loop-through-object-javascript
-      Object.values(members).forEach(val =>
-        arr.push(<UEInput key={val} value={val}></UEInput>));
+
+
+       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+       for (const [key, value] of Object.entries(members)) {
+        arr.push(<UEInput key={key} value={value.CharacterName} creatorId={value.CreatorId} ></UEInput>);
+      }
       setMems(arr);
+
     }
   }, [members]);
 
