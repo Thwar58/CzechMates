@@ -14,53 +14,39 @@ import DBFunctions from "../utils/firebaseQueries";
 const charTemplate = require('./../utils/characterTemplate.json');
 
 // a component for the main character page
+//input: the user Id
 const CharactersPage = ({ userId }) => {
 
-    // handles page navigation
+    // 7used in page navigation
     const navigate = useNavigate();
-    const navigateToGeneral = () => {
-        // navigate to /subCharacterPage
-        navigate('/subCharacterPages');
-    }
 
+    // variables to track the characters
     var [charInfo, setCharInfo] = useState("");
     var [chars, setChars] = useState([]);
+    // a usestate for the loading conditional rendering
     const [loading, setLoading] = useState(true);
 
-
-    function addChara(){
-        // console.log(charTemplate);
+    // a function that adds a character to the database
+    function addChara() {
         var id = DBFunctions.createNewCharacter(userId, charTemplate);
         // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
-        navigate('/subCharacterPages',{state:{charId:id}});
-        // navigateToGeneral();
+        // when you add a character, it sends you to tehe general page for this character so you can edit them
+        navigate('/subCharacterPages', { state: { charId: id } });
     }
 
-    
 
-
-
+    // gets the character information for this user from the database
     useEffect(() => {
         const charRef = ref(db, 'Characters/' + userId);
         onValue(charRef, (snapshot) => {
-            // console.log(snapshot.val());
-            // var arr = [];
-            // https://flexiple.com/javascript/loop-through-object-javascript
-            //    Object.values(snapshot.val()).forEach(val =>arr.push(val));
-            // setCharInfo(arr);
             setCharInfo(snapshot.val());
         });
 
     }, [userId]);
 
+    // when character info changes, this gets triggered
     useEffect(() => {
-        // console.log(charInfo);
-        // var arr = [];
-        // https://flexiple.com/javascript/loop-through-object-javascript
-        // Object.values(charInfo).forEach(val =>
-        //     arr.push(<Character key={val.General.Name} charName={val.General.Name} />));
-        // setChars(arr);
-
+        // loop through the characters information and make components for them
         var arr = [];
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(charInfo)) {
@@ -69,21 +55,20 @@ const CharactersPage = ({ userId }) => {
         setChars(arr);
     }, [charInfo]);
 
+    // sets the loading screen to false once the data loads
     useEffect(() => {
         if (charInfo !== "") {
-            // console.log("final check ", userInfo);
             setLoading(false);
         }
-        // console.log(charInfo);
     }, [charInfo]);
 
 
+    // renders the blank loading screen if loading is true
     if (loading) {
         return (
             <div></div>
         )
     }
-
 
     return (
         <div>
@@ -103,6 +88,7 @@ const CharactersPage = ({ userId }) => {
                     {/* the dropdown for sorting selection */}
                     <DropDownShowsValue text="Order by..." actions={["level", "recently used", "alphabetically"]} />
                 </Row>
+                {/* loading in the character components */}
                 <Row>
                     <div>
                         {
@@ -112,7 +98,7 @@ const CharactersPage = ({ userId }) => {
                     </div>
                 </Row>
                 <Row>
-                    {/* button that redirects to the subchar pages */}
+                    {/* button that adds a character and redirects to the subchar pages */}
                     <div>
                         <button onClick={addChara} type="button" className="btn btn-primary">Plus sign icon</button>
                     </div>

@@ -15,25 +15,25 @@ import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 
 // this is the world page
+// input: the user id
 const WorldPage = ({ userId }) => {
 
-
+    // variables to track the world information and the loading state
     var [worldInfo, setWorldInfo] = useState("");
     var [worlds, setWorlds] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // query the database for the user's worlds when the userid changes
     useEffect(() => {
         const worldsRef = ref(db, 'Worlds/' + userId);
+        // onvalue monitors the database for changes
         onValue(worldsRef, (snapshot) => {
-            // var arr = [];
-            // https://flexiple.com/javascript/loop-through-object-javascript
-            // Object.values(snapshot.val()).forEach(val =>arr.push(val));
-            // setWorldInfo(arr);
             setWorldInfo(snapshot.val());
         });
 
     }, [userId]);
 
+    // loop through the worlds and create components for them
     useEffect(() => {
         if (worldInfo !== "") {
             var arr = [];
@@ -47,16 +47,15 @@ const WorldPage = ({ userId }) => {
 
     }, [worldInfo]);
 
+    // set the loading state to false if the data is loaded
     useEffect(() => {
         if (worldInfo !== "") {
-            // console.log("final check ", userInfo);
             setLoading(false);
         }
-        // console.log(charInfo);
     }, [worldInfo]);
 
 
-
+    // render the blank loading screen if loading is true
     if (loading) {
         return (
             <div></div>

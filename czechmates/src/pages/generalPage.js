@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 
 
 // this component houses the content for the general character info
+// input the general character information, the user id and the character id
 const GeneralPage = ({ generalInfo, userId, charId }) => {
 
     return (

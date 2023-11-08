@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // this component houses the content for the character equipment
+// input: the equipment information for a character
 const EquipmentPage = ({ equipInfo }) => {
 
     // future: pass in information instead of using dummy data
@@ -70,13 +71,7 @@ const EquipmentPage = ({ equipInfo }) => {
                         <InputWithLabel category={"Equipment"} label={"Slot 2"} content={equipInfo?.Armor_Modification_Slots.Slot2} disabled={false} />
                     </Col>
                 </Row>
-
-
-
-
-
             </Container>
-
         </div>
     );
 };
