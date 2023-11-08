@@ -1,380 +1,381 @@
 {
-    "Characters": {
-      "User1": {
-        "CharID1": {
-          "Attributes": {
-            "Awareness": 1,
-            "Charisma": 1,
-            "Defense": 1,
-            "Endurance": 1,
-            "Health": 1,
-            "Knowledge": 1,
-            "Magic_Attack": 1,
-            "Magic_Defense": 1,
-            "Magic_Heal": 1,
-            "Magic_Range": 1,
-            "Magic_Reach": 1,
-            "Max_Action_Points_AP": 1,
-            "Max_Resolve": 1,
-            "Max_Vigor": 1,
-            "Melee_Attack": 1,
-            "Movement": 1,
-            "Ranged_Attack": 1
-          },
-          "Equipment": {
-            "Armor_Equipped": "Armor (1.1)",
-            "Armor_Modification_Slots": {
-              "Slot1": "(1.1)",
-              "Slot2": "(1.1)"
-            },
-            "Inventory": "Some random stuff in their inventory (1.1)",
-            "Shield_Equipped": "Shield (1.1)",
-            "Shield_Modification_Slots": {
-              "Slot1": "(1.1)"
-            },
-            "Weapon_Equipped": "Weapon (1.1)",
-            "Weapon_Modification_Slots": {
-              "Slot1": "(1.1)",
-              "Slot2": "(1.1)",
-              "Slot3": "(1.1)"
-            }
-          },
-          "General": {
-            "Aspect_1": "Aspect 1 (1.1)",
-            "Aspect_2": "Aspect 2 (1.1)",
-            "Background": "Background (1.1)",
-            "Fate_Points": "FP (1.1)",
-            "High_Concept": "High Concept (1.1)",
-            "Major_Relationships": "Relationships (1.1)",
-            "Money": "Money (1.1)",
-            "Name": "Character1 (1.1)",
-            "Other": "Other (1.1)",
-            "Physical_Appearance": "Physical Appearance (1.1)",
-            "Portrait": "Portrait (1.1)",
-            "Trouble": "Trouble (1.1)"
-          },
-          "Skills": {
-            "Alchemy": 1,
-            "Arcana": 1,
-            "Athletics": 1,
-            "Burglary": 1,
-            "Deceive": 1,
-            "Empathy": 1,
-            "Engineering": 1,
-            "Fight": 1,
-            "Hunting": 1,
-            "Learned_Abilities": 1,
-            "Lore": 1,
-            "Physique": 1,
-            "Rapport": 1,
-            "Shooting": 1,
-            "Stealth": 1,
-            "Survival": 1,
-            "Will": 1
-          },
-          "Participation":"false"
+  "Characters": {
+    "User1": {
+      "CharID1": {
+        "Attributes": {
+          "Awareness": 1,
+          "Charisma": 1,
+          "Defense": 1,
+          "Endurance": 1,
+          "Health": 1,
+          "Knowledge": 1,
+          "Magic_Attack": 1,
+          "Magic_Defense": 1,
+          "Magic_Heal": 1,
+          "Magic_Range": 1,
+          "Magic_Reach": 1,
+          "Max_Action_Points_AP": 1,
+          "Max_Resolve": 1,
+          "Max_Vigor": 1,
+          "Melee_Attack": 1,
+          "Movement": 1,
+          "Ranged_Attack": 1
         },
-        "CharID2": {
-          "Attributes": {
-            "Awareness": 2,
-            "Charisma": 2,
-            "Defense": 2,
-            "Endurance": 2,
-            "Health": 2,
-            "Knowledge": 2,
-            "Magic_Attack": 2,
-            "Magic_Defense": 5,
-            "Magic_Heal": 2,
-            "Magic_Range": 2,
-            "Magic_Reach": 2,
-            "Max_Action_Points_AP": 2,
-            "Max_Resolve": 2,
-            "Max_Vigor": 2,
-            "Melee_Attack": 2,
-            "Movement": 2,
-            "Ranged_Attack": 2
+        "Equipment": {
+          "Armor_Equipped": "Armor (1.1)",
+          "Armor_Modification_Slots": {
+            "Slot1": "(1.1)",
+            "Slot2": "(1.1)"
           },
-          "Equipment": {
-            "Armor_Equipped": "Armor (1.2)",
-            "Armor_Modification_Slots": {
-              "Slot1": "(1.1)",
-              "Slot2": "(1.1)"
-            },
-            "Inventory": "Some random stuff in their inventory (1.2)",
-            "Shield_Equipped": "Shield (1.2)",
-            "Shield_Modification_Slots": {
-              "Slot1": "(1.1)"
-            },
-            "Weapon_Equipped": "Weapon (1.2)",
-            "Weapon_Modification_Slots": {
-              "Slot1": "(1.1)",
-              "Slot2": "(1.1)",
-              "Slot3": "(1.1)"
-            }
+          "Inventory": "Some random stuff in their inventory (1.1)",
+          "Shield_Equipped": "Shield (1.1)",
+          "Shield_Modification_Slots": {
+            "Slot1": "(1.1)"
           },
-          "General": {
-            "Aspect_1": "Aspect 1 (1.2)",
-            "Aspect_2": "Aspect 2 (1.2)",
-            "Background": "Background (1.2)",
-            "Fate_Points": "FP (1.2)",
-            "High_Concept": "High Concept (1.2)",
-            "Major_Relationships": "Relationships (1.2)",
-            "Money": "Money (1.2)",
-            "Name": "Charcter2 (1.2)",
-            "Other": "Other (1.2)",
-            "Physical_Appearance": "Physical Appearance (1.2)",
-            "Portrait": "Portrait (1.2)",
-            "Trouble": "Trouble (1.2)"
-          },
-          "Skills": {
-            "Alchemy": 2,
-            "Arcana": 2,
-            "Athletics": 2,
-            "Burglary": 2,
-            "Deceive": 2,
-            "Empathy": 2,
-            "Engineering": 2,
-            "Fight": 2,
-            "Hunting": 2,
-            "Learned_Abilities": 2,
-            "Lore": 2,
-            "Physique": 2,
-            "Rapport": 2,
-            "Shooting": 2,
-            "Stealth": 2,
-            "Survival": 2,
-            "Will": 2
-          },
-          "Participation":"false"
-        }
+          "Weapon_Equipped": "Weapon (1.1)",
+          "Weapon_Modification_Slots": {
+            "Slot1": "(1.1)",
+            "Slot2": "(1.1)",
+            "Slot3": "(1.1)"
+          }
+        },
+        "General": {
+          "Aspect_1": "Aspect 1 (1.1)",
+          "Aspect_2": "Aspect 2 (1.1)",
+          "Background": "Background (1.1)",
+          "Fate_Points": "FP (1.1)",
+          "High_Concept": "High Concept (1.1)",
+          "Major_Relationships": "Relationships (1.1)",
+          "Money": "Money (1.1)",
+          "Name": "Character1 (1.1)",
+          "Other": "Other (1.1)",
+          "Physical_Appearance": "Physical Appearance (1.1)",
+          "Portrait": "Portrait (1.1)",
+          "Trouble": "Trouble (1.1)"
+        },
+        "Skills": {
+          "Alchemy": 1,
+          "Arcana": 1,
+          "Athletics": 1,
+          "Burglary": 1,
+          "Deceive": 1,
+          "Empathy": 1,
+          "Engineering": 1,
+          "Fight": 1,
+          "Hunting": 1,
+          "Learned_Abilities": 1,
+          "Lore": 1,
+          "Physique": 1,
+          "Rapport": 1,
+          "Shooting": 1,
+          "Stealth": 1,
+          "Survival": 1,
+          "Will": 1
+        },
+        "Participation": "false"
       },
-      "User2": {
-        "CharID1": {
-          "Attributes": {
-            "Awareness": 5,
-            "Charisma": 5,
-            "Defense": 5,
-            "Endurance": 5,
-            "Health": 5,
-            "Knowledge": 5,
-            "Magic_Attack": 5,
-            "Magic_Defense": 5,
-            "Magic_Heal": 5,
-            "Magic_Range": 5,
-            "Magic_Reach": 5,
-            "Max_Action_Points_AP": 5,
-            "Max_Resolve": 5,
-            "Max_Vigor": 5,
-            "Melee_Attack": 5,
-            "Movement": 5,
-            "Ranged_Attack": 5
-          },
-          "Equipment": {
-            "Armor_Equipped": "Armor (2.1)",
-            "Armor_Modification_Slots": {
-              "Slot1": "(1.1)",
-              "Slot2": "(1.1)"
-            },
-            "Inventory": "Some random stuff in their inventory (2.1)",
-            "Shield_Equipped": "Shield (2.1)",
-            "Shield_Modification_Slots": {
-              "Slot1": "(1.1)"
-            },
-            "Weapon_Equipped": "Weapon (2.1)",
-            "Weapon_Modification_Slots": {
-              "Slot1": "(1.1)",
-              "Slot2": "(1.1)",
-              "Slot3": "(1.1)"
-            }
-          },
-          "General": {
-            "Aspect_1": "Aspect 1 (2.1)",
-            "Aspect_2": "Aspect 2 (2.1)",
-            "Background": "Background (2.1)",
-            "Fate_Points": "FP (2.1)",
-            "High_Concept": "High Concept (2.1)",
-            "Major_Relationships": "Relationships (2.1)",
-            "Money": "Money (2.1)",
-            "Name": "Character1 (2.1)",
-            "Other": "Other (2.1)",
-            "Physical_Appearance": "Physical Appearance (2.1)",
-            "Portrait": "Portrait (2.1)",
-            "Trouble": "Trouble (2.1)"
-          },
-          "Skills": {
-            "Alchemy": 1,
-            "Arcana": 1,
-            "Athletics": 1,
-            "Burglary": 1,
-            "Deceive": 1,
-            "Empathy": 1,
-            "Engineering": 1,
-            "Fight": 1,
-            "Hunting": 1,
-            "Learned_Abilities": 1,
-            "Lore": 1,
-            "Physique": 1,
-            "Rapport": 1,
-            "Shooting": 1,
-            "Stealth": 1,
-            "Survival": 1,
-            "Will": 1
-          },
-          "Participation":"false"
+      "CharID2": {
+        "Attributes": {
+          "Awareness": 2,
+          "Charisma": 2,
+          "Defense": 2,
+          "Endurance": 2,
+          "Health": 2,
+          "Knowledge": 2,
+          "Magic_Attack": 2,
+          "Magic_Defense": 5,
+          "Magic_Heal": 2,
+          "Magic_Range": 2,
+          "Magic_Reach": 2,
+          "Max_Action_Points_AP": 2,
+          "Max_Resolve": 2,
+          "Max_Vigor": 2,
+          "Melee_Attack": 2,
+          "Movement": 2,
+          "Ranged_Attack": 2
         },
-        "CharID2": {
-          "Attributes": {
-            "Awareness": 5,
-            "Charisma": 5,
-            "Defense": 5,
-            "Endurance": 5,
-            "Health": 5,
-            "Knowledge": 5,
-            "Magic_Attack": 5,
-            "Magic_Defense": 5,
-            "Magic_Heal": 5,
-            "Magic_Range": 5,
-            "Magic_Reach": 5,
-            "Max_Action_Points_AP": 5,
-            "Max_Resolve": 5,
-            "Max_Vigor": 5,
-            "Melee_Attack": 5,
-            "Movement": 5,
-            "Ranged_Attack": 5
+        "Equipment": {
+          "Armor_Equipped": "Armor (1.2)",
+          "Armor_Modification_Slots": {
+            "Slot1": "(1.1)",
+            "Slot2": "(1.1)"
           },
-          "Equipment": {
-            "Armor_Equipped": "Armor (2.2)",
-            "Armor_Modification_Slots": {
-              "Slot1": "(1.1)",
-              "Slot2": "(1.1)"
-            },
-            "Inventory": "Some random stuff in their inventory (2.2)",
-            "Shield_Equipped": "Shield (2.2)",
-            "Shield_Modification_Slots": {
-              "Slot1": "(1.1)"
-            },
-            "Weapon_Equipped": "Weapon (2.2)",
-            "Weapon_Modification_Slots": {
-              "Slot1": "(1.1)",
-              "Slot2": "(1.1)",
-              "Slot3": "(1.1)"
-            }
+          "Inventory": "Some random stuff in their inventory (1.2)",
+          "Shield_Equipped": "Shield (1.2)",
+          "Shield_Modification_Slots": {
+            "Slot1": "(1.1)"
           },
-          "General": {
-            "Aspect_1": "Aspect 1 (2.2)",
-            "Aspect_2": "Aspect 2 (2.2)",
-            "Background": "Background (2.2)",
-            "Fate_Points": "FP (2.2)",
-            "High_Concept": "High Concept (2.2)",
-            "Major_Relationships": "Relationships (2.2)",
-            "Money": "Money (2.2)",
-            "Name": "Character2 (2.2)",
-            "Other": "Other (2.2)",
-            "Physical_Appearance": "Physical Appearance (2.2)",
-            "Portrait": "Portrait (2.2)",
-            "Trouble": "Trouble (2.2)"
-          },
-          "Skills": {
-            "Alchemy": 1,
-            "Arcana": 1,
-            "Athletics": 1,
-            "Burglary": 1,
-            "Deceive": 1,
-            "Empathy": 1,
-            "Engineering": 1,
-            "Fight": 1,
-            "Hunting": 1,
-            "Learned_Abilities": 1,
-            "Lore": 1,
-            "Physique": 1,
-            "Rapport": 1,
-            "Shooting": 1,
-            "Stealth": 1,
-            "Survival": 1,
-            "Will": 1
-          },
-          "Participation":"false"
-        }
+          "Weapon_Equipped": "Weapon (1.2)",
+          "Weapon_Modification_Slots": {
+            "Slot1": "(1.1)",
+            "Slot2": "(1.1)",
+            "Slot3": "(1.1)"
+          }
+        },
+        "General": {
+          "Aspect_1": "Aspect 1 (1.2)",
+          "Aspect_2": "Aspect 2 (1.2)",
+          "Background": "Background (1.2)",
+          "Fate_Points": "FP (1.2)",
+          "High_Concept": "High Concept (1.2)",
+          "Major_Relationships": "Relationships (1.2)",
+          "Money": "Money (1.2)",
+          "Name": "Charcter2 (1.2)",
+          "Other": "Other (1.2)",
+          "Physical_Appearance": "Physical Appearance (1.2)",
+          "Portrait": "Portrait (1.2)",
+          "Trouble": "Trouble (1.2)"
+        },
+        "Skills": {
+          "Alchemy": 2,
+          "Arcana": 2,
+          "Athletics": 2,
+          "Burglary": 2,
+          "Deceive": 2,
+          "Empathy": 2,
+          "Engineering": 2,
+          "Fight": 2,
+          "Hunting": 2,
+          "Learned_Abilities": 2,
+          "Lore": 2,
+          "Physique": 2,
+          "Rapport": 2,
+          "Shooting": 2,
+          "Stealth": 2,
+          "Survival": 2,
+          "Will": 2
+        },
+        "Participation": "false"
       }
     },
-    "Codes": {
-        "CodeId1": {
-            "WorldId": "WorldId1",
-            "WorldCreatorId": "User1"
+    "User2": {
+      "CharID1": {
+        "Attributes": {
+          "Awareness": 5,
+          "Charisma": 5,
+          "Defense": 5,
+          "Endurance": 5,
+          "Health": 5,
+          "Knowledge": 5,
+          "Magic_Attack": 5,
+          "Magic_Defense": 5,
+          "Magic_Heal": 5,
+          "Magic_Range": 5,
+          "Magic_Reach": 5,
+          "Max_Action_Points_AP": 5,
+          "Max_Resolve": 5,
+          "Max_Vigor": 5,
+          "Melee_Attack": 5,
+          "Movement": 5,
+          "Ranged_Attack": 5
         },
-        "CodeId2": {
-            "WorldId": "WorldId2",
-            "WorldCreatorId": "User1"
+        "Equipment": {
+          "Armor_Equipped": "Armor (2.1)",
+          "Armor_Modification_Slots": {
+            "Slot1": "(1.1)",
+            "Slot2": "(1.1)"
+          },
+          "Inventory": "Some random stuff in their inventory (2.1)",
+          "Shield_Equipped": "Shield (2.1)",
+          "Shield_Modification_Slots": {
+            "Slot1": "(1.1)"
+          },
+          "Weapon_Equipped": "Weapon (2.1)",
+          "Weapon_Modification_Slots": {
+            "Slot1": "(1.1)",
+            "Slot2": "(1.1)",
+            "Slot3": "(1.1)"
+          }
         },
-        "CodeId3": {
-            "WorldId": "WorldId3",
-            "WorldCreatorId": "User2"
+        "General": {
+          "Aspect_1": "Aspect 1 (2.1)",
+          "Aspect_2": "Aspect 2 (2.1)",
+          "Background": "Background (2.1)",
+          "Fate_Points": "FP (2.1)",
+          "High_Concept": "High Concept (2.1)",
+          "Major_Relationships": "Relationships (2.1)",
+          "Money": "Money (2.1)",
+          "Name": "Character1 (2.1)",
+          "Other": "Other (2.1)",
+          "Physical_Appearance": "Physical Appearance (2.1)",
+          "Portrait": "Portrait (2.1)",
+          "Trouble": "Trouble (2.1)"
         },
-        "CodeId4": {
-            "WorldId": "WorldId4",
-            "WorldCreatorId": "User2"
-        }
-    },
-    "Users": {
-      "User1": {
-        "Admin_status": "False",
-        "Email": "user1@gmail.com",
-        "Followers": {
-          "UserId5": "Username5",
-          "UserId6": "Username6",
-          "UserId7": "Username7"
+        "Skills": {
+          "Alchemy": 1,
+          "Arcana": 1,
+          "Athletics": 1,
+          "Burglary": 1,
+          "Deceive": 1,
+          "Empathy": 1,
+          "Engineering": 1,
+          "Fight": 1,
+          "Hunting": 1,
+          "Learned_Abilities": 1,
+          "Lore": 1,
+          "Physique": 1,
+          "Rapport": 1,
+          "Shooting": 1,
+          "Stealth": 1,
+          "Survival": 1,
+          "Will": 1
         },
-        "Following": {
-          "UserId10": "Username10",
-          "UserId8": "Username8",
-          "UserId9": "Username9"
-        },
-        "Friends": {
-          "UserId2": "Username2",
-          "UserId3": "Username3",
-          "UserId4": "Username4"
-        },
-        "Light_Mode": "Dark",
-        "Name": "User12"
+        "Participation": "false"
       },
-      "User2": {
-        "Admin_status": "True",
-        "Email": "user2@gmail.com",
-        "Followers": {
-          "UserId5": "Username5",
-          "UserId6": "Username6",
-          "UserId7": "Username7"
+      "CharID2": {
+        "Attributes": {
+          "Awareness": 5,
+          "Charisma": 5,
+          "Defense": 5,
+          "Endurance": 5,
+          "Health": 5,
+          "Knowledge": 5,
+          "Magic_Attack": 5,
+          "Magic_Defense": 5,
+          "Magic_Heal": 5,
+          "Magic_Range": 5,
+          "Magic_Reach": 5,
+          "Max_Action_Points_AP": 5,
+          "Max_Resolve": 5,
+          "Max_Vigor": 5,
+          "Melee_Attack": 5,
+          "Movement": 5,
+          "Ranged_Attack": 5
         },
-        "Following": {
-          "UserId10": "Username10",
-          "UserId8": "Username8",
-          "UserId9": "Username9"
+        "Equipment": {
+          "Armor_Equipped": "Armor (2.2)",
+          "Armor_Modification_Slots": {
+            "Slot1": "(1.1)",
+            "Slot2": "(1.1)"
+          },
+          "Inventory": "Some random stuff in their inventory (2.2)",
+          "Shield_Equipped": "Shield (2.2)",
+          "Shield_Modification_Slots": {
+            "Slot1": "(1.1)"
+          },
+          "Weapon_Equipped": "Weapon (2.2)",
+          "Weapon_Modification_Slots": {
+            "Slot1": "(1.1)",
+            "Slot2": "(1.1)",
+            "Slot3": "(1.1)"
+          }
         },
-        "Friends": {
-          "UserId2": "Username2",
-          "UserId3": "Username3",
-          "UserId4": "Username4"
+        "General": {
+          "Aspect_1": "Aspect 1 (2.2)",
+          "Aspect_2": "Aspect 2 (2.2)",
+          "Background": "Background (2.2)",
+          "Fate_Points": "FP (2.2)",
+          "High_Concept": "High Concept (2.2)",
+          "Major_Relationships": "Relationships (2.2)",
+          "Money": "Money (2.2)",
+          "Name": "Character2 (2.2)",
+          "Other": "Other (2.2)",
+          "Physical_Appearance": "Physical Appearance (2.2)",
+          "Portrait": "Portrait (2.2)",
+          "Trouble": "Trouble (2.2)"
         },
-        "Light_Mode": "Light",
-        "Name": "User2"
+        "Skills": {
+          "Alchemy": 1,
+          "Arcana": 1,
+          "Athletics": 1,
+          "Burglary": 1,
+          "Deceive": 1,
+          "Empathy": 1,
+          "Engineering": 1,
+          "Fight": 1,
+          "Hunting": 1,
+          "Learned_Abilities": 1,
+          "Lore": 1,
+          "Physique": 1,
+          "Rapport": 1,
+          "Shooting": 1,
+          "Stealth": 1,
+          "Survival": 1,
+          "Will": 1
+        },
+        "Participation": "false"
       }
+    }
+  },
+  "Codes": {
+    "CodeId1": {
+      "WorldId": "WorldId1",
+      "WorldCreatorId": "User1"
     },
-    "Worlds": {
-      "User1": {
+    "CodeId2": {
+      "WorldId": "WorldId2",
+      "WorldCreatorId": "User1"
+    },
+    "CodeId3": {
+      "WorldId": "WorldId3",
+      "WorldCreatorId": "User2"
+    },
+    "CodeId4": {
+      "WorldId": "WorldId4",
+      "WorldCreatorId": "User2"
+    }
+  },
+  "Users": {
+    "User1": {
+      "Admin_status": "False",
+      "Email": "user1@gmail.com",
+      "Followers": {
+        "UserId5": "Username5",
+        "UserId6": "Username6",
+        "UserId7": "Username7"
+      },
+      "Following": {
+        "UserId10": "Username10",
+        "UserId8": "Username8",
+        "UserId9": "Username9"
+      },
+      "Friends": {
+        "UserId2": "Username2",
+        "UserId3": "Username3",
+        "UserId4": "Username4"
+      },
+      "Light_Mode": "Dark",
+      "Name": "User12"
+    },
+    "User2": {
+      "Admin_status": "True",
+      "Email": "user2@gmail.com",
+      "Followers": {
+        "UserId5": "Username5",
+        "UserId6": "Username6",
+        "UserId7": "Username7"
+      },
+      "Following": {
+        "UserId10": "Username10",
+        "UserId8": "Username8",
+        "UserId9": "Username9"
+      },
+      "Friends": {
+        "UserId2": "Username2",
+        "UserId3": "Username3",
+        "UserId4": "Username4"
+      },
+      "Light_Mode": "Light",
+      "Name": "User2"
+    }
+  },
+  "Worlds": {
+    "User1": {
+      "Created": {
         "WorldID1": {
           "Invite_Code": "code",
           "Members": {
             "CharacterId1": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             },
             "CharacterId2": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             },
             "CharacterId3": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             }
           },
           "Name": "World1 (1)",
@@ -384,37 +385,43 @@
           "Invite_Code": "code",
           "Members": {
             "CharacterId1": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             },
             "CharacterId2": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             },
             "CharacterId3": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             }
           },
           "Name": "World2 (1)",
           "Schedule": "day"
         }
       },
-      "User2": {
+      "Joined": {
+        "CodeId1": "code",
+        "CodeId2": "Code"
+      }
+    },
+    "User2": {
+      "Created": {
         "WorldID1": {
           "Invite_Code": "code",
           "Members": {
             "CharacterId1": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             },
             "CharacterId2": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             },
             "CharacterId3": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             }
           },
           "Name": "World1 (2)",
@@ -424,21 +431,26 @@
           "Invite_Code": "code",
           "Members": {
             "CharacterId1": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             },
             "CharacterId2": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             },
             "CharacterId3": {
-                "CharacterName": "Name",
-                "CreatorId": "CharId"
+              "CharacterName": "Name",
+              "CreatorId": "CharId"
             }
           },
           "Name": "World2 (2)",
           "Schedule": "day"
         }
+      },
+      "Joined": {
+        "CodeId1": "code",
+        "CodeId2": "Code"
       }
     }
   }
+}
