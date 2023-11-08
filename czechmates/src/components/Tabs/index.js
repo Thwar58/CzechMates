@@ -5,6 +5,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
 // a component for when we need tabs in a page
+// input: an array of labels and an array of tab contents
 function ControlledTabs({ text, content }) {
   // sets the starting state of the tabs to the first tab
   const [key, setKey] = useState(text[0]);

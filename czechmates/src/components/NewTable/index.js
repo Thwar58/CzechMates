@@ -6,24 +6,26 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 // a component to hold the skills and attributes in the full character sheet
-// given the name and type and the amount
+// input: the information to display, and whether it is for skills or attributes
 function NewTable({ data, type }) {
-    // console.log("NTS ", skills);
-
+    // the data array and the method to set it
     var [dataArr, setDataArr] = useState([]);
 
-
+    // when the array changes, this is triggered
     useEffect(() => {
+        // check that the data is not undefined
         if (data !== undefined) {
+            // loop through all the data and modify it from its original 1 object format to an array of objects
             var arr = [];
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [oldKey, value] of Object.entries(data)) {
-                // console.log(key, value);
-                var key =oldKey.replace(/_/g," ");
-                arr.push({key, value});
+                // replace the underscores with spaces to make it prettier
+                var key = oldKey.replace(/_/g, " ");
+                // push the objects 
+                // IMPORTANT!! the name of the variables you pass in will be the names of the attributes
+                arr.push({ key, value });
             }
             setDataArr(arr);
-            // console.log(arr);
         }
 
     }, [data]);
@@ -33,7 +35,7 @@ function NewTable({ data, type }) {
     }, [dataArr]);
 
 
-
+    // returns the table, populated with the information
     return (
         <>
             <Table striped bordered hover>
@@ -44,7 +46,7 @@ function NewTable({ data, type }) {
                         <th>Points</th>
                     </tr>
                 </thead>
-                {/* populates the body with the values passed in */}
+                {/* populates the body with the values passed in by mapping the objects in the array */}
                 <tbody>
                     {dataArr.map(obj => (
                         <tr key={obj.key}>

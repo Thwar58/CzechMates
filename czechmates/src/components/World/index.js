@@ -6,8 +6,8 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 // a component to display the worlds with their button options
+// input: the world name and the members
 const World = ({ worldName, members }) => {
-
 
     return (
         <>
@@ -20,9 +20,11 @@ const World = ({ worldName, members }) => {
                     value={worldName}
                     disabled={true}
                 />
-                {/* first button */}
+                {/* pass members to the manage world popup */}
                 <ManageWorldPopup members={members} title="World Name" button={"Manage"} />
+                {/* pass members to the view world popup */}
                 <ViewWorldPopup members={members} name={"World Name"} />
+                {/* have a confirmation popup for leaving or removing a world */}
                 <ConfirmationPopup name={"Remove/Leave"} />
             </InputGroup>
         </>

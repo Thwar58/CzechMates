@@ -3,10 +3,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
 // a component for an uneditable form input field with two buttons
+// input: the value of the form, the creator id for later, and the labels for the buttons
 function UEWithTwoButtons({ value, creatorId, button1, button2 }) {
 
-    // console.log(creatorId);
-    
     return (
         <>
             {/* set the value and disable the input field */}

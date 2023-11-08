@@ -2,17 +2,20 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import DBFunctions from "../../utils/firebaseQueries";
-// import { getDatabase, ref, runTransaction } from "firebase/database";
 import { db } from '../../firebase';
 import { increment, ref, update } from "firebase/database";
 
 
 
 // a component to display character skills, it is given the value and two button labels
-// future: pass in a number, change value to name, change buttons to arrow icons
+// input: the value for the skill, the name of the skill, the character id and the user id
 function SkillsComp({ value, name, charId, userId }) {
+    // the reference the the database
     const charRef = ref(db);
-    
+
+    // FUTURE: We should add limits to these
+
+    // increases the value for the specific skill in the database
     // https://firebase.google.com/docs/database/web/read-and-write
     function increase() {
         const updates = {};
@@ -20,6 +23,7 @@ function SkillsComp({ value, name, charId, userId }) {
         update(charRef, updates);
     }
 
+    // decreases the skill for the specific skill in the database
     // https://firebase.google.com/docs/database/web/read-and-write
     function decrease() {
         const updates = {};

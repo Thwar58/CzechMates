@@ -10,6 +10,7 @@ import UEInput from '../UEInput';
 import { useEffect } from 'react';
 
 // a component for viewing world information (not editable by the user)
+// input: the name of the world and the members
 function VWPopup({ name, members }) {
   // set the default state of the modal to hidden
   const [show, setShow] = useState(false);
@@ -20,13 +21,12 @@ function VWPopup({ name, members }) {
   var [mems, setMems] = useState([]);
 
   useEffect(() => {
+    // checks that the members are not undefined
     if (members !== undefined) {
-      // console.log(charInfo);
       var arr = [];
-
-
-       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-       for (const [key, value] of Object.entries(members)) {
+      // loop through the member objects and create new components containing their information
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+      for (const [key, value] of Object.entries(members)) {
         arr.push(<UEInput key={key} value={value.CharacterName} creatorId={value.CreatorId} ></UEInput>);
       }
       setMems(arr);
@@ -63,6 +63,7 @@ function VWPopup({ name, members }) {
             {/* members */}
             <Form.Group className="mb-3" controlId="Members">
               <Form.Label>Members</Form.Label>
+              {/* the array of members components */}
               {
                 mems
               }
