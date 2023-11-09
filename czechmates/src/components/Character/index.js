@@ -52,7 +52,7 @@ const Character = ({ charName, charId, userId }) => {
             copy.General.Name = `${charName} Copy`;
             console.log("check copy ", copy);
             var id = DBFunctions.newCreateNewCharacter(copy, userId, copy.General.Name);
-            navigate('/subCharacterPages', { state: { charId: id } });
+            // navigate('/subCharacterPages', { state: { charId: id } });
             // console.log(userId, newId, copy.General.Name);
             // DBFunctions.updateRel(userId, newId, copy.General.Name);
         }

@@ -9,7 +9,7 @@ import { increment, ref, update } from "firebase/database";
 
 // a component to display character skills, it is given the value and two button labels
 // input: the value for the skill, the name of the skill, the character id and the user id
-function SkillsComp({ value, name, charId, userId }) {
+function SkillsComp({ value, name, charId }) {
     // the reference the the database
     const charRef = ref(db);
 

@@ -25,7 +25,7 @@ const SkillsPage = ({ skillInfo, charId, userId }) => {
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(skillInfo)) {
                 // console.log(`${key}: `, value);
-                arr.push(<SkillsComp key={key} userId={userId} charId={charId} value={value} name={key} />);
+                arr.push(<SkillsComp key={key} charId={charId} value={value} name={key} />);
             }
             // splice the array for positioning
             var left = arr.slice(0, 8);

@@ -64,10 +64,7 @@ var DBFunctions = {
     //     // const newPostKey = push(child(ref(db), 'posts')).key;
     //     set(ref(db, 'ZaraTest/Characters/' + newPostKey),
     //         charTemplate
-    //     );
-    //     return newPostKey;
-    // },
-
+    //     );z
     // // add a character to the database (used for copy as well as addition)
     // updateRel: function (userId, charId, charName) {
     //     set(ref(db, `ZaraTest/CharacterUserRel/${userId}/${charId}`),
