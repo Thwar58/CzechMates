@@ -7,14 +7,22 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import DBFunctions from "../../utils/firebaseQueries";
+import { db } from '../../firebase';
+import { child, get, ref, set, push, onValue } from "firebase/database";
+import { useState } from "react";
+import { useEffect } from "react";
 
 
 // the character component
 // input: the character name, the character id, the user id, and the character information 
-const Character = ({ charName, charId, userId, charInfo }) => {
+const Character = ({ charName, charId, userId }) => {
+
+
 
     // used in page navigations
     const navigate = useNavigate();
+    var [charInfo, setCharInfo] = useState();
+
 
     // this function redirects the user to the subcharacter page while also passing the character id through the state
     // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
@@ -26,12 +34,30 @@ const Character = ({ charName, charId, userId, charInfo }) => {
     // it is added to the database with an automatically generated unique key
     // the UI is updates automatically
     const copyChara = event => {
-        var copy = charInfo;
-        // appends copy to the name
-        copy.General.Name = `${charName} Copy`;
-        // updates the database
-        DBFunctions.copyCharacter(userId, copy);
+        if (charId !== undefined){
+            const charRef = ref(db, 'Characters/' + charId);
+            onValue(charRef, (snapshot) => {
+                console.log(snapshot.val());
+                setCharInfo(snapshot.val());
+            });
+        }
+       
     };
+
+    useEffect(() => {
+        if (charInfo !== undefined){
+            console.log("check char info ", charInfo);
+            var copy = charInfo;
+            var charName = charInfo.General.Name;
+            copy.General.Name = `${charName} Copy`;
+            console.log("check copy ", copy);
+            var id = DBFunctions.newCreateNewCharacter(copy, userId, copy.General.Name);
+            // navigate('/subCharacterPages', { state: { charId: id } });
+            // console.log(userId, newId, copy.General.Name);
+            // DBFunctions.updateRel(userId, newId, copy.General.Name);
+        }
+      
+    }, [charInfo]);
 
     const charData = [
         ["Name", "Konan"],
