@@ -19,39 +19,46 @@ import { useState } from "react";
 const WorldPage = ({ userId }) => {
 
     // variables to track the world information and the loading state
-    var [worldInfo, setWorldInfo] = useState("");
+    var [worldInfo, setWorldInfo] = useState();
     var [worlds, setWorlds] = useState([]);
     const [loading, setLoading] = useState(true);
 
     // query the database for the user's worlds when the userid changes
     useEffect(() => {
-        const worldsRef = ref(db, 'Worlds/' + userId);
-        // onvalue monitors the database for changes
-        onValue(worldsRef, (snapshot) => {
-            setWorldInfo(snapshot.val());
-        });
+        if (userId !== undefined){
+            console.log(userId);
+            const worldsRef = ref(db, 'WorldUserRel/' + userId);
+            // onvalue monitors the database for changes
+            onValue(worldsRef, (snapshot) => {
+                setWorldInfo(snapshot.val());
+                console.log(snapshot.val());
+            });
+        }
 
     }, [userId]);
 
     // loop through the worlds and create components for them
     useEffect(() => {
-        if (worldInfo !== "") {
+        if (worldInfo !== undefined) {
             var arr = [];
-            // https://flexiple.com/javascript/loop-through-object-javascript
-            Object.values(worldInfo.Created).forEach(val =>
-                arr.push(<World key={val.Name} worldName={val.Name} members={val.Members} > </World>));
-
+             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+        for (const [key, value] of Object.entries(worldInfo.Created)) {
+            arr.push(<World key={key} worldName={value} members={"mems"} > </World>);
+        }
+        for (const [key, value] of Object.entries(worldInfo.Joined)) {
+            arr.push(<World key={key} worldName={value} members={"mems"} > </World>);
+        }
             setWorlds(arr);
-
         }
 
     }, [worldInfo]);
 
     // set the loading state to false if the data is loaded
     useEffect(() => {
-        if (worldInfo !== "") {
+        if (worldInfo !== undefined) {
             setLoading(false);
         }
+        console.log(worldInfo);
     }, [worldInfo]);
 
 

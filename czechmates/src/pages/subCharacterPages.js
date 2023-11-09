@@ -40,7 +40,7 @@ const SubCharacterPages = ({ userId }) => {
         if (charId !== undefined){
             console.log("check char id in sub", charId);
              // use this path and onValue monitors for changes
-        const charRef = ref(db, 'ZaraTest/Characters/' + charId);
+        const charRef = ref(db, 'Characters/' + charId);
         onValue(charRef, (snapshot) => {
             setCharInfo(snapshot.val());
         });

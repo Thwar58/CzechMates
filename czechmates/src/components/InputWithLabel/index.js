@@ -38,9 +38,9 @@ const InputWithLabel = ({ label, content, disabled, category, userId, charId }) 
                 const updates = {};
                 // use the path to the specific property that this form field maps to in the database
                 // and set it to the value in the form
-                updates[`ZaraTest/Characters/${charId}/${category}/${underScoreAdded}`] = formValue;
+                updates[`Characters/${charId}/${category}/${underScoreAdded}`] = formValue;
                 if (label === "Name"){
-                    updates[`ZaraTest/CharacterUserRel/${userId}/${charId}`] = formValue;
+                    updates[`CharacterUserRel/${userId}/${charId}`] = formValue;
                 }
                 update(charRef, updates);
             } 

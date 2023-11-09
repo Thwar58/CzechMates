@@ -42,7 +42,7 @@ const CharactersPage = ({ userId }) => {
     // gets the character information for this user from the database
     useEffect(() => {
         if (userId !== undefined) {
-            const charRef = ref(db, 'ZaraTest/CharacterUserRel/' + userId);
+            const charRef = ref(db, 'CharacterUserRel/' + userId);
             onValue(charRef, (snapshot) => {
                 console.log("repeated? ", snapshot.val());
                 setCharInfo(snapshot.val());

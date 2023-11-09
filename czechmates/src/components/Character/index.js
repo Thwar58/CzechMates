@@ -35,7 +35,7 @@ const Character = ({ charName, charId, userId }) => {
     // the UI is updates automatically
     const copyChara = event => {
         if (charId !== undefined){
-            const charRef = ref(db, 'ZaraTest/Characters/' + charId);
+            const charRef = ref(db, 'Characters/' + charId);
             onValue(charRef, (snapshot) => {
                 console.log(snapshot.val());
                 setCharInfo(snapshot.val());

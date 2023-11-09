@@ -45,8 +45,8 @@ var DBFunctions = {
 
         // Write the new post's data simultaneously in the posts list and the user's post list.
         const updates = {};
-        updates['ZaraTest/Characters/' + newPostKey] = charTemplate;
-        updates[`ZaraTest/CharacterUserRel/${userId}/${newPostKey}`] = charName;
+        updates['Characters/' + newPostKey] = charTemplate;
+        updates[`CharacterUserRel/${userId}/${newPostKey}`] = charName;
         // const newPostKey = push(child(ref(db), 'posts')).key;
         update(ref(db), updates);
         return newPostKey;
@@ -121,7 +121,7 @@ var DBFunctions = {
     },
 
     readCharacterData: function (charId) {
-        const charRef = ref(db, 'ZaraTest/Characters/' + charId);
+        const charRef = ref(db, 'Characters/' + charId);
         var result;
         onValue(charRef, (snapshot) => {
             console.log(snapshot.val());
