@@ -19,7 +19,7 @@ function SkillsComp({ value, name, charId, userId }) {
     // https://firebase.google.com/docs/database/web/read-and-write
     function increase() {
         const updates = {};
-        updates['Characters/' + userId + "/" + charId + "/Skills/" + name] = increment(1);
+        updates['ZaraTest/Characters/'+ charId + "/Skills/" + name] = increment(1);
         update(charRef, updates);
     }
 
@@ -27,7 +27,7 @@ function SkillsComp({ value, name, charId, userId }) {
     // https://firebase.google.com/docs/database/web/read-and-write
     function decrease() {
         const updates = {};
-        updates['Characters/' + userId + "/" + charId + "/Skills/" + name] = increment(-1);
+        updates['ZaraTest/Characters/' + charId + "/Skills/" + name] = increment(-1);
         update(charRef, updates);
     }
 
