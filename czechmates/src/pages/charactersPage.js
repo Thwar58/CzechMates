@@ -28,19 +28,26 @@ const CharactersPage = ({ userId }) => {
 
     // a function that adds a character to the database
     function addChara() {
-        var id = DBFunctions.createNewCharacter(userId, charTemplate);
+        console.log("char info ", charInfo);
+        console.log("chars ", chars);
+        if (charInfo !== undefined){
+            var newId = DBFunctions.newCreateNewCharacter(charTemplate, userId, "");
+        }
         // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
         // when you add a character, it sends you to tehe general page for this character so you can edit them
-        navigate('/subCharacterPages', { state: { charId: id } });
+        navigate('/subCharacterPages', { state: { charId: newId } });
     }
 
 
     // gets the character information for this user from the database
     useEffect(() => {
-        const charRef = ref(db, 'Characters/' + userId);
-        onValue(charRef, (snapshot) => {
-            setCharInfo(snapshot.val());
-        });
+        if (userId !== undefined) {
+            const charRef = ref(db, 'ZaraTest/CharacterUserRel/' + userId);
+            onValue(charRef, (snapshot) => {
+                console.log("repeated? ", snapshot.val());
+                setCharInfo(snapshot.val());
+            });
+        }
 
     }, [userId]);
 
@@ -50,7 +57,7 @@ const CharactersPage = ({ userId }) => {
         var arr = [];
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(charInfo)) {
-            arr.push(<Character key={key} charInfo={value} userId={userId} charId={key} charName={value.General.Name} />);
+            arr.push(<Character userId={userId} key={key} charId={key} charName={value} />);
         }
         setChars(arr);
     }, [charInfo]);

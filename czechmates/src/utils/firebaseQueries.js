@@ -1,5 +1,5 @@
 import { db } from '../firebase';
-import { child, get, ref, set, push } from "firebase/database";
+import { child, get, ref, set, push, onValue, update } from "firebase/database";
 
 
 var DBFunctions = {
@@ -34,23 +34,60 @@ var DBFunctions = {
         const newPostKey = push(child(ref(db), 'posts')).key;
         set(ref(db, 'Characters/' + userID + "/" + newPostKey),
             charTemplate
-            );
+        );
         return newPostKey;
     },
 
+    // add a character to the database (used for copy as well as addition)
+    newCreateNewCharacter: function (charTemplate, userId, charName) {
+        // Get a key for a new Post.
+        const newPostKey = push(child(ref(db), 'posts')).key;
+
+        // Write the new post's data simultaneously in the posts list and the user's post list.
+        const updates = {};
+        updates['ZaraTest/Characters/' + newPostKey] = charTemplate;
+        updates[`ZaraTest/CharacterUserRel/${userId}/${newPostKey}`] = charName;
+        // const newPostKey = push(child(ref(db), 'posts')).key;
+        update(ref(db), updates);
+        return newPostKey;
+    },
+
+    //   // add a character to the database (used for copy as well as addition)
+    //   newCreateCopy: function (charTemplate, userId, charId) {
+    //     // Get a key for a new Post.
+    //     const newPostKey = push(child(ref(db), 'posts')).key;
+
+    //     // Write the new post's data simultaneously in the posts list and the user's post list.
+    //     const updates = {};
+    //     updates['ZaraTest/Characters/' + newPostKey] = charTemplate;
+    //     updates[`ZaraTest/CharacterUserRel/${userId}/${charId}`] = charName;
+    //     // const newPostKey = push(child(ref(db), 'posts')).key;
+    //     set(ref(db, 'ZaraTest/Characters/' + newPostKey),
+    //         charTemplate
+    //     );
+    //     return newPostKey;
+    // },
+
+    // // add a character to the database (used for copy as well as addition)
+    // updateRel: function (userId, charId, charName) {
+    //     set(ref(db, `ZaraTest/CharacterUserRel/${userId}/${charId}`),
+    //         charName
+    //     );
+    // },
+
     // you pass in the path to what you want to remove and it sets it to null, which removes it from the database
     removeFromDB: function (path) {
-        set(ref(db, path),  
-                null
-            );
+        set(ref(db, path),
+            null
+        );
     },
 
     // you pass in the path to what you want to remove and it sets it to the value you provide
     // future: potentially combine remove and edit
     editInDB: function (path, value) {
-        set(ref(db, path),  
-                value
-            );
+        set(ref(db, path),
+            value
+        );
     },
 
     // https://firebase.google.com/docs/database/web/read-and-write
@@ -84,6 +121,16 @@ var DBFunctions = {
         }).catch((error) => {
             console.error(error);
         });
+    },
+
+    readCharacterData: function (charId) {
+        const charRef = ref(db, 'ZaraTest/Characters/' + charId);
+        var result;
+        onValue(charRef, (snapshot) => {
+            console.log(snapshot.val());
+            result = snapshot.val();
+        });
+        return result;
     }
 }
 

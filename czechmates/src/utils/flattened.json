@@ -341,9 +341,9 @@
     "WorldID1": {
       "Invite_Code": "code",
       "Members": {
-        "CharacterId1": "Character Name",
-        "CharacterId2": "Character Name",
-        "CharacterId3": "Character Name"
+        "CharID1": "Character Name",
+        "CharID2": "Character Name",
+        "CharID3": "Character Name"
       },
       "Name": "World1 (1)",
       "Schedule": "day"
@@ -351,9 +351,9 @@
     "WorldID2": {
       "Invite_Code": "code",
       "Members": {
-        "CharacterId1": "Character Name",
-        "CharacterId2": "Character Name",
-        "CharacterId3": "Character Name"
+        "CharID1": "Character Name",
+        "CharID2": "Character Name",
+        "CharID3": "Character Name"
       },
       "Name": "World2 (1)",
       "Schedule": "day"
@@ -361,9 +361,9 @@
     "WorldID3": {
       "Invite_Code": "code",
       "Members": {
-        "CharacterId1": "Character Name",
-        "CharacterId2": "Character Name",
-        "CharacterId3": "Character Name"
+        "CharID1": "Character Name",
+        "CharID2": "Character Name",
+        "CharID3": "Character Name"
       },
       "Name": "World1 (2)",
       "Schedule": "day"
@@ -371,9 +371,9 @@
     "WorldID4": {
       "Invite_Code": "code",
       "Members": {
-        "CharacterId1": "Character Name",
-        "CharacterId2": "Character Name",
-        "CharacterId3": "Character Name"
+        "CharID1": "Character Name",
+        "CharID2": "Character Name",
+        "CharID3": "Character Name"
       },
       "Name": "World2 (2)",
       "Schedule": "day"
@@ -405,14 +405,14 @@
   },
   "CharacterUserRel": {
     "User1": {
-      "CharacterId1": "Character Name 1",
-      "CharacterId2": "Character Name 2",
-      "CharacterId3": "Character Name 3"
+      "CharID1": "Character Name 1",
+      "CharID2": "Character Name 2",
+      "CharID3": "Character Name 3"
     },
     "User2": {
-      "CharacterId1": "Character Name 1",
-      "CharacterId2": "Character Name 2",
-      "CharacterId3": "Character Name 3"
+      "CharID1": "Character Name 1",
+      "CharID2": "Character Name 2",
+      "CharID3": "Character Name 3"
     }
   }
 }
