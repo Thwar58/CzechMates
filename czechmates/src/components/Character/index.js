@@ -2,6 +2,7 @@
 
 import React from "react";
 import ConfirmationPopup from "../ConfirmationPopup";
+import PrintPopup from "../PrintPopup";
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -11,6 +12,7 @@ import { db } from '../../firebase';
 import { child, get, ref, set, push, onValue } from "firebase/database";
 import { useState } from "react";
 import { useEffect } from "react";
+import '../themes.css'
 
 
 // the character component
@@ -118,9 +120,9 @@ const Character = ({ charName, charId, userId }) => {
                 {/* remove button with confirmation popup */}
                 <ConfirmationPopup id="removeButton" name="Remove" />
                 {/* print button */}
-                <Button variant="outline-secondary" id="button-addon2" onClick={printChar}>
+                {/* <PrintPopup name="charInfo" charInfo={charInfo} variant="outline-secondary" id="button-addon2" onClick={printChar}>
                     Print
-                </Button>
+                </PrintPopup> */}
             </InputGroup>
         </div>
     );
