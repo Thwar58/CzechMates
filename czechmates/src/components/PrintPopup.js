@@ -25,6 +25,7 @@ function PrintPopup(props) {
   var [charId] = useState(props.charId);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState(props.userId);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   useEffect(() => {
     if (charInfo !== undefined){
@@ -49,9 +50,12 @@ useEffect(() => {
 
   const handlePrint = ()=>{
     console.log("Saving happening")
-    downloadPdf()
-    console.log("happened");
-    handleClose()
+    setIsGenerating(true)
+    downloadPdf().then(
+      handleClose()
+    )
+    console.log("happened")
+    setIsGenerating(false)
   }
 
   const options = {
@@ -61,14 +65,14 @@ useEffect(() => {
     // increases the image quality but also the size of the PDF, so be careful
     // using values higher than 10 when having multiple pages generated, it
     // might cause the page to crash or hang.
-    resolution: Resolution.EXTREME,
+    resolution: Resolution.HIGH,
     page: {
       // margin is in MM, default is Margin.NONE = 0
       margin: Margin.SMALL,
       // default is 'A4'
       format: "letter",
       // default is 'portrait'
-      orientation: "landscape"
+      orientation: "portrait"
     },
     canvas: {
       // default is 'image/jpeg' for better size performance
@@ -108,19 +112,19 @@ useEffect(() => {
           <Modal.Title>{props.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Button variant="primary" onClick={handlePrint}>
+        <Button disabled={isGenerating} variant="primary" onClick={handlePrint}>
             Print
           </Button>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button disabled={isGenerating} variant="secondary" onClick={handleClose}>
             Close
           </Button>
           <div id="container">
         <SheetPage sheetInfo={charInfo} charId={charId}/>
         </div>
-          <Button variant="primary" onClick={handlePrint}>
+          <Button disabled={isGenerating} variant="primary" onClick={handlePrint}>
             Print
           </Button>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button disabled={isGenerating} variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Body>
