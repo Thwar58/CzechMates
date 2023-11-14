@@ -32,28 +32,37 @@ const Character = ({ charName, charId, userId }) => {
         navigate('/subCharacterPages', { state: { charId: charId } });
     }
 
+    // this function copies the character in this component
+    // it is added to the database with an automatically generated unique key
+    // the UI is updates automatically
+    const copyChara = event => {
+        if (charId !== undefined){
+            const charRef = ref(db, 'Characters/' + charId);
+            onValue(charRef, (snapshot) => {
+                console.log(snapshot.val());
+                setCharInfo(snapshot.val());
+            });
+        }
+    }
+
     const onAddBtnClick = event => {
         DBFunctions.writeCharacterData("User1", "CharID3", "test", "concept");
     };
 
-    const charData = [
-        ["Name", "Konan"],
-        ["Level", "12"],
-        ["Class", "Barbarian"],
-        // Add more data as needed
-      ];
+    useEffect(() => {
+        if (charInfo !== undefined){
+            console.log("check char info ", charInfo);
+            var copy = charInfo;
+            var charName = charInfo.General.Name;
+            copy.General.Name = `${charName} Copy`;
+            console.log("check copy ", copy);
+            var id = DBFunctions.newCreateNewCharacter(copy, userId, copy.General.Name);
+            // navigate('/subCharacterPages', { state: { charId: id } });
+            // console.log(userId, newId, copy.General.Name);
+            // DBFunctions.updateRel(userId, newId, copy.General.Name);
+        }
 
-      //prints the character as a csv
-    function printChar() {
-        const csvContent = charData.map((row) => row.join(",")).join("\n");
-        const blob = new Blob([csvContent], { type: "text/csv" });
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "CharTest.csv";
-        a.click();
-        window.URL.revokeObjectURL(url);
-      }
+    }, [charInfo]);
 
     // this will be used later when we actually implement character removals
     // it is in this file for testing purposes
@@ -95,7 +104,7 @@ const Character = ({ charName, charId, userId }) => {
                 {/* remove button with confirmation popup */}
                 <ConfirmationPopup id="removeButton" name="Remove" />
                 {/* print button */}
-                <PrintPopup name={charName} userId={userId} charId={charId} variant="outline-secondary" id="button-addon2" onClick={printChar}/>
+                <PrintPopup name={charName} userId={userId} charId={charId} variant="outline-secondary" id="button-addon2"/>
             </InputGroup>
         </div>
     );
