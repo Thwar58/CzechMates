@@ -83,8 +83,8 @@ const CharactersPage = ({ userId }) => {
                 <Row>
                     <Col>
                     </Col>
-                    <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                    <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10 header">
+                        <h1>
                             Character List
                         </h1>
                     </Col>

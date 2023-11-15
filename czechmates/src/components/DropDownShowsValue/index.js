@@ -19,7 +19,7 @@ function DropDownShowsValue({actions, text}) {
   return (
     <div>
       {/* adds the title and the onSelect function */}
-      <DropdownButton title= {value} onSelect={handleSelect}>
+      <DropdownButton className="dropdown" title= {value} onSelect={handleSelect}>
       {/* maps each of the options passed in to a dropdown option with the appropriate keys */}
       {actions?.map((name) => (
               <Dropdown.Item key={name} eventKey={name}>{name}

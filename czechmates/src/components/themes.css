@@ -1,11 +1,42 @@
 
 /*These are for the light mode*/
+:root {
+    --primary-color: Purple; /* Purple */
+    --secondary-color: gold; /* Gold */
+    --background-color: white; /* White */
+    --text-color: black; /* Black */
+  }
+  
+  /* styles-light.css */
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .header {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    font-family: fantasy;
+    
+  }
+  
+  .btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+  }
 
-/* buttons */
-.btn {
-    background-color: Purple;
-    border-color: gold;
-    padding: 5px 10px;
-    color: lightyellow;
-    }
+  .label {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-family: fantasy;
+  }
 
+  .dropdown {
+    color: var(--text-color);
+    margin-bottom: 10px;
+  }
+
+  @font-face{
+    font-family:Anton;
+    src:url("../utils/Anton-Regular.ttf")
+  }

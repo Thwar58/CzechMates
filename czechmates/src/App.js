@@ -28,7 +28,7 @@ function App() {
     // Func.calcAwareness();
     // Func.calcMovement();
     return (
-        <>
+        <div style={{ fontFamily: 'Anton'}}>
             {/* router handles all of the page rerouting */}
             <Router>
                 {/* the navigation bar */}
@@ -42,7 +42,7 @@ function App() {
                     <Route path='/subCharacterPages' element={<SubCharacterPages userId={userId} />} />
                 </Routes>
             </Router>
-        </>
+        </div>
     );
 }
 

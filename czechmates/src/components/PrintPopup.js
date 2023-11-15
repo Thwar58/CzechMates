@@ -11,6 +11,7 @@ import { db } from '../firebase';
 import { child, get, ref, set, push, onValue } from "firebase/database";
 import SheetPage from '../pages/sheetPage';
 import generatePDF, { Resolution, Margin, Options } from "react-to-pdf";
+import "./themes.css"
 
 // a component for viewing world information (not editable by the user)
 // input: the name of the world and the members

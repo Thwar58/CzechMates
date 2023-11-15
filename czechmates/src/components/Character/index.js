@@ -82,7 +82,7 @@ const Character = ({ charName, charId, userId }) => {
     return (
         <div>
             <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon3">
+                <InputGroup.Text id="basic-addon3" className="header">
                     Character
                 </InputGroup.Text>
                 {/* sets the value to the character name */}
