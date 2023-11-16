@@ -37,7 +37,7 @@ const Character = ({ charName, charId, userId }) => {
         if (charId !== undefined){
             const charRef = ref(db, 'Characters/' + charId);
             onValue(charRef, (snapshot) => {
-                console.log(snapshot.val());
+                // console.log(snapshot.val());
                 setCharInfo(snapshot.val());
             });
         }
@@ -46,11 +46,11 @@ const Character = ({ charName, charId, userId }) => {
 
     useEffect(() => {
         if (charInfo !== undefined){
-            console.log("check char info ", charInfo);
+            // console.log("check char info ", charInfo);
             var copy = charInfo;
             var charName = charInfo.General.Name;
             copy.General.Name = `${charName} Copy`;
-            console.log("check copy ", copy);
+            // console.log("check copy ", copy);
             var id = DBFunctions.newCreateNewCharacter(copy, userId, copy.General.Name);
             // navigate('/subCharacterPages', { state: { charId: id } });
             // console.log(userId, newId, copy.General.Name);

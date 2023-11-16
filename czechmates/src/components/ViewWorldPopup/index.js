@@ -8,10 +8,13 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import UEInput from '../UEInput';
 import { useEffect } from 'react';
+import { useResolvedPath } from 'react-router-dom';
+import { db } from '../../firebase';
+import { ref, onValue, update } from "firebase/database";
 
 // a component for viewing world information (not editable by the user)
 // input: the name of the world and the members
-function VWPopup({ name, members }) {
+function VWPopup({ name, members, worldId }) {
   // set the default state of the modal to hidden
   const [show, setShow] = useState(false);
 
@@ -19,20 +22,55 @@ function VWPopup({ name, members }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   var [mems, setMems] = useState([]);
+  var [worldInfo, setWorldInfo] = useState();
+  var [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
-    // checks that the members are not undefined
-    if (members !== undefined) {
-      var arr = [];
-      // loop through the member objects and create new components containing their information
-      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-      for (const [key, value] of Object.entries(members)) {
-        arr.push(<UEInput key={key} value={value.CharacterName} creatorId={value.CreatorId} ></UEInput>);
-      }
-      setMems(arr);
+    if (worldId !== undefined) {
+      // use this path and onValue monitors for changes
+      const worldRef = ref(db, 'Worlds/' + worldId);
+      onValue(worldRef, (snapshot) => {
+        setWorldInfo(snapshot.val());
+      });
 
     }
-  }, [members]);
+
+  }, [worldId]);
+
+
+  useEffect(() => {
+
+    if (worldInfo != undefined) {
+      setLoading(false)
+      var arr = [];
+      if (worldInfo.Members != null) {
+        // loop through the member objects and create new components containing their information
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+        for (const [key, value] of Object.entries(worldInfo.Members)) {
+          arr.push(<UEInput key={key} value={value} ></UEInput>);
+        }
+        setMems(arr);
+      }
+
+    }
+  }, [worldInfo]);
+
+
+  useEffect(() => {
+    if (worldInfo != undefined) {
+      setLoading(false)
+    }
+
+
+  }, [worldInfo]);
+
+  // render the blank loading screen if loading is true
+  if (loading) {
+    return (
+      <div></div>
+    )
+  }
 
 
   return (
@@ -53,12 +91,12 @@ function VWPopup({ name, members }) {
             {/* world name */}
             <Form.Group className="mb-3" controlId="Name">
               <Form.Label>World Name</Form.Label>
-              <UEInput value={"Example Name"} />
+              <UEInput value={worldInfo.Name} />
             </Form.Group>
             {/* schedule */}
             <Form.Group className="mb-3" controlId="Schedule">
               <Form.Label>Schedule</Form.Label>
-              <UEInput value={"Meeting day"} />
+              <UEInput value={worldInfo.Schedule} />
             </Form.Group>
             {/* members */}
             <Form.Group className="mb-3" controlId="Members">
