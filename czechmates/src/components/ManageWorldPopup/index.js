@@ -36,8 +36,8 @@ function MWPopup({ title, userId, button, worldId }) {
   useEffect(() => {
     if (worldId !== undefined) {
       // use this path and onValue monitors for changes
-      const charRef = ref(db, 'Worlds/' + worldId);
-      onValue(charRef, (snapshot) => {
+      const worldRef = ref(db, 'Worlds/' + worldId);
+      onValue(worldRef, (snapshot) => {
         setWorldInfo(snapshot.val());
       });
 
