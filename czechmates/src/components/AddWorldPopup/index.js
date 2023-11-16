@@ -12,10 +12,12 @@ import UEInput from '../UEInput';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue, update } from "firebase/database";
+import DBFunctions from "../../utils/firebaseQueries";
+const worldTemplate = require('../../utils/worldTemplate.json');
 
 // a function for the manage/add world modal, you pass in the title and the button display
 // input: the title of the popup, the button to trigger the modal, and the members to display
-function MWPopup({ title, userId, button, worldId }) {
+function AddWorldPopup({ title, userId, button }) {
   // sets the initial state of the modal to hidden
   const [show, setShow] = useState(false);
   // handles the opening and closing of the modal
@@ -23,7 +25,7 @@ function MWPopup({ title, userId, button, worldId }) {
   const handleShow = () => setShow(true);
   // a variable to set and track the members of a world
 
-  var [worldId] = useState(worldId);
+  var [worldId, setWorldId] = useState();
   var [worldInfo, setWorldInfo] = useState();
   var [mems, setMems] = useState();
   var [loading, setLoading] = useState(true);
@@ -31,19 +33,33 @@ function MWPopup({ title, userId, button, worldId }) {
   var [schedule, setSchedule] = useState();
   const worldRef = ref(db);
 
+  function addWorld() {
+    // console.log("add a world")
+    if (userId !== undefined) {
+      setWorldId(DBFunctions.createNewWorld(worldTemplate, userId));
+    }
+  }
 
+  
 
   useEffect(() => {
+    // console.log("world id changed");
+    // console.log("check world info ", worldInfo);
+    // check that members is not undefined otherwise it will throw an error
     if (worldId !== undefined) {
-      // use this path and onValue monitors for changes
-      const worldRef = ref(db, 'Worlds/' + worldId);
-      onValue(worldRef, (snapshot) => {
-        setWorldInfo(snapshot.val());
-      });
+       // use this path and onValue monitors for changes
+       const worldRef = ref(db, 'Worlds/' + worldId);
+       onValue(worldRef, (snapshot) => {
+         setWorldInfo(snapshot.val());
+       });
+      //  console.log("world info ", worldInfo)
+ 
+       handleShow();
 
     }
-
   }, [worldId]);
+
+
 
   // when members changes, this is triggered
   useEffect(() => {
@@ -54,6 +70,7 @@ function MWPopup({ title, userId, button, worldId }) {
       // console.log("check world info ", worldInfo);
       // loop through the members objects and create components to display them, set the members array at the end
       var arr = [];
+      // console.log("check WI for members ", worldInfo);
       if (worldInfo.Members != null) {
         // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(worldInfo.Members)) {
@@ -62,21 +79,21 @@ function MWPopup({ title, userId, button, worldId }) {
           arr.push(<EUWithButtons key={key} charId={key} charName={value} button1={"View"} button2={"Remove"} />);
         }
         setMems(arr);
+      
       }
+        // console.log("set them ", worldInfo.Name, worldInfo.Schedule);
+        setName(worldInfo.Name);
+        setSchedule(worldInfo.Schedule);
+        // console.log("check them ", name, schedule);
 
-      // console.log("set them ", worldInfo.Name, worldInfo.Schedule);
-      setName(worldInfo.Name);
-      setSchedule(worldInfo.Schedule);
-      // console.log("check them ", name, schedule);
 
 
     }
   }, [worldInfo]);
 
-  // // when the form value changes, this is triggered
+  // // // when the form value changes, this is triggered
   useEffect(() => {
     if (name != undefined && schedule != undefined) {
-
       // take the label value and replace any spaces with underscores to match the db naming system
       // var underScoreAdded = label.replace(/ /g, "_");
       // ignore the modification slots for now (it is broken and needs to be fixed)
@@ -103,7 +120,9 @@ function MWPopup({ title, userId, button, worldId }) {
   // render the blank loading screen if loading is true
   if (loading) {
     return (
-      <div></div>
+      <Button variant="primary" onClick={addWorld}>
+        {button}
+      </Button>
     )
   }
 
@@ -111,7 +130,7 @@ function MWPopup({ title, userId, button, worldId }) {
   return (
     <>
       {/* the button that triggers the modal */}
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={addWorld}>
         {button}
       </Button>
 
@@ -170,4 +189,4 @@ function MWPopup({ title, userId, button, worldId }) {
   );
 }
 
-export default MWPopup;
+export default AddWorldPopup;

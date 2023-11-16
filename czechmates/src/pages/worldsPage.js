@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
+import AddWorldPopup from "../components/AddWorldPopup";
 
 // this is the world page
 // input: the user id 
@@ -25,31 +26,31 @@ const WorldPage = ({ userId }) => {
 
     // query the database for the user's worlds when the userid changes
     useEffect(() => {
-        if (userId !== undefined){
-            console.log(userId);
+        if (userId !== undefined) {
+            // console.log(userId);
             const worldsRef = ref(db, 'WorldUserRel/' + userId);
             // onvalue monitors the database for changes
             onValue(worldsRef, (snapshot) => {
                 setWorldInfo(snapshot.val());
-                console.log(snapshot.val());
+                // console.log(snapshot.val());
             });
         }
 
     }, [userId]);
 
-   
+
     // loop through the worlds and create components for them
     useEffect(() => {
 
         if (worldInfo !== undefined) {
             var arr = [];
-             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-        for (const [key, value] of Object.entries(worldInfo.Created)) {
-            arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"created"} > </World>);
-        }
-        for (const [key, value] of Object.entries(worldInfo.Joined)) {
-            arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"joined"} > </World>);
-        }
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+            for (const [key, value] of Object.entries(worldInfo.Created)) {
+                arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"created"} > </World>);
+            }
+            for (const [key, value] of Object.entries(worldInfo.Joined)) {
+                arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"joined"} > </World>);
+            }
             setWorlds(arr);
         }
 
@@ -60,7 +61,7 @@ const WorldPage = ({ userId }) => {
         if (worldInfo !== undefined) {
             setLoading(false);
         }
-        console.log(worldInfo);
+        // console.log(worldInfo);
     }, [worldInfo]);
 
 
@@ -113,8 +114,13 @@ const WorldPage = ({ userId }) => {
                         }
                     </div>
                     {/* this brings up the modal for creating a world */}
+
+                </Row>
+                <Row>
                     <Col>
-                        <ManageWorldPopup title="World Name" button={"Plus Sign"} />
+                    {/* function MWPopup({ title, userId, button, worldId }) { */}
+                    <AddWorldPopup userId={userId} title="World Name" button={"Add World"} />
+                        {/* <ManageWorldPopup userId={userId} worldId={"WorldID1"} title="World Name" button={"Plus Sign"} /> */}
                     </Col>
                 </Row>
             </Container>

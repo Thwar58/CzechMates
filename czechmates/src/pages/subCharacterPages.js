@@ -38,7 +38,7 @@ const SubCharacterPages = ({ userId }) => {
     // when the userid or the character id change, this is triggered and queries the database
     useEffect(() => {
         if (charId !== undefined){
-            console.log("check char id in sub", charId);
+            // console.log("check char id in sub", charId);
              // use this path and onValue monitors for changes
         const charRef = ref(db, 'Characters/' + charId);
         onValue(charRef, (snapshot) => {

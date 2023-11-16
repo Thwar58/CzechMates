@@ -28,8 +28,8 @@ const CharactersPage = ({ userId }) => {
 
     // a function that adds a character to the database
     function addChara() {
-        console.log("char info ", charInfo);
-        console.log("chars ", chars);
+        // console.log("char info ", charInfo);
+        // console.log("chars ", chars);
         if (charInfo !== undefined){
             var newId = DBFunctions.newCreateNewCharacter(charTemplate, userId, "");
         }
@@ -44,7 +44,7 @@ const CharactersPage = ({ userId }) => {
         if (userId !== undefined) {
             const charRef = ref(db, 'CharacterUserRel/' + userId);
             onValue(charRef, (snapshot) => {
-                console.log("repeated? ", snapshot.val());
+                // console.log("repeated? ", snapshot.val());
                 setCharInfo(snapshot.val());
             });
         }

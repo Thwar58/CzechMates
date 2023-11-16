@@ -33,7 +33,7 @@ function VWPopup({ name, members, worldId }) {
       onValue(worldRef, (snapshot) => {
         setWorldInfo(snapshot.val());
       });
-      
+
     }
 
   }, [worldId]);
@@ -41,24 +41,27 @@ function VWPopup({ name, members, worldId }) {
 
   useEffect(() => {
 
-    if (worldInfo != undefined){
+    if (worldInfo != undefined) {
       setLoading(false)
       var arr = [];
-      // loop through the member objects and create new components containing their information
-      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-      for (const [key, value] of Object.entries(worldInfo.Members)) {
-        arr.push(<UEInput key={key}  value={value} ></UEInput>);
+      if (worldInfo.Members != null) {
+        // loop through the member objects and create new components containing their information
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+        for (const [key, value] of Object.entries(worldInfo.Members)) {
+          arr.push(<UEInput key={key} value={value} ></UEInput>);
+        }
+        setMems(arr);
       }
-      setMems(arr);
+
     }
   }, [worldInfo]);
 
 
   useEffect(() => {
-    if (worldInfo != undefined){
+    if (worldInfo != undefined) {
       setLoading(false)
     }
-   
+
 
   }, [worldInfo]);
 
