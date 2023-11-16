@@ -129,6 +129,7 @@ function MWPopup({ title, userId, button, worldId }) {
               <Form.Label>World Name</Form.Label>
               <Form.Control
                 value={name}
+                placeholder='Add World Name'
                 onChange={e => setName(e.target.value)}
               />
               {/* world schedule */}
@@ -137,6 +138,7 @@ function MWPopup({ title, userId, button, worldId }) {
               <Form.Label>Schedule</Form.Label>
               <Form.Control
                 value={schedule}
+                placeholder='Add Schedule'
                 onChange={e => setSchedule(e.target.value)}
               />
             </Form.Group>
