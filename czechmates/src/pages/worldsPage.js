@@ -15,7 +15,7 @@ import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 
 // this is the world page
-// input: the user id
+// input: the user id 
 const WorldPage = ({ userId }) => {
 
     // variables to track the world information and the loading state
@@ -37,16 +37,18 @@ const WorldPage = ({ userId }) => {
 
     }, [userId]);
 
+   
     // loop through the worlds and create components for them
     useEffect(() => {
+
         if (worldInfo !== undefined) {
             var arr = [];
              // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(worldInfo.Created)) {
-            arr.push(<World key={key} worldName={value} members={"mems"} > </World>);
+            arr.push(<World key={key} worldName={value} members={"mems"} type={"created"} > </World>);
         }
         for (const [key, value] of Object.entries(worldInfo.Joined)) {
-            arr.push(<World key={key} worldName={value} members={"mems"} > </World>);
+            arr.push(<World key={key} worldName={value} members={"mems"} type={"joined"} > </World>);
         }
             setWorlds(arr);
         }
