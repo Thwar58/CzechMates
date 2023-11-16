@@ -10,18 +10,20 @@ import { useEffect } from "react";
 
 // a component to display the worlds with their button options
 // input: the world name and the members
-const World = ({ worldName, members, type }) => {
+const World = ({ worldName, userId, type, worldId }) => {
 
     var [ownOrJoin, setOwnOrJoin] = useState();
+    
 
     useEffect(() => {
 
         if (type == "created"){
-            setOwnOrJoin([<ManageWorldPopup members={members} title="World Name" button={"Manage"} />,
-            <ConfirmationPopup name={"Remove"} />])
+            setOwnOrJoin([<ManageWorldPopup key={"MWP"} userId={userId} worldId={worldId}  title="World Name" button={"Manage"} />,
+            <ConfirmationPopup key={"CP"} name={"Remove"} />])
         }
         else if (type == "joined"){
-            setOwnOrJoin([<ViewWorldPopup members={members} name={"World Name"} />, <ConfirmationPopup name={"Leave"} />])
+            setOwnOrJoin([<ViewWorldPopup key={"VWP"} worldId={worldId} name={"World Name"} />, 
+            <ConfirmationPopup key={"CP"} name={"Leave"} />])
         }
 
     }, [type]);

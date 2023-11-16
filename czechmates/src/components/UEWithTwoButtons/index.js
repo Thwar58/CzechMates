@@ -4,14 +4,14 @@ import Button from 'react-bootstrap/Button';
 
 // a component for an uneditable form input field with two buttons
 // input: the value of the form, the creator id for later, and the labels for the buttons
-function UEWithTwoButtons({ value, creatorId, button1, button2 }) {
+function UEWithTwoButtons({ charId, charName, button1, button2 }) {
 
     return (
         <>
             {/* set the value and disable the input field */}
             <InputGroup className="mb-3">
                 <Form.Control
-                    value={value}
+                    value={charName}
                     disabled={true}
                 />
                 {/* set the first button */}

@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 
 // component to display an input that is not editable
 // input: the value of the input and the creator id for later use
-function UEInput({ value, creatorId }) {
+function UEInput({ value }) {
 
     return (
         <>

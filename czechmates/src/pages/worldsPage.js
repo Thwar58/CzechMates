@@ -45,10 +45,10 @@ const WorldPage = ({ userId }) => {
             var arr = [];
              // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(worldInfo.Created)) {
-            arr.push(<World key={key} worldName={value} members={"mems"} type={"created"} > </World>);
+            arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"created"} > </World>);
         }
         for (const [key, value] of Object.entries(worldInfo.Joined)) {
-            arr.push(<World key={key} worldName={value} members={"mems"} type={"joined"} > </World>);
+            arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"joined"} > </World>);
         }
             setWorlds(arr);
         }
