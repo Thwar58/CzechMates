@@ -6,9 +6,8 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import TypeAheadWithButton from "../TypeAheadWithButton";
+import TypeAhead from '../TypeAhead';
 import EUWithButtons from '../UEWithTwoButtons';
-import UEInput from '../UEInput';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue, update } from "firebase/database";
@@ -31,6 +30,7 @@ function AddWorldPopup({ title, userId, button }) {
   var [loading, setLoading] = useState(true);
   var [name, setName] = useState();
   var [schedule, setSchedule] = useState();
+  var [friendInfo, setFriendInfo] = useState();
   const worldRef = ref(db);
 
   function addWorld() {
@@ -53,13 +53,18 @@ function AddWorldPopup({ title, userId, button }) {
          setWorldInfo(snapshot.val());
        });
       //  console.log("world info ", worldInfo)
+      const userFriendRef = ref(db, 'Users/' + userId + "/Friends");
+      onValue(userFriendRef, (snapshot) => {
+        setFriendInfo(snapshot.val());
+      });
+
  
        handleShow();
 
     }
   }, [worldId]);
 
-
+  
 
   // when members changes, this is triggered
   useEffect(() => {
@@ -93,7 +98,7 @@ function AddWorldPopup({ title, userId, button }) {
 
   // // // when the form value changes, this is triggered
   useEffect(() => {
-    if (name != undefined && schedule != undefined) {
+    if (name !== undefined && schedule !== undefined) {
       // take the label value and replace any spaces with underscores to match the db naming system
       // var underScoreAdded = label.replace(/ /g, "_");
       // ignore the modification slots for now (it is broken and needs to be fixed)
@@ -171,12 +176,16 @@ function AddWorldPopup({ title, userId, button }) {
             {/* future: decide on search bar */}
             <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>
-              <TypeAheadWithButton />
+            
+              <TypeAhead action={"sendWorldInvite"} friendInfo={friendInfo}/> 
             </Form.Group>
             {/* the search code */}
             <Form.Group className="mb-3" controlId="Code">
               <Form.Label>Invite Code</Form.Label>
-              <UEInput value={worldInfo.Invite_Code} />
+              <Form.Control
+                value={worldInfo.Invite_Code}
+                disabled={true}
+            />
             </Form.Group>
           </Form>
           {/* the footer with the close button */}

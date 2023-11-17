@@ -8,13 +8,12 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import UEInput from '../UEInput';
 import { useEffect } from 'react';
-import { useResolvedPath } from 'react-router-dom';
 import { db } from '../../firebase';
-import { ref, onValue, update } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 // a component for viewing world information (not editable by the user)
 // input: the name of the world and the members
-function VWPopup({ name, members, worldId }) {
+function VWPopup({ name, worldId }) {
   // set the default state of the modal to hidden
   const [show, setShow] = useState(false);
 
@@ -41,7 +40,7 @@ function VWPopup({ name, members, worldId }) {
 
   useEffect(() => {
 
-    if (worldInfo != undefined) {
+    if (worldInfo !== undefined) {
       setLoading(false)
       var arr = [];
       if (worldInfo.Members != null) {
@@ -58,7 +57,7 @@ function VWPopup({ name, members, worldId }) {
 
 
   useEffect(() => {
-    if (worldInfo != undefined) {
+    if (worldInfo !== undefined) {
       setLoading(false)
     }
 
@@ -91,12 +90,18 @@ function VWPopup({ name, members, worldId }) {
             {/* world name */}
             <Form.Group className="mb-3" controlId="Name">
               <Form.Label>World Name</Form.Label>
-              <UEInput value={worldInfo.Name} />
+              <Form.Control
+                value={worldInfo.Name}
+                disabled={true}
+            />
             </Form.Group>
             {/* schedule */}
             <Form.Group className="mb-3" controlId="Schedule">
               <Form.Label>Schedule</Form.Label>
-              <UEInput value={worldInfo.Schedule} />
+              <Form.Control
+                value={worldInfo.Schedule}
+                disabled={true}
+            />
             </Form.Group>
             {/* members */}
             <Form.Group className="mb-3" controlId="Members">
