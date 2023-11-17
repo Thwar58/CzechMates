@@ -6,15 +6,12 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import TypeAheadWithButton from "../TypeAheadWithButton";
 import TypeAhead from '../TypeAhead';
 import EUWithButtons from '../UEWithTwoButtons';
-import UEInput from '../UEInput';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue, update } from "firebase/database";
 import DBFunctions from "../../utils/firebaseQueries";
-import { Typeahead } from 'react-bootstrap-typeahead';
 const worldTemplate = require('../../utils/worldTemplate.json');
 
 // a function for the manage/add world modal, you pass in the title and the button display
@@ -185,7 +182,10 @@ function AddWorldPopup({ title, userId, button }) {
             {/* the search code */}
             <Form.Group className="mb-3" controlId="Code">
               <Form.Label>Invite Code</Form.Label>
-              <UEInput value={worldInfo.Invite_Code} />
+              <Form.Control
+                value={worldInfo.Invite_Code}
+                disabled={true}
+            />
             </Form.Group>
           </Form>
           {/* the footer with the close button */}

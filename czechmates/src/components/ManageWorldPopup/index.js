@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal';
 // import TypeAheadWithButton from "../TypeAheadWithButton";
 import TypeAhead from '../TypeAhead';
 import EUWithButtons from '../UEWithTwoButtons';
-import UEInput from '../UEInput';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue, update } from "firebase/database";
@@ -168,7 +167,10 @@ function MWPopup({ title, userId, button, worldId }) {
             {/* the search code */}
             <Form.Group className="mb-3" controlId="Code">
               <Form.Label>Invite Code</Form.Label>
-              <UEInput value={worldInfo.Invite_Code} />
+              <Form.Control
+                value={worldInfo.Invite_Code}
+                disabled={true}
+            />
             </Form.Group>
           </Form>
           {/* the footer with the close button */}

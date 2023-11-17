@@ -24,7 +24,7 @@ const TypeAhead = ({friendInfo, action}) => {
             arr.push(value);
           }
           setFriendArr(arr);
-          console.log("friends", friendsArr)
+          // console.log("friends", friendsArr)
         }
     }
 
