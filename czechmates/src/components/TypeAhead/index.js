@@ -37,7 +37,7 @@ const TypeAhead = ({friendInfo, action}) => {
 
         if (action === "sendWorldInvite"){
           for (const [key, value] of Object.entries(friendInfo)) {
-            if (value === singleSelections){
+            if (value == singleSelections){
               console.log("send this user a join code email: ", key);
             }
           }  
