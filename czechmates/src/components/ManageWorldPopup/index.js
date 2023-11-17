@@ -23,7 +23,7 @@ function MWPopup({ title, userId, button, worldId }) {
   const handleShow = () => setShow(true);
   // a variable to set and track the members of a world
 
-  var [worldId] = useState(worldId);
+  // var [worldId] = useState(worldId);
   var [worldInfo, setWorldInfo] = useState();
   var [mems, setMems] = useState();
   var [loading, setLoading] = useState(true);
@@ -85,7 +85,7 @@ function MWPopup({ title, userId, button, worldId }) {
 
   // // when the form value changes, this is triggered
   useEffect(() => {
-    if (name != undefined && schedule != undefined) {
+    if (name !== undefined && schedule !== undefined) {
 
       // take the label value and replace any spaces with underscores to match the db naming system
       // var underScoreAdded = label.replace(/ /g, "_");

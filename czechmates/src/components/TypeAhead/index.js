@@ -16,9 +16,9 @@ const TypeAhead = ({friendInfo, action}) => {
     if (friendInfo !== undefined) {
         // console.log("friendinfo ", friendInfo);
         var arr = [];
-        if (friendInfo != null) {
+        if (friendInfo !== null) {
           // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-          for (const [key, value] of Object.entries(friendInfo)) {
+          for (const [, value] of Object.entries(friendInfo)) {
             // console.log("check name ", value);
             // pass in the key, the character name, and the id of who created the character
             arr.push(value);
@@ -37,7 +37,7 @@ const TypeAhead = ({friendInfo, action}) => {
 
         if (action === "sendWorldInvite"){
           for (const [key, value] of Object.entries(friendInfo)) {
-            if (value == singleSelections){
+            if (value === singleSelections){
               console.log("send this user a join code email: ", key);
             }
           }  

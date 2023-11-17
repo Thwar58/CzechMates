@@ -4,7 +4,6 @@ import ViewWorldPopup from '../ViewWorldPopup';
 import ManageWorldPopup from '../ManageWorldPopup';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -17,11 +16,11 @@ const World = ({ worldName, userId, type, worldId }) => {
 
     useEffect(() => {
 
-        if (type == "created"){
+        if (type === "created"){
             setOwnOrJoin([<ManageWorldPopup key={"MWP"} userId={userId} worldId={worldId}  title="World Name" button={"Manage"} />,
             <ConfirmationPopup key={"CP"} name={"Remove"} />])
         }
-        else if (type == "joined"){
+        else if (type === "joined"){
             setOwnOrJoin([<ViewWorldPopup key={"VWP"} worldId={worldId} name={"World Name"} />, 
             <ConfirmationPopup key={"CP"} name={"Leave"} />])
         }

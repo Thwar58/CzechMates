@@ -9,7 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import UEInput from '../UEInput';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
-import { ref, onValue, update } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 // a component for viewing world information (not editable by the user)
 // input: the name of the world and the members
@@ -40,7 +40,7 @@ function VWPopup({ name, worldId }) {
 
   useEffect(() => {
 
-    if (worldInfo != undefined) {
+    if (worldInfo !== undefined) {
       setLoading(false)
       var arr = [];
       if (worldInfo.Members != null) {
@@ -57,7 +57,7 @@ function VWPopup({ name, worldId }) {
 
 
   useEffect(() => {
-    if (worldInfo != undefined) {
+    if (worldInfo !== undefined) {
       setLoading(false)
     }
 

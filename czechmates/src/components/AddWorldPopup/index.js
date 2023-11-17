@@ -98,7 +98,7 @@ function AddWorldPopup({ title, userId, button }) {
 
   // // // when the form value changes, this is triggered
   useEffect(() => {
-    if (name != undefined && schedule != undefined) {
+    if (name !== undefined && schedule !== undefined) {
       // take the label value and replace any spaces with underscores to match the db naming system
       // var underScoreAdded = label.replace(/ /g, "_");
       // ignore the modification slots for now (it is broken and needs to be fixed)
