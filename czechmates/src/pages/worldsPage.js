@@ -1,7 +1,6 @@
 
 import React from "react";
 import World from "../components/World";
-import ManageWorldPopup from '../components/ManageWorldPopup';
 import JoinCodePopup from "../components/JoinCodePopup";
 import DropDownShowsValue from "../components/DropDownShowsValue";
 import Container from 'react-bootstrap/Container';
@@ -120,7 +119,6 @@ const WorldPage = ({ userId }) => {
                     <Col>
                     {/* function MWPopup({ title, userId, button, worldId }) { */}
                     <AddWorldPopup userId={userId} title="World Name" button={"Add World"} />
-                        {/* <ManageWorldPopup userId={userId} worldId={"WorldID1"} title="World Name" button={"Plus Sign"} /> */}
                     </Col>
                 </Row>
             </Container>

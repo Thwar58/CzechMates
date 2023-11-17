@@ -6,7 +6,8 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import TypeAheadWithButton from "../TypeAheadWithButton";
+// import TypeAheadWithButton from "../TypeAheadWithButton";
+import TypeAhead from '../TypeAhead';
 import EUWithButtons from '../UEWithTwoButtons';
 import UEInput from '../UEInput';
 import { useEffect } from 'react';
@@ -29,6 +30,7 @@ function MWPopup({ title, userId, button, worldId }) {
   var [loading, setLoading] = useState(true);
   var [name, setName] = useState();
   var [schedule, setSchedule] = useState();
+  var [friendInfo, setFriendInfo] = useState();
   const worldRef = ref(db);
 
 
@@ -41,9 +43,18 @@ function MWPopup({ title, userId, button, worldId }) {
         setWorldInfo(snapshot.val());
       });
 
+      const userFriendRef = ref(db, 'Users/' + userId + "/Friends");
+      onValue(userFriendRef, (snapshot) => {
+        setFriendInfo(snapshot.val());
+      });
+
+
     }
 
+
   }, [worldId]);
+
+
 
   // when members changes, this is triggered
   useEffect(() => {
@@ -152,7 +163,7 @@ function MWPopup({ title, userId, button, worldId }) {
             {/* future: decide on search bar */}
             <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>
-              <TypeAheadWithButton />
+              <TypeAhead action={"sendWorldInvite"} friendInfo={friendInfo}/> 
             </Form.Group>
             {/* the search code */}
             <Form.Group className="mb-3" controlId="Code">
