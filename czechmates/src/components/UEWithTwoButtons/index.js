@@ -12,9 +12,6 @@ function UEWithTwoButtons({ charId, creatorId, worldId, charName, button1, butto
     const worldRef = ref(db);
 
 
-
-
-
     return (
         <>
             {/* set the value and disable the input field */}
@@ -29,7 +26,7 @@ function UEWithTwoButtons({ charId, creatorId, worldId, charName, button1, butto
                 </Button>
                 {/* set the second button */}
                 <ConfirmationPopup
-                name={"Remove Member"}
+                name={"Remove"}
                 type={"removeMember"}
                 action={{worldId, creatorId, charId}}>
                 </ConfirmationPopup>

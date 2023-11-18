@@ -40,17 +40,25 @@ const WorldPage = ({ userId }) => {
 
     // loop through the worlds and create components for them
     useEffect(() => {
-
-        if (worldInfo !== undefined) {
+        if (worldInfo !== undefined && worldInfo !== null) {
+            console.log(worldInfo);
             var arr = [];
-            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-            for (const [key, value] of Object.entries(worldInfo.Created)) {
-                arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"created"} > </World>);
+            if (worldInfo.Created !== undefined) {
+                // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+                for (const [key, value] of Object.entries(worldInfo.Created)) {
+                    arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"created"} > </World>);
+                }
             }
-            for (const [key, value] of Object.entries(worldInfo.Joined)) {
-                arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"joined"} > </World>);
+            if (worldInfo.Joined !== undefined) {
+                for (const [key, value] of Object.entries(worldInfo.Joined)) {
+                    arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"joined"} > </World>);
+                }
             }
+            console.log("after both looped");
             setWorlds(arr);
+        }
+        else {
+            setWorlds(<h1>You have no worlds yet</h1>)
         }
 
     }, [worldInfo]);
@@ -117,8 +125,8 @@ const WorldPage = ({ userId }) => {
                 </Row>
                 <Row>
                     <Col>
-                    {/* function MWPopup({ title, userId, button, worldId }) { */}
-                    <AddWorldPopup userId={userId} title="World Name" button={"Add World"} />
+                        {/* function MWPopup({ title, userId, button, worldId }) { */}
+                        <AddWorldPopup userId={userId} title="World Name" button={"Add World"} />
                     </Col>
                 </Row>
             </Container>

@@ -72,7 +72,9 @@ function MWPopup({ title, userId, button, worldId }) {
           arr.push(<UEWithTwoButtons key={key} charId={key} worldId={worldId} charName={value.Name} creatorId={value.CreatorId} button1={"View"} button2={"Remove"} />);
         }
         setMems(arr);
-      }
+      } else{
+        setMems(<h1>You have no members yet</h1>)
+    }
 
       // console.log("set them ", worldInfo.Name, worldInfo.Schedule);
       setName(worldInfo.Name);

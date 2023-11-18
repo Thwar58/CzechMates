@@ -47,7 +47,7 @@ function VWPopup({ name, worldId }) {
         // loop through the member objects and create new components containing their information
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(worldInfo.Members)) {
-          arr.push(<UEInput key={key} value={value} ></UEInput>);
+          arr.push(<UEInput key={key} value={value.Name} ></UEInput>);
         }
         setMems(arr);
       }
