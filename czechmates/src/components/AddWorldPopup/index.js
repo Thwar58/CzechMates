@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import TypeAhead from '../TypeAhead';
-import EUWithButtons from '../UEWithTwoButtons';
+import UEWithTwoButtons from '../UEWithTwoButtons';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue, update } from "firebase/database";
@@ -81,7 +81,7 @@ function AddWorldPopup({ title, userId, button }) {
         for (const [key, value] of Object.entries(worldInfo.Members)) {
           // console.log("check name ", value);
           // pass in the key, the character name, and the id of who created the character
-          arr.push(<EUWithButtons key={key} charId={key} charName={value} button1={"View"} button2={"Remove"} />);
+          arr.push(<UEWithTwoButtons key={key} charId={key} charName={value} button1={"View"} button2={"Remove"} />);
         }
         setMems(arr);
       
