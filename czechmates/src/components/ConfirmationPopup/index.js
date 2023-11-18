@@ -115,6 +115,27 @@ function ConfirmationPopup({ name, type, action }) {
       });
 
     }
+    else if (type === "removeMember"){
+        // console.log("worldId ", worldId);
+        // console.log("charId ", charId);
+        const updates = {};
+        // use the path to the specific property that this form field maps to in the database
+        // and set it to the value in the form
+        // console.log("this is the id right? ", worldId);
+        // remove the character from the world members list
+        updates[`Worlds/${action.worldId}/Members/${action.charId}`] = null;
+        // remove the participation role from this character
+        updates[`Characters/${action.charId}/Participation`] = null;
+        // remove the world from the user assosciation
+        // this might fix it
+        updates[`WorldUserRel/${action.creatorId}/${action.charId}`] = null;
+
+        // }
+        console.log("remove in db at these places ", updates);
+        // update(worldRef, updates);
+        // 
+
+    }
 
 
 
