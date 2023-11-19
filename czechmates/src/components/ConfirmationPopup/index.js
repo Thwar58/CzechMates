@@ -44,7 +44,7 @@ function ConfirmationPopup({ name, type, action }) {
 
 
         console.log("remove the information in these places ", updates);
-        // update(worldRef, updates);
+        update(worldRef, updates);
 
 
 
@@ -63,20 +63,21 @@ function ConfirmationPopup({ name, type, action }) {
           for (const [key, value] of Object.entries(snapshot.val())) {
             console.log(key, value);
             // remove this world from the members characters participating
-            updates[`Character/${key}/Participating`] = null;
+            updates[`Characters/${key}/Participation`] = null;
             // remove this world from the members joined world section
             updates[`WorldUserRel/${value.CreatorId}/Joined/${action.worldId}`] = null;
           }
-          // remove this world from the current user's created worlds
-          updates[`World/${action.userId}/Created/${action.worldId}`] = null;
-          // remove this world from the worlds section
-          updates[`World/${action.worldId}`] = null;
+         
 
         } else {
           console.log("No data available");
         }
+         // remove this world from the current user's created worlds
+         updates[`WorldUserRel/${action.userId}/Created/${action.worldId}`] = null;
+         // remove this world from the worlds section
+         updates[`Worlds/${action.worldId}`] = null;
         console.log("remove the information in these places ", updates);
-        // update(worldRef, updates);
+        update(worldRef, updates);
       }).catch((error) => {
         console.error(error);
       });
@@ -93,11 +94,11 @@ function ConfirmationPopup({ name, type, action }) {
             if (value.CreatorId==action.userId){
               console.log("this member is leaving", value.Name);
               // set the character participating to null
-              updates[`Character/${key}/Participating`] = null;
+              updates[`Characters/${key}/Participation`] = null;
               // remove the link world from the owners joined field
               updates[`WorldUserRel/${value.CreatorId}/Joined/${action.worldId}`] = null;
               // remove them from the world members list
-              updates[`World/${action.worldId}/Members/${key}`] = null;
+              updates[`Worlds/${action.worldId}/Members/${key}`] = null;
             }
           }
 
@@ -105,7 +106,7 @@ function ConfirmationPopup({ name, type, action }) {
           console.log("No data available");
         }
         console.log("remove the information in these places ", updates);
-        // update(worldRef, updates);
+        update(worldRef, updates);
 
 
 
@@ -128,11 +129,11 @@ function ConfirmationPopup({ name, type, action }) {
         updates[`Characters/${action.charId}/Participation`] = null;
         // remove the world from the user assosciation
         // this might fix it
-        updates[`WorldUserRel/${action.creatorId}/${action.charId}`] = null;
+        updates[`WorldUserRel/${action.creatorId}/Joined/${action.worldId}`] = null;
 
         // }
         console.log("remove in db at these places ", updates);
-        // update(worldRef, updates);
+        update(worldRef, updates);
         // 
 
     }

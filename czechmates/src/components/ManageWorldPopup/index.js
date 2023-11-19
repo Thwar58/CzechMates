@@ -28,6 +28,7 @@ function MWPopup({ title, userId, button, worldId }) {
   var [mems, setMems] = useState();
   var [loading, setLoading] = useState(true);
   var [name, setName] = useState();
+  var [inviteCode, setInviteCode] = useState();
   var [schedule, setSchedule] = useState();
   var [friendInfo, setFriendInfo] = useState();
   const worldRef = ref(db);
@@ -59,12 +60,13 @@ function MWPopup({ title, userId, button, worldId }) {
   useEffect(() => {
     // console.log("check world info ", worldInfo);
     // check that members is not undefined otherwise it will throw an error
-    if (worldInfo !== undefined) {
+    if (worldInfo !== undefined && worldInfo !== null) {
       setLoading(false);
       // console.log("check world info ", worldInfo);
       // loop through the members objects and create components to display them, set the members array at the end
       var arr = [];
-      if (worldInfo.Members != null) {
+     
+      if (worldInfo.Members !== null && worldInfo.Members !== undefined) {
         // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(worldInfo.Members)) {
           // console.log("check name ", value);
@@ -79,9 +81,14 @@ function MWPopup({ title, userId, button, worldId }) {
       // console.log("set them ", worldInfo.Name, worldInfo.Schedule);
       setName(worldInfo.Name);
       setSchedule(worldInfo.Schedule);
+      setInviteCode(worldInfo.Invite_Code);
       // console.log("check them ", name, schedule);
 
 
+    }
+    else{
+      console.log("reset loading");
+      setLoading(true);
     }
   }, [worldInfo]);
 
@@ -170,7 +177,7 @@ function MWPopup({ title, userId, button, worldId }) {
             <Form.Group className="mb-3" controlId="Code">
               <Form.Label>Invite Code</Form.Label>
               <Form.Control
-                value={worldInfo.Invite_Code}
+                value={inviteCode}
                 disabled={true}
             />
             </Form.Group>
