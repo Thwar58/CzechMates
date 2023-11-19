@@ -116,7 +116,7 @@ const Character = ({ charName, charId, userId }) => {
                     Edit
                 </Button>
                 {/* remove button with confirmation popup */}
-                <ConfirmationPopup id="removeButton" name="Remove" />
+                <ConfirmationPopup id="removeButton" action={{userId, charId}} name="Remove" type={'removeChara'} />
                 {/* print button */}
                 <Button variant="outline-secondary" id="button-addon2" onClick={printChar}>
                     Print
