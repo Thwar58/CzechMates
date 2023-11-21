@@ -45,6 +45,19 @@ const Character = ({ charName, charId, userId }) => {
         }
     }
 
+import SheetPage from "../../pages/sheetPage";
+import generatePDF, { Resolution, Margin, Options } from "react-to-pdf";
+
+
+// the character component
+const Character = ({ charName, charInfo }) => {
+    // handle page navigations
+    const navigate = useNavigate();
+    const navigateToGeneral = () => {
+        // navigate to /subCharacterPages
+        navigate('/subCharacterPages');
+    }
+
     const onAddBtnClick = event => {
         DBFunctions.writeCharacterData("User1", "CharID3", "test", "concept");
     };
@@ -63,19 +76,82 @@ const Character = ({ charName, charId, userId }) => {
         }
 
     }, [charInfo]);
+    /////////////////////////////////////////////////
+    
 
-    // this will be used later when we actually implement character removals
-    // it is in this file for testing purposes
-    // const removeOrEdit = event => {
-    //     // DBFunctions.removeFromDB('Characters/User1/CharID3/General');
-    //     DBFunctions.editInDB('Characters/User1/CharID3/General/Name', "test2");
-    //     // DBFunctions.removeFromDB('Users/User1/Followers/User7');
-    //     // const updates = {};
-    //     // updates['User/'] = "New Name";
-    //     // updates['Characters'] = "New Name";
-    //     // DBFunctions.updateMultPlaces(updates);
-    // };
+    const options = {
+        filename: "advanced-example.pdf",
+        method: "save",
+        // default is Resolution.MEDIUM = 3, which should be enough, higher values
+        // increases the image quality but also the size of the PDF, so be careful
+        // using values higher than 10 when having multiple pages generated, it
+        // might cause the page to crash or hang.
+        resolution: Resolution.EXTREME,
+        page: {
+        // margin is in MM, default is Margin.NONE = 0
+        margin: Margin.SMALL,
+        // default is 'A4'
+        format: "letter",
+        // default is 'portrait'
+        orientation: "landscape"
+        },
+        canvas: {
+        // default is 'image/jpeg' for better size performance
+        mimeType: "image/jpeg",
+        qualityRatio: 1
+        },
+        // Customize any value passed to the jsPDF instance and html2canvas
+        // function. You probably will not need this and things can break,
+        // so use with caution.
+        overrides: {
+        // see https://artskydj.github.io/jsPDF/docs/jsPDF.html for more options
+        pdf: {
+            compress: true
+        },
+        // see https://html2canvas.hertzen.com/configuration for more options
+        canvas: {
+            useCORS: true
+        }
+        }
+    };
+    
+    // you can also use a function to return the target element besides using React refs
+    const getTargetElement = () => document.getElementById("container");
+    
+    const downloadPdf = () => generatePDF(getTargetElement, options);
+    
+        /////////////////////////////////////////////////
+  
+    
+    function printChar() {
+        
+        const printWindow = window.open('', '', 'width=800,height=600');
+        const htmlContent = `
+        <div>
+        <SheetPage sheetInfo={charInfo} />
+        </div>
+  `;
 
+        // Set the content of the new window to the CSV data
+        printWindow.document.open();
+        printWindow.document.write(htmlContent);
+        printWindow.document.close();
+        
+        // Trigger the print dialog
+        printWindow.print();
+      }
+
+    const removeOrEdit = event => {
+        // DBFunctions.removeFromDB('Characters/User1/CharID3/General');
+        DBFunctions.editInDB('Characters/User1/CharID3/General/Name', "test2");
+        // DBFunctions.removeFromDB('Users/User1/Followers/User7');
+        // const updates = {};
+        // updates['User/'] = "New Name";
+        // updates['Characters'] = "New Name";
+        // DBFunctions.updateMultPlaces(updates);
+
+    };
+    
 
 
     // return a div with the character name and buttons for each option
