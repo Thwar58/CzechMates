@@ -13,6 +13,9 @@ import { child, get, ref, set, push, onValue } from "firebase/database";
 import { useState } from "react";
 import { useEffect } from "react";
 import '../themes.css'
+import SheetPage from "../../pages/sheetPage";
+import generatePDF, { Resolution, Margin, Options } from "react-to-pdf";
+
 
 
 // the character component
@@ -45,23 +48,6 @@ const Character = ({ charName, charId, userId }) => {
         }
     }
 
-import SheetPage from "../../pages/sheetPage";
-import generatePDF, { Resolution, Margin, Options } from "react-to-pdf";
-
-
-// the character component
-const Character = ({ charName, charInfo }) => {
-    // handle page navigations
-    const navigate = useNavigate();
-    const navigateToGeneral = () => {
-        // navigate to /subCharacterPages
-        navigate('/subCharacterPages');
-    }
-
-    const onAddBtnClick = event => {
-        DBFunctions.writeCharacterData("User1", "CharID3", "test", "concept");
-    };
-
     useEffect(() => {
         if (charInfo !== undefined){
             console.log("check char info ", charInfo);
@@ -76,8 +62,6 @@ const Character = ({ charName, charInfo }) => {
         }
 
     }, [charInfo]);
-    /////////////////////////////////////////////////
-    
 
     const options = {
         filename: "advanced-example.pdf",
@@ -120,8 +104,6 @@ const Character = ({ charName, charInfo }) => {
     
     const downloadPdf = () => generatePDF(getTargetElement, options);
     
-        /////////////////////////////////////////////////
-  
     
     function printChar() {
         
