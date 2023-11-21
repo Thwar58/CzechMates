@@ -6,16 +6,17 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-// import TypeAheadWithButton from "../TypeAheadWithButton";
 import TypeAhead from '../TypeAhead';
 import UEWithTwoButtons from '../UEWithTwoButtons';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue, update } from "firebase/database";
+import DBFunctions from "../../utils/firebaseQueries";
+const worldTemplate = require('../../utils/worldTemplate.json');
 
 // a function for the manage/add world modal, you pass in the title and the button display
 // input: the title of the popup, the button to trigger the modal, and the members to display
-function MWPopup({ title, userId, button, worldId }) {
+function AddWorldPopup({ title, userId, button }) {
   // sets the initial state of the modal to hidden
   const [show, setShow] = useState(false);
   // handles the opening and closing of the modal
@@ -23,38 +24,48 @@ function MWPopup({ title, userId, button, worldId }) {
   const handleShow = () => setShow(true);
   // a variable to set and track the members of a world
 
-  // var [worldId] = useState(worldId);
+  var [worldId, setWorldId] = useState();
   var [worldInfo, setWorldInfo] = useState();
   var [mems, setMems] = useState();
   var [loading, setLoading] = useState(true);
   var [name, setName] = useState();
-  var [inviteCode, setInviteCode] = useState();
   var [schedule, setSchedule] = useState();
+  var [inviteCode, setInviteCode] = useState();
   var [friendInfo, setFriendInfo] = useState();
   const worldRef = ref(db);
 
+  function addWorld() {
+    // console.log("add a world")
+    if (userId !== undefined) {
+      setWorldId(DBFunctions.createNewWorld(worldTemplate, userId));
+    }
+  }
 
+  
 
   useEffect(() => {
+    // console.log("world id changed");
+    // console.log("check world info ", worldInfo);
+    // check that members is not undefined otherwise it will throw an error
     if (worldId !== undefined) {
-      // use this path and onValue monitors for changes
-      const worldRef = ref(db, 'Worlds/' + worldId);
-      onValue(worldRef, (snapshot) => {
-        setWorldInfo(snapshot.val());
-      });
-
+       // use this path and onValue monitors for changes
+       const worldRef = ref(db, 'Worlds/' + worldId);
+       onValue(worldRef, (snapshot) => {
+         setWorldInfo(snapshot.val());
+       });
+      //  console.log("world info ", worldInfo)
       const userFriendRef = ref(db, 'Users/' + userId + "/Friends");
       onValue(userFriendRef, (snapshot) => {
         setFriendInfo(snapshot.val());
       });
 
+ 
+       handleShow();
 
     }
-
-
   }, [worldId]);
 
-
+  
 
   // when members changes, this is triggered
   useEffect(() => {
@@ -62,40 +73,38 @@ function MWPopup({ title, userId, button, worldId }) {
     // check that members is not undefined otherwise it will throw an error
     if (worldInfo !== undefined && worldInfo !== null) {
       setLoading(false);
+      console.log(worldInfo);
       // console.log("check world info ", worldInfo);
       // loop through the members objects and create components to display them, set the members array at the end
       var arr = [];
-     
-      if (worldInfo.Members !== null && worldInfo.Members !== undefined) {
+      // console.log("check WI for members ", worldInfo);
+      if (worldInfo.Members != null && worldInfo.Members !== undefined) {
         // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(worldInfo.Members)) {
           // console.log("check name ", value);
           // pass in the key, the character name, and the id of who created the character
-          arr.push(<UEWithTwoButtons key={key} charId={key} worldId={worldId} charName={value.Name} creatorId={value.CreatorId} button1={"View"} button2={"Remove"} />);
+          arr.push(<UEWithTwoButtons key={key} charId={key} charName={value} button1={"View"} button2={"Remove"} />);
         }
         setMems(arr);
-      } else{
+      
+      }
+      else{
         setMems(<h1>You have no members yet</h1>)
     }
+        // console.log("set them ", worldInfo.Name, worldInfo.Schedule);
+        setName(worldInfo.Name);
+        setSchedule(worldInfo.Schedule);
+        setInviteCode(worldInfo.Invite_Code);
+        // console.log("check them ", name, schedule);
 
-      // console.log("set them ", worldInfo.Name, worldInfo.Schedule);
-      setName(worldInfo.Name);
-      setSchedule(worldInfo.Schedule);
-      setInviteCode(worldInfo.Invite_Code);
-      // console.log("check them ", name, schedule);
 
 
-    }
-    else{
-      console.log("reset loading");
-      setLoading(true);
     }
   }, [worldInfo]);
 
-  // // when the form value changes, this is triggered
+  // // // when the form value changes, this is triggered
   useEffect(() => {
     if (name !== undefined && schedule !== undefined) {
-
       // take the label value and replace any spaces with underscores to match the db naming system
       // var underScoreAdded = label.replace(/ /g, "_");
       // ignore the modification slots for now (it is broken and needs to be fixed)
@@ -122,7 +131,9 @@ function MWPopup({ title, userId, button, worldId }) {
   // render the blank loading screen if loading is true
   if (loading) {
     return (
-      <div></div>
+      <Button variant="primary" onClick={addWorld}>
+        {button}
+      </Button>
     )
   }
 
@@ -130,7 +141,7 @@ function MWPopup({ title, userId, button, worldId }) {
   return (
     <>
       {/* the button that triggers the modal */}
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={addWorld}>
         {button}
       </Button>
 
@@ -171,6 +182,7 @@ function MWPopup({ title, userId, button, worldId }) {
             {/* future: decide on search bar */}
             <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>
+            
               <TypeAhead action={"sendWorldInvite"} friendInfo={friendInfo}/> 
             </Form.Group>
             {/* the search code */}
@@ -194,4 +206,4 @@ function MWPopup({ title, userId, button, worldId }) {
   );
 }
 
-export default MWPopup;
+export default AddWorldPopup;

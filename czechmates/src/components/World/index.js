@@ -4,10 +4,30 @@ import ViewWorldPopup from '../ViewWorldPopup';
 import ManageWorldPopup from '../ManageWorldPopup';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { useState } from "react";
+import { useEffect } from "react";
 
 // a component to display the worlds with their button options
 // input: the world name and the members
-const World = ({ worldName, members }) => {
+const World = ({ worldName, userId, type, worldId }) => {
+
+    var [ownOrJoin, setOwnOrJoin] = useState();
+    
+
+    useEffect(() => {
+
+        if (type === "created"){
+            setOwnOrJoin([<ManageWorldPopup key={"MWP"} userId={userId} worldId={worldId}  title="World Name" button={"Manage"} />,
+            <ConfirmationPopup type={"removeWorld"} action={{userId, worldId}} key={"CP"} name={"Remove"} />])
+        }
+        else if (type === "joined"){
+            setOwnOrJoin([<ViewWorldPopup key={"VWP"} worldId={worldId} name={"World Name"} />, 
+            <ConfirmationPopup type={"leaveWorld"} action={{userId, worldId}} key={"CP"} name={"Leave"} />])
+        }
+
+    }, [type]);
+
+   
 
     return (
         <>
@@ -21,11 +41,11 @@ const World = ({ worldName, members }) => {
                     disabled={true}
                 />
                 {/* pass members to the manage world popup */}
-                <ManageWorldPopup members={members} title="World Name" button={"Manage"} />
+                {ownOrJoin}
                 {/* pass members to the view world popup */}
-                <ViewWorldPopup members={members} name={"World Name"} />
+                
                 {/* have a confirmation popup for leaving or removing a world */}
-                <ConfirmationPopup name={"Remove/Leave"} />
+               
             </InputGroup>
         </>
     );
