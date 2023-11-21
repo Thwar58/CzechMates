@@ -28,9 +28,9 @@ const CharactersPage = ({ userId }) => {
 
     // a function that adds a character to the database
     function addChara() {
-        console.log("char info ", charInfo);
-        console.log("chars ", chars);
-        if (charInfo !== undefined){
+        // console.log("char info ", charInfo);
+        // console.log("chars ", chars);
+        if (charInfo !== undefined) {
             var newId = DBFunctions.newCreateNewCharacter(charTemplate, userId, "");
         }
         // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
@@ -44,7 +44,7 @@ const CharactersPage = ({ userId }) => {
         if (userId !== undefined) {
             const charRef = ref(db, 'CharacterUserRel/' + userId);
             onValue(charRef, (snapshot) => {
-                console.log("repeated? ", snapshot.val());
+                // console.log("repeated? ", snapshot.val());
                 setCharInfo(snapshot.val());
             });
         }
@@ -55,11 +55,17 @@ const CharactersPage = ({ userId }) => {
     useEffect(() => {
         // loop through the characters information and make components for them
         var arr = [];
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-        for (const [key, value] of Object.entries(charInfo)) {
-            arr.push(<Character userId={userId} key={key} charId={key} charName={value} />);
+        if (charInfo !== null) {
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+            for (const [key, value] of Object.entries(charInfo)) {
+                arr.push(<Character userId={userId} key={key} charId={key} charName={value} />);
+            }
+            setChars(arr);
         }
-        setChars(arr);
+        else{
+            setChars(<h1>You have no characters yet</h1>)
+        }
+
     }, [charInfo]);
 
     // sets the loading screen to false once the data loads

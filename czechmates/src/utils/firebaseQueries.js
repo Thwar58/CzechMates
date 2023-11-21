@@ -52,6 +52,20 @@ var DBFunctions = {
         return newPostKey;
     },
 
+     // add a character to the database (used for copy as well as addition)
+     createNewWorld: function (worldTemplate, userId) {
+        // Get a key for a new Post.
+        const newPostKey = push(child(ref(db), 'posts')).key;
+
+        // Write the new post's data simultaneously in the posts list and the user's post list.
+        const updates = {};
+        updates['Worlds/' + newPostKey] = worldTemplate;
+        updates[`WorldUserRel/${userId}/Created/${newPostKey}`] = "";
+        // const newPostKey = push(child(ref(db), 'posts')).key;
+        update(ref(db), updates);
+        return newPostKey;
+    },
+
     //   // add a character to the database (used for copy as well as addition)
     //   newCreateCopy: function (charTemplate, userId, charId) {
     //     // Get a key for a new Post.
