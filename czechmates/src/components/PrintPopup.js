@@ -30,9 +30,9 @@ function PrintPopup(props) {
 
   useEffect(() => {
     if (charInfo !== undefined){
-        console.log("check char info ", charInfo);
+        // console.log("check char info ", charInfo);
         var copy = charInfo;
-        console.log("check copy ", copy);
+        // console.log("check copy ", copy);
     }
   
 }, [charInfo]);

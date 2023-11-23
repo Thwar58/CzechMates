@@ -26,6 +26,7 @@ const CharactersPage = ({ userId }) => {
     // a usestate for the loading conditional rendering
     const [loading, setLoading] = useState(true);
 
+
     // a function that adds a character to the database
     function addChara() {
         // console.log("char info ", charInfo);
@@ -99,7 +100,7 @@ const CharactersPage = ({ userId }) => {
                 </Row>
                 <Row>
                     {/* the dropdown for sorting selection */}
-                    <DropDownShowsValue text="Order by..." actions={["level", "recently used", "alphabetically"]} />
+                    <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} />
                 </Row>
                 {/* loading in the character components */}
                 <Row>
