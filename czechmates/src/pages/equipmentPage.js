@@ -10,7 +10,7 @@ import TextareaPage from "../components/TextArea";
 
 // this component houses the content for the character equipment
 // input: the equipment information for a character
-const EquipmentPage = ({ equipInfo }) => {
+const EquipmentPage = ({ equipInfo, charId, userId }) => {
 
     // future: pass in information instead of using dummy data
     const dummyWep = ["Beginner Bow", "Beginner Sword", "Beginner Spear", "Epic Healing Staff"];
@@ -73,7 +73,7 @@ const EquipmentPage = ({ equipInfo }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <TextareaPage title={"Inventory"}></TextareaPage>
+                    <TextareaPage charId={charId} userId={userId} content={equipInfo?.Inventory} title={"Inventory"}></TextareaPage>
                 </Row>
             </Container>
         </div>

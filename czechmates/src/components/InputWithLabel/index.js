@@ -43,7 +43,7 @@ const InputWithLabel = ({ label, content, disabled, category, userId, charId }) 
                     updates[`CharacterUserRel/${userId}/${charId}/Name`] = formValue;
                     // need to update world member names here?
                 }
-                // console.log(updates);
+                console.log(updates);
                 update(charRef, updates);
             } 
             
