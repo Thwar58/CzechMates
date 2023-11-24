@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NewTable from "../components/NewTable";
+import TextareaPage from "../components/TextArea";
 
 // this component has all of the character information, uneditable
 // input: all of the info for a character
@@ -105,6 +106,11 @@ const SheetPage = ({ sheetInfo }) => {
                     <Col>
                         <InputWithLabel category={"Equipment"} label={"Armor Mod 1"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot1} disabled={true} />
                         <InputWithLabel category={"Equipment"} label={"Armor Mod 2"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot2} disabled={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    <TextareaPage disabled={true} content={sheetInfo?.Equipment.Inventory} title={"Inventory"}></TextareaPage>
                     </Col>
                 </Row>
                 <Row>

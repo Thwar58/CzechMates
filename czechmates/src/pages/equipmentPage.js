@@ -73,7 +73,7 @@ const EquipmentPage = ({ equipInfo, charId, userId }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <TextareaPage charId={charId} userId={userId} content={equipInfo?.Inventory} title={"Inventory"}></TextareaPage>
+                    <TextareaPage disabled={false} charId={charId} userId={userId} content={equipInfo?.Inventory} title={"Inventory"}></TextareaPage>
                 </Row>
             </Container>
         </div>

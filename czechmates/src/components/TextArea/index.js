@@ -6,7 +6,7 @@ import { useState } from "react";
 import { db } from '../../firebase';
 import { ref, update } from "firebase/database";
 
-const TextareaPage = ({ title, content, charId, userId }) => {
+const TextareaPage = ({ title, content, charId, disabled }) => {
 
     // the reference in the database used for the character
     const charRef = ref(db);
@@ -51,6 +51,7 @@ const TextareaPage = ({ title, content, charId, userId }) => {
                 // gets updated with the value from the form
                 // https://www.reddit.com/r/reactjs/comments/153ndzq/how_to_refer_to_an_input_field_by_its_id_in_react/
                 onChange={e => setFormValue(e.target.value)}
+                disabled={disabled}
                 className="form-control"
                 id="exampleFormControlTextarea1"
                 rows="5"
