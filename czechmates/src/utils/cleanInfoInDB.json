@@ -1,12 +1,24 @@
 {
   "CharacterUserRel": {
     "User1": {
-      "-NjZ_irEKeXCWx4aDlBd": "Char 1 from User1",
-      "-NjZ_nd66Gi1g17dtkow": "Char 2 from User1"
+      "-NjZ_irEKeXCWx4aDlBd": {
+        "Name": "Char 1 from User1",
+        "Level": 1
+      },
+      "-NjZ_nd66Gi1g17dtkow": {
+        "Name": "Char 2 from User1",
+        "Level": 10
+      }
     },
     "User2": {
-      "-NjZ_zWwQ-JkhnN1ne2e": "Char 3 from User2",
-      "-NjZa0JX9SCk25IkJ0PK": "Char 4 from User2"
+      "-NjZ_zWwQ-JkhnN1ne2e": {
+        "Name": "Char 3 from User2",
+        "Level": 0
+      },
+      "-NjZa0JX9SCk25IkJ0PK": {
+        "Name": "Char 4 from User2",
+        "Level": 0
+      }
     }
   },
   "Characters": {
@@ -49,7 +61,7 @@
         }
       },
       "General": {
-        "Level":0,
+        "Level": 0,
         "Aspect_1": "",
         "Aspect_2": "",
         "Background": "",
@@ -123,7 +135,7 @@
         }
       },
       "General": {
-        "Level":0,
+        "Level": 0,
         "Aspect_1": "",
         "Aspect_2": "",
         "Background": "",
@@ -197,7 +209,7 @@
         }
       },
       "General": {
-        "Level":0,
+        "Level": 0,
         "Aspect_1": "",
         "Aspect_2": "",
         "Background": "",
@@ -271,7 +283,7 @@
         }
       },
       "General": {
-        "Level":0,
+        "Level": 0,
         "Aspect_1": "",
         "Aspect_2": "",
         "Background": "",
@@ -333,7 +345,7 @@
         "-NjZ_pgPtqBp2LGYqcIN": "World 1 from User1",
         "-NjZ_sVMxtv6-97sG-Ut": "World 2 from User1"
       },
-      "Joined":{
+      "Joined": {
         "-NjZa2l16-yrZh8mFJDQ": "World 3 from User2",
         "-NjZa4b-AoYE2DtmzsyM": "World 4 from User2"
       }
@@ -343,7 +355,7 @@
         "-NjZa2l16-yrZh8mFJDQ": "World 3 from User2",
         "-NjZa4b-AoYE2DtmzsyM": "World 4 from User2"
       },
-      "Joined":{
+      "Joined": {
         "-NjZ_pgPtqBp2LGYqcIN": "World 1 from User1",
         "-NjZ_sVMxtv6-97sG-Ut": "World 2 from User1"
       }
@@ -355,7 +367,7 @@
       "Name": "World 1 from User1",
       "Schedule": "",
       "Members": {
-        "-NjZ_zWwQ-JkhnN1ne2e":{
+        "-NjZ_zWwQ-JkhnN1ne2e": {
           "Name": "Char 3 from User2",
           "CreatorId": "User2"
         }
@@ -366,7 +378,7 @@
       "Name": "World 2 from User1",
       "Schedule": "",
       "Members": {
-        "-NjZa0JX9SCk25IkJ0PK":{
+        "-NjZa0JX9SCk25IkJ0PK": {
           "Name": "Char 4 from User2",
           "CreatorId": "User2"
         }
@@ -387,8 +399,8 @@
       "Invite_Code": "",
       "Name": "World 4 from User2",
       "Schedule": "",
-      "Members":{
-        "-NjZ_nd66Gi1g17dtkow":{
+      "Members": {
+        "-NjZ_nd66Gi1g17dtkow": {
           "Name": "Char 2 from User1",
           "CreatorId": "User1"
         }

@@ -60,6 +60,7 @@ function DropDownShowsValue({ setShown, worlds, setWorldDisplay, chars, setChars
 
   function levelSort(){
     var newOrder = [...chars];
+    console.log(newOrder);
     setChars(newOrder.sort((a, b) => b.props.lvl - a.props.lvl ));
    
   }
@@ -71,7 +72,6 @@ function DropDownShowsValue({ setShown, worlds, setWorldDisplay, chars, setChars
       }
       else if (value == "level"){
         levelSort();
-
       }
     }
     else if (type === "world") {
