@@ -25,6 +25,20 @@
     color: var(--text-color);
   }
 
+  .mwPopupLeft {
+		width: 100%;
+    float: left;
+  }
+  .mwPopupCenter {
+		width: 100%;
+    float: none;
+  }
+  .mwPopupRight {
+		width: 100%;
+    float: right;
+  }
+
+
   .label {
     background-color: var(--secondary-color);
     color: var(--text-color);
