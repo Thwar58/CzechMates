@@ -40,8 +40,10 @@ const InputWithLabel = ({ label, content, disabled, category, userId, charId }) 
                 // and set it to the value in the form
                 updates[`Characters/${charId}/${category}/${underScoreAdded}`] = formValue;
                 if (label === "Name"){
-                    updates[`CharacterUserRel/${userId}/${charId}`] = formValue;
+                    updates[`CharacterUserRel/${userId}/${charId}/Name`] = formValue;
+                    // need to update world member names here?
                 }
+                console.log(updates);
                 update(charRef, updates);
             } 
             

@@ -33,6 +33,7 @@ const GeneralPage = ({ generalInfo, userId, charId }) => {
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         <InputWithLabel charId={charId} userId={userId} category={"General"} label={"Name"} content={generalInfo?.Name} disabled={false} />
+                        <InputWithLabel charId={charId} userId={userId} category={"General"} label={"Level"} content={generalInfo?.Level} disabled={true} />
                         <InputWithLabel charId={charId} userId={userId} category={"General"} label={"High Concept"} content={generalInfo?.High_Concept} disabled={false} />
                     </Col>
                 </Row>

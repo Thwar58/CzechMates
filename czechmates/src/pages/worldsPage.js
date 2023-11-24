@@ -21,7 +21,9 @@ const WorldPage = ({ userId }) => {
     // variables to track the world information and the loading state
     var [worldInfo, setWorldInfo] = useState();
     var [worlds, setWorlds] = useState([]);
+    var [worldDisplay, setWorldDisplay] = useState();
     const [loading, setLoading] = useState(true);
+    
 
     // query the database for the user's worlds when the userid changes
     useEffect(() => {
@@ -56,6 +58,7 @@ const WorldPage = ({ userId }) => {
             }
             console.log("after both looped");
             setWorlds(arr);
+           
         }
         else {
             setWorlds(<h1>You have no worlds yet</h1>)
@@ -70,6 +73,13 @@ const WorldPage = ({ userId }) => {
         }
         // console.log(worldInfo);
     }, [worldInfo]);
+
+    useEffect(() => {
+        if (worlds !== undefined) {
+            setWorldDisplay(worlds);
+        }
+        // console.log(worldInfo);
+    }, [worlds]);
 
 
     // render the blank loading screen if loading is true
@@ -96,7 +106,8 @@ const WorldPage = ({ userId }) => {
                 <Row>
                     {/* dropdown for world sorting options */}
                     <Col md={5}>
-                        <DropDownShowsValue text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
+                    {/* <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} /> */}
+                        <DropDownShowsValue type={"world"} worlds={worlds} worldDisplay={worldDisplay} setWorldDisplay={setWorldDisplay} text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
                     </Col>
                     <Col style={{ textAlign: "right" }} md={7}>
                         {/* the invite code input section */}
@@ -117,7 +128,7 @@ const WorldPage = ({ userId }) => {
                 <Row>
                     <div>
                         {
-                            worlds
+                            worldDisplay
                         }
                     </div>
                     {/* this brings up the modal for creating a world */}

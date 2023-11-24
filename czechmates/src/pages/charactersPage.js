@@ -26,6 +26,7 @@ const CharactersPage = ({ userId }) => {
     // a usestate for the loading conditional rendering
     const [loading, setLoading] = useState(true);
 
+
     // a function that adds a character to the database
     function addChara() {
         // console.log("char info ", charInfo);
@@ -58,7 +59,7 @@ const CharactersPage = ({ userId }) => {
         if (charInfo !== null) {
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(charInfo)) {
-                arr.push(<Character userId={userId} key={key} charId={key} charName={value} />);
+                arr.push(<Character lvl={value.Level} userId={userId} key={key} charId={key} charName={value.Name} />);
             }
             setChars(arr);
         }
@@ -99,7 +100,7 @@ const CharactersPage = ({ userId }) => {
                 </Row>
                 <Row>
                     {/* the dropdown for sorting selection */}
-                    <DropDownShowsValue text="Order by..." actions={["level", "recently used", "alphabetically"]} />
+                    <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} />
                 </Row>
                 {/* loading in the character components */}
                 <Row>

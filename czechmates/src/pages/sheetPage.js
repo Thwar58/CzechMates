@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NewTable from "../components/NewTable";
+import TextareaPage from "../components/TextArea";
 
 // this component has all of the character information, uneditable
 // input: all of the info for a character
@@ -39,27 +40,40 @@ const SheetPage = ({ sheetInfo }) => {
                         <InputWithLabel category={"General"} label={"Name"} content={sheetInfo?.General?.Name} disabled={true} />
                     </Col>
                     <Col>
+                        <InputWithLabel category={"General"} label={"Level"} content={sheetInfo?.Level} disabled={true} />
+
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
                         <InputWithLabel category={"General"} label={"High Concept"} content={sheetInfo?.General?.High_Concept} disabled={true} />
                     </Col>
-                </Row>
-                <Row>
                     <Col>
                         <InputWithLabel category={"General"} label={"Trouble"} content={sheetInfo?.General?.Trouble} disabled={true} />
-                    </Col>
-                    <Col>
-                        <InputWithLabel category={"General"} label={"Aspect 1"} content={sheetInfo?.General?.Aspect_1} disabled={true} />
+
+
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel category={"General"} label={"Aspect 2"} content={sheetInfo?.General?.Aspect_2} disabled={true} />
+                        <InputWithLabel category={"General"} label={"Aspect 1"} content={sheetInfo?.General?.Aspect_1} disabled={true} />
+
                     </Col>
+                    <Col>
+                        <InputWithLabel category={"General"} label={"Aspect 2"} content={sheetInfo?.General?.Aspect_2} disabled={true} />
+
+                    </Col>
+                </Row>
+                <Row>
                     <Col>
                         <InputWithLabel category={"General"} label={"Fate Points"} content={sheetInfo?.General?.Fate_Points} disabled={true} />
                     </Col>
+                    <Col>
+                        <InputWithLabel category={"General"} label={"Money"} content={sheetInfo?.General?.Money} disabled={true} />
+                    </Col>
                 </Row>
                 <Row>
-                    <InputWithLabel category={"General"} label={"Money"} content={sheetInfo?.General?.Money} disabled={true} />
+
                     <InputWithLabel category={"General"} label={"Physical Appearance"} content={sheetInfo?.General?.Physical_Appearance} disabled={true} />
                     <InputWithLabel category={"General"} label={"Background"} content={sheetInfo?.General?.Background} disabled={true} />
                     <InputWithLabel category={"General"} label={"Major Relationships"} content={sheetInfo?.General?.Major_Relationships} disabled={true} />
@@ -92,6 +106,11 @@ const SheetPage = ({ sheetInfo }) => {
                     <Col>
                         <InputWithLabel category={"Equipment"} label={"Armor Mod 1"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot1} disabled={true} />
                         <InputWithLabel category={"Equipment"} label={"Armor Mod 2"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot2} disabled={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    <TextareaPage disabled={true} content={sheetInfo?.Equipment.Inventory} title={"Inventory"}></TextareaPage>
                     </Col>
                 </Row>
                 <Row>

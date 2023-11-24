@@ -18,17 +18,23 @@ function SkillsComp({ value, name, charId }) {
     // increases the value for the specific skill in the database
     // https://firebase.google.com/docs/database/web/read-and-write
     function increase() {
-        const updates = {};
-        updates['Characters/'+ charId + "/Skills/" + name] = increment(1);
-        update(charRef, updates);
+        if (value < 8){
+            const updates = {};
+            updates['Characters/'+ charId + "/Skills/" + name] = increment(1);
+            update(charRef, updates);
+        }
+       
     }
 
     // decreases the skill for the specific skill in the database
     // https://firebase.google.com/docs/database/web/read-and-write
     function decrease() {
-        const updates = {};
-        updates['Characters/' + charId + "/Skills/" + name] = increment(-1);
-        update(charRef, updates);
+        if (value > 0){
+            const updates = {};
+            updates['Characters/' + charId + "/Skills/" + name] = increment(-1);
+            update(charRef, updates);
+        }
+        
     }
 
     return (

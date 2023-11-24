@@ -4,6 +4,7 @@ const sample = require('./firebaseInfo.json');
 // future: these will be passed into the functions individually
 var skills = sample.Users[0].Characters[0].Skills;
 var attributes = sample.Users[0].Characters[0].Attributes;
+var level = sample.User[0].Characters[0].General.Level;
 
 // https://stackoverflow.com/questions/18899873/multiple-functions-inside-variable
 // these all use the global skills and attributes for ease right now, that will change in the future
@@ -62,11 +63,11 @@ var Func = {
         console.log("max ap");
     },
     calcMaxVigor: function () {
-        attributes['Max Vigor'] = 2 * (attributes['Magic Reach'] + attributes.Endurance) + 0; // change 0 to character level later
+        attributes['Max Vigor'] = 2 * (attributes['Magic Reach'] + attributes.Endurance) + level; // change 0 to character level later
         console.log("max vigor");
     },
     calcMaxResolve: function () {
-        attributes['Max Resolve'] = 2 * attributes.Health + 3 * 0; //change 0 to character level later
+        attributes['Max Resolve'] = 2 * attributes.Health + 3 * level; //change 0 to character level later
         console.log("max resolve");
     },
     calcMagicRange: function () {
