@@ -117,6 +117,7 @@ const SheetPage = ({ sheetInfo }) => {
                     {/* skills information in a table */}
                     <p style={{ textAlign: "center" }}>Skills</p>
                     <NewTable data={sheetInfo.Skills} type={"Skills"}></NewTable>
+                    <TextareaPage disabled={true} content={sheetInfo?.Skills.Learned_Abilities} title={"Learned Abilities"}></TextareaPage>
                 </Row>
                 <Row>
                     {/* attributes information in a table */}
