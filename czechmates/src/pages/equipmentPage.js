@@ -6,6 +6,7 @@ import DropDownShowsValue from "../components/DropDownShowsValue";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import TextareaPage from "../components/TextArea";
 
 // this component houses the content for the character equipment
 // input: the equipment information for a character
@@ -70,6 +71,9 @@ const EquipmentPage = ({ equipInfo }) => {
                         <InputWithLabel category={"Equipment"} label={"Slot 1"} content={equipInfo?.Armor_Modification_Slots.Slot1} disabled={false} />
                         <InputWithLabel category={"Equipment"} label={"Slot 2"} content={equipInfo?.Armor_Modification_Slots.Slot2} disabled={false} />
                     </Col>
+                </Row>
+                <Row>
+                    <TextareaPage title={"Inventory"}></TextareaPage>
                 </Row>
             </Container>
         </div>
