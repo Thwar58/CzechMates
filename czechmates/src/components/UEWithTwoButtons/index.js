@@ -26,6 +26,8 @@ function UEWithTwoButtons({ charId, creatorId, worldId, charName, setAlign}) {
                 
                 <ViewCharaPopup
                  setAlign={setAlign}
+                 charId={charId}
+                 userId={creatorId}
                 >
                    
                 </ViewCharaPopup>

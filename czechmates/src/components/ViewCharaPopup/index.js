@@ -3,12 +3,14 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { getDatabase, ref, child, update, get } from "firebase/database";
+import { getDatabase, ref, child, update, get, onValue } from "firebase/database";
 import { db } from '../../firebase';
+import SheetPage from '../../pages/sheetPage';
+import { useEffect } from 'react';
 
 // a component for the confirmation modal
-function ViewCharaPopup({setAlign}) {
-
+function ViewCharaPopup({setAlign, charId, userId}) {
+  // get char info in here with db query similar to sub pages for sheet
   console.log("set align in viewchara", setAlign);
   // sets the default state of the modal
   const [show, setShow] = useState(false);
@@ -16,6 +18,21 @@ function ViewCharaPopup({setAlign}) {
   // handles opening and closing the modal
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  var [charInfo, setCharInfo] = useState("");
+
+  useEffect(() => {
+    if (charId !== undefined){
+        // console.log("check char id in sub", charId);
+         // use this path and onValue monitors for changes
+    const charRef = ref(db, 'Characters/' + charId);
+    onValue(charRef, (snapshot) => {
+        setCharInfo(snapshot.val());
+    });
+
+    }
+   
+
+}, [userId, charId]);
 
   function closeAndAlign(){
     handleClose();
@@ -36,14 +53,14 @@ function ViewCharaPopup({setAlign}) {
         {"View"}
       </Button>
       {/* the modal with the information */}
-      <Modal dialogClassName={"mwPopupRight"} id={"Modal" + "name"} show={show} onHide={closeAndAlign}>
+      <Modal dialogClassName={"mwPopupRight modal-90w "} id={"Modal" + "name"} show={show} onHide={closeAndAlign}>
         <Modal.Header closeButton>
           {/* modal title */}
           <Modal.Title>Confirm (action)</Modal.Title>
         </Modal.Header>
         {/* modal body */}
         <Modal.Body>
-          <p>(Message asking if the user is sure of their choice)</p>
+        <SheetPage sheetInfo={charInfo} charId={charId} userId={userId} />
         </Modal.Body>
         {/* modal footer with the closing buttons */}
         <Modal.Footer>
