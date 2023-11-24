@@ -1,10 +1,13 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
+import ViewCharaPopup from '../ViewCharaPopup';
 
 // component to display an input that is not editable
 // input: the value of the input and the creator id for later use
-function UEInput({ value }) {
+function UEInput({ value, setAlign, userId, charId }) {
+
+
 
     return (
         <>
@@ -14,9 +17,11 @@ function UEInput({ value }) {
                     value={value}
                     disabled={true}
                 />
-                <Button variant="outline-secondary" id="button-addon2">
-                    View
-                </Button>
+                <ViewCharaPopup
+                setAlign={setAlign}
+                charId={charId}
+                userId={userId}
+                ></ViewCharaPopup>
             </InputGroup>
         </>
     );

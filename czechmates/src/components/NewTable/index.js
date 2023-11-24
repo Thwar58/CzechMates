@@ -19,11 +19,14 @@ function NewTable({ data, type }) {
             var arr = [];
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [oldKey, value] of Object.entries(data)) {
-                // replace the underscores with spaces to make it prettier
-                var key = oldKey.replace(/_/g, " ");
-                // push the objects 
-                // IMPORTANT!! the name of the variables you pass in will be the names of the attributes
-                arr.push({ key, value });
+                if (oldKey != "Learned_Abilities") {
+                    // replace the underscores with spaces to make it prettier
+                    var key = oldKey.replace(/_/g, " ");
+                    // push the objects 
+                    // IMPORTANT!! the name of the variables you pass in will be the names of the attributes
+                    arr.push({ key, value });
+                }
+
             }
             setDataArr(arr);
         }

@@ -31,7 +31,12 @@ function MWPopup({ title, userId, button, worldId }) {
   var [inviteCode, setInviteCode] = useState();
   var [schedule, setSchedule] = useState();
   var [friendInfo, setFriendInfo] = useState();
+  var [align, setAlign] = useState("mwPopupCenter");
   const worldRef = ref(db);
+
+  function testAlign(){
+    setAlign("mwPopupLeft");
+  }
 
 
 
@@ -71,7 +76,8 @@ function MWPopup({ title, userId, button, worldId }) {
         for (const [key, value] of Object.entries(worldInfo.Members)) {
           // console.log("check name ", value);
           // pass in the key, the character name, and the id of who created the character
-          arr.push(<UEWithTwoButtons key={key} charId={key} worldId={worldId} charName={value.Name} creatorId={value.CreatorId} button1={"View"} button2={"Remove"} />);
+          arr.push(<UEWithTwoButtons key={key} charId={key} worldId={worldId} charName={value.Name} creatorId={value.CreatorId} 
+            setAlign={setAlign} />);
         }
         setMems(arr);
       } else{
@@ -135,7 +141,7 @@ function MWPopup({ title, userId, button, worldId }) {
       </Button>
 
       {/* the modal */}
-      <Modal show={show} onHide={handleClose}>
+      <Modal dialogClassName={align} show={show} onHide={handleClose}>
         {/* set the modal header */}
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
@@ -187,6 +193,9 @@ function MWPopup({ title, userId, button, worldId }) {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
+          </Button>
+          <Button variant="secondary" onClick={testAlign}>
+            Test
           </Button>
         </Modal.Footer>
       </Modal>

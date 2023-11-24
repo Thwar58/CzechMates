@@ -31,6 +31,9 @@ const TextareaPage = ({ title, content, charId, disabled }) => {
         if (title == "Inventory"){
             updates[`Characters/${charId}/Equipment/${underScoreAdded}`] = formValue;
         }
+        else if (title == "Learned Abilities"){
+            updates[`Characters/${charId}/Skills/${underScoreAdded}`] = formValue;
+        }
         // ignore the modification slots for now (it is broken and needs to be fixed)
         // make an object to store the different paths that need to be updated
         

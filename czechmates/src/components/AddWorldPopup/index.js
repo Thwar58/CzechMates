@@ -83,7 +83,7 @@ function AddWorldPopup({ title, userId, button }) {
         for (const [key, value] of Object.entries(worldInfo.Members)) {
           // console.log("check name ", value);
           // pass in the key, the character name, and the id of who created the character
-          arr.push(<UEWithTwoButtons key={key} charId={key} charName={value} button1={"View"} button2={"Remove"} />);
+          arr.push(<UEWithTwoButtons key={key} charId={key} charName={value} />);
         }
         setMems(arr);
       

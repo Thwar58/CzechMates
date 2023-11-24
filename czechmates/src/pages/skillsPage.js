@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from "react";
+import TextareaPage from "../components/TextArea";
 
 
 
@@ -16,6 +17,7 @@ const SkillsPage = ({ skillInfo, charId, userId }) => {
     // variables to track the skills and position them
     var [left, setLeft] = useState([]);
     var [right, setRight] = useState([]);
+    var [learnedAbilties, setLearnedAbilities] = useState([]);
 
     // when the skills information changes, this is triggered
     useEffect(() => {
@@ -24,8 +26,14 @@ const SkillsPage = ({ skillInfo, charId, userId }) => {
             var arr = [];
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(skillInfo)) {
-                // console.log(`${key}: `, value);
-                arr.push(<SkillsComp key={key} charId={charId} value={value} name={key} />);
+                if (key == "Learned_Abilities") {
+                    setLearnedAbilities([<TextareaPage charId={charId} key={"Learned Abilities"} disabled={false} content={value} title={"Learned Abilities"}></TextareaPage>])
+                }
+                else {
+                    // console.log(`${key}: `, value);
+                    arr.push(<SkillsComp key={key} charId={charId} value={value} name={key} />);
+                }
+
             }
             // splice the array for positioning
             var left = arr.slice(0, 8);
@@ -60,6 +68,11 @@ const SkillsPage = ({ skillInfo, charId, userId }) => {
                     </Col>
                     <Col>
                         {right}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    {learnedAbilties}
                     </Col>
                 </Row>
             </Container>

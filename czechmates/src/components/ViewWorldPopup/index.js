@@ -23,6 +23,7 @@ function VWPopup({ name, worldId }) {
   var [mems, setMems] = useState([]);
   var [worldInfo, setWorldInfo] = useState();
   var [loading, setLoading] = useState(true);
+  var [align, setAlign] = useState("mwPopupCenter");
 
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function VWPopup({ name, worldId }) {
         // loop through the member objects and create new components containing their information
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(worldInfo.Members)) {
-          arr.push(<UEInput key={key} value={value.Name} ></UEInput>);
+          arr.push(<UEInput charId={key} creatorId={value.CreatorId} setAlign={setAlign} key={key} value={value.Name} ></UEInput>);
         }
         setMems(arr);
       }
@@ -80,7 +81,7 @@ function VWPopup({ name, worldId }) {
       </Button>
 
       {/* the modal */}
-      <Modal show={show} onHide={handleClose}>
+      <Modal dialogClassName={align} show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{name}</Modal.Title>
         </Modal.Header>
