@@ -45,19 +45,19 @@
       "Equipment": {
         "Armor_Equipped": "",
         "Armor_Modification_Slots": {
-          "Slot0": "",
-          "Slot2": ""
+          "Slot_1": "",
+          "Slot_2": ""
         },
         "Inventory": "",
         "Shield_Equipped": "",
         "Shield_Modification_Slots": {
-          "Slot0": ""
+          "Slot_1": ""
         },
         "Weapon_Equipped": "",
         "Weapon_Modification_Slots": {
-          "Slot0": "",
-          "Slot2": "",
-          "Slot3": ""
+          "Slot_1": "",
+          "Slot_2": "",
+          "Slot_3": ""
         }
       },
       "General": {
@@ -119,19 +119,19 @@
       "Equipment": {
         "Armor_Equipped": "",
         "Armor_Modification_Slots": {
-          "Slot0": "",
-          "Slot2": ""
+          "Slot_1": "",
+          "Slot_2": ""
         },
         "Inventory": "",
         "Shield_Equipped": "",
         "Shield_Modification_Slots": {
-          "Slot0": ""
+          "Slot_1": ""
         },
         "Weapon_Equipped": "",
         "Weapon_Modification_Slots": {
-          "Slot0": "",
-          "Slot2": "",
-          "Slot3": ""
+          "Slot_1": "",
+          "Slot_2": "",
+          "Slot_3": ""
         }
       },
       "General": {
@@ -193,19 +193,19 @@
       "Equipment": {
         "Armor_Equipped": "",
         "Armor_Modification_Slots": {
-          "Slot0": "",
-          "Slot2": ""
+          "Slot_1": "",
+          "Slot_2": ""
         },
         "Inventory": "",
         "Shield_Equipped": "",
         "Shield_Modification_Slots": {
-          "Slot0": ""
+          "Slot_1": ""
         },
         "Weapon_Equipped": "",
         "Weapon_Modification_Slots": {
-          "Slot0": "",
-          "Slot2": "",
-          "Slot3": ""
+          "Slot_1": "",
+          "Slot_2": "",
+          "Slot_3": ""
         }
       },
       "General": {
@@ -267,19 +267,19 @@
       "Equipment": {
         "Armor_Equipped": "",
         "Armor_Modification_Slots": {
-          "Slot0": "",
-          "Slot2": ""
+          "Slot_1": "",
+          "Slot_2": ""
         },
         "Inventory": "",
         "Shield_Equipped": "",
         "Shield_Modification_Slots": {
-          "Slot0": ""
+          "Slot_1": ""
         },
         "Weapon_Equipped": "",
         "Weapon_Modification_Slots": {
-          "Slot0": "",
-          "Slot2": "",
-          "Slot3": ""
+          "Slot_1": "",
+          "Slot_2": "",
+          "Slot_3": ""
         }
       },
       "General": {

@@ -1,0 +1,50 @@
+{
+    "Weapons": {
+        "Epic Healing Staff":"Epic Healing Staff",
+        "Advanced Healing Staff":"Advanced Healing Staff",
+        "Basic Healing Staff":"Basic Healing Staff",
+        "Beginner Healing Staff":"Beginner Healing Staff",
+        "Epic Staff":"Epic Staff",
+        "Advanced Staff":"Advanced Staff",
+        "Basic Staff":"Basic Staff",
+        "Beginner Staff":"Beginner Staff",
+        "Epic Crossbow":"Epic Crossbow",
+        "Advanced Crossbow":"Advanced Crossbow",
+        "Basic Crossbow":"Basic Crossbow",
+        "Beginner Crossbow":"Beginner Crossbow",
+        "Epic Magic Bow":"Epic Magic Bow",
+        "Advanced Magic Bow":"Advanced Magic Bow",
+        "Basic Magic Bow":"Basic Magic Bow",
+        "Beginner Magic Bow":"Beginner Magic Bow",
+        "Epic Longbow":"Epic Longbow",
+        "Epic Bow":"Epic Bow",
+        "Advanced Longbow":"Advanced Longbow",
+        "Advanced Bow":"Advanced Bow",
+        "Basic Longbow":"Basic Longbow",
+        "Basic Bow":"Basic Bow",
+        "Beginner Longbow":"Beginner Longbow",
+        "Beginner Bow":"Beginner Bow",
+        "Epic Spear":"Epic Spear",
+        "Advanced Spear":"Advanced Spear",
+        "Basic Spear":"Basic Spear",
+        "Beginner Spear":"Beginner Spear",
+        "Epic Sword":"Epic Sword",
+        "Advanced sword":"Advanced sword",
+        "Basic Sword":"Basic Sword",
+        "Beginner Sword":"Beginner Sword" 
+    },
+    "Armor": {
+        "Light Armor":"Light Armor",
+        "Heavy Armor":"Heavy Armor",
+        "Mail Armor":"Mail Armor",
+        "Mithril Armor":"Mithril Armor",
+        "Magic Armor":"Magic Armor",
+        "Chain Magic Armor":"Chain Magic Armor",
+        "Heavy Magic Armor":"Heavy Magic Armor"
+    },
+    "Shields":{
+        "Shield":"Shield",
+        "Big Shield":"Big Shield",
+        "Tall Shield":"Tall Shield"
+    }
+}

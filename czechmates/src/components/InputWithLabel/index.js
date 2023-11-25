@@ -10,7 +10,7 @@ import { ref, update } from "firebase/database";
 // components that have a label and a placeholder and can be enabled or disabled
 // input: the label, the content of the input, whether it is disabled or not,
 // the type of input this is (i.e. Equipment, Skills), the userId, and the characterId
-const InputWithLabel = ({ label, content, disabled, category, userId, charId }) => {
+const InputWithLabel = ({type, label, content, disabled, category, userId, charId }) => {
 
     // the reference in the database used for the character
     const charRef = ref(db);
@@ -32,21 +32,21 @@ const InputWithLabel = ({ label, content, disabled, category, userId, charId }) 
         if (disabled === false) {
             // take the label value and replace any spaces with underscores to match the db naming system
             var underScoreAdded = label.replace(/ /g, "_");
+            const updates = {};
             // ignore the modification slots for now (it is broken and needs to be fixed)
             if (!underScoreAdded.includes("Slot")){
-                // make an object to store the different paths that need to be updated
-                const updates = {};
-                // use the path to the specific property that this form field maps to in the database
-                // and set it to the value in the form
                 updates[`Characters/${charId}/${category}/${underScoreAdded}`] = formValue;
-                if (label === "Name"){
-                    updates[`CharacterUserRel/${userId}/${charId}/Name`] = formValue;
-                    // need to update world member names here?
-                }
-                console.log(updates);
-                update(charRef, updates);
             } 
-            
+            else if (underScoreAdded.includes("Slot")){
+                updates[`Characters/${charId}/${category}/${type}_Modification_Slots/${underScoreAdded}`] = formValue;
+            }
+            if (label === "Name"){
+                updates[`CharacterUserRel/${userId}/${charId}/Name`] = formValue;
+                // need to update world member names here?
+            }
+
+            // console.log(updates);
+            update(charRef, updates);
         }
     }, [formValue]);
 
