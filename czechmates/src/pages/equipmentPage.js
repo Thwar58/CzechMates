@@ -7,13 +7,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TextareaPage from "../components/TextArea";
+import EquipmentDropdown from "../components/EquipmentDropdowns";
+const equipmentInfo = require('./../utils/equipment.json');
 
 // this component houses the content for the character equipment
 // input: the equipment information for a character
 const EquipmentPage = ({ equipInfo, charId, userId }) => {
 
     // future: pass in information instead of using dummy data
-    const dummyWep = ["Beginner Bow", "Beginner Sword", "Beginner Spear", "Epic Healing Staff"];
     const dummyShield = ["Shield", "Big Shield", "Tall Shield"];
     const dummyArmor = ["Magic Armor", "Chain Magic Armor", "Heavy Magic Armor"];
 
@@ -37,7 +38,8 @@ const EquipmentPage = ({ equipInfo, charId, userId }) => {
                     <Col>
                         {/* dropdown for the weapons */}
                         <Form.Label>Weapon</Form.Label>
-                        <DropDownShowsValue text="Equipped Weapon" actions={dummyWep} />
+                        {/* <DropDownShowsValue text="Equipped Weapon" actions={dummyWep} /> */}
+                        <EquipmentDropdown type={"Weapon"} userId={userId} charId={charId} options={equipmentInfo.Weapons} text={equipInfo.Weapon_Equipped} ></EquipmentDropdown>
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
@@ -51,7 +53,7 @@ const EquipmentPage = ({ equipInfo, charId, userId }) => {
                     <Col>
                         {/* dropdown for the shield */}
                         <Form.Label>Shield</Form.Label>
-                        <DropDownShowsValue text="Equipped Shield" actions={dummyShield} />
+                        <EquipmentDropdown type={"Shield"} userId={userId} charId={charId} options={equipmentInfo.Shields} text={equipInfo.Shield_Equipped} ></EquipmentDropdown>
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
@@ -63,7 +65,7 @@ const EquipmentPage = ({ equipInfo, charId, userId }) => {
                     <Col>
                         {/* dropdown for the armor */}
                         <Form.Label>Armor</Form.Label>
-                        <DropDownShowsValue text="Equipped Armor" actions={dummyArmor} />
+                        <EquipmentDropdown type={"Armor"} userId={userId} charId={charId} options={equipmentInfo.Armor} text={equipInfo.Armor_Equipped} ></EquipmentDropdown>
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}

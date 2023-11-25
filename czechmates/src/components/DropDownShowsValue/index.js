@@ -9,7 +9,7 @@ import { db } from '../../firebase';
 import { ref, onValue } from "firebase/database";
 
 // a dropdown that updates the text of the dropdown button with the selected option
-function DropDownShowsValue({ setShown, worlds, setWorldDisplay, chars, setChars, type, actions, text }) {
+function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, actions, text }) {
 
   // sets the default value of the dropdown button
   const [value, setValue] = useState(text);

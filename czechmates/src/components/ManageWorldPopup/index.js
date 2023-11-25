@@ -34,11 +34,6 @@ function MWPopup({ title, userId, button, worldId }) {
   var [align, setAlign] = useState("mwPopupCenter");
   const worldRef = ref(db);
 
-  function testAlign(){
-    setAlign("mwPopupLeft");
-  }
-
-
 
   useEffect(() => {
     if (worldId !== undefined) {
@@ -193,9 +188,6 @@ function MWPopup({ title, userId, button, worldId }) {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="secondary" onClick={testAlign}>
-            Test
           </Button>
         </Modal.Footer>
       </Modal>
