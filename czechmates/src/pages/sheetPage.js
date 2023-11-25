@@ -5,10 +5,63 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NewTable from "../components/NewTable";
 import TextareaPage from "../components/TextArea";
+import { useState } from "react";
+import { useEffect } from "react";
 
 // this component has all of the character information, uneditable
 // input: all of the info for a character
 const SheetPage = ({ sheetInfo }) => {
+
+    // var left = arr.slice(0, 8);
+    var [leftSkills, setLeftSkills] = useState();
+    var [rightSkills, setRightSkills] = useState();
+    var [leftAttr, setLeftAttr] = useState();
+    var [rightAttr, setRightAttr] = useState();
+    // var right = arr.slice(8);
+   
+
+     // when the skills information changes, this is triggered
+     useEffect(() => {
+        console.log(sheetInfo.Skills);
+        if (sheetInfo !== undefined) {
+            // loop through all the character's skills and make components for them
+            var arr = [];
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+            for (const [key, value] of Object.entries(sheetInfo.Skills)) {
+                    // console.log(`${key}: `, value);
+                    if (key != "Learned_Abilities"){
+                        arr.push({ key, value });
+                    }
+                   
+            }
+            // splice the array for positioning
+            var left = arr.slice(0, 8);
+            var right = arr.slice(8);
+            // assign the positioning variable
+            setLeftSkills(left);
+            setRightSkills(right);
+            console.log(left);
+            console.log(sheetInfo.Skills);
+        }
+
+        if (sheetInfo !== undefined) {
+            // loop through all the character's skills and make components for them
+            var arr = [];
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+            for (const [key, value] of Object.entries(sheetInfo.Attributes)) {
+                    // console.log(`${key}: `, value);
+                    arr.push({ key, value });
+            }
+            // splice the array for positioning
+            var left = arr.slice(0, 8);
+            var right = arr.slice(8);
+            // assign the positioning variable
+            setLeftAttr(left);
+            setRightAttr(right);
+        }
+
+    }, [sheetInfo.Skills]);
+
 
     return (
         <div>
@@ -86,26 +139,26 @@ const SheetPage = ({ sheetInfo }) => {
                         <InputWithLabel category={"Equipment"} label={"Equipped Weapon"} content={sheetInfo?.Equipment?.Weapon_Equipped} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel category={"Equipment"} label={"Weapon Mod 1"} content={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot1} disabled={true} />
-                        <InputWithLabel category={"Equipment"} label={"Weapon Mod 2"} content={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot2} disabled={true} />
-                        <InputWithLabel category={"Equipment"} label={"Weapon Mod 3"} content={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot3} disabled={true} />
+                    <InputWithLabel type={"Weapon"} category={"Equipment"} label={"Slot 1"} content={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot_1} disabled={true} />
+                        <InputWithLabel  type={"Weapon"} category={"Equipment"} label={"Slot 2"} content={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot_2} disabled={true} />
+                        <InputWithLabel  type={"Weapon"} category={"Equipment"} label={"Slot 3"} content={sheetInfo?.Equipment?.Weapon_Modification_Slots.Slot_3} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel category={"Equipment"} label={"Equipped Shield"} placeholder={sheetInfo?.Equipment?.Shield_Equipped} disabled={true} />
+                        <InputWithLabel category={"Equipment"} label={"Equipped Shield"} content={sheetInfo?.Equipment?.Shield_Equipped} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel category={"Equipment"} label={"Shield Mod 1"} placeholder={sheetInfo?.Equipment?.Shield_Modification_Slots.Slot1} disabled={true} />
+                    <InputWithLabel  type={"Shield"} category={"Equipment"} label={"Slot 1"} content={sheetInfo?.Equipment?.Shield_Modification_Slots.Slot_1} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel category={"Equipment"} label={"Equipped Armor"} placeholder={sheetInfo?.Equipment?.Armor_Equipped} disabled={true} />
+                        <InputWithLabel category={"Equipment"} label={"Equipped Armor"} content={sheetInfo?.Equipment?.Armor_Equipped} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel category={"Equipment"} label={"Armor Mod 1"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot1} disabled={true} />
-                        <InputWithLabel category={"Equipment"} label={"Armor Mod 2"} placeholder={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot2} disabled={true} />
+                    <InputWithLabel type={"Armor"} category={"Equipment"} label={"Slot 1"} content={sheetInfo?.Equipment?.Armor_Modification_Slots.Slot_1} disabled={true} />
+                        <InputWithLabel type={"Armor"} category={"Equipment"} label={"Slot 2"} content={sheetInfo?.Equipment.Armor_Modification_Slots.Slot_2} disabled={true} />
                     </Col>
                 </Row>
                 <Row>
@@ -116,14 +169,26 @@ const SheetPage = ({ sheetInfo }) => {
                 <Row>
                     {/* skills information in a table */}
                     <p style={{ textAlign: "center" }}>Skills</p>
-                    <NewTable data={sheetInfo.Skills} type={"Skills"}></NewTable>
+                    <Col>
+                    <NewTable data={leftSkills} type={"Skills"}></NewTable>
+                    </Col>
+                    <Col>
+                    <NewTable data={rightSkills} type={"Skills"}></NewTable>
+                    </Col>
+                    
                     <TextareaPage disabled={true} content={sheetInfo?.Skills.Learned_Abilities} title={"Learned Abilities"}></TextareaPage>
                 </Row>
                 <Row>
-                    {/* attributes information in a table */}
-                    <p style={{ textAlign: "center" }}>Equipment</p>
-                    <NewTable type={"Attribute"} data={sheetInfo.Attributes}></NewTable>
-                </Row>
+                <p style={{ textAlign: "center" }}>Equipment</p>
+                    <Col>
+                    <NewTable type={"Attribute"} data={leftAttr}></NewTable>
+                    </Col>
+                    <Col>
+                    <NewTable type={"Attribute"} data={rightAttr}></NewTable>
+                    </Col>
+                    </Row>
+                  
+                    
             </Container>
 
         </div>

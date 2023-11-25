@@ -45,7 +45,7 @@ const InputWithLabel = ({type, label, content, disabled, category, userId, charI
                 // need to update world member names here?
             }
 
-            console.log(updates);
+            // console.log(updates);
             update(charRef, updates);
         }
     }, [formValue]);
