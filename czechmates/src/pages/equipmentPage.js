@@ -44,9 +44,9 @@ const EquipmentPage = ({ equipInfo, charId, userId }) => {
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
                         <Form.Label>Weapon Modification Slots</Form.Label>
-                        <InputWithLabel category={"Equipment"} label={"Slot 1"} content={equipInfo?.Weapon_Modification_Slots.Slot1} disabled={false} />
-                        <InputWithLabel category={"Equipment"} label={"Slot 2"} content={equipInfo?.Weapon_Modification_Slots.Slot2} disabled={false} />
-                        <InputWithLabel category={"Equipment"} label={"Slot 3"} content={equipInfo?.Weapon_Modification_Slots.Slot3} disabled={false} />
+                        <InputWithLabel charId={charId} type={"Weapon"} category={"Equipment"} label={"Slot 1"} content={equipInfo?.Weapon_Modification_Slots.Slot_1} disabled={false} />
+                        <InputWithLabel charId={charId} type={"Weapon"} category={"Equipment"} label={"Slot 2"} content={equipInfo?.Weapon_Modification_Slots.Slot_2} disabled={false} />
+                        <InputWithLabel charId={charId} type={"Weapon"} category={"Equipment"} label={"Slot 3"} content={equipInfo?.Weapon_Modification_Slots.Slot_3} disabled={false} />
                     </Col>
                 </Row>
                 <Row style={{ borderBottom: "solid" }}>
@@ -58,7 +58,7 @@ const EquipmentPage = ({ equipInfo, charId, userId }) => {
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
                         <Form.Label>Shield Modification Slots</Form.Label>
-                        <InputWithLabel category={"Equipment"} label={"Slot 1"} content={equipInfo?.Shield_Modification_Slots.Slot1} disabled={false} />
+                        <InputWithLabel charId={charId} type={"Shield"} category={"Equipment"} label={"Slot 1"} content={equipInfo?.Shield_Modification_Slots.Slot_1} disabled={false} />
                     </Col>
                 </Row>
                 <Row style={{ borderBottom: "solid" }}>
@@ -70,8 +70,8 @@ const EquipmentPage = ({ equipInfo, charId, userId }) => {
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
                         <Form.Label>Armor Modification Slots</Form.Label>
-                        <InputWithLabel category={"Equipment"} label={"Slot 1"} content={equipInfo?.Armor_Modification_Slots.Slot1} disabled={false} />
-                        <InputWithLabel category={"Equipment"} label={"Slot 2"} content={equipInfo?.Armor_Modification_Slots.Slot2} disabled={false} />
+                        <InputWithLabel charId={charId} type={"Armor"} category={"Equipment"} label={"Slot 1"} content={equipInfo?.Armor_Modification_Slots.Slot_1} disabled={false} />
+                        <InputWithLabel charId={charId} type={"Armor"} category={"Equipment"} label={"Slot 2"} content={equipInfo?.Armor_Modification_Slots.Slot_2} disabled={false} />
                     </Col>
                 </Row>
                 <Row>
