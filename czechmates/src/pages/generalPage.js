@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 
 // this component houses the content for the general character info
 // input the general character information, the user id and the character id
-const GeneralPage = ({ generalInfo, userId, charId }) => {
+const GeneralPage = ({participation, generalInfo, userId, charId }) => {
 
     return (
         <div>
@@ -32,7 +32,7 @@ const GeneralPage = ({ generalInfo, userId, charId }) => {
                         <p>Image here</p>
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
-                        <InputWithLabel charId={charId} userId={userId} category={"General"} label={"Name"} content={generalInfo?.Name} disabled={false} />
+                        <InputWithLabel participation={participation} charId={charId} userId={userId} category={"General"} label={"Name"} content={generalInfo?.Name} disabled={false} />
                         <InputWithLabel charId={charId} userId={userId} category={"General"} label={"Level"} content={generalInfo?.Level} disabled={true} />
                         <InputWithLabel charId={charId} userId={userId} category={"General"} label={"High Concept"} content={generalInfo?.High_Concept} disabled={false} />
                     </Col>

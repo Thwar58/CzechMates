@@ -7,7 +7,7 @@ import { getDatabase, ref, child, update, get } from "firebase/database";
 import { db } from '../../firebase';
 
 // a component for the confirmation modal
-function ConfirmationPopup({ name, type, action }) {
+function ConfirmationPopup({title, content, name, type, action }) {
   // sets the default state of the modal
   const [show, setShow] = useState(false);
 
@@ -15,6 +15,7 @@ function ConfirmationPopup({ name, type, action }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const worldRef = ref(db);
+  var [title, setTitle] = useState(title);
 
 
 
@@ -154,11 +155,11 @@ function ConfirmationPopup({ name, type, action }) {
       <Modal id={"Modal" + name} show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           {/* modal title */}
-          <Modal.Title>Confirm (action)</Modal.Title>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         {/* modal body */}
         <Modal.Body>
-          <p>(Message asking if the user is sure of their choice)</p>
+          {content}
         </Modal.Body>
         {/* modal footer with the closing buttons */}
         <Modal.Footer>

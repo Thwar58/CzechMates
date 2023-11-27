@@ -18,11 +18,11 @@ const World = ({ worldName, userId, type, worldId }) => {
 
         if (type === "created"){
             setOwnOrJoin([<ManageWorldPopup key={"MWP"} userId={userId} worldId={worldId}  title="World Name" button={"Manage"} />,
-            <ConfirmationPopup type={"removeWorld"} action={{userId, worldId}} key={"CP"} name={"Remove"} />])
+            <ConfirmationPopup title={"Removing a worlds..."} content={`Are you sure you want to remove ${worldName}?`} type={"removeWorld"} action={{userId, worldId}} key={"CP"} name={"Remove"} />])
         }
         else if (type === "joined"){
             setOwnOrJoin([<ViewWorldPopup key={"VWP"} worldId={worldId} name={"World Name"} />, 
-            <ConfirmationPopup type={"leaveWorld"} action={{userId, worldId}} key={"CP"} name={"Leave"} />])
+            <ConfirmationPopup title={"Leaving a world..."} content={`Are you sure you want to leave ${worldName}`} type={"leaveWorld"} action={{userId, worldId}} key={"CP"} name={"Leave"} />])
         }
 
     }, [type]);

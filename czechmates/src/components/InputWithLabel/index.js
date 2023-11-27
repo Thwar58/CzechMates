@@ -10,7 +10,7 @@ import { ref, update } from "firebase/database";
 // components that have a label and a placeholder and can be enabled or disabled
 // input: the label, the content of the input, whether it is disabled or not,
 // the type of input this is (i.e. Equipment, Skills), the userId, and the characterId
-const InputWithLabel = ({type, label, content, disabled, category, userId, charId }) => {
+const InputWithLabel = ({participation, type, label, content, disabled, category, userId, charId }) => {
 
     // the reference in the database used for the character
     const charRef = ref(db);
@@ -43,6 +43,7 @@ const InputWithLabel = ({type, label, content, disabled, category, userId, charI
             if (label === "Name"){
                 updates[`CharacterUserRel/${userId}/${charId}/Name`] = formValue;
                 // need to update world member names here?
+                updates[`Worlds/${participation}/Members/${charId}/Name`] = formValue;
             }
 
             // console.log(updates);
