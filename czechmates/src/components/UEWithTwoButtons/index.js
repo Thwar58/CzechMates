@@ -35,7 +35,11 @@ function UEWithTwoButtons({ charId, creatorId, worldId, charName, setAlign}) {
                 <ConfirmationPopup
                 name={"Remove"}
                 type={"removeMember"}
-                action={{worldId, creatorId, charId}}>
+                action={{worldId, creatorId, charId}}
+                title={`Removing a member...`}
+                content={`Are you sure you want to remove ${charName} from the world?`}
+                >
+
                 </ConfirmationPopup>
                 
             </InputGroup>

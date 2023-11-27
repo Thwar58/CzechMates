@@ -25,22 +25,26 @@ const TextareaPage = ({ title, content, charId, disabled }) => {
 
     // when the form value changes, this is triggered
     useEffect(() => {
-        // take the label value and replace any spaces with underscores to match the db naming system
-        var underScoreAdded = title.replace(/ /g, "_");
-        const updates = {};
-        if (title == "Inventory"){
-            updates[`Characters/${charId}/Equipment/${underScoreAdded}`] = formValue;
+        if (charId !== undefined) {
+            // take the label value and replace any spaces with underscores to match the db naming system
+            var underScoreAdded = title.replace(/ /g, "_");
+            const updates = {};
+            if (title == "Inventory") {
+                // console.log("here?");
+                updates[`Characters/${charId}/Equipment/${underScoreAdded}`] = formValue;
+            }
+            else if (title == "Learned Abilities") {
+                updates[`Characters/${charId}/Skills/${underScoreAdded}`] = formValue;
+            }
+            // ignore the modification slots for now (it is broken and needs to be fixed)
+            // make an object to store the different paths that need to be updated
+
+            // use the path to the specific property that this form field maps to in the database
+            // and set it to the value in the form
+            // console.log(updates);
+            update(charRef, updates);
         }
-        else if (title == "Learned Abilities"){
-            updates[`Characters/${charId}/Skills/${underScoreAdded}`] = formValue;
-        }
-        // ignore the modification slots for now (it is broken and needs to be fixed)
-        // make an object to store the different paths that need to be updated
-        
-        // use the path to the specific property that this form field maps to in the database
-        // and set it to the value in the form
-        // console.log(updates);
-        update(charRef, updates);
+
 
     }, [formValue]);
 

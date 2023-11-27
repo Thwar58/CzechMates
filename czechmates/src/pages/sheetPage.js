@@ -22,7 +22,7 @@ const SheetPage = ({ sheetInfo }) => {
 
      // when the skills information changes, this is triggered
      useEffect(() => {
-        console.log(sheetInfo.Skills);
+        // console.log(sheetInfo.Skills);
         if (sheetInfo !== undefined) {
             // loop through all the character's skills and make components for them
             var arr = [];
@@ -40,8 +40,8 @@ const SheetPage = ({ sheetInfo }) => {
             // assign the positioning variable
             setLeftSkills(left);
             setRightSkills(right);
-            console.log(left);
-            console.log(sheetInfo.Skills);
+            // console.log(left);
+            // console.log(sheetInfo.Skills);
         }
 
         if (sheetInfo !== undefined) {

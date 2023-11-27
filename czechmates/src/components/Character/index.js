@@ -35,11 +35,12 @@ const Character = ({ charName, charId, userId }) => {
         navigate('/subCharacterPages', { state: { charId: charId } });
     }
 
+
     // this function copies the character in this component
     // it is added to the database with an automatically generated unique key
     // the UI is updates automatically
     const copyChara = event => {
-        if (charId !== undefined){
+        if (charId !== undefined) {
             const charRef = ref(db, 'Characters/' + charId);
             onValue(charRef, (snapshot) => {
                 // console.log(snapshot.val());
@@ -49,7 +50,7 @@ const Character = ({ charName, charId, userId }) => {
     }
 
     useEffect(() => {
-        if (charInfo !== undefined){
+        if (charInfo !== undefined) {
             // console.log("check char info ", charInfo);
             var copy = charInfo;
             var charName = charInfo.General.Name;
@@ -72,41 +73,41 @@ const Character = ({ charName, charId, userId }) => {
         // might cause the page to crash or hang.
         resolution: Resolution.EXTREME,
         page: {
-        // margin is in MM, default is Margin.NONE = 0
-        margin: Margin.SMALL,
-        // default is 'A4'
-        format: "letter",
-        // default is 'portrait'
-        orientation: "landscape"
+            // margin is in MM, default is Margin.NONE = 0
+            margin: Margin.SMALL,
+            // default is 'A4'
+            format: "letter",
+            // default is 'portrait'
+            orientation: "landscape"
         },
         canvas: {
-        // default is 'image/jpeg' for better size performance
-        mimeType: "image/jpeg",
-        qualityRatio: 1
+            // default is 'image/jpeg' for better size performance
+            mimeType: "image/jpeg",
+            qualityRatio: 1
         },
         // Customize any value passed to the jsPDF instance and html2canvas
         // function. You probably will not need this and things can break,
         // so use with caution.
         overrides: {
-        // see https://artskydj.github.io/jsPDF/docs/jsPDF.html for more options
-        pdf: {
-            compress: true
-        },
-        // see https://html2canvas.hertzen.com/configuration for more options
-        canvas: {
-            useCORS: true
-        }
+            // see https://artskydj.github.io/jsPDF/docs/jsPDF.html for more options
+            pdf: {
+                compress: true
+            },
+            // see https://html2canvas.hertzen.com/configuration for more options
+            canvas: {
+                useCORS: true
+            }
         }
     };
-    
+
     // you can also use a function to return the target element besides using React refs
     const getTargetElement = () => document.getElementById("container");
-    
+
     const downloadPdf = () => generatePDF(getTargetElement, options);
-    
-    
+
+
     function printChar() {
-        
+
         const printWindow = window.open('', '', 'width=800,height=600');
         const htmlContent = `
         <div>
@@ -118,10 +119,10 @@ const Character = ({ charName, charId, userId }) => {
         printWindow.document.open();
         printWindow.document.write(htmlContent);
         printWindow.document.close();
-        
+
         // Trigger the print dialog
         printWindow.print();
-      }
+    }
 
     const removeOrEdit = event => {
         // DBFunctions.removeFromDB('Characters/User1/CharID3/General');
@@ -133,7 +134,8 @@ const Character = ({ charName, charId, userId }) => {
         // DBFunctions.updateMultPlaces(updates);
 
     };
-    
+
+  
 
 
     // return a div with the character name and buttons for each option
@@ -160,9 +162,9 @@ const Character = ({ charName, charId, userId }) => {
                     Edit
                 </Button>
                 {/* remove button with confirmation popup */}
-                <ConfirmationPopup id="removeButton" action={{userId, charId}} name="Remove" type={'removeChara'} />
+                <ConfirmationPopup content={`Are you sure you want to remove ${charName}? Removing this character will also remove you from the worlds they are in.`} title={`Removing a character...`} id="removeButton" action={{ userId, charId }} name="Remove" type={'removeChara'} />
                 {/* print button */}
-                <PrintPopup name={charName} userId={userId} charId={charId} variant="outline-secondary" id="button-addon2"/>
+                <PrintPopup name={charName} userId={userId} charId={charId} variant="outline-secondary" id="button-addon2" />
             </InputGroup>
         </div>
     );

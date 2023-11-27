@@ -12,7 +12,7 @@ import TextareaPage from "../components/TextArea";
 
 // this component houses the content for the character skills
 // input: the skill information for a character, the character id, and the user id
-const SkillsPage = ({ skillInfo, charId, userId }) => {
+const SkillsPage = ({ skillInfo, charId, userId, attrInfo, level }) => {
 
     // variables to track the skills and position them
     var [left, setLeft] = useState([]);
@@ -30,8 +30,7 @@ const SkillsPage = ({ skillInfo, charId, userId }) => {
                     setLearnedAbilities([<TextareaPage charId={charId} key={"Learned Abilities"} disabled={false} content={value} title={"Learned Abilities"}></TextareaPage>])
                 }
                 else {
-                    // console.log(`${key}: `, value);
-                    arr.push(<SkillsComp key={key} charId={charId} value={value} name={key} />);
+                    arr.push(<SkillsComp level={level} attributes={attrInfo} skills={skillInfo} key={key} charId={charId} value={value} name={key} />);
                 }
 
             }

@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 // this component houses the content for the character attributes
 // input: the character attributes
-const AttributesPage = ({ attrInfo }) => {
+const AttributesPage = ({ attrInfo }) => { 
     // these arrays and set methods are used to display the different sections of the attributes
     // in different sections of the page
     var [left, setLeft] = useState([]);
