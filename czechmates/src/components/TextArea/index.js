@@ -30,7 +30,7 @@ const TextareaPage = ({ title, content, charId, disabled }) => {
             var underScoreAdded = title.replace(/ /g, "_");
             const updates = {};
             if (title == "Inventory") {
-                console.log("here?");
+                // console.log("here?");
                 updates[`Characters/${charId}/Equipment/${underScoreAdded}`] = formValue;
             }
             else if (title == "Learned Abilities") {
