@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 // a component to hold the skills and attributes in the full character sheet
 // input: the information to display, and whether it is for skills or attributes
 function NewTable({data, type }) {
-    console.log("check data", data);
+    // console.log("check data", data);
 
   
     if (data===undefined) {

@@ -87,7 +87,7 @@ const SubCharacterPages = ({ userId }) => {
                     <ControlledTabs text={["General", "Equipment", "Skills", "Attributes", "Sheet"]}
                         content={[<GeneralPage participation={charInfo.Participation} generalInfo={charInfo.General} charId={charId} userId={userId} />,
                         <EquipmentPage equipInfo={charInfo.Equipment} charId={charId} userId={userId} />,
-                        <SkillsPage skillInfo={charInfo.Skills} charId={charId} userId={userId} />,
+                        <SkillsPage level={charInfo.General.Level} skillInfo={charInfo.Skills} attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
                         <AttributesPage attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
                         <SheetPage sheetInfo={charInfo} charId={charId} userId={userId} />]} />
                 </Row>
