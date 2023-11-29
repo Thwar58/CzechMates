@@ -16,6 +16,7 @@ import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 import { useLocation } from 'react-router-dom';
+import StatusEffectPage from "./statusEffectPage";
 
 
 // a page that contains all of the sub character pages as tabs (i.e. equipment, general)
@@ -84,12 +85,15 @@ const SubCharacterPages = ({ userId }) => {
                 </Row>
                 <Row>
                     {/* tabs for each page, passing in the relevant character information */}
-                    <ControlledTabs text={["General", "Equipment", "Skills", "Attributes", "Sheet"]}
-                        content={[<GeneralPage participation={charInfo.Participation} generalInfo={charInfo.General} charId={charId} userId={userId} />,
+                    <ControlledTabs text={["General", "Status Effects", "Equipment", "Skills", "Attributes", "Sheet"]}
+                        content={[
+                        <GeneralPage participation={charInfo.Participation} generalInfo={charInfo.General} charId={charId} userId={userId} />,
+                        <StatusEffectPage statusInfo={charInfo.Status_Effects} charId={charId} userId={userId} />,
                         <EquipmentPage equipInfo={charInfo.Equipment} charId={charId} userId={userId} />,
                         <SkillsPage level={charInfo.General.Level} skillInfo={charInfo.Skills} attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
                         <AttributesPage attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
-                        <SheetPage sheetInfo={charInfo} charId={charId} userId={userId} />]} />
+                        <SheetPage sheetInfo={charInfo} charId={charId} userId={userId} />
+                        ]} />
                 </Row>
                 <Row>
                     <Col>
