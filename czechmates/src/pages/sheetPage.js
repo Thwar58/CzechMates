@@ -21,7 +21,6 @@ const SheetPage = ({ sheetInfo }) => {
     var [statusEffectsOne, setStatusEffectsOne] = useState([]);
     var [statusEffectsTwo, setStatusEffectsTwo] = useState([]);
     var [statusEffectsThree, setStatusEffectsThree] = useState([]);
-    // var right = arr.slice(8);
 
 
     // when the skills information changes, this is triggered
@@ -44,8 +43,6 @@ const SheetPage = ({ sheetInfo }) => {
             // assign the positioning variable
             setLeftSkills(left);
             setRightSkills(right);
-            // console.log(left);
-            // console.log(sheetInfo.Skills);
         }
 
         if (sheetInfo !== undefined) {

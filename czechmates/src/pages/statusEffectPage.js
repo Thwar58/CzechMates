@@ -56,8 +56,6 @@ const StatusEffectPage = ({ statusInfo, charId }) => {
                 <h1 style={{ color: "green", textAlign: "center" }}>
                     Status Effects
                 </h1>
-
-                {/* <StatusEffect>Here</StatusEffect> */}
                 <div>
                     <Row>
                         <Col>
