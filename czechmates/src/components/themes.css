@@ -1,28 +1,49 @@
 
-/*These are for the light mode*/
-:root {
-    --primary-color: Purple; /* Purple */
-    --secondary-color: gold; /* Gold */
-    --background-color: white; /* White */
-    --text-color: black; /* Black */
-  }
+  /* made the color schemes*/
+    :root {
+      /* light mode colors */
+        --primary-color: Purple; 
+        --secondary-color: gold; 
+        --background-color: white;
+        --text-color: black;
+
+        /* dark mode colors */
+        --dark-primary-color: gold;
+        --dark-secondary-color: purple; 
+        --dark-background-color: rgb(65,65,65);
+        --dark-text-color: gold;
+      }
+
   
-  /* styles-light.css */
+  /* these are the component styles */
   body {
     background-color: var(--background-color);
     color: var(--text-color);
   }
+
+  body.dark {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-color);
+  }
   
-  .header {
+  header {
     background-color: var(--background-color);
-    color: var(--primary-color);
-    font-family: fantasy;
-    
+    color: var(--primary-color);    
+  }
+
+  header.dark {
+    background-color: var(--dark-background-color);
+    color: var(--dark-primary-color);    
   }
   
   .btn {
     background-color: var(--secondary-color);
     color: var(--text-color);
+  }
+
+  .btn.dark {
+    background-color: var(--dark-secondary-color);
+    color: var(--dark-text-color);
   }
 
   .mwPopupLeft {
@@ -44,11 +65,20 @@
   .label {
     background-color: var(--secondary-color);
     color: var(--text-color);
-    font-family: fantasy;
+  }
+
+  .label.dark {
+    background-color: var(--dark-secondary-color);
+    color: var(--dark-text-color);
   }
 
   .dropdown {
     color: var(--text-color);
+    margin-bottom: 10px;
+  }
+  
+  .dropdown.dark {
+    color: var(--dark-text-color);
     margin-bottom: 10px;
   }
 
