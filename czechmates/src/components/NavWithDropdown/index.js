@@ -11,30 +11,34 @@ import { ref, onValue } from "firebase/database";
 import { useState } from 'react';
 
 // a component for the navigation bar with a dropdown button incorperated
-function NavWithDD({userId}) {
+function NavWithDD({ userId }) {
   console.log(userId);
   var [adminButton, setAdminButton] = useState();
 
-   // gets the character information for this user from the database
-   useEffect(() => {
+  // gets the character information for this user from the database
+  useEffect(() => {
     if (userId !== undefined) {
-        const userRef = ref(db, `Users/${userId}/Admin_status`);
-        onValue(userRef, (snapshot) => {
-            console.log(snapshot.val());
-            if (snapshot.val() === true){
-              console.log("render button");
-              setAdminButton( <NavDropdown.Item href="#action/3.3">
+      const userRef = ref(db, `Users/${userId}/Admin_status`);
+      onValue(userRef, (snapshot) => {
+        console.log(snapshot.val());
+        if (snapshot.val() === true) {
+          // https://medium.com/coding-beauty/react-open-link-in-new-tab-b48fca2ce86f#:~:text=2-,To%20open%20a%20link%20in%20a%20new%20tab%20in%20React,opened%20in%20a%20new%20tab.
+          setAdminButton(
+            <NavDropdown.Item  
+            href="https://console.firebase.google.com/project/nudge-ttrpg/database/nudge-ttrpg-default-rtdb/data?utm_source=welcome&utm_medium=email&utm_campaign=welcome_2021_CTA_A"
+            target="_blank"
+            rel="noreferrer">
               <Button>Admin</Button>
             </NavDropdown.Item>);
-            }
-            else {
-              console.log("not admin");
-            }
-            // setCharInfo(snapshot.val());
-        });
+        }
+        else {
+          console.log("not admin");
+        }
+        // setCharInfo(snapshot.val());
+      });
     }
 
-}, [userId]);
+  }, [userId]);
 
 
 
@@ -67,7 +71,7 @@ function NavWithDD({userId}) {
               <NavDropdown.Item href="#action/3.2">
                 <Button>Log Out</Button>
               </NavDropdown.Item>
-             {adminButton}
+              {adminButton}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
