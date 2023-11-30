@@ -9,7 +9,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import DBFunctions from "../../utils/firebaseQueries";
 import { db } from '../../firebase';
-import { child, get, ref, set, push, onValue } from "firebase/database";
+import { child, get, ref, set, push, onValue, update } from "firebase/database";
 import { useState } from "react";
 import { useEffect } from "react";
 import '../themes.css'
@@ -33,6 +33,13 @@ const Character = ({ charName, charId, userId }) => {
     // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
     const toSubPage = () => {
         navigate('/subCharacterPages', { state: { charId: charId } });
+        // update here? yes
+        const charRef = ref(db);
+        const updates = {};
+        updates[`CharacterUserRel/${userId}/${charId}/Last_Used`] = Date.now();
+        // console.log(updates);
+        update(charRef, updates);
+
     }
 
 

@@ -3,21 +3,25 @@
     "User1": {
       "-NjZ_irEKeXCWx4aDlBd": {
         "Name": "Char 1 from User1",
-        "Level": 1
+        "Level": 1,
+        "Last_Used": 0
       },
       "-NjZ_nd66Gi1g17dtkow": {
         "Name": "Char 2 from User1",
-        "Level": 10
+        "Level": 10,
+        "Last_Used": 1
       }
     },
     "User2": {
       "-NjZ_zWwQ-JkhnN1ne2e": {
         "Name": "Char 3 from User2",
-        "Level": 0
+        "Level": 0,
+        "Last_Used": 2
       },
       "-NjZa0JX9SCk25IkJ0PK": {
         "Name": "Char 4 from User2",
-        "Level": 0
+        "Level": 0,
+        "Last_Used": 3
       }
     }
   },

@@ -9,7 +9,7 @@ import { db } from '../../firebase';
 import { ref, onValue } from "firebase/database";
 
 // a dropdown that updates the text of the dropdown button with the selected option
-function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, actions, text }) {
+function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, actions, text, lastUsed }) {
 
   // sets the default value of the dropdown button
   const [value, setValue] = useState(text);
@@ -22,6 +22,11 @@ function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, act
   function alphaCharaSort() {
     var newOrder = [...chars];
     setChars(newOrder.sort((a, b) => a.props.charName.localeCompare(b.props.charName)));
+  }
+
+  function lastUsedCharaSort() {
+    var newOrder = [...chars];
+    setChars(newOrder.sort((a, b) => b.props.lastUsed - a.props.lastUsed));
   }
 
   function alphaWorldSort() {
@@ -72,6 +77,9 @@ function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, act
       }
       else if (value == "level"){
         levelSort();
+      }
+      else if (value == "recently used"){
+        lastUsedCharaSort();
       }
     }
     else if (type === "world") {
