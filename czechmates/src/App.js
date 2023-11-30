@@ -22,7 +22,7 @@ import { useState } from 'react';
 function App() {
 
     // set the user id here according to either a db query or the OAuth
-    const [userId] = useState("User1");
+    const [userId] = useState("User2");
 
     // examples of calling the attribute calculation methods
     // Func.calcAwareness();
@@ -32,7 +32,7 @@ function App() {
             {/* router handles all of the page rerouting */}
             <Router>
                 {/* the navigation bar */}
-                <NavWithDD />
+                <NavWithDD userId={userId} />
                 {/* routes are the paths to the pages with their export value */}
                 <Routes>
                     <Route path='/' element={<Home userId={userId} />} />

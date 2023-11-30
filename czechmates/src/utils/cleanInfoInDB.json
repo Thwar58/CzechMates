@@ -477,7 +477,7 @@
   },
   "Users": {
     "User1": {
-      "Admin_status": "False",
+      "Admin_status": false,
       "Email": "user1@gmail.com",
       "Friends": {
         "UserId2": "User2"
@@ -486,7 +486,7 @@
       "Name": "User12"
     },
     "User2": {
-      "Admin_status": "True",
+      "Admin_status": true,
       "Email": "user2@gmail.com",
       "Friends": {
         "UserId1": "User1"
