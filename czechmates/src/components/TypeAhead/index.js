@@ -5,53 +5,203 @@ import { useState } from 'react';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import Form from 'react-bootstrap/Form';
 import { useEffect } from 'react';
+import { db } from '../../firebase';
+import { ref, onValue, update, get, child } from "firebase/database";
 
 
-const TypeAhead = ({friendInfo, action}) => {
+const TypeAhead = ({ optionInfo, action, userId, userName }) => {
   const [singleSelections, setSingleSelections] = useState([]);
-  var [friendsArr, setFriendArr] = useState([]);
+  var [optionsArr, setOptionsArr] = useState([]);
+  // var [dbInfo, setDBInfo] = useState();
 
 
+  // distinguish which typeahead we are using here, get all users if profile, whenever a selection is made,
+  // check follower list and update accordingly
   useEffect(() => {
-    if (friendInfo !== undefined) {
-        // console.log("friendinfo ", friendInfo);
-        var arr = [];
-        if (friendInfo !== null) {
+    // console.log("see it change", optionInfo);
+    if (optionInfo !== undefined) {
+      // console.log("friendinfo ", friendInfo);
+      var arr = [];
+      if (optionInfo !== null) {
+        if (action === "sendWorldInvite") {
           // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-          for (const [, value] of Object.entries(friendInfo)) {
-            // console.log("check name ", value);
+          for (const [key, value] of Object.entries(optionInfo)) {
+            console.log(key, value);
             // pass in the key, the character name, and the id of who created the character
             arr.push(value);
+            console.log("look here?", value);
           }
-          setFriendArr(arr);
-          // console.log("friends", friendsArr)
+          setOptionsArr(arr);
         }
+        else if (action === "follow") {
+          for (const [key, value] of Object.entries(optionInfo)) {
+            // console.log(key, value);
+            // pass in the key, the character name, and the id of who created the character
+            if (value.Name !== userName) {
+              arr.push(value.Name);
+            }
+
+            // console.log("look here ", value);
+          }
+          setOptionsArr(arr);
+        }
+      }
     }
 
-
-  }, [friendInfo]);
+  }, [optionInfo]);
 
   useEffect(() => {
-    if (singleSelections.length !== 0) {
-        // console.log("this was selected from the typeahead: ", singleSelections);
+    // console.log("check", optionsArr);
 
-        if (action === "sendWorldInvite"){
-          for (const [key, value] of Object.entries(friendInfo)) {
-            if (value == singleSelections){
-              console.log("send this user a join code email: ", key);
-            }
-          }  
+  }, [optionsArr]);
+
+  useEffect(() => {
+    // console.log("selection has changed", singleSelections);
+    if (singleSelections.length !== 0) {
+      // console.log("this was selected from the typeahead: ", singleSelections);
+
+      if (action === "sendWorldInvite") {
+        for (const [key, value] of Object.entries(optionInfo)) {
+          if (value == singleSelections) {
+            console.log("send this user a join code email: ", key);
+          }
         }
+      }
+      else if (action === "follow") {
+        // console.log("follow this user");
+        setSingleSelections([]);
+        // console.log("HOW DO I TURN THIS OFFFF  ", singleSelections);
+        var there = false;
+        var id;
+        var OtherName;
+        for (const [key, value] of Object.entries(optionInfo)) {
+          // console.log("iterated item", optionInfo);
+          if (value.Name == singleSelections) {
+            there = true;
+            id = key;
+            OtherName = value.Name
+            break;
+          }
+        }
+
+        if (there === true) {
+          // console.log("You selected this user", OtherName, singleSelections);
+          // const userRef = ref(db, `Users/${id}/Following`);
+          // console.log("follow this user: ", key, value);
+          // check if this user follows you already
+          // console.log("check id right before", id);
+          // console.log(`Users/${id}/Following`)
+          get(child(ref(db), `Users/${id}/Following`)).then((snapshot) => {
+
+              // console.log("requested user info ", snapshot.val());
+              var present = false;
+              if (snapshot.val() !== null) {
+                // console.log("this is in onValue, it should be triggered once")
+                // setSingleSelections([]);
+                if (snapshot.val()[userId] !== undefined) {
+                  present = true;
+                }
+
+
+              }
+
+              // this part is not working 
+              // console.log("present is: ", present);
+              const updates = {};
+              if (present === true) {
+                // console.log("make them friends");
+                // add friend, remove from following
+                // console.log("make friends", present);
+                // remove requester from requested follower list
+                updates[`Users/${id}/Followers/${userId}`] = null;
+                updates[`Users/${userId}/Followers/${id}`] = null;
+                updates[`Users/${id}/Following/${userId}`] = null;
+                // add requestor to requested friends list
+                updates[`Users/${id}/Friends/${userId}`] = userName;
+                // add requested to requestor friends list
+                updates[`Users/${userId}/Friends/${id}`] = OtherName;
+                // console.log(updates);
+                update(ref(db), updates);
+              }
+              // this part is working
+              else if (present === false) {
+                console.log("potential follower")
+                // add following
+                var alreadyFriends = false;
+
+                const currentUser = ref(db, `Users/${userId}/Friends`);
+                onValue(currentUser, (snapshot) => {
+                  // console.log(snapshot.val());
+                  // console.log(key);
+                  if (snapshot.val() !== null) {
+                    if (snapshot.val()[id] !== undefined) {
+                      alreadyFriends = true;
+                    }
+                  }
+                  // setWorldInfo(snapshot.val());
+                });
+                // for (let i = 0; i < optionsArr.length; i++) {
+                //   if (optionsArr[i] == value.Name) {
+                //     alreadyFriends = true;
+                //   }
+                // }
+                console.log(alreadyFriends);
+                if (alreadyFriends === false) {
+                  console.log("make following because you're not friends");
+                  // add requestor to requested follower list
+                  updates[`Users/${id}/Followers/${userId}`] = userName;
+                  updates[`Users/${userId}/Following/${id}`] = OtherName;
+                  // console.log(updates);
+                  update(ref(db), updates);
+                }
+                else {
+                  console.log("you can't follow, you're already friends");
+                }
+
+
+              }
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          }).catch((error) => {
+            console.error(error);
+          });
+
+
+
+
+          // get(userRef, (snapshot) => {
+
+          // });
+          // // // if they do then add inverse to friends
+          // // if not, add this user to following
+
+        }
+      }
+      setSingleSelections([]);
+      // console.log("exiting selection", singleSelections);
+
     }
 
-   
+
     // console.log(worldInfo);
-}, [singleSelections]);
+  }, [singleSelections]);
+
 
   // const [multiSelections, setMultiSelections] = useState([]);
   // const options = ["Friend1", "Friend2", "Friend3"];
 
- 
+
 
   return (
     <>
@@ -60,10 +210,11 @@ const TypeAhead = ({friendInfo, action}) => {
         <Typeahead
           id="basic-typeahead-single"
           labelKey="name"
-          onChange={setSingleSelections}
-          options={friendsArr}
+
+          options={optionsArr}
           placeholder="Choose a friend..."
           selected={singleSelections}
+          onChange={setSingleSelections}
         />
       </Form.Group>
     </>

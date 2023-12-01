@@ -9,11 +9,14 @@ import { ref, update } from "firebase/database";
 
 // a component used in the user portion of the profile page
 // input: the label, the name or email of the user, the path to be used in the db changes
-const User = ({ label, content, path }) => {
+const User = ({ label, content, path, type }) => {
     // a reference to the database
     const charRef = ref(db);
     // the value in the form and the function to set it, init to content
     var [formValue, setFormValue] = useState(content);
+    var [editable, setEditable] = useState();
+    var [disabled, setDisabled] = useState(true)
+    
 
     // when the db sends new information, this is triggered
     useEffect(() => {
@@ -24,6 +27,16 @@ const User = ({ label, content, path }) => {
         }
 
     }, [content]);
+
+    useEffect(() => {
+        if (type == "Name") {
+            setEditable(<Button onClick={click} variant="outline-secondary" id="button-addon2">
+            Edit
+        </Button>);
+        setDisabled(false);
+        }
+
+    }, [type]);
 
     // a function used to send the form information to the database (used in button click below)
     //https://upmostly.com/tutorials/pass-a-parameter-through-onclick-in-react
@@ -48,15 +61,13 @@ const User = ({ label, content, path }) => {
                     // sets the form value 
                     value={formValue}
                     // enables this input 
-                    disabled={false}
+                    disabled={disabled}
                     // sets the formvalue variable to the form value when the form value changes
                     // https://www.reddit.com/r/reactjs/comments/153ndzq/how_to_refer_to_an_input_field_by_its_id_in_react/
                     onChange={e => setFormValue(e.target.value)}
                 />
                 {/* edit button, calls the click function */}
-                <Button onClick={click} variant="outline-secondary" id="button-addon2">
-                    Edit
-                </Button>
+              {editable}
             </InputGroup>
         </div>
     );

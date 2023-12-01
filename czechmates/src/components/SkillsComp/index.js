@@ -142,7 +142,7 @@ function SkillsComp({ value, name, charId, skills, attributes, level }) {
                         for (const [key, value] of Object.entries(result)) {
                             // console.log("new value should be ", key, value + 5);
                             if (value + 5 !==  attributes[`${key}`]) {
-                                console.log(`update the db for ${key}`, value + 5, attributes[`${key}`]);
+                                // console.log(`update the db for ${key}`, value + 5, attributes[`${key}`]);
                                 recalc[`Characters/${charId}/Attributes/${key}`] = 5 + value;
                                 // console.log("check of 3 triggers", key);
                                 if (key.localeCompare("Charisma" === 0) ||

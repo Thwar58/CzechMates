@@ -3,21 +3,25 @@
     "User1": {
       "-NjZ_irEKeXCWx4aDlBd": {
         "Name": "Char 1 from User1",
-        "Level": 1
+        "Level": 1,
+        "Last_Used": 0
       },
       "-NjZ_nd66Gi1g17dtkow": {
         "Name": "Char 2 from User1",
-        "Level": 10
+        "Level": 10,
+        "Last_Used": 1
       }
     },
     "User2": {
       "-NjZ_zWwQ-JkhnN1ne2e": {
         "Name": "Char 3 from User2",
-        "Level": 0
+        "Level": 0,
+        "Last_Used": 2
       },
       "-NjZa0JX9SCk25IkJ0PK": {
         "Name": "Char 4 from User2",
-        "Level": 0
+        "Level": 0,
+        "Last_Used": 3
       }
     }
   },
@@ -473,22 +477,40 @@
   },
   "Users": {
     "User1": {
-      "Admin_status": "False",
+      "Admin_status": true,
       "Email": "user1@gmail.com",
       "Friends": {
-        "UserId2": "User2"
+        "User2": "User2 Name"
       },
       "Light_Mode": "Dark",
-      "Name": "User12"
+      "Name": "User1 Name"
     },
     "User2": {
-      "Admin_status": "True",
+      "Admin_status": false,
       "Email": "user2@gmail.com",
       "Friends": {
-        "UserId1": "User1"
+        "User1": "User1 Name"
       },
       "Light_Mode": "Light",
-      "Name": "User2"
+      "Name": "User2 Name"
+    },
+    "User3": {
+      "Admin_status": false,
+      "Email": "user2@gmail.com",
+      "Light_Mode": "Light",
+      "Name": "User3 Name"
+    },
+    "User4": {
+      "Admin_status": false,
+      "Email": "user2@gmail.com",
+      "Light_Mode": "Light",
+      "Name": "User4 Name"
+    },
+    "User5": {
+      "Admin_status": false,
+      "Email": "user2@gmail.com",
+      "Light_Mode": "Light",
+      "Name": "User5 Name"
     }
   },
   "WorldUserRel": {
