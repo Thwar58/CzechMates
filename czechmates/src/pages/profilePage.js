@@ -10,6 +10,7 @@ import Col from 'react-bootstrap/Col';
 import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
+import InputWithLabel from "../components/InputWithLabel";
 
 // the profile page for the user
 // input: the user's id
@@ -155,10 +156,11 @@ const ProfilePage = ({ userId }) => {
                 <Row>
                     {/* https://daveceddia.com/react-before-render/ */}
                     {/* these lines produce the control error, we can fix it by moving it out into useeffects */}
-                    <User type={"Name"} label={"Username"} content={userInfo?.Name} path={`${userId}/Name`} />
+                    <User userInfo={userInfo} invalidNames={allUsers} type={"Name"} label={"Username"} content={userInfo?.Name} userId={userId} />
                 </Row>
                 <Row>
-                    <User type={"Email"} label={"Email"} content={userInfo?.Email} path={`${userId}/Email`} />
+                    <User type={"Email"} label={"Email"} content={userInfo?.Email} userId={userId} />
+                    
                 </Row>
                 <Row>
                     <Col>
