@@ -22,7 +22,7 @@ import { useState } from 'react';
 function App() {
 
     // set the user id here according to either a db query or the OAuth
-    const [userId] = useState("User2");
+    const [userId] = useState("User3");
 
     // examples of calling the attribute calculation methods
     // Func.calcAwareness();

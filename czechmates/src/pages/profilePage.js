@@ -20,6 +20,7 @@ const ProfilePage = ({ userId }) => {
     const [friends, setFriends] = useState();
     const [followers, setFollowers] = useState();
     const [following, setFollowing] = useState();
+    const [allUsers, setAllUsers] = useState();
 
 
 
@@ -46,15 +47,24 @@ const ProfilePage = ({ userId }) => {
             setUserInfo(snapshot.val());
         });
 
+        const users = ref(db, 'Users/');
+        // IMPORTANT: onValue continues to monitor the database and will update the local value automatically if the db changes
+        onValue(users, (snapshot) => {
+            setAllUsers(snapshot.val());
+        });
+
+  
+
     }, [userId]);
 
+   
     // when members changes, this is triggered
     useEffect(() => {
         // console.log("check world info ", worldInfo);
         // check that members is not undefined otherwise it will throw an error
         if (userInfo !== undefined && userInfo !== null) {
             setLoading(false);
-            console.log(userInfo);
+            // console.log(userInfo);
             // console.log("check world info ", worldInfo);
             // loop through the members objects and create components to display them, set the members array at the end
             var friends = [];
@@ -106,7 +116,7 @@ const ProfilePage = ({ userId }) => {
             else {
                 setFollowers(<h1>You have no followers yet</h1>)
             }
-            console.log("followers done");
+            // console.log("followers done");
 
 
 
@@ -166,7 +176,7 @@ const ProfilePage = ({ userId }) => {
                     </Col>
                     <Col md={10}>
                         {/* <TypeAheadWithButton /> */}
-                        <TypeAhead action={"sendWorldInvite"} friendInfo={userInfo.Following}></TypeAhead>
+                        <TypeAhead optionInfo={allUsers} userName={userInfo.Name} userId={userId} action={"follow"}></TypeAhead>
                     </Col>
                     <Col>
                     </Col>
