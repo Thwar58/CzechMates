@@ -13,6 +13,7 @@ import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 import AddWorldPopup from "../components/AddWorldPopup";
+import NavWithDD from '../components/NavWithDropdown';
 
 // this is the world page
 // input: the user id 
@@ -91,6 +92,7 @@ const WorldPage = ({ userId }) => {
 
     return (
         <div>
+            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                 <Row>
                     <Col>

@@ -6,10 +6,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from "react";
 import { useEffect } from "react";
+import NavWithDD from '../components/NavWithDropdown';
 
 // this component houses the content for the character attributes
 // input: the character attributes
-const AttributesPage = ({ attrInfo }) => { 
+const AttributesPage = ({ attrInfo, userId }) => { 
     // these arrays and set methods are used to display the different sections of the attributes
     // in different sections of the page
     var [left, setLeft] = useState([]);
@@ -41,6 +42,7 @@ const AttributesPage = ({ attrInfo }) => {
 
     return (
         <div>
+            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <Row>
                     <Col>

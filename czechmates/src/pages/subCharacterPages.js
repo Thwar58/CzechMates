@@ -17,6 +17,7 @@ import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 import { useLocation } from 'react-router-dom';
 import StatusEffectPage from "./statusEffectPage";
+import NavWithDD from '../components/NavWithDropdown';
 
 
 // a page that contains all of the sub character pages as tabs (i.e. equipment, general)
@@ -69,6 +70,7 @@ const SubCharacterPages = ({ userId }) => {
     // returns a div with the character name and the tabs for each of the pages
     return (
         <div>
+            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                 <Row>
                     <Col>

@@ -9,11 +9,20 @@ import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 
 // a component for the navigation bar with a dropdown button incorperated
 function NavWithDD({ userId }) {
   console.log(userId);
   var [adminButton, setAdminButton] = useState();
+
+
+  const navigate = useNavigate();
+
+    const logout = () => {
+        navigate('/');
+    }
 
   // gets the character information for this user from the database
   useEffect(() => {
@@ -46,7 +55,7 @@ function NavWithDD({ userId }) {
     <Navbar variant="dark" bg="dark" sticky='top'>
       {/* all of the nav bar links */}
       <Container fluid>
-        <Navbar.Brand href="/">Home</Navbar.Brand>
+        <Navbar.Brand href="home">Home</Navbar.Brand>
         <Navbar.Brand href="charactersPage">Characters</Navbar.Brand>
         <Navbar.Brand href="worldsPage">Worlds</Navbar.Brand>
         <Navbar.Brand href="profilePage">Profiles</Navbar.Brand>
@@ -68,8 +77,8 @@ function NavWithDD({ userId }) {
               <NavDropdown.Item href="#action/3.1">
                 <Button>Light Mode</Button>
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                <Button>Log Out</Button>
+              <NavDropdown.Item>
+                <Button onClick={logout}>Log Out</Button>
               </NavDropdown.Item>
               {adminButton}
             </NavDropdown>

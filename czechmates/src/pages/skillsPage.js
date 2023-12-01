@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from "react";
 import TextareaPage from "../components/TextArea";
+import NavWithDD from '../components/NavWithDropdown';
 
 
 
@@ -46,6 +47,7 @@ const SkillsPage = ({ skillInfo, charId, userId, attrInfo, level }) => {
 
     return (
         <div>
+            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <Row>
                     <Col>

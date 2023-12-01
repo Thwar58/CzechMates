@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TextareaPage from "../components/TextArea";
 import EquipmentDropdown from "../components/EquipmentDropdowns";
+import NavWithDD from '../components/NavWithDropdown';
 const equipmentInfo = require('./../utils/equipment.json');
 
 // this component houses the content for the character equipment
@@ -20,6 +21,7 @@ const EquipmentPage = ({ equipInfo, charId, userId }) => {
 
     return (
         <div>
+            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <Row>
                     <Col>

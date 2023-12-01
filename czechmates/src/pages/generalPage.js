@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import NavWithDD from '../components/NavWithDropdown';
 
 // this component houses the content for the general character info
 // input the general character information, the user id and the character id
@@ -13,6 +13,7 @@ const GeneralPage = ({participation, generalInfo, userId, charId }) => {
 
     return (
         <div>
+            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <Row>
                     <Col>
