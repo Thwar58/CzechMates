@@ -9,7 +9,7 @@ import { ref, update } from "firebase/database";
 
 // a component used in the user portion of the profile page
 // input: the label, the name or email of the user, the path to be used in the db changes
-const User = ({ label, content, path, type, invalidNames }) => {
+const User = ({ label, content, type, invalidNames, userInfo, userId }) => {
     // a reference to the database
     const charRef = ref(db);
     // the value in the form and the function to set it, init to content
@@ -34,7 +34,6 @@ const User = ({ label, content, path, type, invalidNames }) => {
 
     useEffect(() => {
         if (type == "Name") {
-            console.log("here first");
             setEditable(
                 <Button onClick={click} variant="outline-secondary" id="button-addon2">
                     Edit
@@ -49,10 +48,7 @@ const User = ({ label, content, path, type, invalidNames }) => {
             if (formValue !== content) {
                 // check if the formvalue exists in the names already
                 var taken = false;
-                console.log("form loop", formValue);
                 for (const [key, value] of Object.entries(invalidNames)) {
-                    // console.log(key, value);
-                    // pass in the key, the character name, and the id of who created the character
                     if (value.Name === formValue) {
                         taken = true;
 
@@ -60,7 +56,6 @@ const User = ({ label, content, path, type, invalidNames }) => {
                 }
 
                 if (taken === false) {
-                    console.log("value in taken", formValue);
                     setEditable(
                         <>
                             <Button onClick={setName} disabled={false} variant="outline-secondary" id="button-addon2">
@@ -86,12 +81,6 @@ const User = ({ label, content, path, type, invalidNames }) => {
                     );
                     setValidityMessage(<div style={{ color: "red" }}>This username is taken</div>);
                 }
-
-
-                // use form value for the username they are trying to use
-                // console.log(formValue);
-                // use the content to set it
-                // console.log(content);
             }
             else {
                 setValidityMessage();
@@ -103,21 +92,37 @@ const User = ({ label, content, path, type, invalidNames }) => {
 
     useEffect(() => {
         if (changeName === true) {
-            console.log("here last");
 
             setDisabled(true);
             setEditable(<Button onClick={click} variant="outline-secondary" id="button-addon2">
                 Edit
             </Button>);
             setValidityMessage();
-            console.log("form set", formValue);
-            console.log("content set", content);
+
             const updates = {};
-            updates[`Users/${path}`] = formValue;
-            // update the database
+
+            if (userInfo.Friends !== undefined) {
+                for (const [key, value] of Object.entries(userInfo.Friends)) {
+                    updates[`Users/${key}/Friends/${userId}`] = formValue;
+                }
+            }
+
+            if (userInfo.Followers !== undefined) {
+                for (const [key, value] of Object.entries(userInfo.Followers)) {
+                    updates[`Users/${key}/Following/${userId}`] = formValue;
+                }
+            }
+
+            if (userInfo.Following !== undefined) {
+                for (const [key, value] of Object.entries(userInfo.Following)) {
+                    updates[`Users/${key}/Followers/${userId}`] = formValue;
+                }
+            }
+
+            
+            updates[`Users/${userId}/Name`] = formValue;
             console.log(updates);
             update(charRef, updates);
-            // update
             setChangeName(false);
         }
 
@@ -128,8 +133,6 @@ const User = ({ label, content, path, type, invalidNames }) => {
     //https://upmostly.com/tutorials/pass-a-parameter-through-onclick-in-react
     function click() {
         setDisabled(false);
-        console.log("value in click", formValue);
-        // create the updates object and set it to the form value using the path passed in
         setEditable(
             <>
                 <Button onClick={setName} disabled={false} variant="outline-secondary" id="button-addon2">
@@ -139,23 +142,14 @@ const User = ({ label, content, path, type, invalidNames }) => {
                     Cancel
                 </Button>
             </>
-
-
         );
-
-        // const updates = {};
-        // updates[`Users/${path}`] = formValue;
-        // // update the database
-        // update(charRef, updates);
     }
 
     function setName() {
         setChangeName(true);
-
     }
 
     function cancel() {
-        console.log("form in cancel", formValue);
         setDisabled(true);
         setEditable(<Button onClick={click} variant="outline-secondary" id="button-addon2">
             Edit
