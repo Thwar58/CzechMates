@@ -22,25 +22,11 @@ const Home = () => {
     }
     return (
         <>
-        <Button onClick={handleGoogle}>Sign in with Google </Button>
             <div>
-                <h1>This is the Home page</h1>
+                <h1 className='bigMargins'>Welcome to the NUDGE TTRPG helper site</h1>
+                <Button className='bigMargins' onClick={handleGoogle}>Sign in with Google </Button>
             </div>
-            <DropDownShowsValue text="Test" actions={["a", "b", "c"]}></DropDownShowsValue>
-            <Spacer />
-            <Dropdown />
-            <Spacer />
-            <Form />
-            <Spacer />
-            <ValidationForm />
-            <Spacer />
-            {/* <ControlledTabs /> */}
-            <Spacer />
-            <TooltipPositions />
-            <Spacer />
-            <PopoverPositions />
-            <Spacer />
-            <Popup />
+            
 
 
 

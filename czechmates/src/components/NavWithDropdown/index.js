@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
+import LightModeButton from '../LightModeButton';
 
 // a component for the navigation bar with a dropdown button incorperated
 function NavWithDD() {
@@ -32,7 +33,7 @@ function NavWithDD() {
               menuVariant="dark"
             >
               <NavDropdown.Item href="#action/3.1">
-                <Button>Light Mode</Button>
+                <LightModeButton/>
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 <Button>Log Out</Button>

@@ -17,12 +17,25 @@ import Worlds from './pages/worldsPage';
 import NavWithDD from './components/NavWithDropdown';
 import SubCharacterPages from './pages/subCharacterPages';
 import { useState } from 'react';
+import { db } from './firebase';
+import { ref, onValue } from "firebase/database";
+
 
 // anything in this app script will appear/be available on every page
 function App() {
 
     // set the user id here according to either a db query or the OAuth
     const [userId] = useState("User1");
+    const userRef = ref(db, 'Users/' + userId);
+    const [userInfo,setUserInfo] = useState();
+    if(userInfo == undefined){
+        onValue(userRef, (snapshot) => {
+            // console.log("repeated? ", snapshot.val());
+            setUserInfo(snapshot.val());
+        });
+    }
+    console.log(userInfo);
+    
 
     // examples of calling the attribute calculation methods
     // Func.calcAwareness();
