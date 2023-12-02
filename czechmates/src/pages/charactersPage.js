@@ -12,12 +12,17 @@ import { useState } from "react";
 import { useEffect } from "react";
 import NavWithDD from '../components/NavWithDropdown';
 import DBFunctions from "../utils/firebaseQueries";
+
+
+
 const charTemplate = require('./../utils/characterTemplate.json');
 
 
 // a component for the main character page
 //input: the user Id
 const CharactersPage = ({ userId }) => {
+
+   
 
     // 7used in page navigation
     const navigate = useNavigate();
@@ -102,6 +107,7 @@ const CharactersPage = ({ userId }) => {
                     <Col>
                     </Col>
                 </Row>
+                
                 <Row>
                     {/* the dropdown for sorting selection */}
                     <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} />
