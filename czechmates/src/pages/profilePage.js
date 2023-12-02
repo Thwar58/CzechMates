@@ -127,8 +127,9 @@ const ProfilePage = ({ userId }) => {
 
     // sets the loading state to false when the user info loads
     useEffect(() => {
-        if (userInfo !== undefined) {
+        if (userInfo !== undefined && userInfo !== null) {
             setLoading(false);
+            // console.log(userInfo);
         }
 
     }, [userInfo]);
@@ -142,7 +143,6 @@ const ProfilePage = ({ userId }) => {
     }
     return (
         <div>
-            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                 <Row>
                     <Col>

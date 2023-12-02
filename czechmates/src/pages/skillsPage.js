@@ -13,7 +13,7 @@ import NavWithDD from '../components/NavWithDropdown';
 
 // this component houses the content for the character skills
 // input: the skill information for a character, the character id, and the user id
-const SkillsPage = ({ skillInfo, charId, userId, attrInfo, level }) => {
+const SkillsPage = ({ skillInfo, charId, attrInfo, level }) => {
 
     // variables to track the skills and position them
     var [left, setLeft] = useState([]);
@@ -47,7 +47,6 @@ const SkillsPage = ({ skillInfo, charId, userId, attrInfo, level }) => {
 
     return (
         <div>
-            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <Row>
                     <Col>

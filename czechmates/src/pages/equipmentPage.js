@@ -16,12 +16,9 @@ const equipmentInfo = require('./../utils/equipment.json');
 const EquipmentPage = ({ equipInfo, charId, userId }) => {
 
     // future: pass in information instead of using dummy data
-    const dummyShield = ["Shield", "Big Shield", "Tall Shield"];
-    const dummyArmor = ["Magic Armor", "Chain Magic Armor", "Heavy Magic Armor"];
 
     return (
         <div>
-            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <Row>
                     <Col>

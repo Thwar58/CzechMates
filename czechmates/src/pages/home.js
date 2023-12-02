@@ -13,13 +13,15 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../SignIn/firebaseConfig';
 import { useState } from 'react';
 import NavWithDD from '../components/NavWithDropdown';
+import { useEffect } from 'react';
 
 // this is the home page, as of now it is mostly reference material and will be largely removed
-const Home = ({ userId }) => {
-
-    console.log("you're on the home page");
-    console.log(window.location.href);
-    console.log("state", window.location.state);
+const Home = ({setUserId}) => {
+    // const userId = sessionStorage.getItem("User");
+    
+    // console.log("you're on the home page");
+    // console.log(window.location.href);
+    // console.log("state", window.location.state);
 
     const handleGoogle = (e) => {
         const provider =  new GoogleAuthProvider();
@@ -28,7 +30,7 @@ const Home = ({ userId }) => {
     }
     return (
         <>
-        <NavWithDD userId={userId}></NavWithDD>
+       
         <Button onClick={handleGoogle}>Sign in with Google </Button>
             <div>
                 <h1>This is the Home page</h1>

@@ -11,7 +11,7 @@ import StatusEffect from "../components/StatusEffectComp";
 import NavWithDD from '../components/NavWithDropdown';
 // this component has all of the character information, uneditable
 // input: all of the info for a character
-const SheetPage = ({ sheetInfo, userId }) => {
+const SheetPage = ({ sheetInfo }) => {
 
     // var left = arr.slice(0, 8);
     var [leftSkills, setLeftSkills] = useState();
@@ -99,7 +99,6 @@ const SheetPage = ({ sheetInfo, userId }) => {
 
     return (
         <div>
-            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <Row>
                     <Col>

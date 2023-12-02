@@ -13,7 +13,6 @@ const GeneralPage = ({participation, generalInfo, userId, charId }) => {
 
     return (
         <div>
-            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <Row>
                     <Col>

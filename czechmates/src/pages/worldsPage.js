@@ -92,7 +92,6 @@ const WorldPage = ({ userId }) => {
 
     return (
         <div>
-            <NavWithDD userId={userId}></NavWithDD>
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                 <Row>
                     <Col>

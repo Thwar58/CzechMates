@@ -13,8 +13,8 @@ import { useNavigate } from 'react-router-dom';
 import { Router } from 'react-router-dom';
 
 // a component for the navigation bar with a dropdown button incorperated
-function NavWithDD({ userId }) {
-  console.log(userId);
+function NavWithDD({ userId, setUserId }) {
+  // console.log(userId);
   var [adminButton, setAdminButton] = useState();
 
 
@@ -22,6 +22,11 @@ function NavWithDD({ userId }) {
 
     const logout = () => {
         navigate('/');
+        setUserId(null);
+        sessionStorage.removeItem("User");
+        // setReload(true);
+        // sessionStorage.removeItem("User");
+        // console.log("session should be removed ", sessionStorage.getItem("User"));
     }
 
   // gets the character information for this user from the database
@@ -29,7 +34,7 @@ function NavWithDD({ userId }) {
     if (userId !== undefined) {
       const userRef = ref(db, `Users/${userId}/Admin_status`);
       onValue(userRef, (snapshot) => {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
         if (snapshot.val() === true) {
           // https://medium.com/coding-beauty/react-open-link-in-new-tab-b48fca2ce86f#:~:text=2-,To%20open%20a%20link%20in%20a%20new%20tab%20in%20React,opened%20in%20a%20new%20tab.
           setAdminButton(
@@ -41,7 +46,7 @@ function NavWithDD({ userId }) {
             </NavDropdown.Item>);
         }
         else {
-          console.log("not admin");
+          // console.log("not admin");
         }
         // setCharInfo(snapshot.val());
       });
