@@ -6,6 +6,12 @@ import { db } from '../../firebase';
 import { increment, ref, update } from "firebase/database";
 import { useEffect } from 'react';
 import { useState } from 'react';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+
+const descriptions = require('../../utils/skillDesc.json');
+
+
 // import Func from '../../utils/attributeFunctions';
 
 
@@ -15,6 +21,14 @@ import { useState } from 'react';
 function SkillsComp({ value, name, charId, skills, attributes, level }) {
     // the reference the the database
     const charRef = ref(db);
+
+    var desc;
+    console.log(descriptions);
+    for (let i = 0; i < descriptions.length; i++) {
+        if (descriptions[i].Name === name) {
+            desc = descriptions[i].Description;
+        }
+    }
     // var [recalcRequired, setRecalcRequired] = useState(false);
 
     // FUTURE: We should add limits to these
@@ -118,10 +132,10 @@ function SkillsComp({ value, name, charId, skills, attributes, level }) {
     }
 
     useEffect(() => {
-        
+
         // recalcRequired === true
         if (level !== undefined) {
-            
+
             // console.log(level);
             // console.log("BEGIN RECALC");
             const recalc = {};
@@ -141,8 +155,8 @@ function SkillsComp({ value, name, charId, skills, attributes, level }) {
                         // console.log("got it?", result);
                         for (const [key, value] of Object.entries(result)) {
                             // console.log("new value should be ", key, value + 5);
-                            if (value + 5 !==  attributes[`${key}`]) {
-                                console.log(`update the db for ${key}`, value + 5, attributes[`${key}`]);
+                            if (value + 5 !== attributes[`${key}`]) {
+                                // console.log(`update the db for ${key}`, value + 5, attributes[`${key}`]);
                                 recalc[`Characters/${charId}/Attributes/${key}`] = 5 + value;
                                 // console.log("check of 3 triggers", key);
                                 if (key.localeCompare("Charisma" === 0) ||
@@ -176,15 +190,27 @@ function SkillsComp({ value, name, charId, skills, attributes, level }) {
     }, [level, attributes]);
 
 
+    const popover = (
+        <Popover id="popover-basic">
+            <Popover.Header as="h3">{name}</Popover.Header>
+            <Popover.Body>
+                {desc}
+            </Popover.Body>
+        </Popover>
+    );
+
 
     return (
         <>
+
             <InputGroup className="mb-3">
-                {/* input the value and disable the input */}
-                <Form.Control
-                    value={name}
-                    disabled={true}
-                />
+                <OverlayTrigger placement="top" overlay={popover}>
+                    {/* input the value and disable the input */}
+                    <Form.Control
+                        value={name}
+                        disabled={true}
+                    />
+                </OverlayTrigger>
                 {/* first button */}
                 <Button onClick={increase} variant="outline-secondary" id="button-addon2">
                     up
@@ -196,6 +222,7 @@ function SkillsComp({ value, name, charId, skills, attributes, level }) {
                     down
                 </Button>
             </InputGroup>
+
         </>
     );
 }

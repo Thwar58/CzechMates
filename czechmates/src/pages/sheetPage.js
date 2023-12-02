@@ -8,7 +8,7 @@ import TextareaPage from "../components/TextArea";
 import { useState } from "react";
 import { useEffect } from "react";
 import StatusEffect from "../components/StatusEffectComp";
-
+import NavWithDD from '../components/NavWithDropdown';
 // this component has all of the character information, uneditable
 // input: all of the info for a character
 const SheetPage = ({ sheetInfo }) => {
@@ -69,14 +69,14 @@ const SheetPage = ({ sheetInfo }) => {
         if (sheetInfo.Status_Effects !== undefined) {
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(sheetInfo.Status_Effects)) {
-                console.log(key, value);
+                // console.log(key, value);
                 if (value === true) {
                     arr.push(<StatusEffect disabled={true} key={key} checked={value} statusName={key} />);
                 }
 
             }
             if (arr.length>0){
-                console.log(arr);
+                // console.log(arr);
                 var one = arr.slice(0, arr.length*.4);
                 var two = arr.slice(arr.length*.4, arr.length*.7);
                 var three = arr.slice(arr.length*.7);

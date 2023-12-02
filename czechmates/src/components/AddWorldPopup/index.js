@@ -183,7 +183,7 @@ function AddWorldPopup({ title, userId, button }) {
             <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>
             
-              <TypeAhead action={"sendWorldInvite"} friendInfo={friendInfo}/> 
+              <TypeAhead action={"sendWorldInvite"} optionInfo={friendInfo}/> 
             </Form.Group>
             {/* the search code */}
             <Form.Group className="mb-3" controlId="Code">

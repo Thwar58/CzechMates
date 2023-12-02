@@ -7,7 +7,7 @@ import { getDatabase, ref, child, update, get } from "firebase/database";
 import { db } from '../../firebase';
 
 // a component for the confirmation modal
-function ConfirmationPopup({title, content, name, type, action }) {
+function ConfirmationPopup({ title, content, name, type, action }) {
   // sets the default state of the modal
   const [show, setShow] = useState(false);
 
@@ -22,7 +22,7 @@ function ConfirmationPopup({title, content, name, type, action }) {
   function removal() {
 
     console.log("triggered ", type);
-    console.log(action);
+    // console.log(action);
     const updates = {};
 
     if (type === "removeChara") {
@@ -68,15 +68,15 @@ function ConfirmationPopup({title, content, name, type, action }) {
             // remove this world from the members joined world section
             updates[`WorldUserRel/${value.CreatorId}/Joined/${action.worldId}`] = null;
           }
-         
+
 
         } else {
           console.log("No data available");
         }
-         // remove this world from the current user's created worlds
-         updates[`WorldUserRel/${action.userId}/Created/${action.worldId}`] = null;
-         // remove this world from the worlds section
-         updates[`Worlds/${action.worldId}`] = null;
+        // remove this world from the current user's created worlds
+        updates[`WorldUserRel/${action.userId}/Created/${action.worldId}`] = null;
+        // remove this world from the worlds section
+        updates[`Worlds/${action.worldId}`] = null;
         console.log("remove the information in these places ", updates);
         update(worldRef, updates);
       }).catch((error) => {
@@ -92,7 +92,7 @@ function ConfirmationPopup({title, content, name, type, action }) {
           console.log(snapshot.val());
           for (const [key, value] of Object.entries(snapshot.val())) {
             console.log(key, value);
-            if (value.CreatorId==action.userId){
+            if (value.CreatorId == action.userId) {
               console.log("this member is leaving", value.Name);
               // set the character participating to null
               updates[`Characters/${key}/Participation`] = null;
@@ -117,30 +117,54 @@ function ConfirmationPopup({title, content, name, type, action }) {
       });
 
     }
-    else if (type === "removeMember"){
-        // console.log("worldId ", worldId);
-        // console.log("charId ", charId);
-        const updates = {};
-        // use the path to the specific property that this form field maps to in the database
-        // and set it to the value in the form
-        // console.log("this is the id right? ", worldId);
-        // remove the character from the world members list
-        updates[`Worlds/${action.worldId}/Members/${action.charId}`] = null;
-        // remove the participation role from this character
-        updates[`Characters/${action.charId}/Participation`] = null;
-        // remove the world from the user assosciation
-        // this might fix it
-        updates[`WorldUserRel/${action.creatorId}/Joined/${action.worldId}`] = null;
+    else if (type === "removeMember") {
+      // console.log("worldId ", worldId);
+      // console.log("charId ", charId);
+      const updates = {};
+      // use the path to the specific property that this form field maps to in the database
+      // and set it to the value in the form
+      // console.log("this is the id right? ", worldId);
+      // remove the character from the world members list
+      updates[`Worlds/${action.worldId}/Members/${action.charId}`] = null;
+      // remove the participation role from this character
+      updates[`Characters/${action.charId}/Participation`] = null;
+      // remove the world from the user assosciation
+      // this might fix it
+      updates[`WorldUserRel/${action.creatorId}/Joined/${action.worldId}`] = null;
 
-        // }
-        console.log("remove in db at these places ", updates);
-        update(worldRef, updates);
-        // 
+      // }
+      // console.log("remove in db at these places ", updates);
+      update(worldRef, updates);
+      // 
 
     }
+    else if (type === "Following") {
+      const userRef = ref(db);
+      const updates = {};
+      // console.log(action);
+      updates[`Users/${action.userId}/Following/${action.socialId}`] = null;
+      updates[`Users/${action.userId}/Followers/${action.socialId}`] = null;
+      updates[`Users/${action.socialId}/Following/${action.userId}`] = null;
+      // console.log(updates);
+      update(userRef, updates);
 
+    }
+    else if (type === "Friend") {
+      console.log("remove a friend");
+      const userRef = ref(db);
+      // console.log("worldId ", worldId);
+      // console.log("charId ", charId);
+      const updates = {};
+      // console.log(action);
+      
+      updates[`Users/${action.userId}/Followers/${action.socialId}`] = action.content;
+      updates[`Users/${action.socialId}/Following/${action.userId}`] = action.userName;
+      updates[`Users/${action.userId}/Friends/${action.socialId}`] = null;
+      updates[`Users/${action.socialId}/Friends/${action.userId}`] = null;
+      // console.log(updates);
+      update(userRef, updates);
 
-
+    }
     handleClose();
   }
 

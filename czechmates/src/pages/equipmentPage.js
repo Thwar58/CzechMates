@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TextareaPage from "../components/TextArea";
 import EquipmentDropdown from "../components/EquipmentDropdowns";
+import NavWithDD from '../components/NavWithDropdown';
 const equipmentInfo = require('./../utils/equipment.json');
 
 // this component houses the content for the character equipment
@@ -15,8 +16,6 @@ const equipmentInfo = require('./../utils/equipment.json');
 const EquipmentPage = ({ equipInfo, charId, userId }) => {
 
     // future: pass in information instead of using dummy data
-    const dummyShield = ["Shield", "Big Shield", "Tall Shield"];
-    const dummyArmor = ["Magic Armor", "Chain Magic Armor", "Heavy Magic Armor"];
 
     return (
         <div>

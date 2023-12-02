@@ -1,36 +1,55 @@
 {
-    "General": {
-        "Level":0,
-        "Name": "",
-        "High_Concept": "",
-        "Portrait": "",
-        "Trouble": "",
-        "Aspect_1": "",
-        "Aspect_2": "",
-        "Physical_Appearance": "",
-        "Background": "",
-        "Major_Relationships": "",
-        "Other": "",
-        "Fate_Points": "",
-        "Money": ""
+    "Attributes": {
+        "Awareness": 5,
+        "Charisma": 5,
+        "Defense": 5,
+        "Endurance": 5,
+        "Health": 5,
+        "Knowledge": 5,
+        "Magic_Attack": 5,
+        "Magic_Defense": 5,
+        "Magic_Heal": 5,
+        "Magic_Range": 5,
+        "Magic_Reach": 5,
+        "Max_Action_Points_AP": 5,
+        "Max_Resolve": 5,
+        "Max_Vigor": 5,
+        "Melee_Attack": 5,
+        "Movement": 5,
+        "Ranged_Attack": 5
     },
     "Equipment": {
-        "Weapon_Equipped": "",
-        "Weapon_Modification_Slots": {
-            "Slot0": "",
-            "Slot2": "",
-            "Slot3": ""
-    },
-        "Shield_Equipped": "",
-        "Shield_Modification_Slots": {
-            "Slot0": ""
-    },
         "Armor_Equipped": "",
         "Armor_Modification_Slots": {
-            "Slot0": "",
-            "Slot2": ""
+            "Slot_1": "",
+            "Slot_2": ""
+        },
+        "Inventory": "",
+        "Shield_Equipped": "",
+        "Shield_Modification_Slots": {
+            "Slot_1": ""
+        },
+        "Weapon_Equipped": "",
+        "Weapon_Modification_Slots": {
+            "Slot_1": "",
+            "Slot_2": "",
+            "Slot_3": ""
+        }
     },
-        "Inventory": ""
+    "General": {
+        "Level": 0,
+        "Aspect_1": "",
+        "Aspect_2": "",
+        "Background": "",
+        "Fate_Points": "",
+        "High_Concept": "",
+        "Major_Relationships": "",
+        "Money": "",
+        "Name": "",
+        "Other": "",
+        "Physical_Appearance": "",
+        "Portrait": "",
+        "Trouble": ""
     },
     "Skills": {
         "Alchemy": 0,
@@ -42,32 +61,51 @@
         "Engineering": 0,
         "Fight": 0,
         "Hunting": 0,
+        "Learned_Abilities": 0,
         "Lore": 0,
         "Physique": 0,
         "Rapport": 0,
         "Shooting": 0,
         "Stealth": 0,
         "Survival": 0,
-        "Will": 0,
-        "Learned_Abilities": 0
+        "Will": 0
     },
-    "Attributes": {
-        "Awareness": 5,
-        "Charisma": 5,
-        "Defense": 5,
-        "Endurance": 5,
-        "Health": 5,
-        "Knowledge": 5,
-        "Magic_Attack": 5,
-        "Magic_Defense": 5,
-        "Magic_Heal": 5,
-        "Magic_Reach": 5,
-        "Melee_Attack": 5,
-        "Ranged_Attack": 5,
-        "Max_Action_Points_AP": 5,
-        "Max_Vigor": 5,
-        "Max_Resolve": 5,
-        "Magic_Range": 5,
-        "Movement": 5
+    "Status_Effects": {
+        "Asleep": false,
+        "Aflame (X)": false,
+        "Blinded": false,
+        "Can't Move": false,
+        "Charmed": false,
+        "Confused": false,
+        "Cursed": false,
+        "Deteriorating": false,
+        "Distracted": false,
+        "Drunk": false,
+        "Empowered": false,
+        "Enraged": false,
+        "Exhausted": false,
+        "Frozen": false,
+        "Gunked Up": false,
+        "Hasted": false,
+        "Impervious": false,
+        "Infused": false,
+        "Inoculated": false,
+        "Nerve Damaged": false,
+        "Poisoned (X)": false,
+        "Protected": false,
+        "Radiant": false,
+        "Re-Life": false,
+        "Regenerating (X)": false,
+        "Resistant (X)": false,
+        "Returning": false,
+        "Shielded (X)": false,
+        "Silenced": false,
+        "Slowed": false,
+        "Targeted (X)": false,
+        "Vampiric": false,
+        "Vulnerable": false,
+        "Weakened": false,
+        "Weakness (X)": false,
+        "Weightless": false
     }
 }

@@ -46,11 +46,11 @@ var DBFunctions = {
         // Write the new post's data simultaneously in the posts list and the user's post list.
         const updates = {};
         updates['Characters/' + newPostKey] = charTemplate;
-        updates[`CharacterUserRel/${userId}/${newPostKey}`] = 
-        {
-            Level: 0,
-            Name: charName
-        };
+        updates[`CharacterUserRel/${userId}/${newPostKey}`] = {
+            "Name": charName,
+            "Level": 0,
+            "Last_Used": Date.now()
+          } ;
         // const newPostKey = push(child(ref(db), 'posts')).key;
         update(ref(db), updates);
         return newPostKey;

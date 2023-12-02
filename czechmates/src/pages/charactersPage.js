@@ -10,12 +10,19 @@ import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 import { useEffect } from "react";
+import NavWithDD from '../components/NavWithDropdown';
 import DBFunctions from "../utils/firebaseQueries";
+
+
+
 const charTemplate = require('./../utils/characterTemplate.json');
+
 
 // a component for the main character page
 //input: the user Id
 const CharactersPage = ({ userId }) => {
+
+   
 
     // 7used in page navigation
     const navigate = useNavigate();
@@ -59,8 +66,10 @@ const CharactersPage = ({ userId }) => {
         if (charInfo !== null) {
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(charInfo)) {
-                arr.push(<Character lvl={value.Level} userId={userId} key={key} charId={key} charName={value.Name} />);
+                console.log(value.Last_Used);
+                arr.push(<Character lastUsed={value.Last_Used} lvl={value.Level} userId={userId} key={key} charId={key} charName={value.Name} />);
             }
+           
             setChars(arr);
         }
         else{
@@ -98,6 +107,7 @@ const CharactersPage = ({ userId }) => {
                     <Col>
                     </Col>
                 </Row>
+                
                 <Row>
                     {/* the dropdown for sorting selection */}
                     <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} />

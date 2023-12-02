@@ -11,12 +11,13 @@ import EquipmentDropdown from "../components/EquipmentDropdowns";
 import StatusEffect from "../components/StatusEffectComp";
 import { useEffect } from "react";
 import { useState } from "react";
+import NavWithDD from '../components/NavWithDropdown';
 
 
 // this component houses the content for the character equipment
 // input: the equipment information for a character
 const StatusEffectPage = ({ statusInfo, charId }) => {
-    console.log(statusInfo);
+    // console.log(statusInfo);
     var [statusEffectsOne, setStatusEffectsOne] = useState([]);
     var [statusEffectsTwo, setStatusEffectsTwo] = useState([]);
     var [statusEffectsThree, setStatusEffectsThree] = useState([]);
@@ -28,10 +29,10 @@ const StatusEffectPage = ({ statusInfo, charId }) => {
         if (statusInfo !== undefined) {
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(statusInfo)) {
-                console.log(key, value);
+                // console.log(key, value);
                 arr.push(<StatusEffect disabled={false} key={key} checked={value} charId={charId} statusName={key} />);
             }
-            console.log(arr);
+            // console.log(arr);
             var one = arr.slice(0, 9);
             var two = arr.slice(9, 18);
             var three = arr.slice(18, 27);
