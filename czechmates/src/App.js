@@ -10,32 +10,63 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
-import Home from './pages';
+import Login from './pages';
+import Home from './pages/home';
 import Characters from './pages/charactersPage';
 import Profile from './pages/profilePage';
 import Worlds from './pages/worldsPage';
-import NavWithDD from './components/NavWithDropdown';
 import SubCharacterPages from './pages/subCharacterPages';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import Button from 'react-bootstrap/esm/Button';
+import NavWithDD from './components/NavWithDropdown';
 
 // anything in this app script will appear/be available on every page
 function App() {
 
-    // set the user id here according to either a db query or the OAuth
-    const [userId] = useState("User1");
+    // var userId = sessionStorage.getItem("User");
+   const [userId, setUserId] = useState(sessionStorage.getItem("User"));
+    // console.log(userId);
+    // var [userId, setUserId] = useState(sessionStorage.getItem("User"));
 
-    // examples of calling the attribute calculation methods
-    // Func.calcAwareness();
-    // Func.calcMovement();
+    // var [reload, setReload] = useState(false);
+
+    useEffect(() => {
+        console.log("user has changed", userId);
+    }, [userId]);
+ 
+    // var [test, setTest] = useState(false);
+    if (userId === null) {
+        console.log("this is the session variable when reload is false", sessionStorage.getItem("User"));
+        return (
+            <div style={{ fontFamily: 'Anton' }}>
+                 <div>App says user is {userId}</div>
+                 
+                {/* router handles all of the page rerouting */}
+                <Router>
+                    {/* the navigation bar */}
+                    {/* routes are the paths to the pages with their export value */}
+                    <Routes>
+                        <Route path='/' element={<Login setUserId={setUserId} userId={userId} />}></Route>
+                    </Routes>
+                </Router>
+            </div>
+        );
+    }
+    // console.log("app is rerendering");
     return (
-        <div style={{ fontFamily: 'Anton'}}>
+        <div style={{ fontFamily: 'Anton' }}>
+             <div>App says user is {userId}</div>
+             
             {/* router handles all of the page rerouting */}
             <Router>
                 {/* the navigation bar */}
-                <NavWithDD userId={userId} />
+                <NavWithDD setUserId={setUserId} userId={userId}></NavWithDD>
                 {/* routes are the paths to the pages with their export value */}
                 <Routes>
-                    <Route path='/' element={<Home userId={userId} />} />
+               
+                    <Route path='/' element={<Login setUserId={setUserId} userId={userId} />}></Route>
+                    <Route path='/home' element={<Home userId={userId} />} />
                     <Route path='/charactersPage' element={<Characters userId={userId} />} />
                     <Route path='/worldsPage' element={<Worlds userId={userId} />} />
                     <Route path='/profilePage' element={<Profile userId={userId} />} />

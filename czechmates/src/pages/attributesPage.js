@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from "react";
 import { useEffect } from "react";
+import NavWithDD from '../components/NavWithDropdown';
 
 // this component houses the content for the character attributes
 // input: the character attributes

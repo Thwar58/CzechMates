@@ -11,6 +11,7 @@ import EquipmentDropdown from "../components/EquipmentDropdowns";
 import StatusEffect from "../components/StatusEffectComp";
 import { useEffect } from "react";
 import { useState } from "react";
+import NavWithDD from '../components/NavWithDropdown';
 
 
 // this component houses the content for the character equipment

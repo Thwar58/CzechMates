@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import InputWithLabel from "../components/InputWithLabel";
+import NavWithDD from '../components/NavWithDropdown';
 
 // the profile page for the user
 // input: the user's id
@@ -126,8 +127,9 @@ const ProfilePage = ({ userId }) => {
 
     // sets the loading state to false when the user info loads
     useEffect(() => {
-        if (userInfo !== undefined) {
+        if (userInfo !== undefined && userInfo !== null) {
             setLoading(false);
+            // console.log(userInfo);
         }
 
     }, [userInfo]);

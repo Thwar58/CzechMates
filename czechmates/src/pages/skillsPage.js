@@ -7,12 +7,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from "react";
 import TextareaPage from "../components/TextArea";
+import NavWithDD from '../components/NavWithDropdown';
 
 
 
 // this component houses the content for the character skills
 // input: the skill information for a character, the character id, and the user id
-const SkillsPage = ({ skillInfo, charId, userId, attrInfo, level }) => {
+const SkillsPage = ({ skillInfo, charId, attrInfo, level }) => {
 
     // variables to track the skills and position them
     var [left, setLeft] = useState([]);

@@ -10,8 +10,10 @@ import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 import { useEffect } from "react";
+import NavWithDD from '../components/NavWithDropdown';
 import DBFunctions from "../utils/firebaseQueries";
 const charTemplate = require('./../utils/characterTemplate.json');
+
 
 // a component for the main character page
 //input: the user Id

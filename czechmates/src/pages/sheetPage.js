@@ -8,7 +8,7 @@ import TextareaPage from "../components/TextArea";
 import { useState } from "react";
 import { useEffect } from "react";
 import StatusEffect from "../components/StatusEffectComp";
-
+import NavWithDD from '../components/NavWithDropdown';
 // this component has all of the character information, uneditable
 // input: all of the info for a character
 const SheetPage = ({ sheetInfo }) => {
