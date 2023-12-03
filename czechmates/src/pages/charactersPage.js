@@ -10,9 +10,7 @@ import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 import { useEffect } from "react";
-import NavWithDD from '../components/NavWithDropdown';
 import DBFunctions from "../utils/firebaseQueries";
-
 
 
 const charTemplate = require('./../utils/characterTemplate.json');
@@ -20,9 +18,7 @@ const charTemplate = require('./../utils/characterTemplate.json');
 
 // a component for the main character page
 //input: the user Id
-const CharactersPage = ({ userId }) => {
-
-   
+const CharactersPage = ({ userId, userTheme}) => {
 
     // 7used in page navigation
     const navigate = useNavigate();
@@ -96,10 +92,10 @@ const CharactersPage = ({ userId }) => {
     return (
         <div>
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                <Row>
+                <Row className="body.dark">
                     <Col>
                     </Col>
-                    <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10 header">
+                    <Col className={"col-xs-10 col-sm-10 col-md-10 col-lg-10"}>
                         <h1>
                             Character List
                         </h1>
@@ -124,7 +120,7 @@ const CharactersPage = ({ userId }) => {
                 <Row>
                     {/* button that adds a character and redirects to the subchar pages */}
                     <div>
-                        <button onClick={addChara} type="button" className="btn btn-primary">Plus sign icon</button>
+                        <button onClick={addChara} className={"btn_"+userTheme}>Plus sign icon</button>
                     </div>
 
                 </Row>

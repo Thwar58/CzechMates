@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // a component for the navigation bar with a dropdown button incorperated
-function NavWithDD({ userId, setUserId }) {
+function NavWithDD({ userId, setUserId, userTheme, setUserTheme }) {
   // console.log(userId);
   var [adminButton, setAdminButton] = useState();
 
@@ -80,7 +80,7 @@ function NavWithDD({ userId, setUserId }) {
               menuVariant="dark"
             >
               <NavDropdown.Item href="#action/3.1">
-                <LightModeButton/>
+                <LightModeButton userId={userId} userTheme={userTheme} setUserTheme={setUserTheme}/>
               </NavDropdown.Item>
               <NavDropdown.Item>
                 <Button onClick={logout}>Log Out</Button>

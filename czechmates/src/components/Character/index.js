@@ -20,7 +20,7 @@ import generatePDF, { Resolution, Margin, Options } from "react-to-pdf";
 
 // the character component
 // input: the character name, the character id, the user id, and the character information 
-const Character = ({ charName, charId, userId }) => {
+const Character = ({ charName, charId, userId, userTheme, setUserTheme }) => {
 
 
 
@@ -144,12 +144,11 @@ const Character = ({ charName, charId, userId }) => {
 
   
 
-
     // return a div with the character name and buttons for each option
     return (
         <div>
-            <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon3" className="header">
+            <InputGroup>
+                <InputGroup.Text id="basic-addon3">
                     Character
                 </InputGroup.Text>
                 {/* sets the value to the character name */}
@@ -161,17 +160,17 @@ const Character = ({ charName, charId, userId }) => {
                     onClick={() => { toSubPage() }}
                 />
                 {/* copy button */}
-                <Button onClick={copyChara} variant="outline-secondary" id="button-addon2">
+                <Button className={"btn_"+userTheme} onClick={copyChara} variant="outline-secondary" id="button-addon2">
                     Copy
                 </Button>
                 {/* edit button */}
-                <Button onClick={() => { toSubPage() }} variant="outline-secondary" id="button-addon2">
+                <Button className={"btn_"+userTheme} onClick={() => { toSubPage() }} variant="outline-secondary" id="button-addon2">
                     Edit
                 </Button>
                 {/* remove button with confirmation popup */}
                 <ConfirmationPopup content={`Are you sure you want to remove ${charName}? Removing this character will also remove you from the worlds they are in.`} title={`Removing a character...`} id="removeButton" action={{ userId, charId }} name="Remove" type={'removeChara'} />
                 {/* print button */}
-                <PrintPopup name={charName} userId={userId} charId={charId} variant="outline-secondary" id="button-addon2" />
+                <PrintPopup className={"btn_"+userTheme} name={charName} userId={userId} charId={charId} variant="outline-secondary" id="button-addon2" />
             </InputGroup>
         </div>
     );

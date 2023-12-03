@@ -14,34 +14,33 @@
         --dark-text-color: gold;
       }
 
-  
   /* these are the component styles */
-  body {
+  .body_light {
     background-color: var(--background-color);
     color: var(--text-color);
   }
 
-  body.dark {
+  .body_dark {
     background-color: var(--dark-background-color);
     color: var(--dark-text-color);
   }
   
-  header {
+  .header_light {
     background-color: var(--background-color);
     color: var(--primary-color);    
   }
 
-  header.dark {
+  .header_dark {
     background-color: var(--dark-background-color);
     color: var(--dark-primary-color);    
   }
   
-  .btn {
+  .btn_light {
     background-color: var(--secondary-color);
     color: var(--text-color);
   }
 
-  .btn.dark {
+  .btn_dark {
     background-color: var(--dark-secondary-color);
     color: var(--dark-text-color);
   }
@@ -69,22 +68,22 @@
     margin-left: 80px;
   }
 
-  .label {
+  .label_light {
     background-color: var(--secondary-color);
     color: var(--text-color);
   }
 
-  .label.dark {
+  .label_dark {
     background-color: var(--dark-secondary-color);
     color: var(--dark-text-color);
   }
 
-  .dropdown {
+  .dropdown_light {
     color: var(--text-color);
     margin-bottom: 10px;
   }
   
-  .dropdown.dark {
+  .dropdown_dark {
     color: var(--dark-text-color);
     margin-bottom: 10px;
   }
