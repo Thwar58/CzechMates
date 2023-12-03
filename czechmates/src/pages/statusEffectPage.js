@@ -16,7 +16,7 @@ import NavWithDD from '../components/NavWithDropdown';
 
 // this component houses the content for the character equipment
 // input: the equipment information for a character
-const StatusEffectPage = ({ statusInfo, charId }) => {
+const StatusEffectPage = ({ statusInfo, charId, userTheme }) => {
     // console.log(statusInfo);
     var [statusEffectsOne, setStatusEffectsOne] = useState([]);
     var [statusEffectsTwo, setStatusEffectsTwo] = useState([]);
@@ -54,7 +54,7 @@ const StatusEffectPage = ({ statusInfo, charId }) => {
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
                 {/* title */}
-                <h1 style={{ color: "green", textAlign: "center" }}>
+                <h1 className={"text-center body_"+userTheme}>
                     Status Effects
                 </h1>
                 <div>

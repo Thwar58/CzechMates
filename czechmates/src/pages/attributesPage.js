@@ -10,7 +10,7 @@ import NavWithDD from '../components/NavWithDropdown';
 
 // this component houses the content for the character attributes
 // input: the character attributes
-const AttributesPage = ({ attrInfo }) => { 
+const AttributesPage = ({ attrInfo, userTheme }) => { 
     // these arrays and set methods are used to display the different sections of the attributes
     // in different sections of the page
     var [left, setLeft] = useState([]);
@@ -48,7 +48,7 @@ const AttributesPage = ({ attrInfo }) => {
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         {/* title */}
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                        <h1 className={"text-center body_"+userTheme}>
                             Attributes
                         </h1>
 

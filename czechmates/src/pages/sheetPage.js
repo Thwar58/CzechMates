@@ -11,7 +11,7 @@ import StatusEffect from "../components/StatusEffectComp";
 import NavWithDD from '../components/NavWithDropdown';
 // this component has all of the character information, uneditable
 // input: all of the info for a character
-const SheetPage = ({ sheetInfo }) => {
+const SheetPage = ({ sheetInfo,userTheme }) => {
 
     // var left = arr.slice(0, 8);
     var [leftSkills, setLeftSkills] = useState();
@@ -105,7 +105,7 @@ const SheetPage = ({ sheetInfo }) => {
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         {/* title */}
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                        <h1  className={"text-center body_"+userTheme}>
                             Sheet
                         </h1>
                     </Col>

@@ -109,10 +109,10 @@ useEffect(() => {
 
       {/* the modal */}
       <Modal show={show} size='xl' onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header className={"body_"+props.userTheme} closeButton>
           <Modal.Title>{props.name}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className={"body_"+props.userTheme}>
         <Button className={"btn_"+props.userTheme} disabled={isGenerating} variant="primary" onClick={handlePrint}>
             Print
           </Button>
@@ -120,7 +120,7 @@ useEffect(() => {
             Close
           </Button>
           <div id="container">
-        <SheetPage className={"btn_"+props.userTheme} sheetInfo={charInfo} charId={charId}/>
+        <SheetPage userTheme={props.userTheme} sheetInfo={charInfo} charId={charId}/>
         </div>
           <Button className={"btn_"+props.userTheme} disabled={isGenerating} variant="primary" onClick={handlePrint}>
             Print

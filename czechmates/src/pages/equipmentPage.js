@@ -13,7 +13,7 @@ const equipmentInfo = require('./../utils/equipment.json');
 
 // this component houses the content for the character equipment
 // input: the equipment information for a character
-const EquipmentPage = ({ equipInfo, charId, userId }) => {
+const EquipmentPage = ({ equipInfo, charId, userId, userTheme }) => {
 
     // future: pass in information instead of using dummy data
 
@@ -25,7 +25,7 @@ const EquipmentPage = ({ equipInfo, charId, userId }) => {
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         {/* title */}
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                        <h1 className={"text-center body_"+userTheme}>
                             Equipment
                         </h1>
 
