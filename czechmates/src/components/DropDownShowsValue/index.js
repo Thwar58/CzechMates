@@ -9,7 +9,7 @@ import { db } from '../../firebase';
 import { ref, onValue } from "firebase/database";
 
 // a dropdown that updates the text of the dropdown button with the selected option
-function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, actions, text, lastUsed }) {
+function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, actions, text, lastUsed, userTheme }) {
 
   // sets the default value of the dropdown button
   const [value, setValue] = useState(text);
@@ -102,7 +102,7 @@ function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, act
   return (
     <div>
       {/* adds the title and the onSelect function */}
-      <DropdownButton className="dropdown" title={value} onSelect={handleSelect}>
+      <DropdownButton title={value} onSelect={handleSelect}>
         {/* maps each of the options passed in to a dropdown option with the appropriate keys */}
         {actions?.map((name) => (
           <Dropdown.Item key={name} eventKey={name}>{name}

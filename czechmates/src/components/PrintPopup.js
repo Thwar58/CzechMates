@@ -103,7 +103,7 @@ useEffect(() => {
   return (
     <>
       {/* the button that triggers the modal */}
-      <Button variant="primary" onClick={handleShow}>
+      <Button className={"btn_"+props.userTheme} onClick={handleShow}>
         Print
       </Button>
 
@@ -113,19 +113,19 @@ useEffect(() => {
           <Modal.Title>{props.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Button disabled={isGenerating} variant="primary" onClick={handlePrint}>
+        <Button className={"btn_"+props.userTheme} disabled={isGenerating} variant="primary" onClick={handlePrint}>
             Print
           </Button>
-          <Button disabled={isGenerating} variant="secondary" onClick={handleClose}>
+          <Button className={"btn_"+props.userTheme} disabled={isGenerating} variant="secondary" onClick={handleClose}>
             Close
           </Button>
           <div id="container">
-        <SheetPage sheetInfo={charInfo} charId={charId}/>
+        <SheetPage className={"btn_"+props.userTheme} sheetInfo={charInfo} charId={charId}/>
         </div>
-          <Button disabled={isGenerating} variant="primary" onClick={handlePrint}>
+          <Button className={"btn_"+props.userTheme} disabled={isGenerating} variant="primary" onClick={handlePrint}>
             Print
           </Button>
-          <Button disabled={isGenerating} variant="secondary" onClick={handleClose}>
+          <Button className={"btn_"+props.userTheme} disabled={isGenerating} variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Body>

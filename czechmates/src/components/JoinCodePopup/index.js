@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 
 
 // a component for the modal when you try to join a world from a code, you pass in the world name
-function JoinCodePopup({ name }) {
+function JoinCodePopup({ name, userTheme }) {
     // set the initial state to be hidden
     const [show, setShow] = useState(false);
 
@@ -33,7 +33,7 @@ function JoinCodePopup({ name }) {
     return (
         <>
             {/* the button that triggers the modal */}
-            <Button variant="primary" onClick={handleShow}>
+            <Button className={"btn_"+userTheme} variant="primary" onClick={handleShow}>
                 Join
             </Button>
             {/* the modal  */}
@@ -57,21 +57,18 @@ function JoinCodePopup({ name }) {
                                 <Col>
                                     {/* future: we can move the button under the label with css */}
                                     {/* creating a new character, this brings the user to the general sub character page */}
-                                    <Form.Label>Create a new character</Form.Label>
+                                    <Form.Label >Create a new character</Form.Label>
                                    
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                <Button onClick={navigateToGeneral}>Create New</Button>
+                                <Button className={"btn_"+userTheme} onClick={navigateToGeneral}>Create New</Button>
                                 </Col>
                             </Row>
 
-
                         </Form.Group>
                     </Container>
-
-
 
                 </Modal.Body>
                 {/* the modal footer with the closing buttons */}
@@ -79,7 +76,7 @@ function JoinCodePopup({ name }) {
                     <Button variant="secondary" onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button className={"btn_"+userTheme} onClick={handleClose}>
                         Confirm
                     </Button>
                 </Modal.Footer>

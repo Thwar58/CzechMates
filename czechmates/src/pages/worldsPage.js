@@ -17,7 +17,7 @@ import NavWithDD from '../components/NavWithDropdown';
 
 // this is the world page
 // input: the user id 
-const WorldPage = ({ userId }) => {
+const WorldPage = ({ userId, userTheme }) => {
 
     // variables to track the world information and the loading state
     var [worldInfo, setWorldInfo] = useState();
@@ -92,7 +92,7 @@ const WorldPage = ({ userId }) => {
 
     return (
         <div>
-            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10 fullWindow">
                 <Row>
                     <Col>
                     </Col>
@@ -122,11 +122,11 @@ const WorldPage = ({ userId }) => {
                                 disabled={false}
                             />
                             {/* first button */}
-                            <JoinCodePopup name={"World Name"} />
+                            <JoinCodePopup userTheme={userTheme} name={"World Name"} />
                         </InputGroup>
                     </Col>
                 </Row>
-                <Row>
+                <Row  className="mb-3">
                     <div>
                         {
                             worldDisplay

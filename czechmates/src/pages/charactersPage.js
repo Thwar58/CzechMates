@@ -29,7 +29,6 @@ const CharactersPage = ({ userId, userTheme}) => {
     // a usestate for the loading conditional rendering
     const [loading, setLoading] = useState(true);
 
-
     // a function that adds a character to the database
     function addChara() {
         // console.log("char info ", charInfo);
@@ -52,7 +51,6 @@ const CharactersPage = ({ userId, userTheme}) => {
                 setCharInfo(snapshot.val());
             });
         }
-
     }, [userId]);
 
     // when character info changes, this gets triggered
@@ -63,7 +61,7 @@ const CharactersPage = ({ userId, userTheme}) => {
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(charInfo)) {
                 console.log(value.Last_Used);
-                arr.push(<Character lastUsed={value.Last_Used} lvl={value.Level} userId={userId} key={key} charId={key} charName={value.Name} />);
+                arr.push(<Character userTheme={userTheme} lastUsed={value.Last_Used} lvl={value.Level} userId={userId} key={key} charId={key} charName={value.Name} />);
             }
            
             setChars(arr);
@@ -72,7 +70,7 @@ const CharactersPage = ({ userId, userTheme}) => {
             setChars(<h1>You have no characters yet</h1>)
         }
 
-    }, [charInfo]);
+    }, [charInfo, userTheme]);
 
     // sets the loading screen to false once the data loads
     useEffect(() => {
@@ -90,9 +88,9 @@ const CharactersPage = ({ userId, userTheme}) => {
     }
 
     return (
-        <div>
-            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                <Row className="body.dark">
+        <div  className={"fullWindow body_"+userTheme}>
+            <Container fluid="md" className={"col-xs-10 col-sm-10 col-md-10 col-lg-10 body_"+userTheme}>
+                <Row>
                     <Col>
                     </Col>
                     <Col className={"col-xs-10 col-sm-10 col-md-10 col-lg-10"}>
@@ -104,7 +102,7 @@ const CharactersPage = ({ userId, userTheme}) => {
                     </Col>
                 </Row>
                 
-                <Row>
+                <Row  className="mb-3">
                     {/* the dropdown for sorting selection */}
                     <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} />
                 </Row>
@@ -114,7 +112,6 @@ const CharactersPage = ({ userId, userTheme}) => {
                         {
                             chars
                         }
-
                     </div>
                 </Row>
                 <Row>
@@ -122,7 +119,6 @@ const CharactersPage = ({ userId, userTheme}) => {
                     <div>
                         <button onClick={addChara} className={"btn_"+userTheme}>Plus sign icon</button>
                     </div>
-
                 </Row>
             </Container>
 

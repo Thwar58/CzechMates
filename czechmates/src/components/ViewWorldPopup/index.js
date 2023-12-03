@@ -13,7 +13,7 @@ import { ref, onValue } from "firebase/database";
 
 // a component for viewing world information (not editable by the user)
 // input: the name of the world and the members
-function VWPopup({ name, worldId }) {
+function VWPopup({ name, worldId, userTheme }) {
   // set the default state of the modal to hidden
   const [show, setShow] = useState(false);
 
@@ -76,7 +76,7 @@ function VWPopup({ name, worldId }) {
   return (
     <>
       {/* the button that triggers the modal */}
-      <Button variant="primary" onClick={handleShow}>
+      <Button className={"btn_"+userTheme} variant="primary" onClick={handleShow}>
         View
       </Button>
 
