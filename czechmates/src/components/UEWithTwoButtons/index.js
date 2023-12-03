@@ -11,7 +11,7 @@ import ViewCharaPopup from '../ViewCharaPopup';
 // input: the value of the form, the creator id for later, and the labels for the buttons
 function UEWithTwoButtons({ charId, creatorId, worldId, charName, setAlign}) {
     const worldRef = ref(db);
-    console.log("setAlign in UETB", setAlign);
+    // console.log("setAlign in UETB", setAlign);
 
 
     return (

@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 // a component for the confirmation modal
 function ViewCharaPopup({setAlign, charId, userId}) {
   // get char info in here with db query similar to sub pages for sheet
-  console.log("set align in viewchara", setAlign);
+  // console.log("set align in viewchara", setAlign);
   // sets the default state of the modal
   const [show, setShow] = useState(false);
 

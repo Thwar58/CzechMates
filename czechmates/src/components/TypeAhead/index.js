@@ -18,6 +18,7 @@ const TypeAhead = ({ optionInfo, action, userId, userName }) => {
   // distinguish which typeahead we are using here, get all users if profile, whenever a selection is made,
   // check follower list and update accordingly
   useEffect(() => {
+    console.log("options info has changed: ", optionInfo);
     // console.log("see it change", optionInfo);
     if (optionInfo !== undefined) {
       // console.log("friendinfo ", friendInfo);
@@ -26,10 +27,10 @@ const TypeAhead = ({ optionInfo, action, userId, userName }) => {
         if (action === "sendWorldInvite") {
           // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
           for (const [key, value] of Object.entries(optionInfo)) {
-            console.log(key, value);
+            // console.log(key, value);
             // pass in the key, the character name, and the id of who created the character
             arr.push(value);
-            console.log("look here?", value);
+            // console.log("look here?", value);
           }
           setOptionsArr(arr);
         }
@@ -51,12 +52,12 @@ const TypeAhead = ({ optionInfo, action, userId, userName }) => {
   }, [optionInfo]);
 
   useEffect(() => {
-    // console.log("check", optionsArr);
+    console.log("options arr has changed: ", optionsArr);
 
   }, [optionsArr]);
 
   useEffect(() => {
-    // console.log("selection has changed", singleSelections);
+    console.log("selection has changed: ", singleSelections);
     if (singleSelections.length !== 0) {
       // console.log("this was selected from the typeahead: ", singleSelections);
 
@@ -105,13 +106,8 @@ const TypeAhead = ({ optionInfo, action, userId, userName }) => {
 
               }
 
-              // this part is not working 
-              // console.log("present is: ", present);
               const updates = {};
               if (present === true) {
-                // console.log("make them friends");
-                // add friend, remove from following
-                // console.log("make friends", present);
                 // remove requester from requested follower list
                 updates[`Users/${id}/Followers/${userId}`] = null;
                 updates[`Users/${userId}/Followers/${id}`] = null;
@@ -125,7 +121,7 @@ const TypeAhead = ({ optionInfo, action, userId, userName }) => {
               }
               // this part is working
               else if (present === false) {
-                console.log("potential follower")
+                // console.log("potential follower")
                 // add following
                 var alreadyFriends = false;
 
@@ -138,16 +134,11 @@ const TypeAhead = ({ optionInfo, action, userId, userName }) => {
                       alreadyFriends = true;
                     }
                   }
-                  // setWorldInfo(snapshot.val());
+            
                 });
-                // for (let i = 0; i < optionsArr.length; i++) {
-                //   if (optionsArr[i] == value.Name) {
-                //     alreadyFriends = true;
-                //   }
-                // }
-                console.log(alreadyFriends);
+                // console.log(alreadyFriends);
                 if (alreadyFriends === false) {
-                  console.log("make following because you're not friends");
+                  // console.log("make following because you're not friends");
                   // add requestor to requested follower list
                   updates[`Users/${id}/Followers/${userId}`] = userName;
                   updates[`Users/${userId}/Following/${id}`] = OtherName;
@@ -155,36 +146,15 @@ const TypeAhead = ({ optionInfo, action, userId, userName }) => {
                   update(ref(db), updates);
                 }
                 else {
-                  console.log("you can't follow, you're already friends");
+                  // console.log("you can't follow, you're already friends");
                 }
 
 
               }
 
-
-
-
-
-
-
-
-
-
-
-
-          
           }).catch((error) => {
             console.error(error);
           });
-
-
-
-
-          // get(userRef, (snapshot) => {
-
-          // });
-          // // // if they do then add inverse to friends
-          // // if not, add this user to following
 
         }
       }
@@ -192,7 +162,6 @@ const TypeAhead = ({ optionInfo, action, userId, userName }) => {
       // console.log("exiting selection", singleSelections);
 
     }
-
 
     // console.log(worldInfo);
   }, [singleSelections]);

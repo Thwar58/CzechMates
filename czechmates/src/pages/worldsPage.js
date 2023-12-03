@@ -44,7 +44,7 @@ const WorldPage = ({ userId }) => {
     // loop through the worlds and create components for them
     useEffect(() => {
         if (worldInfo !== undefined && worldInfo !== null) {
-            console.log(worldInfo);
+            // console.log(worldInfo);
             var arr = [];
             if (worldInfo.Created !== undefined) {
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
