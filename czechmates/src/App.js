@@ -35,7 +35,8 @@ function App() {
 
     useEffect(() => {
         console.log("user has changed", userId);
-        const userRef = ref(db, 'Users/' + userId);
+        if (userId !== undefined){
+            const userRef = ref(db, 'Users/' + userId);
             onValue(userRef, (snapshot) => {
                 if(snapshot.val()!==undefined && snapshot.val().Light_Mode !==  ''){
                 // console.log("repeated? ", snapshot.val());
@@ -44,16 +45,21 @@ function App() {
                 console.log(snapshot.val().Light_Mode);
                 }
             });
+        }
+      
     }, [userId]);
 
     useEffect(() => {
-        console.log("user has changed", userId);
-        const userRef = ref(db);
-        const updates = {};
-        updates[`Users/${userId}/Light_Mode`] = userTheme;
-        console.log(updates);
-        update(userRef, updates);
-    }, []);
+        if (userTheme !== ""){
+            console.log("set the theme", userId);
+            const userRef = ref(db);
+            const updates = {};
+            updates[`Users/${userId}/Light_Mode`] = userTheme;
+            console.log(updates);
+            update(userRef, updates);
+        }
+       
+    }, [userTheme]);
  
     // var [test, setTest] = useState(false);
     if (userId === null) {
