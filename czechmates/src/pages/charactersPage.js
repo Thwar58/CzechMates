@@ -104,7 +104,7 @@ const CharactersPage = ({ userId, userTheme}) => {
                 
                 <Row  className="mb-3">
                     {/* the dropdown for sorting selection */}
-                    <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} />
+                    <DropDownShowsValue userTheme={userTheme} chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} />
                 </Row>
                 {/* loading in the character components */}
                 <Row>

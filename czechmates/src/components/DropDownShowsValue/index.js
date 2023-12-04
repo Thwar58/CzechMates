@@ -105,7 +105,7 @@ function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, act
       <DropdownButton title={value} onSelect={handleSelect}>
         {/* maps each of the options passed in to a dropdown option with the appropriate keys */}
         {actions?.map((name) => (
-          <Dropdown.Item key={name} eventKey={name}>{name}
+          <Dropdown.Item className={"btn_"+userTheme} key={name} eventKey={name}>{name}
           </Dropdown.Item>
         ))}
       </DropdownButton>
