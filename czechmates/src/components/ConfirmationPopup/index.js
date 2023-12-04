@@ -16,6 +16,8 @@ function ConfirmationPopup({ title, content, name, type, action }) {
   const handleShow = () => setShow(true);
   const worldRef = ref(db);
   var [title, setTitle] = useState(title);
+  console.log(content);
+  console.log(title);
 
 
 

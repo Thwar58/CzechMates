@@ -31,7 +31,7 @@ const StatusEffect = ({checked, statusName, charId, disabled}) =>  {
     }
 
     var desc;
-    console.log(descriptions);
+    // console.log(descriptions);
     for (let i = 0; i < descriptions.length; i++) {
       if (descriptions[i].Name === statusName){
         desc = descriptions[i].Description;

@@ -13,9 +13,13 @@ const Social = ({ content, type, userId, socialId, userName }) => {
     var [removal, setRemoval] = useState();
 
     useEffect(() => {
-        if (type !== "Follower") {
+        if (type === "Friend") {
             // content={`Are you sure you want to remove ${charName}? Removing this character will also remove you from the worlds they are in.`} title={`Removing a character...`} id="removeButton" action={{ userId, charId }} name="Remove" type={'removeChara'} 
-            setRemoval(<ConfirmationPopup action={{ userId, socialId, userName, content }} type={type} name={"Remove"} />);
+            setRemoval(<ConfirmationPopup content={"Are you sure you want to remove this friend? You will be removed from each other's worlds."} action={{ userId, socialId, userName, content }} title={"Removing a Friend..."} type={type} name={"Remove"} />);
+        }
+        else if (type === "Following") {
+            // content={`Are you sure you want to remove ${charName}? Removing this character will also remove you from the worlds they are in.`} title={`Removing a character...`} id="removeButton" action={{ userId, charId }} name="Remove" type={'removeChara'} 
+            setRemoval(<ConfirmationPopup content={"Are you sure you want to unfollow this user?"} action={{ userId, socialId, userName, content }} title={"Unfollowing someone..."} type={type} name={"Remove"} />);
         }
 
     }, [type]);

@@ -23,7 +23,7 @@ function SkillsComp({ value, name, charId, skills, attributes, level }) {
     const charRef = ref(db);
 
     var desc;
-    console.log(descriptions);
+    // console.log(descriptions);
     for (let i = 0; i < descriptions.length; i++) {
         if (descriptions[i].Name === name) {
             desc = descriptions[i].Description;

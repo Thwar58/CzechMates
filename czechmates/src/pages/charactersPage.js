@@ -40,6 +40,7 @@ const CharactersPage = ({ userId, userTheme}) => {
         // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
         // when you add a character, it sends you to tehe general page for this character so you can edit them
         navigate('/subCharacterPages', { state: { charId: newId } });
+        sessionStorage.setItem("charId", newId);
     }
 
 

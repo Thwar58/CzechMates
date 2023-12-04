@@ -21,6 +21,7 @@ import { db } from './firebase';
 import { ref, update, onValue } from "firebase/database";
 import NavWithDD from './components/NavWithDropdown';
 import { useEffect } from 'react';
+import HelpPage from './pages/helpPage';
 
 // anything in this app script will appear/be available on every page
 function App() {
@@ -38,7 +39,7 @@ function App() {
         if (userId !== undefined){
             const userRef = ref(db, 'Users/' + userId);
             onValue(userRef, (snapshot) => {
-                if(snapshot.val()!==undefined && snapshot.val().Light_Mode !==  ''){
+                if(snapshot.val()!==null){
                 // console.log("repeated? ", snapshot.val());
                 setUserTheme(snapshot.val().Light_Mode);
                 console.log(snapshot.val());
@@ -97,6 +98,7 @@ function App() {
                     <Route path='/worldsPage' element={<Worlds userId={userId} userTheme={userTheme}/>} />
                     <Route path='/profilePage' element={<Profile userId={userId} userTheme={userTheme}/>} />
                     <Route path='/subCharacterPages' element={<SubCharacterPages userId={userId} userTheme={userTheme}/>} />
+                    <Route path='/helpPage' element={<HelpPage/>} />
                 </Routes>
             </Router>
         </div>

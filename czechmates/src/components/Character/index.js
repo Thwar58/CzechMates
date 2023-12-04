@@ -33,6 +33,7 @@ const Character = ({ charName, charId, userId, userTheme, setUserTheme }) => {
     // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
     const toSubPage = () => {
         navigate('/subCharacterPages', { state: { charId: charId } });
+        sessionStorage.setItem("charId", charId);
         // update here? yes
         const charRef = ref(db);
         const updates = {};

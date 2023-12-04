@@ -15,7 +15,7 @@ const descriptions = require('../../utils/attributeDesc.json');
 function AttributesComp({ name, value }) {
 
   var desc;
-    console.log(descriptions);
+    // console.log(descriptions);
     for (let i = 0; i < descriptions.length; i++) {
       if (descriptions[i].Name === name){
         desc = descriptions[i].Description;

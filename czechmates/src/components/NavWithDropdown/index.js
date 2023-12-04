@@ -88,6 +88,7 @@ function NavWithDD({ userId, setUserId, userTheme, setUserTheme }) {
               {adminButton}
             </NavDropdown>
           </Nav>
+          <Navbar.Brand href="helpPage">Help Page</Navbar.Brand>
         </Navbar.Collapse>
       </Container>
     </Navbar>
