@@ -93,7 +93,7 @@ const CharactersPage = ({ userId, userTheme}) => {
                 <Row>
                     <Col>
                     </Col>
-                    <Col className={"col-xs-10 col-sm-10 col-md-10 col-lg-10"}>
+                    <Col className={"text-center col-xs-10 col-sm-10 col-md-10 col-lg-10"}>
                         <h1>
                             Character List
                         </h1>

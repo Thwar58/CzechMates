@@ -49,12 +49,12 @@ const WorldPage = ({ userId, userTheme }) => {
             if (worldInfo.Created !== undefined) {
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
                 for (const [key, value] of Object.entries(worldInfo.Created)) {
-                    arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"created"} > </World>);
+                    arr.push(<World userTheme={userTheme} key={key} userId={userId} worldId={key} worldName={value} type={"created"} > </World>);
                 }
             }
             if (worldInfo.Joined !== undefined) {
                 for (const [key, value] of Object.entries(worldInfo.Joined)) {
-                    arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"joined"} > </World>);
+                    arr.push(<World userTheme={userTheme} key={key} userId={userId} worldId={key} worldName={value} type={"joined"} > </World>);
                 }
             }
             console.log("after both looped");
@@ -65,7 +65,7 @@ const WorldPage = ({ userId, userTheme }) => {
             setWorlds(<h1>You have no worlds yet</h1>)
         }
 
-    }, [worldInfo]);
+    }, [worldInfo, userTheme]);
 
     // set the loading state to false if the data is loaded
     useEffect(() => {
@@ -97,7 +97,7 @@ const WorldPage = ({ userId, userTheme }) => {
                     <Col>
                     </Col>
                     <Col>
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                        <h1 className={"text-center label_"+userTheme}>
                             World List
                         </h1>
                     </Col>
@@ -138,7 +138,7 @@ const WorldPage = ({ userId, userTheme }) => {
                 <Row>
                     <Col>
                         {/* function MWPopup({ title, userId, button, worldId }) { */}
-                        <AddWorldPopup userId={userId} title="World Name" button={"Add World"} />
+                        <AddWorldPopup userTheme={userTheme} userId={userId} title="World Name" button={"Add World"} />
                     </Col>
                 </Row>
             </Container>

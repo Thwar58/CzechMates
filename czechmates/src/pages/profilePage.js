@@ -12,10 +12,11 @@ import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import InputWithLabel from "../components/InputWithLabel";
 import NavWithDD from '../components/NavWithDropdown';
+import { useTheme } from "@emotion/react";
 
 // the profile page for the user
 // input: the user's id
-const ProfilePage = ({ userId }) => {
+const ProfilePage = ({ userId, userTheme }) => {
     // variables to track the user id and the loading state
     const [userInfo, setUserInfo] = useState();
     const [loading, setLoading] = useState(true);
@@ -79,7 +80,7 @@ const ProfilePage = ({ userId }) => {
                     // console.log("check name ", value);
                     // pass in the key, the character name, and the id of who created the character
                     // arr.push(<UEWithTwoButtons key={key} charId={key} charName={value} />);
-                    friends.push(<Social userName={userInfo.Name} userId={userId} socialId={key} type={"Friend"} key={value} content={value}> </Social>);
+                    friends.push(<Social userTheme={userTheme} userName={userInfo.Name} userId={userId} socialId={key} type={"Friend"} key={value} content={value}> </Social>);
                 }
                 setFriends(friends);
                 // setMems(arr);
@@ -94,7 +95,7 @@ const ProfilePage = ({ userId }) => {
                 for (const [key, value] of Object.entries(userInfo.Following )) {
                     // console.log("check name ", value);
                     // pass in the key, the character name, and the id of who created the character
-                    following.push(<Social userId={userId} socialId={key} type={"Following"} key={value} content={value}> </Social>);
+                    following.push(<Social userTheme={userTheme} userId={userId} socialId={key} type={"Following"} key={value} content={value}> </Social>);
                 }
                 setFollowing(following);
                 // setMems(arr);
@@ -109,7 +110,7 @@ const ProfilePage = ({ userId }) => {
                 for (const [key, value] of Object.entries(userInfo.Followers)) {
                     // console.log("check name ", value);
                     // pass in the key, the character name, and the id of who created the character
-                    followers.push(<Social userId={userId} socialId={key} type={"Follower"} key={value} content={value}> </Social>);
+                    followers.push(<Social userTheme={userTheme} userId={userId} socialId={key} type={"Follower"} key={value} content={value}> </Social>);
                 }
                 setFollowers(followers);
                 // setMems(arr);
@@ -123,7 +124,7 @@ const ProfilePage = ({ userId }) => {
 
 
         }
-    }, [userInfo]);
+    }, [userInfo, userTheme]);
 
     // sets the loading state to false when the user info loads
     useEffect(() => {
@@ -143,12 +144,12 @@ const ProfilePage = ({ userId }) => {
     }
     return (
         <div>
-            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10 fullWindow">
                 <Row>
                     <Col>
                     </Col>
                     <Col>
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                        <h1 className={"header_"+userTheme}>
                             Account information
                         </h1>
                     </Col>
@@ -158,7 +159,7 @@ const ProfilePage = ({ userId }) => {
                 <Row>
                     {/* https://daveceddia.com/react-before-render/ */}
                     {/* these lines produce the control error, we can fix it by moving it out into useeffects */}
-                    <User userInfo={userInfo} invalidNames={allUsers} type={"Name"} label={"Username"} content={userInfo?.Name} userId={userId} />
+                    <User userTheme={userTheme} userInfo={userInfo} invalidNames={allUsers} type={"Name"} label={"Username"} content={userInfo?.Name} userId={userId} />
                 </Row>
                 <Row>
                     <User type={"Email"} label={"Email"} content={userInfo?.Email} userId={userId} />
@@ -168,7 +169,7 @@ const ProfilePage = ({ userId }) => {
                     <Col>
                     </Col>
                     <Col>
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                        <h1 className={"header_"+userTheme}>
                             Social
                         </h1>
                     </Col>

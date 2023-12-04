@@ -5,7 +5,7 @@ import ViewCharaPopup from '../ViewCharaPopup';
 
 // component to display an input that is not editable
 // input: the value of the input and the creator id for later use
-function UEInput({ value, setAlign, userId, charId }) {
+function UEInput({ value, setAlign, userId, charId, userTheme }) {
 
 
 
@@ -18,6 +18,7 @@ function UEInput({ value, setAlign, userId, charId }) {
                     disabled={true}
                 />
                 <ViewCharaPopup
+                userTheme={userTheme}
                 setAlign={setAlign}
                 charId={charId}
                 userId={userId}

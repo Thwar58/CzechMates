@@ -48,13 +48,13 @@ function VWPopup({ name, worldId, userTheme }) {
         // loop through the member objects and create new components containing their information
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(worldInfo.Members)) {
-          arr.push(<UEInput charId={key} creatorId={value.CreatorId} setAlign={setAlign} key={key} value={value.Name} ></UEInput>);
+          arr.push(<UEInput userTheme={userTheme} charId={key} creatorId={value.CreatorId} setAlign={setAlign} key={key} value={value.Name} ></UEInput>);
         }
         setMems(arr);
       }
 
     }
-  }, [worldInfo]);
+  }, [worldInfo, userTheme]);
 
 
   useEffect(() => {
@@ -82,11 +82,11 @@ function VWPopup({ name, worldId, userTheme }) {
 
       {/* the modal */}
       <Modal dialogClassName={align} show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header className={"body_"+userTheme} closeButton>
           <Modal.Title>{name}</Modal.Title>
         </Modal.Header>
         {/* the body has all of the world information */}
-        <Modal.Body>
+        <Modal.Body className={"body_"+userTheme}>
           <Form>
             {/* world name */}
             <Form.Group className="mb-3" controlId="Name">
@@ -115,8 +115,8 @@ function VWPopup({ name, worldId, userTheme }) {
           </Form>
         </Modal.Body>
         {/* the modal footer with the button to close it */}
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+        <Modal.Footer className={"body_"+userTheme}>
+          <Button className={"btn_"+userTheme} onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

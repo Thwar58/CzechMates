@@ -18,20 +18,20 @@ const World = ({ worldName, userId, type, worldId, userTheme }) => {
 
         if (type === "created"){
             setOwnOrJoin([<ManageWorldPopup userTheme={userTheme} key={"MWP"} userId={userId} worldId={worldId}  title="World Name" button={"Manage"} />,
-            <ConfirmationPopup title={"Removing a worlds..."} content={`Are you sure you want to remove ${worldName}?`} type={"removeWorld"} action={{userId, worldId}} key={"CP"} name={"Remove"} />])
+            <ConfirmationPopup userTheme={userTheme} title={"Removing a worlds..."} content={`Are you sure you want to remove ${worldName}?`} type={"removeWorld"} action={{userId, worldId}} key={"CP"} name={"Remove"} />])
         }
         else if (type === "joined"){
             setOwnOrJoin([<ViewWorldPopup userTheme={userTheme} key={"VWP"} worldId={worldId} name={"World Name"} />, 
             <ConfirmationPopup userTheme={userTheme} title={"Leaving a world..."} content={`Are you sure you want to leave ${worldName}`} type={"leaveWorld"} action={{userId, worldId}} key={"CP"} name={"Leave"} />])
         }
 
-    }, [type]);
+    }, [type, userTheme]);
 
    
 
     return (
         <>
-            <InputGroup className={"mb-3 btn_"+userTheme}>
+            <InputGroup className={"mb-3 body_"+userTheme}>
                 <InputGroup.Text id="basic-addon3">
                     World
                 </InputGroup.Text>

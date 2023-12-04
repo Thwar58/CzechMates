@@ -167,23 +167,23 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
 
   // returns a div with the button that triggers the modal as well as the modal content
   return (
-    <>
+    <div className={"btn_"+userTheme}>
       {/* the button that triggers the modal */}
       <Button className={"btn_"+userTheme} id={"ModalButton" + name} variant="primary" onClick={handleShow}>
         {name}
       </Button>
       {/* the modal with the information */}
       <Modal id={"Modal" + name} show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header className={"body_"+userTheme} closeButton>
           {/* modal title */}
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         {/* modal body */}
-        <Modal.Body>
+        <Modal.Body className={"body_"+userTheme}>
           {content}
         </Modal.Body>
         {/* modal footer with the closing buttons */}
-        <Modal.Footer>
+        <Modal.Footer className={"body_"+userTheme}>
           <Button className={"btn_"+userTheme} onClick={handleClose}>
             Cancel
           </Button>
@@ -192,7 +192,7 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 }
 

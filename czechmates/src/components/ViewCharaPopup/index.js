@@ -9,7 +9,7 @@ import SheetPage from '../../pages/sheetPage';
 import { useEffect } from 'react';
 
 // a component for the confirmation modal
-function ViewCharaPopup({setAlign, charId, userId}) {
+function ViewCharaPopup({setAlign, charId, userId, userTheme}) {
   // get char info in here with db query similar to sub pages for sheet
   console.log("set align in viewchara", setAlign);
   // sets the default state of the modal
@@ -49,22 +49,22 @@ function ViewCharaPopup({setAlign, charId, userId}) {
   return (
     <>
       {/* the button that triggers the modal */}
-      <Button id={"ModalButton" + "name"} variant="primary" onClick={openAndAlign}>
+      <Button className={"btn_"+userTheme} id={"ModalButton" + "name"} onClick={openAndAlign}>
         {"View"}
       </Button>
       {/* the modal with the information */}
       <Modal dialogClassName={"mwPopupRight modal-90w "} id={"Modal" + "name"} show={show} onHide={closeAndAlign}>
-        <Modal.Header closeButton>
+        <Modal.Header className={"body_"+userTheme} closeButton>
           {/* modal title */}
           <Modal.Title>Confirm (action)</Modal.Title>
         </Modal.Header>
         {/* modal body */}
-        <Modal.Body>
-        <SheetPage sheetInfo={charInfo} charId={charId} userId={userId} />
+        <Modal.Body className={"body_"+userTheme}>
+        <SheetPage className={"body_"+userTheme} sheetInfo={charInfo} charId={charId} userId={userId} />
         </Modal.Body>
         {/* modal footer with the closing buttons */}
-        <Modal.Footer>
-          <Button variant="secondary" onClick={closeAndAlign}>
+        <Modal.Footer className={"body_"+userTheme}>
+          <Button className={"btn_"+userTheme} onClick={closeAndAlign}>
             Close
           </Button>
         
