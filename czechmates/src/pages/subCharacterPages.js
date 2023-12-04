@@ -33,12 +33,13 @@ const SubCharacterPages = ({ userId }) => {
     const location = useLocation();
     // variables to track the character information and the loading state
     var [charInfo, setCharInfo] = useState("");
-    var [charId] = useState(location.state.charId);
+    var [charId] = useState(sessionStorage.getItem("charId"));
     const [loading, setLoading] = useState(true);
 
 
     // when the userid or the character id change, this is triggered and queries the database
     useEffect(() => {
+        console.log("char id: ", charId);
         if (charId !== undefined){
             // console.log("check char id in sub", charId);
              // use this path and onValue monitors for changes
