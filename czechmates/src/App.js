@@ -38,7 +38,7 @@ function App() {
         if (userId !== undefined){
             const userRef = ref(db, 'Users/' + userId);
             onValue(userRef, (snapshot) => {
-                if(snapshot.val()!==undefined && snapshot.val().Light_Mode !==  ''){
+                if(snapshot.val()!==null){
                 // console.log("repeated? ", snapshot.val());
                 setUserTheme(snapshot.val().Light_Mode);
                 console.log(snapshot.val());
