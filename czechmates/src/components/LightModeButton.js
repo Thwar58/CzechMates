@@ -9,6 +9,25 @@ function LightModeButton({userId, userTheme, setUserTheme}) {
   
   // const userRef = ref(db);
 
+  useEffect(()=>{
+    if(userTheme === 'dark'){
+      var btnElements = document.querySelectorAll('.btn');
+      btnElements.forEach(function(btn) {
+        // Add a new class "newClass" to each button element
+        btn.classList.remove('light');
+        btn.classList.add('dark');
+    });
+      // updates[`Users/${userId}/Light_Mode`] = userTheme;
+    }else{
+      var btnElements = document.querySelectorAll('.btn');
+      btnElements.forEach(function(btn) {
+        // Add a new class "newClass" to each button element
+        btn.classList.remove('dark');
+        btn.classList.add('light');
+    });
+  }
+  },[userTheme]);
+
     return (
       <Button 
       onClick={()=>{

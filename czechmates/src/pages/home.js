@@ -33,10 +33,10 @@ const Home = ({setUserId}) => {
         <div className='text-center fullWindow'>
        
             <div>
-                <h1 className={'text-color-yellow text-center'}>This is the Home page</h1>
+                <h1 className={'text-color-yellow text-center'}>Welcom to the NUDGE TTRPG aid</h1>
             </div>
-            <div><img style={{width:'50vh'}} src={logo} alt="Logo" /></div>
-            <div><Button className={'mb-3'} onClick={handleGoogle}>Sign in with Google </Button></div>
+            <div><img style={{width:'50vh', mb:'3'}} src={logo} alt="Logo" /></div>
+            {/* <div><Button className={'mb-3'} onClick={handleGoogle}>Sign in with Google </Button></div> */}
             {/* <DropDownShowsValue text="Test" actions={["a", "b", "c"]}></DropDownShowsValue>
             <Spacer />
             <Dropdown />

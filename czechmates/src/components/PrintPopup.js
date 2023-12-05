@@ -54,8 +54,9 @@ useEffect(() => {
     setIsGenerating(true)
     downloadPdf().then(
       handleClose()
-    )
+    ).then(
     console.log("happened")
+    )
     setIsGenerating(false)
   }
 
@@ -109,23 +110,23 @@ useEffect(() => {
 
       {/* the modal */}
       <Modal show={show} size='xl' onHide={handleClose}>
-        <Modal.Header className={"body_"+props.userTheme} closeButton>
+        <Modal.Header className={"body_light"} closeButton>
           <Modal.Title>{props.name}</Modal.Title>
         </Modal.Header>
-        <Modal.Body className={"body_"+props.userTheme}>
-        <Button className={"btn_"+props.userTheme} disabled={isGenerating} variant="primary" onClick={handlePrint}>
+        <Modal.Body className={"body_light"}>
+        <Button className={"btn_light"} disabled={isGenerating} variant="primary" onClick={handlePrint}>
             Print
           </Button>
-          <Button className={"btn_"+props.userTheme} disabled={isGenerating} variant="secondary" onClick={handleClose}>
+          <Button className={"btn_light"} disabled={isGenerating} variant="secondary" onClick={handleClose}>
             Close
           </Button>
           <div id="container">
-        <SheetPage userTheme={props.userTheme} sheetInfo={charInfo} charId={charId}/>
+        <SheetPage userTheme={'light'} sheetInfo={charInfo} charId={charId}/>
         </div>
-          <Button className={"btn_"+props.userTheme} disabled={isGenerating} variant="primary" onClick={handlePrint}>
+          <Button className={"btn_light"} disabled={isGenerating} variant="primary" onClick={handlePrint}>
             Print
           </Button>
-          <Button className={"btn_"+props.userTheme} disabled={isGenerating} variant="secondary" onClick={handleClose}>
+          <Button className={"btn_light"} disabled={isGenerating} variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Body>

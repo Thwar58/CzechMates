@@ -5,6 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useState } from 'react';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useEffect } from 'react';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { db } from '../../firebase';
 import { ref, onValue } from "firebase/database";
 
@@ -17,7 +18,25 @@ function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, act
   const handleSelect = (e) => {
     setValue(e)
   }
-
+ 
+  useEffect(()=>{
+    if(userTheme === 'dark'){
+      var btnElements = document.querySelectorAll('.btn');
+      btnElements.forEach(function(btn) {
+        // Add a new class "newClass" to each button element
+        btn.classList.remove('light');
+        btn.classList.add('dark');
+    });
+      // updates[`Users/${userId}/Light_Mode`] = userTheme;
+    }else{
+      var btnElements = document.querySelectorAll('.btn');
+      btnElements.forEach(function(btn) {
+        // Add a new class "newClass" to each button element
+        btn.classList.remove('dark');
+        btn.classList.add('light');
+    });
+  }
+  },[userTheme]);
 
   function alphaCharaSort() {
     var newOrder = [...chars];
@@ -102,13 +121,18 @@ function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, act
   return (
     <div>
       {/* adds the title and the onSelect function */}
-      <DropdownButton title={value} onSelect={handleSelect}>
+      <Dropdown onSelect={handleSelect} as={ButtonGroup}>
+      <Dropdown.Toggle className={"btn_"+userTheme} id="dropdown-custom-1">{value}</Dropdown.Toggle>
+      
+      <Dropdown.Menu className={"btn_"+userTheme}>
+      {/* <Dropdown title={value} onSelect={handleSelect}> */}
         {/* maps each of the options passed in to a dropdown option with the appropriate keys */}
         {actions?.map((name) => (
           <Dropdown.Item className={"btn_"+userTheme} key={name} eventKey={name}>{name}
           </Dropdown.Item>
         ))}
-      </DropdownButton>
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
   );
 }

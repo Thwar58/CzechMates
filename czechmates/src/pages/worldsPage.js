@@ -124,7 +124,7 @@ const WorldPage = ({ userId, userTheme }) => {
                     {/* dropdown for world sorting options */}
                     <Col md={5}>
                     {/* <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} /> */}
-                        <DropDownShowsValue type={"world"} worlds={worlds} worldDisplay={worldDisplay} setWorldDisplay={setWorldDisplay} text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
+                        <DropDownShowsValue userTheme={userTheme} type={"world"} worlds={worlds} worldDisplay={worldDisplay} setWorldDisplay={setWorldDisplay} text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
                     </Col>
                     <Col style={{ textAlign: "right" }} md={7}>
                         {/* the invite code input section */}

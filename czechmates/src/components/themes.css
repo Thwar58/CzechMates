@@ -66,9 +66,13 @@
     border-width: 2px;
   }
 
+  .btn-primary{
+
+  }
+
   .fullWindow {
     min-height: 100vh;
-    height: 100vh;
+    height: 100%;
   }
 
   .mwPopupLeft {

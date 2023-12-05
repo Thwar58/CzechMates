@@ -30,6 +30,8 @@ function JoinCodePopup({ name, userTheme }) {
         navigate('/subCharacterPages');
     }
 
+    console.log(userTheme);
+
     return (
         <>
             {/* the button that triggers the modal */}
@@ -39,18 +41,18 @@ function JoinCodePopup({ name, userTheme }) {
             {/* the modal  */}
             <Modal show={show} onHide={handleClose}>
                 {/* the header contains the name of the world */}
-                <Modal.Header closeButton>
+                <Modal.Header className={"body_"+userTheme} closeButton>
                     <Modal.Title>Welcome to {name}</Modal.Title>
                 </Modal.Header>
                 {/* the body with 2 options for choosing a character: */}
-                <Modal.Body>
+                <Modal.Body className={"body_"+userTheme}>
                     <Container  fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <Form.Group className="mb-3" controlId="ChooseCharacter">
                             <Row>
                                 <Col>
                                     {/* choosing an existing one from a dropdown (from the players character list) */}
                                     <Form.Label>Choose an existing character</Form.Label>
-                                    <DropDownShowsValue text={"Chosen: None"} actions={dummyCharacters} />
+                                    <DropDownShowsValue userTheme={userTheme} text={"Chosen: None"} actions={dummyCharacters} />
                                 </Col>
                             </Row>
                             <Row>
@@ -72,7 +74,7 @@ function JoinCodePopup({ name, userTheme }) {
 
                 </Modal.Body>
                 {/* the modal footer with the closing buttons */}
-                <Modal.Footer>
+                <Modal.Footer className={"body_"+userTheme}>
                     <Button variant="secondary" onClick={handleClose}>
                         Cancel
                     </Button>
