@@ -14,6 +14,7 @@ import { auth } from '../SignIn/firebaseConfig';
 import { useState } from 'react';
 import NavWithDD from '../components/NavWithDropdown';
 import { useEffect } from 'react';
+import logo from '../NUDGE_Logo.png';
 
 // this is the home page, as of now it is mostly reference material and will be largely removed
 const Home = ({setUserId}) => {
@@ -29,13 +30,14 @@ const Home = ({setUserId}) => {
 
     }
     return (
-        <>
+        <div className='text-center fullWindow'>
        
-        <Button onClick={handleGoogle}>Sign in with Google </Button>
             <div>
-                <h1>This is the Home page</h1>
+                <h1 className={'text-color-yellow text-center'}>Welcom to the NUDGE TTRPG aid</h1>
             </div>
-            <DropDownShowsValue text="Test" actions={["a", "b", "c"]}></DropDownShowsValue>
+            <div><img style={{width:'50vh', mb:'3'}} src={logo} alt="Logo" /></div>
+            {/* <div><Button className={'mb-3'} onClick={handleGoogle}>Sign in with Google </Button></div> */}
+            {/* <DropDownShowsValue text="Test" actions={["a", "b", "c"]}></DropDownShowsValue>
             <Spacer />
             <Dropdown />
             <Spacer />
@@ -43,17 +45,17 @@ const Home = ({setUserId}) => {
             <Spacer />
             <ValidationForm />
             <Spacer />
-            {/* <ControlledTabs /> */}
+            <ControlledTabs />
             <Spacer />
             <TooltipPositions />
             <Spacer />
             <PopoverPositions />
             <Spacer />
-            <Popup />
+            <Popup /> */}
 
 
 
-            <div className='App'>
+            {/* <div className='App'>
                 <header className='App-header'>
                     <div className='alert alert-primary' role='alert'>
                         <p style={{ display: "none" }} className='d-block'>
@@ -64,8 +66,8 @@ const Home = ({setUserId}) => {
                         </p>
                     </div>
                 </header>
-            </div>
-        </>
+            </div> */}
+        </div>
     );
 }
 

@@ -7,7 +7,7 @@ import { getDatabase, ref, child, update, get } from "firebase/database";
 import { db } from '../../firebase';
 
 // a component for the confirmation modal
-function ConfirmationPopup({ title, content, name, type, action }) {
+function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
   // sets the default state of the modal
   const [show, setShow] = useState(false);
 
@@ -18,8 +18,6 @@ function ConfirmationPopup({ title, content, name, type, action }) {
   var [title, setTitle] = useState(title);
   console.log(content);
   console.log(title);
-
-
 
   function removal() {
 
@@ -70,7 +68,6 @@ function ConfirmationPopup({ title, content, name, type, action }) {
             // remove this world from the members joined world section
             updates[`WorldUserRel/${value.CreatorId}/Joined/${action.worldId}`] = null;
           }
-
 
         } else {
           console.log("No data available");
@@ -172,32 +169,32 @@ function ConfirmationPopup({ title, content, name, type, action }) {
 
   // returns a div with the button that triggers the modal as well as the modal content
   return (
-    <>
+    <div className={"btn_"+userTheme}>
       {/* the button that triggers the modal */}
-      <Button id={"ModalButton" + name} variant="primary" onClick={handleShow}>
+      <Button className={"btn_"+userTheme} id={"ModalButton" + name} variant="primary" onClick={handleShow}>
         {name}
       </Button>
       {/* the modal with the information */}
       <Modal id={"Modal" + name} show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header className={"body_"+userTheme} closeButton>
           {/* modal title */}
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         {/* modal body */}
-        <Modal.Body>
+        <Modal.Body className={"body_"+userTheme}>
           {content}
         </Modal.Body>
         {/* modal footer with the closing buttons */}
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+        <Modal.Footer className={"body_"+userTheme}>
+          <Button className={"btn_"+userTheme} onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={removal}>
+          <Button className={"btn_"+userTheme} variant="primary" onClick={removal}>
             Confirm
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 }
 

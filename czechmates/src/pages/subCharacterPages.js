@@ -22,7 +22,7 @@ import NavWithDD from '../components/NavWithDropdown';
 
 // a page that contains all of the sub character pages as tabs (i.e. equipment, general)
 // input: the user id AND location stores the character id
-const SubCharacterPages = ({ userId }) => {
+const SubCharacterPages = ({ userId, userTheme }) => {
     // handles page changes
     const navigate = useNavigate();
     const navigateToCharPage = () => {
@@ -36,6 +36,22 @@ const SubCharacterPages = ({ userId }) => {
     var [charId] = useState(sessionStorage.getItem("charId"));
     const [loading, setLoading] = useState(true);
 
+    useEffect(()=>{
+        if(userTheme === 'dark'){
+          var btnElements = document.querySelectorAll('.btn');
+          btnElements.forEach(function(btn) {
+            // Add a new class "newClass" to each button element
+            btn.classList.add('dark');
+        });
+          // updates[`Users/${userId}/Light_Mode`] = userTheme;
+        }else{
+          var btnElements = document.querySelectorAll('.btn');
+          btnElements.forEach(function(btn) {
+            // Add a new class "newClass" to each button element
+            btn.classList.add('light');
+        });
+      }
+      },[]);
 
     // when the userid or the character id change, this is triggered and queries the database
     useEffect(() => {
@@ -71,30 +87,29 @@ const SubCharacterPages = ({ userId }) => {
     // returns a div with the character name and the tabs for each of the pages
     return (
         <div>
-            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10 fullWindow">
                 <Row>
                     <Col>
                     </Col>
-                    <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
                         {/* title */}
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                        <h1 className={"text-center label_"+userTheme}>
                             Character Name
                         </h1>
-
                     </Col>
                     <Col>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="">
                     {/* tabs for each page, passing in the relevant character information */}
-                    <ControlledTabs text={["General", "Status Effects", "Equipment", "Skills", "Attributes", "Sheet"]}
+                    <ControlledTabs userTheme={userTheme} text={["General", "Status Effects", "Equipment", "Skills", "Attributes", "Sheet"]}
                         content={[
-                        <GeneralPage participation={charInfo.Participation} generalInfo={charInfo.General} charId={charId} userId={userId} />,
-                        <StatusEffectPage statusInfo={charInfo.Status_Effects} charId={charId} userId={userId} />,
-                        <EquipmentPage equipInfo={charInfo.Equipment} charId={charId} userId={userId} />,
-                        <SkillsPage level={charInfo.General.Level} skillInfo={charInfo.Skills} attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
-                        <AttributesPage attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
-                        <SheetPage sheetInfo={charInfo} charId={charId} userId={userId} />
+                        <GeneralPage userTheme={userTheme} participation={charInfo.Participation} generalInfo={charInfo.General} charId={charId} userId={userId} />,
+                        <StatusEffectPage userTheme={userTheme} statusInfo={charInfo.Status_Effects} charId={charId} userId={userId} />,
+                        <EquipmentPage userTheme={userTheme} equipInfo={charInfo.Equipment} charId={charId} userId={userId} />,
+                        <SkillsPage userTheme={userTheme} level={charInfo.General.Level} skillInfo={charInfo.Skills} attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
+                        <AttributesPage userTheme={userTheme} attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
+                        <SheetPage userTheme={userTheme} sheetInfo={charInfo} charId={charId} userId={userId} />
                         ]} />
                 </Row>
                 <Row>

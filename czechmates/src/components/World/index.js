@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 // a component to display the worlds with their button options
 // input: the world name and the members
-const World = ({ worldName, userId, type, worldId }) => {
+const World = ({ worldName, userId, type, worldId, userTheme }) => {
 
     var [ownOrJoin, setOwnOrJoin] = useState();
     
@@ -17,21 +17,21 @@ const World = ({ worldName, userId, type, worldId }) => {
     useEffect(() => {
 
         if (type === "created"){
-            setOwnOrJoin([<ManageWorldPopup key={"MWP"} userId={userId} worldId={worldId}  title="World Name" button={"Manage"} />,
-            <ConfirmationPopup title={"Removing a worlds..."} content={`Are you sure you want to remove ${worldName}?`} type={"removeWorld"} action={{userId, worldId}} key={"CP"} name={"Remove"} />])
+            setOwnOrJoin([<ManageWorldPopup userTheme={userTheme} key={"MWP"} userId={userId} worldId={worldId}  title="World Name" button={"Manage"} />,
+            <ConfirmationPopup userTheme={userTheme} title={"Removing a worlds..."} content={`Are you sure you want to remove ${worldName}?`} type={"removeWorld"} action={{userId, worldId}} key={"CP"} name={"Remove"} />])
         }
         else if (type === "joined"){
-            setOwnOrJoin([<ViewWorldPopup key={"VWP"} worldId={worldId} name={"World Name"} />, 
-            <ConfirmationPopup title={"Leaving a world..."} content={`Are you sure you want to leave ${worldName}`} type={"leaveWorld"} action={{userId, worldId}} key={"CP"} name={"Leave"} />])
+            setOwnOrJoin([<ViewWorldPopup userTheme={userTheme} key={"VWP"} worldId={worldId} name={"World Name"} />, 
+            <ConfirmationPopup userTheme={userTheme} title={"Leaving a world..."} content={`Are you sure you want to leave ${worldName}`} type={"leaveWorld"} action={{userId, worldId}} key={"CP"} name={"Leave"} />])
         }
 
-    }, [type]);
+    }, [type, userTheme]);
 
    
 
     return (
         <>
-            <InputGroup className="mb-3">
+            <InputGroup className={"mb-3 body_"+userTheme}>
                 <InputGroup.Text id="basic-addon3">
                     World
                 </InputGroup.Text>

@@ -5,7 +5,7 @@
         --primary-color: Purple; 
         --secondary-color: gold; 
         --background-color: white;
-        --text-color: black;
+        --text-color: Purple;
 
         /* dark mode colors */
         --dark-primary-color: gold;
@@ -28,21 +28,51 @@
   .header_light {
     background-color: var(--background-color);
     color: var(--primary-color);    
+    text-align: center
   }
 
   .header_dark {
     background-color: var(--dark-background-color);
     color: var(--dark-primary-color);    
+    text-align: center
   }
   
-  .btn_light {
+  /* changed the names of the buttons so they look nicer but dont think becuase the light mode button has dark colors that it is wrong*/
+  .btn_dark {
     background-color: var(--secondary-color);
     color: var(--text-color);
+    border-color: var(--primary-color);
+    border-width: 2px;
   }
 
-  .btn_dark {
+  .btn_light {
     background-color: var(--dark-secondary-color);
     color: var(--dark-text-color);
+    border-color: var(--dark-primary-color);
+    border-width: 2px;
+  }
+
+  .btn.dark {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-color: var(--primary-color);
+    border-width: 2px;
+  }
+
+  .btn.light {
+    background-color: var(--dark-secondary-color);
+    color: var(--dark-text-color);
+    border-color: var(--dark-primary-color);
+    border-width: 2px;
+  }
+
+  .btn-primary{
+
+  }
+
+  .fullWindow {
+    min-height: 100vh;
+    height: 100%;
   }
 
   .mwPopupLeft {
@@ -69,12 +99,12 @@
   }
 
   .label_light {
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
     color: var(--text-color);
   }
 
   .label_dark {
-    background-color: var(--dark-secondary-color);
+    /* background-color: var(--dark-secondary-color); */
     color: var(--dark-text-color);
   }
 

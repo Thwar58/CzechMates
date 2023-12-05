@@ -9,17 +9,17 @@ import NavWithDD from '../components/NavWithDropdown';
 
 // this component houses the content for the general character info
 // input the general character information, the user id and the character id
-const GeneralPage = ({participation, generalInfo, userId, charId }) => {
+const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) => {
 
     return (
         <div>
-            <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12 fullWindow">
                 <Row>
                     <Col>
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         {/* title */}
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                        <h1 className={"text-center body_"+userTheme}>
                             General
                         </h1>
                     </Col>

@@ -17,7 +17,7 @@ import NavWithDD from '../components/NavWithDropdown';
 
 // this is the world page
 // input: the user id 
-const WorldPage = ({ userId }) => {
+const WorldPage = ({ userId, userTheme }) => {
 
     // variables to track the world information and the loading state
     var [worldInfo, setWorldInfo] = useState();
@@ -40,6 +40,22 @@ const WorldPage = ({ userId }) => {
 
     }, [userId]);
 
+    useEffect(()=>{
+        if(userTheme === 'dark'){
+          var btnElements = document.querySelectorAll('.btn');
+          btnElements.forEach(function(btn) {
+            // Add a new class "newClass" to each button element
+            btn.classList.add('dark');
+        });
+          // updates[`Users/${userId}/Light_Mode`] = userTheme;
+        }else{
+          var btnElements = document.querySelectorAll('.btn');
+          btnElements.forEach(function(btn) {
+            // Add a new class "newClass" to each button element
+            btn.classList.add('light');
+        });
+      }
+      },[]);
 
     // loop through the worlds and create components for them
     useEffect(() => {
@@ -49,12 +65,12 @@ const WorldPage = ({ userId }) => {
             if (worldInfo.Created !== undefined) {
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
                 for (const [key, value] of Object.entries(worldInfo.Created)) {
-                    arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"created"} > </World>);
+                    arr.push(<World userTheme={userTheme} key={key} userId={userId} worldId={key} worldName={value} type={"created"} > </World>);
                 }
             }
             if (worldInfo.Joined !== undefined) {
                 for (const [key, value] of Object.entries(worldInfo.Joined)) {
-                    arr.push(<World key={key} userId={userId} worldId={key} worldName={value} type={"joined"} > </World>);
+                    arr.push(<World userTheme={userTheme} key={key} userId={userId} worldId={key} worldName={value} type={"joined"} > </World>);
                 }
             }
             console.log("after both looped");
@@ -65,7 +81,7 @@ const WorldPage = ({ userId }) => {
             setWorlds(<h1>You have no worlds yet</h1>)
         }
 
-    }, [worldInfo]);
+    }, [worldInfo, userTheme]);
 
     // set the loading state to false if the data is loaded
     useEffect(() => {
@@ -92,12 +108,12 @@ const WorldPage = ({ userId }) => {
 
     return (
         <div>
-            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10 fullWindow">
                 <Row>
                     <Col>
                     </Col>
                     <Col>
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                        <h1 className={"text-center label_"+userTheme}>
                             World List
                         </h1>
                     </Col>
@@ -108,7 +124,7 @@ const WorldPage = ({ userId }) => {
                     {/* dropdown for world sorting options */}
                     <Col md={5}>
                     {/* <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} /> */}
-                        <DropDownShowsValue type={"world"} worlds={worlds} worldDisplay={worldDisplay} setWorldDisplay={setWorldDisplay} text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
+                        <DropDownShowsValue userTheme={userTheme} type={"world"} worlds={worlds} worldDisplay={worldDisplay} setWorldDisplay={setWorldDisplay} text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
                     </Col>
                     <Col style={{ textAlign: "right" }} md={7}>
                         {/* the invite code input section */}
@@ -122,11 +138,11 @@ const WorldPage = ({ userId }) => {
                                 disabled={false}
                             />
                             {/* first button */}
-                            <JoinCodePopup name={"World Name"} />
+                            <JoinCodePopup userTheme={userTheme} name={"World Name"} />
                         </InputGroup>
                     </Col>
                 </Row>
-                <Row>
+                <Row  className="mb-3">
                     <div>
                         {
                             worldDisplay
@@ -138,7 +154,7 @@ const WorldPage = ({ userId }) => {
                 <Row>
                     <Col>
                         {/* function MWPopup({ title, userId, button, worldId }) { */}
-                        <AddWorldPopup userId={userId} title="World Name" button={"Add World"} />
+                        <AddWorldPopup userTheme={userTheme} userId={userId} title="World Name" button={"Add World"} />
                     </Col>
                 </Row>
             </Container>

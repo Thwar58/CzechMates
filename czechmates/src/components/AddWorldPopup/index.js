@@ -16,7 +16,7 @@ const worldTemplate = require('../../utils/worldTemplate.json');
 
 // a function for the manage/add world modal, you pass in the title and the button display
 // input: the title of the popup, the button to trigger the modal, and the members to display
-function AddWorldPopup({ title, userId, button }) {
+function AddWorldPopup({ title, userId, button, userTheme }) {
   // sets the initial state of the modal to hidden
   const [show, setShow] = useState(false);
   // handles the opening and closing of the modal
@@ -131,7 +131,7 @@ function AddWorldPopup({ title, userId, button }) {
   // render the blank loading screen if loading is true
   if (loading) {
     return (
-      <Button variant="primary" onClick={addWorld}>
+      <Button  className={"btn_"+userTheme} onClick={addWorld}>
         {button}
       </Button>
     )
@@ -141,18 +141,18 @@ function AddWorldPopup({ title, userId, button }) {
   return (
     <>
       {/* the button that triggers the modal */}
-      <Button variant="primary" onClick={addWorld}>
+      <Button  className={"btn_"+userTheme} onClick={addWorld}>
         {button}
       </Button>
 
       {/* the modal */}
       <Modal show={show} onHide={handleClose}>
         {/* set the modal header */}
-        <Modal.Header closeButton>
+        <Modal.Header className={"body_"+userTheme} closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         {/* the modal body with the world information (editable by the user) */}
-        <Modal.Body>
+        <Modal.Body className={"body_"+userTheme}>
           <Form>
             {/* world name info */}
             <Form.Group className="mb-3" controlId="Name">
@@ -196,8 +196,8 @@ function AddWorldPopup({ title, userId, button }) {
           </Form>
           {/* the footer with the close button */}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+        <Modal.Footer className={"body_"+userTheme}>
+          <Button className={"btn_"+userTheme} variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

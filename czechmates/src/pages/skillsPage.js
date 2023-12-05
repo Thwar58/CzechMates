@@ -13,7 +13,7 @@ import NavWithDD from '../components/NavWithDropdown';
 
 // this component houses the content for the character skills
 // input: the skill information for a character, the character id, and the user id
-const SkillsPage = ({ skillInfo, charId, attrInfo, level }) => {
+const SkillsPage = ({ skillInfo, charId, attrInfo, level, userTheme }) => {
 
     // variables to track the skills and position them
     var [left, setLeft] = useState([]);
@@ -53,7 +53,7 @@ const SkillsPage = ({ skillInfo, charId, attrInfo, level }) => {
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         {/* title */}
-                        <h1 style={{ color: "green", textAlign: "center" }}>
+                        <h1 className={"text-center body_"+userTheme}>
                             Skills
                         </h1>
 

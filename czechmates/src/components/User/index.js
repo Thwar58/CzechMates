@@ -9,7 +9,7 @@ import { ref, update } from "firebase/database";
 
 // a component used in the user portion of the profile page
 // input: the label, the name or email of the user, the path to be used in the db changes
-const User = ({ label, content, type, invalidNames, userInfo, userId }) => {
+const User = ({ label, content, type, invalidNames, userInfo, userId, userTheme }) => {
     // a reference to the database
     const charRef = ref(db);
     // the value in the form and the function to set it, init to content
@@ -35,7 +35,7 @@ const User = ({ label, content, type, invalidNames, userInfo, userId }) => {
     useEffect(() => {
         if (type == "Name") {
             setEditable(
-                <Button onClick={click} variant="outline-secondary" id="button-addon2">
+                <Button className={"btn_"+userTheme} onClick={click} variant="outline-secondary" id="button-addon2">
                     Edit
                 </Button>);
 
@@ -58,10 +58,10 @@ const User = ({ label, content, type, invalidNames, userInfo, userId }) => {
                 if (taken === false) {
                     setEditable(
                         <>
-                            <Button onClick={setName} disabled={false} variant="outline-secondary" id="button-addon2">
+                            <Button className={"btn_"+userTheme} onClick={setName} disabled={false} variant="outline-secondary" id="button-addon2">
                                 Set
                             </Button>
-                            <Button onClick={cancel} variant="outline-secondary" id="button-addon2">
+                            <Button className={"btn_"+userTheme} onClick={cancel} variant="outline-secondary" id="button-addon2">
                                 Cancel
                             </Button>
                         </>
@@ -71,10 +71,10 @@ const User = ({ label, content, type, invalidNames, userInfo, userId }) => {
                 else if (taken === true) {
                     setEditable(
                         <>
-                            <Button onClick={setName} disabled={true} variant="outline-secondary" id="button-addon2">
+                            <Button className={"btn_"+userTheme} onClick={setName} disabled={true} variant="outline-secondary" id="button-addon2">
                                 Set
                             </Button>
-                            <Button onClick={cancel} variant="outline-secondary" id="button-addon2">
+                            <Button className={"btn_"+userTheme} onClick={cancel} variant="outline-secondary" id="button-addon2">
                                 Cancel
                             </Button>
                         </>
@@ -135,10 +135,10 @@ const User = ({ label, content, type, invalidNames, userInfo, userId }) => {
         setDisabled(false);
         setEditable(
             <>
-                <Button onClick={setName} disabled={false} variant="outline-secondary" id="button-addon2">
+                <Button className={"btn_"+userTheme} onClick={setName} disabled={false} variant="outline-secondary" id="button-addon2">
                     Set
                 </Button>
-                <Button onClick={cancel} variant="outline-secondary" id="button-addon2">
+                <Button className={"btn_"+userTheme} onClick={cancel} variant="outline-secondary" id="button-addon2">
                     Cancel
                 </Button>
             </>
@@ -151,7 +151,7 @@ const User = ({ label, content, type, invalidNames, userInfo, userId }) => {
 
     function cancel() {
         setDisabled(true);
-        setEditable(<Button onClick={click} variant="outline-secondary" id="button-addon2">
+        setEditable(<Button className={"btn_"+userTheme} onClick={click} variant="outline-secondary" id="button-addon2">
             Edit
         </Button>);
         setFormValue(content);

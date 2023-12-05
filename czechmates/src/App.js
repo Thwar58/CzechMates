@@ -82,7 +82,7 @@ function App() {
     }
     // console.log("app is rerendering");
     return (
-        <div style={{ fontFamily: 'Anton' }}>
+        <div className={"body_"+userTheme} style={{ fontFamily: 'Anton' }}>
              <div>App says user is {userId}</div>
              
             {/* router handles all of the page rerouting */}

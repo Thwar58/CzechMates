@@ -147,9 +147,9 @@ const Character = ({ charName, charId, userId, userTheme, setUserTheme }) => {
 
     // return a div with the character name and buttons for each option
     return (
-        <div>
+        <div  className="mb-3">
             <InputGroup>
-                <InputGroup.Text id="basic-addon3">
+                <InputGroup.Text className={""} id="basic-addon3">
                     Character
                 </InputGroup.Text>
                 {/* sets the value to the character name */}
@@ -169,9 +169,9 @@ const Character = ({ charName, charId, userId, userTheme, setUserTheme }) => {
                     Edit
                 </Button>
                 {/* remove button with confirmation popup */}
-                <ConfirmationPopup content={`Are you sure you want to remove ${charName}? Removing this character will also remove you from the worlds they are in.`} title={`Removing a character...`} id="removeButton" action={{ userId, charId }} name="Remove" type={'removeChara'} />
+                <ConfirmationPopup userTheme={userTheme} content={`Are you sure you want to remove ${charName}? Removing this character will also remove you from the worlds they are in.`} title={`Removing a character...`} id="removeButton" action={{ userId, charId }} name="Remove" type={'removeChara'} />
                 {/* print button */}
-                <PrintPopup className={"btn_"+userTheme} name={charName} userId={userId} charId={charId} variant="outline-secondary" id="button-addon2" />
+                <PrintPopup userTheme={userTheme} name={charName} userId={userId} charId={charId} variant="outline-secondary" id="button-addon2" />
             </InputGroup>
         </div>
     );

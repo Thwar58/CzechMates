@@ -15,7 +15,7 @@ import { ref, onValue, update } from "firebase/database";
 
 // a function for the manage/add world modal, you pass in the title and the button display
 // input: the title of the popup, the button to trigger the modal, and the members to display
-function MWPopup({ title, userId, button, worldId }) {
+function MWPopup({ title, userId, button, worldId, userTheme }) {
   // sets the initial state of the modal to hidden
   const [show, setShow] = useState(false);
   // handles the opening and closing of the modal
@@ -71,7 +71,7 @@ function MWPopup({ title, userId, button, worldId }) {
         for (const [key, value] of Object.entries(worldInfo.Members)) {
           // console.log("check name ", value);
           // pass in the key, the character name, and the id of who created the character
-          arr.push(<UEWithTwoButtons key={key} charId={key} worldId={worldId} charName={value.Name} creatorId={value.CreatorId} 
+          arr.push(<UEWithTwoButtons userTheme={userTheme} key={key} charId={key} worldId={worldId} charName={value.Name} creatorId={value.CreatorId} 
             setAlign={setAlign} />);
         }
         setMems(arr);
@@ -91,7 +91,7 @@ function MWPopup({ title, userId, button, worldId }) {
       console.log("reset loading");
       setLoading(true);
     }
-  }, [worldInfo]);
+  }, [worldInfo, userTheme]);
 
   // // when the form value changes, this is triggered
   useEffect(() => {
@@ -131,18 +131,18 @@ function MWPopup({ title, userId, button, worldId }) {
   return (
     <>
       {/* the button that triggers the modal */}
-      <Button variant="primary" onClick={handleShow}>
+      <Button className={"btn_"+userTheme} onClick={handleShow}>
         {button}
       </Button>
 
       {/* the modal */}
       <Modal dialogClassName={align} show={show} onHide={handleClose}>
         {/* set the modal header */}
-        <Modal.Header closeButton>
+        <Modal.Header className={"body_"+userTheme}closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         {/* the modal body with the world information (editable by the user) */}
-        <Modal.Body>
+        <Modal.Body className={"body_"+userTheme}>
           <Form>
             {/* world name info */}
             <Form.Group className="mb-3" controlId="Name">
@@ -185,8 +185,8 @@ function MWPopup({ title, userId, button, worldId }) {
           </Form>
           {/* the footer with the close button */}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+        <Modal.Footer className={"body_"+userTheme}>
+          <Button className={"btn_"+userTheme} variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>
