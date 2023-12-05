@@ -45,14 +45,21 @@
     border-width: 2px;
   }
 
-  .btn-primary {
+  .btn_light {
     background-color: var(--dark-secondary-color);
     color: var(--dark-text-color);
     border-color: var(--dark-primary-color);
     border-width: 2px;
   }
 
-  .btn_light {
+  .btn.dark {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-color: var(--primary-color);
+    border-width: 2px;
+  }
+
+  .btn.light {
     background-color: var(--dark-secondary-color);
     color: var(--dark-text-color);
     border-color: var(--dark-primary-color);

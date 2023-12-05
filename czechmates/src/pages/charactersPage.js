@@ -41,7 +41,6 @@ const CharactersPage = ({ userId, userTheme}) => {
         navigate('/subCharacterPages', { state: { charId: newId } });
     }
 
-
     // gets the character information for this user from the database
     useEffect(() => {
         if (userId !== undefined) {
@@ -52,6 +51,23 @@ const CharactersPage = ({ userId, userTheme}) => {
             });
         }
     }, [userId]);
+
+    useEffect(()=>{
+        if(userTheme === 'dark'){
+          var btnElements = document.querySelectorAll('.btn');
+          btnElements.forEach(function(btn) {
+            // Add a new class "newClass" to each button element
+            btn.classList.add('dark');
+        });
+          // updates[`Users/${userId}/Light_Mode`] = userTheme;
+        }else{
+          var btnElements = document.querySelectorAll('.btn');
+          btnElements.forEach(function(btn) {
+            // Add a new class "newClass" to each button element
+            btn.classList.add('light');
+        });
+      }
+      },[]);
 
     // when character info changes, this gets triggered
     useEffect(() => {

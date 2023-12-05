@@ -36,6 +36,22 @@ const SubCharacterPages = ({ userId, userTheme }) => {
     var [charId] = useState(location.state.charId);
     const [loading, setLoading] = useState(true);
 
+    useEffect(()=>{
+        if(userTheme === 'dark'){
+          var btnElements = document.querySelectorAll('.btn');
+          btnElements.forEach(function(btn) {
+            // Add a new class "newClass" to each button element
+            btn.classList.add('dark');
+        });
+          // updates[`Users/${userId}/Light_Mode`] = userTheme;
+        }else{
+          var btnElements = document.querySelectorAll('.btn');
+          btnElements.forEach(function(btn) {
+            // Add a new class "newClass" to each button element
+            btn.classList.add('light');
+        });
+      }
+      },[]);
 
     // when the userid or the character id change, this is triggered and queries the database
     useEffect(() => {
@@ -70,23 +86,22 @@ const SubCharacterPages = ({ userId, userTheme }) => {
     // returns a div with the character name and the tabs for each of the pages
     return (
         <div>
-            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10 fullWindow">
                 <Row>
                     <Col>
                     </Col>
-                    <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
                         {/* title */}
                         <h1 className={"text-center label_"+userTheme}>
                             Character Name
                         </h1>
-
                     </Col>
                     <Col>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="">
                     {/* tabs for each page, passing in the relevant character information */}
-                    <ControlledTabs text={["General", "Status Effects", "Equipment", "Skills", "Attributes", "Sheet"]}
+                    <ControlledTabs userTheme={userTheme} text={["General", "Status Effects", "Equipment", "Skills", "Attributes", "Sheet"]}
                         content={[
                         <GeneralPage userTheme={userTheme} participation={charInfo.Participation} generalInfo={charInfo.General} charId={charId} userId={userId} />,
                         <StatusEffectPage userTheme={userTheme} statusInfo={charInfo.Status_Effects} charId={charId} userId={userId} />,

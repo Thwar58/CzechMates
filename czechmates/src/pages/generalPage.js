@@ -13,7 +13,7 @@ const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) =
 
     return (
         <div>
-            <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12 fullWindow">
                 <Row>
                     <Col>
                     </Col>
