@@ -12,7 +12,7 @@ import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import InputWithLabel from "../components/InputWithLabel";
 import NavWithDD from '../components/NavWithDropdown';
-import { useTheme } from "@emotion/react";
+// import { useTheme } from "@emotion/react";
 
 // the profile page for the user
 // input: the user's id
