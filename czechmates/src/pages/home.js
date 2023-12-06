@@ -24,11 +24,11 @@ const Home = ({setUserId}) => {
     // console.log(window.location.href);
     // console.log("state", window.location.state);
 
-    const handleGoogle = (e) => {
-        const provider =  new GoogleAuthProvider();
-        return signInWithPopup(auth, provider)
+    // const handleGoogle = (e) => {
+    //     const provider =  new GoogleAuthProvider();
+    //     return signInWithPopup(auth, provider)
 
-    }
+    // }
     return (
         <div className='text-center fullWindow'>
        

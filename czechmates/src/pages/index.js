@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 
 import Button from 'react-bootstrap/Button';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth } from '../SignIn/firebaseConfig';
+// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+// import { auth } from '../SignIn/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { auto } from '@popperjs/core';
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from '../SignIn/firebaseConfig';
 
 // this is the home page, as of now it is mostly reference material and will be largely removed
 const Login = ({ setUserId }) => {
@@ -25,8 +27,29 @@ const Login = ({ setUserId }) => {
 
 
     const handleGoogle = (e) => {
-        const provider = new GoogleAuthProvider();
-        return signInWithPopup(auth, provider)
+        const provider =  new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                console.log("logged in successfully ", user);
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                console.log("error");
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+            console.log("at all?");
 
     }
     // console.log("check url", window.location.href);
