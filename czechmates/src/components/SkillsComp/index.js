@@ -4,10 +4,12 @@ import Button from 'react-bootstrap/Button';
 import DBFunctions from "../../utils/firebaseQueries";
 import { db } from '../../firebase';
 import { increment, ref, update } from "firebase/database";
-import { useEffect } from 'react';
+import { useEffect, useTransition } from 'react';
 import { useState } from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import { useResolvedPath } from 'react-router-dom';
+import { unstable_createMuiStrictModeTheme } from '@mui/material';
 
 const descriptions = require('../../utils/skillDesc.json');
 
@@ -18,7 +20,7 @@ const descriptions = require('../../utils/skillDesc.json');
 
 // a component to display character skills, it is given the value and two button labels
 // input: the value for the skill, the name of the skill, the character id and the user id
-function SkillsComp({ value, name, charId, skills, attributes, level }) {
+function SkillsComp({ value, name, charId, skills, attributes, level, userTheme }) {
     // the reference the the database
     const charRef = ref(db);
 
@@ -212,13 +214,13 @@ function SkillsComp({ value, name, charId, skills, attributes, level }) {
                     />
                 </OverlayTrigger>
                 {/* first button */}
-                <Button onClick={increase} variant="outline-secondary" id="button-addon2">
+                <Button className={"btn_"+userTheme} onClick={increase} variant="outline-secondary" id="button-addon2">
                     up
                 </Button>
                 {/* display the number */}
                 <InputGroup.Text id="basic-addon2">{value}</InputGroup.Text>
                 {/* second button */}
-                <Button onClick={decrease} variant="outline-secondary" id="button-addon2">
+                <Button className={"btn_"+userTheme} onClick={decrease} variant="outline-secondary" id="button-addon2">
                     down
                 </Button>
             </InputGroup>

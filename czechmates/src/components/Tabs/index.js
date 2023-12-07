@@ -1,16 +1,18 @@
 // https://react-bootstrap.netlify.app/docs/components/tabs
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
 // a component for when we need tabs in a page
 // input: an array of labels and an array of tab contents
-function ControlledTabs({ text, content, userTheme }) {
+function ControlledTabs({ text, content, userTheme, currPage, setCurrPage }) {
   // sets the starting state of the tabs to the first tab
-  const [key, setKey] = useState(text[0]);
+  const [key, setKey] = useState(text[currPage]);
 
-  console.log(userTheme);
+  useEffect(()=>{
+
+  },[])
 
   return (
     // monitor the active tab, set a new tab when a tab is clicked, and set the default tab to the first tab
@@ -19,7 +21,7 @@ function ControlledTabs({ text, content, userTheme }) {
       activeKey={key}
       onSelect={(k) => setKey(k)}
       className={"mb-3 header_"+userTheme}
-      defaultActiveKey={text[0]}
+      defaultActiveKey={text[currPage]}
     >
       {/* populate the tabs with the information passed in, using index to match them */}
       {content?.map((tcontent, index) => (

@@ -38,7 +38,7 @@ const EquipmentPage = ({ equipInfo, charId, userId, userTheme }) => {
                         {/* dropdown for the weapons */}
                         <Form.Label>Weapon</Form.Label>
                         {/* <DropDownShowsValue text="Equipped Weapon" actions={dummyWep} /> */}
-                        <EquipmentDropdown type={"Weapon"} userId={userId} charId={charId} options={equipmentInfo.Weapons} text={equipInfo.Weapon_Equipped} ></EquipmentDropdown>
+                        <EquipmentDropdown userTheme={userTheme} type={"Weapon"} userId={userId} charId={charId} options={equipmentInfo.Weapons} text={equipInfo.Weapon_Equipped} ></EquipmentDropdown>
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
@@ -52,7 +52,7 @@ const EquipmentPage = ({ equipInfo, charId, userId, userTheme }) => {
                     <Col>
                         {/* dropdown for the shield */}
                         <Form.Label>Shield</Form.Label>
-                        <EquipmentDropdown type={"Shield"} userId={userId} charId={charId} options={equipmentInfo.Shields} text={equipInfo.Shield_Equipped} ></EquipmentDropdown>
+                        <EquipmentDropdown userTheme={userTheme} type={"Shield"} userId={userId} charId={charId} options={equipmentInfo.Shields} text={equipInfo.Shield_Equipped} ></EquipmentDropdown>
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}
@@ -64,7 +64,7 @@ const EquipmentPage = ({ equipInfo, charId, userId, userTheme }) => {
                     <Col>
                         {/* dropdown for the armor */}
                         <Form.Label>Armor</Form.Label>
-                        <EquipmentDropdown type={"Armor"} userId={userId} charId={charId} options={equipmentInfo.Armor} text={equipInfo.Armor_Equipped} ></EquipmentDropdown>
+                        <EquipmentDropdown userTheme={userTheme} type={"Armor"} userId={userId} charId={charId} options={equipmentInfo.Armor} text={equipInfo.Armor_Equipped} ></EquipmentDropdown>
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         {/* Weapon Modifications */}

@@ -7,9 +7,11 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, update } from "firebase/database";
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import { DoDisturb } from '@mui/icons-material';
 
 // a dropdown that updates the text of the dropdown button with the selected option
-function EquipmentDropdown({charId, options, text, type }) {
+function EquipmentDropdown({charId, options, text, type, userTheme }) {
 
   // sets the default value of the dropdown button
   const [value, setValue] = useState(text);
@@ -65,10 +67,19 @@ useEffect(() => {
   return (
     <div>
       {/* adds the title and the onSelect function */}
-      <DropdownButton className="dropdown" title={value} onSelect={handleSelect}>
-        {/* maps each of the options passed in to a dropdown option with the appropriate keys */}
+      {/* <DropdownButton title={value} onSelect={handleSelect}>
+        maps each of the options passed in to a dropdown option with the appropriate keys
        {ddOptions}
-      </DropdownButton>
+      </DropdownButton> */}
+      <Dropdown onSelect={handleSelect} as={ButtonGroup}>
+      <Dropdown.Toggle className={"btn_"+userTheme} id="dropdown-custom-1">{value}</Dropdown.Toggle>
+      
+      <Dropdown.Menu className={"btn_"+userTheme}>
+      {/* <Dropdown title={value} onSelect={handleSelect}> */}
+        {/* maps each of the options passed in to a dropdown option with the appropriate keys */}
+        {ddOptions}
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
   );
 }
