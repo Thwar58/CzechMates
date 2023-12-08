@@ -31,7 +31,7 @@ const SkillsPage = ({ skillInfo, charId, attrInfo, level, userTheme }) => {
                     setLearnedAbilities([<TextareaPage charId={charId} key={"Learned Abilities"} disabled={false} content={value} title={"Learned Abilities"}></TextareaPage>])
                 }
                 else {
-                    arr.push(<SkillsComp level={level} attributes={attrInfo} skills={skillInfo} key={key} charId={charId} value={value} name={key} />);
+                    arr.push(<SkillsComp userTheme={userTheme} level={level} attributes={attrInfo} skills={skillInfo} key={key} charId={charId} value={value} name={key} />);
                 }
 
             }

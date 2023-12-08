@@ -9,9 +9,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import StatusEffect from "../components/StatusEffectComp";
 import NavWithDD from '../components/NavWithDropdown';
+import { db } from '../firebase';
+import { child, get, ref, set, push, update, onValue } from "firebase/database";
 // this component has all of the character information, uneditable
 // input: all of the info for a character
-const SheetPage = ({ sheetInfo, userTheme }) => {
+const SheetPage = ({ sheetInfo, charId, userTheme }) => {
 
     // var left = arr.slice(0, 8);
     var [leftSkills, setLeftSkills] = useState();
@@ -21,7 +23,22 @@ const SheetPage = ({ sheetInfo, userTheme }) => {
     var [statusEffectsOne, setStatusEffectsOne] = useState([]);
     var [statusEffectsTwo, setStatusEffectsTwo] = useState([]);
     var [statusEffectsThree, setStatusEffectsThree] = useState([]);
+    var [ imgSrc, setImgSrc ] = useState('')
 
+    useEffect(() => {
+        if (charId !== undefined){
+            // console.log("check char id in sub", charId);
+            // use this path and onValue monitors for changes
+            console.log(charId);
+        const charRef = ref(db, 'Characters/' + charId);
+        onValue(charRef, (snapshot) => {
+            // setCharInfo(snapshot.val());
+            console.log("LOOK HERE");
+            console.log(snapshot.val().General.ImageURL);
+            setImgSrc(snapshot.val().General.ImageURL);
+        });  
+        }
+    }, [charId])
 
     // when the skills information changes, this is triggered
     useEffect(() => {
@@ -35,7 +52,6 @@ const SheetPage = ({ sheetInfo, userTheme }) => {
                 if (key != "Learned_Abilities") {
                     arr.push({ key, value });
                 }
-
             }
             // splice the array for positioning
             var left = arr.slice(0, 8);
@@ -60,7 +76,6 @@ const SheetPage = ({ sheetInfo, userTheme }) => {
             setLeftAttr(left);
             setRightAttr(right);
         }
-
     }, [sheetInfo.Skills]);
 
     useEffect(() => {
@@ -73,7 +88,6 @@ const SheetPage = ({ sheetInfo, userTheme }) => {
                 if (value === true) {
                     arr.push(<StatusEffect disabled={true} key={key} checked={value} statusName={key} />);
                 }
-
             }
             if (arr.length>0){
                 // console.log(arr);
@@ -90,12 +104,8 @@ const SheetPage = ({ sheetInfo, userTheme }) => {
                 setStatusEffectsTwo("No effects are active");
                 setStatusEffectsThree("");
             }
-          
-
         }
-
     }, [sheetInfo.Status_Effects]);
-
 
     return (
         <div>
@@ -116,7 +126,7 @@ const SheetPage = ({ sheetInfo, userTheme }) => {
                     <Col>
                     </Col>
                     <Col style={{ textAlign: "center", borderStyle: "solid" }}>
-                        <p>Image here</p>
+                        <img width='200vh' src={imgSrc}/>
                     </Col>
                     <Col>
                     </Col>
@@ -127,7 +137,7 @@ const SheetPage = ({ sheetInfo, userTheme }) => {
                         <InputWithLabel category={"General"} label={"Name"} content={sheetInfo?.General?.Name} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel category={"General"} label={"Level"} content={sheetInfo?.Level} disabled={true} />
+                        <InputWithLabel category={"General"} label={"Level"} content={sheetInfo?.General.Level} disabled={true} />
 
                     </Col>
                 </Row>

@@ -20,7 +20,7 @@ import generatePDF, { Resolution, Margin, Options } from "react-to-pdf";
 
 // the character component
 // input: the character name, the character id, the user id, and the character information 
-const Character = ({ charName, charId, userId, userTheme, setUserTheme }) => {
+const Character = ({ charName, charId, userId, userTheme }) => {
 
 
 

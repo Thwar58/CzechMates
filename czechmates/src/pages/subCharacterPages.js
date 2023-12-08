@@ -28,6 +28,7 @@ const SubCharacterPages = ({ userId, userTheme }) => {
     const navigateToCharPage = () => {
         navigate('/charactersPage');
     }
+    const [currPage, setCurrPage] = useState(0)
     // location is used to pass information from the character page to the sub page
     // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
     const location = useLocation();
@@ -84,6 +85,15 @@ const SubCharacterPages = ({ userId, userTheme }) => {
             <div></div>
         )
     }
+
+    function goNext() {
+        setCurrPage(currPage+1);
+    }
+
+    function goBack() {
+        setCurrPage(currPage-1);
+    }
+
     // returns a div with the character name and the tabs for each of the pages
     return (
         <div>
@@ -102,7 +112,7 @@ const SubCharacterPages = ({ userId, userTheme }) => {
                 </Row>
                 <Row className="">
                     {/* tabs for each page, passing in the relevant character information */}
-                    <ControlledTabs userTheme={userTheme} text={["General", "Status Effects", "Equipment", "Skills", "Attributes", "Sheet"]}
+                    <ControlledTabs currPage={currPage} setCurrPage={setCurrPage} userTheme={userTheme} text={["General", "Status Effects", "Equipment", "Skills", "Attributes", "Sheet"]}
                         content={[
                         <GeneralPage userTheme={userTheme} participation={charInfo.Participation} generalInfo={charInfo.General} charId={charId} userId={userId} />,
                         <StatusEffectPage userTheme={userTheme} statusInfo={charInfo.Status_Effects} charId={charId} userId={userId} />,
@@ -113,15 +123,14 @@ const SubCharacterPages = ({ userId, userTheme }) => {
                         ]} />
                 </Row>
                 <Row>
-                    <Col>
+                    <Col className="text-end">
                         {/* a button that redirects to the character page when clicked */}
-                        <Button style={{ float: "right" }} onClick={navigateToCharPage}>Done</Button>
+                        <Button className={"btn_"+userTheme} onClick={goBack}>Previous</Button>
+                        <Button className={"btn_"+userTheme} onClick={navigateToCharPage}>Done</Button>
+                        <Button className={"btn_"+userTheme} onClick={goNext}>Next</Button>
                     </Col>
-
                 </Row>
-
             </Container>
-
         </div>
     );
 };
