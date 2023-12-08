@@ -14,7 +14,6 @@ function ControlledTabs({ text, content, userTheme, currPage, setCurrPage }) {
     if(currPage!==undefined){
       setKey(text[currPage]);
     }
-    console.log(currPage);
   },[currPage])
 
   return (
