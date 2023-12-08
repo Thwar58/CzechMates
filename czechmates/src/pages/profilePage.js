@@ -187,7 +187,7 @@ const ProfilePage = ({ userId, userTheme }) => {
                     </Col>
                 </Row>
                 <Row>
-                    {/* tabs for each of the users lists, calling addF for each */}
+                    {/* tabs for each of the users lists, calling add for each */}
                     <ControlledTabs userTheme={userTheme} text={["Friends", "Following", "Followers"]}
                         content={[[
                             <div key={"Friends"} >

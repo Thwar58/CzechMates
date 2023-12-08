@@ -8,18 +8,28 @@ import Tabs from 'react-bootstrap/Tabs';
 // input: an array of labels and an array of tab contents
 function ControlledTabs({ text, content, userTheme, currPage, setCurrPage }) {
   // sets the starting state of the tabs to the first tab
-  const [key, setKey] = useState(text[currPage]);
+  const [key, setKey] = useState(text[0]);
 
   useEffect(()=>{
-
-  },[])
+    if(currPage!==undefined){
+      setKey(text[currPage]);
+    }
+    console.log(currPage);
+  },[currPage])
 
   return (
     // monitor the active tab, set a new tab when a tab is clicked, and set the default tab to the first tab
     <Tabs
       id="tabs"
       activeKey={key}
-      onSelect={(k) => setKey(k)}
+      onSelect={
+        (k) => {
+          setKey(k);
+          if(setCurrPage!==undefined){
+            setCurrPage(text.indexOf(k.toString()));
+          }
+        }
+      }
       className={"mb-3 header_"+userTheme}
       defaultActiveKey={text[currPage]}
     >

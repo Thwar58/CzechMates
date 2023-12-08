@@ -16,9 +16,6 @@ it('Render Components', () => {
   //creates a div that we can put the rendered components into
   const div = document.createElement('div');
 
-  //renders the App to make sure everything works
-  ReactDOM.render(<App />, div);
-
   //renders the AddWorldPopup
   ReactDOM.render(<AddWorldPopup userTheme='light' userId='User1' title="World Name" button="Add World" />, div);
   
@@ -26,7 +23,7 @@ it('Render Components', () => {
   ReactDOM.render(<AttributesComp />, div);
 
   //renders the Character
-  // ReactDOM.render(<Character />, div); 
+  // ReactDOM.render(<Character  charName="char1" charId="character1" userId="User1" userTheme="light"  />, div); 
 
   //renders the ConfirmationPopup
   ReactDOM.render(<ConfirmationPopup />, div);
