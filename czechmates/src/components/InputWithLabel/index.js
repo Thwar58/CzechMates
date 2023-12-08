@@ -43,7 +43,10 @@ const InputWithLabel = ({participation, type, label, content, disabled, category
             if (label === "Name"){
                 updates[`CharacterUserRel/${userId}/${charId}/Name`] = formValue;
                 // need to update world member names here?
-                updates[`Worlds/${participation}/Members/${charId}/Name`] = formValue;
+                if (participation !== undefined){
+                    updates[`Worlds/${participation}/Members/${charId}/Name`] = formValue;
+                }
+               
             }
 
             // console.log(updates);
