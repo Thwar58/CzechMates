@@ -9,7 +9,6 @@ import { useState } from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import { useResolvedPath } from 'react-router-dom';
-import { unstable_createMuiStrictModeTheme } from '@mui/material';
 
 const descriptions = require('../../utils/skillDesc.json');
 

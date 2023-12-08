@@ -8,7 +8,6 @@ import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, update } from "firebase/database";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { DoDisturb } from '@mui/icons-material';
 
 // a dropdown that updates the text of the dropdown button with the selected option
 function EquipmentDropdown({charId, options, text, type, userTheme }) {
