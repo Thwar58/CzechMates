@@ -172,7 +172,7 @@ function MWPopup({ title, userId, button, worldId, userTheme }) {
             {/* future: decide on search bar */}
             <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>
-              <TypeAhead action={"sendWorldInvite"} optionInfo={friendInfo}/> 
+              <TypeAhead action={"sendWorldInvite"} optionInfo={friendInfo} userId={userId} worldCode={worldInfo.Invite_Code}/> 
             </Form.Group>
             {/* the search code */}
             <Form.Group className="mb-3" controlId="Code">
