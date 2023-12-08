@@ -1,14 +1,4 @@
 import React from 'react';
-
-import Dropdown from '../components/Reference/Dropdown';
-import Form from '../components/Reference/Form';
-import ValidationForm from '../components/Reference/ValidationForm';
-import TooltipPositions from '../components/Reference/ToolTip';
-import PopoverPositions from '../components/Reference/Popover';
-import Spacer from '../components/Reference/Spacer';
-import Popup from '../components/Reference/Modal';
-import DropDownShowsValue from '../components/DropDownShowsValue';
-import Button from 'react-bootstrap/Button';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../SignIn/firebaseConfig';
 import { useState } from 'react';
@@ -33,7 +23,7 @@ const Home = ({setUserId}) => {
         <div className='text-center fullWindow'>
        
             <div>
-                <h1 className={'text-color-yellow text-center'}>Welcom to the NUDGE TTRPG aid</h1>
+                <h1 className={'text-color-yellow text-center'}>Welcome to the NUDGE TTRPG aid</h1>
             </div>
             <div><img style={{width:'50vh', mb:'3'}} src={logo} alt="Logo" /></div>
             {/* <div><Button className={'mb-3'} onClick={handleGoogle}>Sign in with Google </Button></div> */}
