@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue, update } from "firebase/database";
 import DBFunctions from "../../utils/firebaseQueries";
+import InputGroup from 'react-bootstrap/InputGroup';
 const worldTemplate = require('../../utils/worldTemplate.json');
 
 // a function for the manage/add world modal, you pass in the title and the button display
@@ -188,11 +189,19 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
             </Form.Group>
             {/* the search code */}
             <Form.Group className="mb-3" controlId="Code">
-              <Form.Label>Invite Code</Form.Label>
+            <Form.Label>Invite Code</Form.Label>
+              <InputGroup>
               <Form.Control
                 value={inviteCode}
                 disabled={true}
-            />
+              />
+              {/* https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
+              <Button className={"btn_" + userTheme}
+                onClick={() => navigator.clipboard.writeText(inviteCode)}
+              >
+              Copy
+              </Button>
+              </InputGroup>
             </Form.Group>
           </Form>
           {/* the footer with the close button */}

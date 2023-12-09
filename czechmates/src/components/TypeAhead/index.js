@@ -13,6 +13,7 @@ import * as emailjs from 'emailjs-com';
 const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremadeChosen }) => {
   const [singleSelections, setSingleSelections] = useState([]);
   var [optionsArr, setOptionsArr] = useState([]);
+  var [placeholder, setPlaceholder] = useState("");
   // var [dbInfo, setDBInfo] = useState();
 
 
@@ -26,6 +27,7 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremade
       var arr = [];
       if (optionInfo !== null) {
         if (action === "sendWorldInvite") {
+          setPlaceholder("Choose a friend to invite");
           // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
           for (const [key, value] of Object.entries(optionInfo)) {
             // console.log(key, value);
@@ -36,6 +38,7 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremade
           setOptionsArr(arr);
         }
         else if (action === "follow") {
+          setPlaceholder("Search for another user by name")
           for (const [key, value] of Object.entries(optionInfo)) {
             // console.log(key, value);
             // pass in the key, the character name, and the id of who created the character
@@ -48,6 +51,7 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremade
           setOptionsArr(arr);
         }
         else if (action === "choose character"){
+          setPlaceholder("Choose from your characters who aren't already in a world")
           console.log("its making us choose a character");
           var arr = [];
            for (const [key, value] of Object.entries(optionInfo)) {
@@ -242,7 +246,7 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremade
           labelKey="name"
 
           options={optionsArr}
-          placeholder="Choose a friend..."
+          placeholder={placeholder}
           selected={singleSelections}
           onChange={setSingleSelections}
         />

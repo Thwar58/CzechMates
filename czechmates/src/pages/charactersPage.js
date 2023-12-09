@@ -10,6 +10,7 @@ import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
 import { useEffect } from "react";
+import Button from "react-bootstrap/esm/Button";
 import DBFunctions from "../utils/firebaseQueries";
 
 
@@ -119,7 +120,7 @@ const CharactersPage = ({ userId, userTheme}) => {
                 <Row>
                     {/* button that adds a character and redirects to the subchar pages */}
                     <div>
-                        <button onClick={addChara} className={"btn_"+userTheme}>Plus sign icon</button>
+                        <Button onClick={addChara} className={"btn_"+userTheme}>Plus sign icon</Button>
                     </div>
                 </Row>
             </Container>
