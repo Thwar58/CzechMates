@@ -11,6 +11,8 @@ import StatusEffect from "../components/StatusEffectComp";
 import NavWithDD from '../components/NavWithDropdown';
 import { db } from '../firebase';
 import { child, get, ref, set, push, update, onValue } from "firebase/database";
+const attrDesc = require('../utils/attributeDesc.json');
+const skillDesc = require('../utils/skillDesc.json');
 // this component has all of the character information, uneditable
 // input: all of the info for a character
 const SheetPage = ({ sheetInfo, charId, userTheme }) => {
@@ -41,7 +43,16 @@ const SheetPage = ({ sheetInfo, charId, userTheme }) => {
             for (const [key, value] of Object.entries(sheetInfo.Skills)) {
                 // console.log(`${key}: `, value);
                 if (key != "Learned_Abilities") {
-                    arr.push({ key, value });
+                    var desc;
+                    // console.log(descriptions);
+                    for (let i = 0; i < skillDesc.length; i++) {
+                        console.log(skillDesc.Name);
+                        console.log(key);
+                        if (skillDesc[i].Name === key) {
+                            desc = skillDesc[i].Description;
+                        }
+                    }
+                    arr.push({ key, value, desc });
                 }
             }
             // splice the array for positioning
@@ -56,9 +67,20 @@ const SheetPage = ({ sheetInfo, charId, userTheme }) => {
             // loop through all the character's skills and make components for them
             var arr = [];
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-            for (const [key, value] of Object.entries(sheetInfo.Attributes)) {
-                // console.log(`${key}: `, value);
-                arr.push({ key, value });
+            for (const [key1, value] of Object.entries(sheetInfo.Attributes)) {
+                var desc;
+                // console.log(descriptions);
+                for (let i = 0; i < attrDesc.length; i++) {
+                    console.log(attrDesc.Name);
+                    console.log(key1);
+                    if (attrDesc[i].Name === key1) {
+                        desc = attrDesc[i].Description;
+                    }
+                }
+            
+                // console.log(key, value);
+                var key = key1.replace(/_/g, " ");
+                arr.push({ key, value, desc });
             }
             // splice the array for positioning
             var left = arr.slice(0, 8);
