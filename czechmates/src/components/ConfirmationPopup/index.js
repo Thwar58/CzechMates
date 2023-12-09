@@ -16,8 +16,8 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
   const handleShow = () => setShow(true);
   const worldRef = ref(db);
   var [title, setTitle] = useState(title);
-  console.log(content);
-  console.log(title);
+  // console.log(content);
+  // console.log(title);
 
   function removal() {
 
@@ -67,6 +67,7 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
             updates[`Characters/${key}/Participation`] = null;
             // remove this world from the members joined world section
             updates[`WorldUserRel/${value.CreatorId}/Joined/${action.worldId}`] = null;
+            updates[`CharacterUserRel/${action.userId}/${key}/Participation`] = null;
           }
 
         } else {
@@ -95,6 +96,7 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
               console.log("this member is leaving", value.Name);
               // set the character participating to null
               updates[`Characters/${key}/Participation`] = null;
+              updates[`CharacterUserRel/${action.userId}/${action.charId}/Participation`] = null;
               // remove the link world from the owners joined field
               updates[`WorldUserRel/${value.CreatorId}/Joined/${action.worldId}`] = null;
               // remove them from the world members list
@@ -127,6 +129,7 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
       updates[`Worlds/${action.worldId}/Members/${action.charId}`] = null;
       // remove the participation role from this character
       updates[`Characters/${action.charId}/Participation`] = null;
+      updates[`CharacterUserRel/${action.userId}/${action.charId}/Participation`] = null;
       // remove the world from the user assosciation
       // this might fix it
       updates[`WorldUserRel/${action.creatorId}/Joined/${action.worldId}`] = null;

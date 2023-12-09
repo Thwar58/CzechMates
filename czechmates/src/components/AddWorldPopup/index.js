@@ -37,7 +37,7 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
   function addWorld() {
     // console.log("add a world")
     if (userId !== undefined) {
-      setWorldId(DBFunctions.createNewWorld(worldTemplate, userId));
+      setWorldId(DBFunctions.createNewWorld(worldTemplate, userId, "placeholdercode"));
     }
   }
 

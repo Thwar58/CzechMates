@@ -13,7 +13,7 @@ import { child, get, ref, set, push, update, onValue } from "firebase/database";
 // input the general character information, the user id and the character id
 const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) => {
 
-    var [ imgSrc, setImgSrc ] = useState('')
+    var [ imgSrc, setImgSrc ] = useState(generalInfo.ImageURL);
 
     function setPic(newImg){
         setImgSrc(newImg);
@@ -23,21 +23,6 @@ const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) =
         updates['Characters/'+charId+'/General/ImageURL'] = newImg;
         update(userRef, updates);
     }
-    
-    useEffect(() => {
-        if (charId !== undefined){
-            // console.log("check char id in sub", charId);
-            // use this path and onValue monitors for changes
-            console.log(charId);
-        const charRef = ref(db, 'Characters/' + charId);
-        onValue(charRef, (snapshot) => {
-            // setCharInfo(snapshot.val());
-            console.log("LOOK HERE");
-            console.log(snapshot.val().General.ImageURL);
-            setImgSrc(snapshot.val().General.ImageURL);
-        });  
-        }
-    }, [charId])
 
     return (
         <div>

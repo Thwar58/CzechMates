@@ -57,10 +57,12 @@ var DBFunctions = {
     },
 
      // add a character to the database (used for copy as well as addition)
-     createNewWorld: function (worldTemplate, userId) {
+     createNewWorld: function (worldTemplate, userId, inviteCode) {
         // Get a key for a new Post.
         const newPostKey = push(child(ref(db), 'posts')).key;
-
+        worldTemplate.Invite_Code = inviteCode;
+        worldTemplate.CreatorId = userId;
+        console.log("check the world template", worldTemplate);
         // Write the new post's data simultaneously in the posts list and the user's post list.
         const updates = {};
         updates['Worlds/' + newPostKey] = worldTemplate;

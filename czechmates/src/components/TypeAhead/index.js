@@ -10,7 +10,7 @@ import { ref, onValue, update, get, child } from "firebase/database";
 import * as emailjs from 'emailjs-com';
 
 
-const TypeAhead = ({ optionInfo, action, userId, userName, worldCode }) => {
+const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremadeChosen }) => {
   const [singleSelections, setSingleSelections] = useState([]);
   var [optionsArr, setOptionsArr] = useState([]);
   // var [dbInfo, setDBInfo] = useState();
@@ -40,6 +40,21 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode }) => {
             // console.log(key, value);
             // pass in the key, the character name, and the id of who created the character
             if (value.Name !== userName) {
+              arr.push(value.Name);
+            }
+
+            // console.log("look here ", value);
+          }
+          setOptionsArr(arr);
+        }
+        else if (action === "choose character"){
+          console.log("join world");
+          console.log(optionsArr);
+          var arr = [];
+           for (const [key, value] of Object.entries(optionInfo)) {
+            // console.log(key, value);
+            // pass in the key, the character name, and the id of who created the character
+            if (value.Participation === undefined) {
               arr.push(value.Name);
             }
 
@@ -197,8 +212,18 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode }) => {
 
         }
       }
-      setSingleSelections([]);
-      // console.log("exiting selection", singleSelections);
+      if(action === "choose character"){
+        // send back the character that is chosen
+        for (const [key, value] of Object.entries(optionInfo)) {
+            if (value.Name === singleSelections[0]){
+              setPremadeChosen({key: key, value: value.Name});
+            }
+        }
+      }
+      else {
+        setSingleSelections([]);
+      }
+      
 
     }
 
@@ -206,8 +231,6 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode }) => {
   }, [singleSelections]);
 
 
-  // const [multiSelections, setMultiSelections] = useState([]);
-  // const options = ["Friend1", "Friend2", "Friend3"];
 
 
 
