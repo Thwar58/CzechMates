@@ -27,16 +27,7 @@ const SheetPage = ({ sheetInfo, charId, userTheme }) => {
 
     useEffect(() => {
         if (charId !== undefined){
-            // console.log("check char id in sub", charId);
-            // use this path and onValue monitors for changes
-            console.log(charId);
-        const charRef = ref(db, 'Characters/' + charId);
-        onValue(charRef, (snapshot) => {
-            // setCharInfo(snapshot.val());
-            console.log("LOOK HERE");
-            console.log(snapshot.val().General.ImageURL);
-            setImgSrc(snapshot.val().General.ImageURL);
-        });  
+            setImgSrc(sheetInfo.General.ImageURL);
         }
     }, [charId])
 

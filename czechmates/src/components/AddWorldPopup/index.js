@@ -37,7 +37,8 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
   function addWorld() {
     // console.log("add a world")
     if (userId !== undefined) {
-      setWorldId(DBFunctions.createNewWorld(worldTemplate, userId));
+      setWorldId(DBFunctions.createNewWorld(worldTemplate, userId, "placeholdercode"));
+
     }
   }
 
@@ -183,7 +184,7 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
             <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>
             
-              <TypeAhead action={"sendWorldInvite"} optionInfo={friendInfo}/> 
+              <TypeAhead worldCode={inviteCode} userId={userId} action={"sendWorldInvite"} optionInfo={friendInfo}/> 
             </Form.Group>
             {/* the search code */}
             <Form.Group className="mb-3" controlId="Code">

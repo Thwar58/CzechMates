@@ -52,7 +52,7 @@ function App() {
     }, [userId]);
 
     useEffect(() => {
-        if (userTheme !== ""){
+        if (userTheme !== "" && userId !== null){
             console.log("set the theme", userId);
             const userRef = ref(db);
             const updates = {};

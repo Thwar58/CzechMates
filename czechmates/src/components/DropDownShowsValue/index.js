@@ -10,7 +10,7 @@ import { db } from '../../firebase';
 import { ref, onValue } from "firebase/database";
 
 // a dropdown that updates the text of the dropdown button with the selected option
-function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, actions, text, lastUsed, userTheme }) {
+function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, actions, text, userTheme }) {
 
   // sets the default value of the dropdown button
   const [value, setValue] = useState(text);
@@ -111,6 +111,11 @@ function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, act
       else if (value == "Participating"){
         joinWorldSort();
       }
+    }
+    else if (type === "availableCharacters"){
+      console.log("available characters");
+      console.log(actions);
+      // do something with it?
     }
 
   }, [value]);

@@ -9,7 +9,7 @@ import ViewCharaPopup from '../ViewCharaPopup';
 
 // a component for an uneditable form input field with two buttons
 // input: the value of the form, the creator id for later, and the labels for the buttons
-function UEWithTwoButtons({ charId, creatorId, worldId, charName, setAlign, userTheme}) {
+function UEWithTwoButtons({charCreatorId, charId, creatorId, worldId, charName, setAlign, userTheme}) {
     const worldRef = ref(db);
     // console.log("setAlign in UETB", setAlign);
 
@@ -37,7 +37,7 @@ function UEWithTwoButtons({ charId, creatorId, worldId, charName, setAlign, user
                 userTheme={userTheme}
                 name={"Remove"}
                 type={"removeMember"}
-                action={{worldId, creatorId, charId}}
+                action={{worldId, creatorId, charId, charCreatorId}}
                 title={`Removing a member...`}
                 content={`Are you sure you want to remove ${charName} from the world?`}
                 >

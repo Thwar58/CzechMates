@@ -16,8 +16,8 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
   const handleShow = () => setShow(true);
   const worldRef = ref(db);
   var [title, setTitle] = useState(title);
-  console.log(content);
-  console.log(title);
+  // console.log(content);
+  // console.log(title);
 
   function removal() {
 
@@ -67,6 +67,7 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
             updates[`Characters/${key}/Participation`] = null;
             // remove this world from the members joined world section
             updates[`WorldUserRel/${value.CreatorId}/Joined/${action.worldId}`] = null;
+            updates[`CharacterUserRel/${value.CreatorId}/${key}/Participation`] = null;
           }
 
         } else {
@@ -95,17 +96,19 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
               console.log("this member is leaving", value.Name);
               // set the character participating to null
               updates[`Characters/${key}/Participation`] = null;
+              updates[`CharacterUserRel/${action.userId}/${key}/Participation`] = null;
               // remove the link world from the owners joined field
               updates[`WorldUserRel/${value.CreatorId}/Joined/${action.worldId}`] = null;
               // remove them from the world members list
               updates[`Worlds/${action.worldId}/Members/${key}`] = null;
+              // console.log(updates);
             }
           }
 
         } else {
           console.log("No data available");
         }
-        console.log("remove the information in these places ", updates);
+        // console.log("remove the information in these places ", updates);
         update(worldRef, updates);
 
 
@@ -123,16 +126,18 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme}) {
       // use the path to the specific property that this form field maps to in the database
       // and set it to the value in the form
       // console.log("this is the id right? ", worldId);
+      console.log("check whats in this", action);
       // remove the character from the world members list
       updates[`Worlds/${action.worldId}/Members/${action.charId}`] = null;
       // remove the participation role from this character
       updates[`Characters/${action.charId}/Participation`] = null;
+      updates[`CharacterUserRel/${action.creatorId}/${action.charId}/Participation`] = null;
       // remove the world from the user assosciation
       // this might fix it
       updates[`WorldUserRel/${action.creatorId}/Joined/${action.worldId}`] = null;
 
       // }
-      // console.log("remove in db at these places ", updates);
+      console.log("remove in db at these places ", updates);
       update(worldRef, updates);
       // 
 

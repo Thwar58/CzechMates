@@ -10,7 +10,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useEffect } from "react";
 import { db } from '../firebase';
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, set } from "firebase/database";
 import { useState } from "react";
 import AddWorldPopup from "../components/AddWorldPopup";
 import NavWithDD from '../components/NavWithDropdown';
@@ -24,7 +24,9 @@ const WorldPage = ({ userId, userTheme }) => {
     var [worlds, setWorlds] = useState([]);
     var [worldDisplay, setWorldDisplay] = useState();
     const [loading, setLoading] = useState(true);
-    
+    var [enteredCode, setEnteredCode] = useState("");
+    var [validCode, setValidCode] = useState();
+
 
     // query the database for the user's worlds when the userid changes
     useEffect(() => {
@@ -40,22 +42,22 @@ const WorldPage = ({ userId, userTheme }) => {
 
     }, [userId]);
 
-    useEffect(()=>{
-        if(userTheme === 'dark'){
-          var btnElements = document.querySelectorAll('.btn');
-          btnElements.forEach(function(btn) {
-            // Add a new class "newClass" to each button element
-            btn.classList.add('dark');
-        });
-          // updates[`Users/${userId}/Light_Mode`] = userTheme;
-        }else{
-          var btnElements = document.querySelectorAll('.btn');
-          btnElements.forEach(function(btn) {
-            // Add a new class "newClass" to each button element
-            btn.classList.add('light');
-        });
-      }
-      },[]);
+    useEffect(() => {
+        if (userTheme === 'dark') {
+            var btnElements = document.querySelectorAll('.btn');
+            btnElements.forEach(function (btn) {
+                // Add a new class "newClass" to each button element
+                btn.classList.add('dark');
+            });
+            // updates[`Users/${userId}/Light_Mode`] = userTheme;
+        } else {
+            var btnElements = document.querySelectorAll('.btn');
+            btnElements.forEach(function (btn) {
+                // Add a new class "newClass" to each button element
+                btn.classList.add('light');
+            });
+        }
+    }, []);
 
     // loop through the worlds and create components for them
     useEffect(() => {
@@ -75,7 +77,7 @@ const WorldPage = ({ userId, userTheme }) => {
             }
             console.log("after both looped");
             setWorlds(arr);
-           
+
         }
         else {
             setWorlds(<h1>You have no worlds yet</h1>)
@@ -98,6 +100,10 @@ const WorldPage = ({ userId, userTheme }) => {
         // console.log(worldInfo);
     }, [worlds]);
 
+    useEffect(() => {
+        // console.log(enteredCode);
+    }, [enteredCode]);
+
 
     // render the blank loading screen if loading is true
     if (loading) {
@@ -113,7 +119,7 @@ const WorldPage = ({ userId, userTheme }) => {
                     <Col>
                     </Col>
                     <Col>
-                        <h1 className={"text-center label_"+userTheme}>
+                        <h1 className={"text-center label_" + userTheme}>
                             World List
                         </h1>
                     </Col>
@@ -123,26 +129,31 @@ const WorldPage = ({ userId, userTheme }) => {
                 <Row>
                     {/* dropdown for world sorting options */}
                     <Col md={5}>
-                    {/* <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} /> */}
+                        {/* <DropDownShowsValue chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} /> */}
                         <DropDownShowsValue userTheme={userTheme} type={"world"} worlds={worlds} worldDisplay={worldDisplay} setWorldDisplay={setWorldDisplay} text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
                     </Col>
-                    <Col style={{ textAlign: "right" }} md={7}>
+                    <Col style={{ textAlign: "center" }} md={7}>
+                        {validCode}
                         {/* the invite code input section */}
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="basic-addon3">
                                 Invite Code
                             </InputGroup.Text>
+
                             {/* input the value and disable the input */}
                             <Form.Control
                                 placeholder="Enter Code"
                                 disabled={false}
+                                value={enteredCode}
+                                onChange={e => {setEnteredCode(e.target.value); setValidCode();} }
                             />
                             {/* first button */}
-                            <JoinCodePopup userTheme={userTheme} name={"World Name"} />
+
+                            <JoinCodePopup setEnteredCode={setEnteredCode} setValidCode={setValidCode} code={enteredCode} userTheme={userTheme} name={"World Name"} userId={userId} />
                         </InputGroup>
                     </Col>
                 </Row>
-                <Row  className="mb-3">
+                <Row className="mb-3">
                     <div>
                         {
                             worldDisplay

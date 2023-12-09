@@ -71,7 +71,7 @@ function MWPopup({ title, userId, button, worldId, userTheme }) {
         for (const [key, value] of Object.entries(worldInfo.Members)) {
           // console.log("check name ", value);
           // pass in the key, the character name, and the id of who created the character
-          arr.push(<UEWithTwoButtons userTheme={userTheme} key={key} charId={key} worldId={worldId} charName={value.Name} creatorId={value.CreatorId} 
+          arr.push(<UEWithTwoButtons charCreatorId={value.CreatorId} userTheme={userTheme} key={key} charId={key} worldId={worldId} charName={value.Name} creatorId={value.CreatorId} 
             setAlign={setAlign} />);
         }
         setMems(arr);
@@ -172,7 +172,7 @@ function MWPopup({ title, userId, button, worldId, userTheme }) {
             {/* future: decide on search bar */}
             <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>
-              <TypeAhead action={"sendWorldInvite"} optionInfo={friendInfo}/> 
+              <TypeAhead  action={"sendWorldInvite"} optionInfo={friendInfo} userId={userId} worldCode={inviteCode}/> 
             </Form.Group>
             {/* the search code */}
             <Form.Group className="mb-3" controlId="Code">
