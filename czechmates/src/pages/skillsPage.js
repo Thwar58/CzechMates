@@ -43,7 +43,7 @@ const SkillsPage = ({ skillInfo, charId, attrInfo, level, userTheme }) => {
             setRight(right);
         }
 
-    }, [skillInfo]);
+    }, [skillInfo, userTheme]);
 
     return (
         <div>
