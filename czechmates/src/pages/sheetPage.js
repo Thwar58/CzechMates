@@ -134,27 +134,27 @@ const SheetPage = ({ sheetInfo, charId, userTheme }) => {
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel category={"General"} label={"High Concept"} content={sheetInfo?.General?.High_Concept} disabled={true} />
+                        <InputWithLabel tooltip={true} category={"General"} label={"High Concept"} content={sheetInfo?.General?.High_Concept} disabled={true} />
                     </Col>
                     <Col>
-                        <InputWithLabel category={"General"} label={"Trouble"} content={sheetInfo?.General?.Trouble} disabled={true} />
+                        <InputWithLabel tooltip={true} category={"General"} label={"Trouble"} content={sheetInfo?.General?.Trouble} disabled={true} />
 
 
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel category={"General"} label={"Aspect 1"} content={sheetInfo?.General?.Aspect_1} disabled={true} />
+                        <InputWithLabel tooltip={true} category={"General"} label={"Aspect 1"} content={sheetInfo?.General?.Aspect_1} disabled={true} />
 
                     </Col>
                     <Col>
-                        <InputWithLabel category={"General"} label={"Aspect 2"} content={sheetInfo?.General?.Aspect_2} disabled={true} />
+                        <InputWithLabel tooltip={true} category={"General"} label={"Aspect 2"} content={sheetInfo?.General?.Aspect_2} disabled={true} />
 
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputWithLabel category={"General"} label={"Fate Points"} content={sheetInfo?.General?.Fate_Points} disabled={true} />
+                        <InputWithLabel tooltip={true} category={"General"} label={"Fate Points"} content={sheetInfo?.General?.Fate_Points} disabled={true} />
                     </Col>
                     <Col>
                         <InputWithLabel category={"General"} label={"Money"} content={sheetInfo?.General?.Money} disabled={true} />

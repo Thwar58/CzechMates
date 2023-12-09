@@ -2,8 +2,6 @@
 // https://stackoverflow.com/questions/70715704/table-react-bootstrap-component-rendering-from-array
 
 import Table from 'react-bootstrap/Table';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 // a component to hold the skills and attributes in the full character sheet
 // input: the information to display, and whether it is for skills or attributes

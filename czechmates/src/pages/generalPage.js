@@ -10,6 +10,8 @@ import { db } from '../firebase';
 import { child, get, ref, set, push, update, onValue } from "firebase/database";
 import InputGroup from 'react-bootstrap/InputGroup';
 
+
+
 // this component houses the content for the general character info
 // input the general character information, the user id and the character id
 const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) => {
@@ -24,6 +26,8 @@ const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) =
         updates['Characters/'+charId+'/General/ImageURL'] = newImg;
         update(userRef, updates);
     }
+
+
 
     return (
         <div>
@@ -57,14 +61,14 @@ const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) =
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         <InputWithLabel participation={participation} charId={charId} userId={userId} category={"General"} label={"Name"} content={generalInfo?.Name} disabled={false} />
                         <InputWithLabel charId={charId} userId={userId} category={"General"} label={"Level"} content={generalInfo?.Level} disabled={true} />
-                        <InputWithLabel charId={charId} userId={userId} category={"General"} label={"High Concept"} content={generalInfo?.High_Concept} disabled={false} />
+                        <InputWithLabel tooltip={true} charId={charId} userId={userId} category={"General"} label={"High Concept"} content={generalInfo?.High_Concept} disabled={false} />
                     </Col>
                 </Row>
                 {/* each one is editable and has a label as well as a placeholder value */}
-                <InputWithLabel charId={charId} userId={userId} category={"General"} label={"Trouble"} content={generalInfo?.Trouble} disabled={false} />
-                <InputWithLabel charId={charId} userId={userId} category={"General"} label={"Aspect 1"} content={generalInfo?.Aspect_1} disabled={false} />
-                <InputWithLabel charId={charId} userId={userId} category={"General"} label={"Aspect 2"} content={generalInfo?.Aspect_2} disabled={false} />
-                <InputWithLabel charId={charId} userId={userId} category={"General"} label={"Fate Points"} content={generalInfo?.Fate_Points} disabled={false} />
+                <InputWithLabel tooltip={true} charId={charId} userId={userId} category={"General"} label={"Trouble"} content={generalInfo?.Trouble} disabled={false} />
+                <InputWithLabel tooltip={true} charId={charId} userId={userId} category={"General"} label={"Aspect 1"} content={generalInfo?.Aspect_1} disabled={false} />
+                <InputWithLabel tooltip={true} charId={charId} userId={userId} category={"General"} label={"Aspect 2"} content={generalInfo?.Aspect_2} disabled={false} />
+                <InputWithLabel tooltip={true} charId={charId} userId={userId} category={"General"} label={"Fate Points"} content={generalInfo?.Fate_Points} disabled={false} />
                 <InputWithLabel charId={charId} userId={userId} category={"General"} label={"Money"} content={generalInfo?.Money} disabled={false} />
                 {/* the description section is labeled individually */}
                 <Form.Label htmlFor="this">Description</Form.Label>
