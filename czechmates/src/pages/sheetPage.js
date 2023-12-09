@@ -23,13 +23,13 @@ const SheetPage = ({ sheetInfo, charId, userTheme }) => {
     var [statusEffectsOne, setStatusEffectsOne] = useState([]);
     var [statusEffectsTwo, setStatusEffectsTwo] = useState([]);
     var [statusEffectsThree, setStatusEffectsThree] = useState([]);
-    var [ imgSrc, setImgSrc ] = useState('')
+    var [ imgSrc, setImgSrc ] = useState(sheetInfo.General.ImageURL)
 
     useEffect(() => {
         if (charId !== undefined){
             setImgSrc(sheetInfo.General.ImageURL);
         }
-    }, [charId])
+    }, [charId, sheetInfo])
 
     // when the skills information changes, this is triggered
     useEffect(() => {
@@ -116,8 +116,8 @@ const SheetPage = ({ sheetInfo, charId, userTheme }) => {
                 <Row>
                     <Col>
                     </Col>
-                    <Col style={{ textAlign: "center", borderStyle: "solid" }}>
-                        <img width='200vh' src={imgSrc}/>
+                    <Col>
+                        <img style={{ textAlign: "center", borderStyle: "solid" }} width='200vh' src={imgSrc}/>
                     </Col>
                     <Col>
                     </Col>

@@ -29,13 +29,13 @@ function EquipmentDropdown({charId, options, text, type, userTheme }) {
     if (ddOptions !== null) {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(options)) {
-            arr.push(<Dropdown.Item key={key} eventKey={key}>{value}</Dropdown.Item>);
+            arr.push(<Dropdown.Item className={"btn_"+userTheme} key={key} eventKey={key}>{value}</Dropdown.Item>);
         }
         // console.log(arr);
         setDdOptions(arr);
     }
 
-}, [options]);
+}, [options, userTheme]);
 
 useEffect(() => {
   // loop through the characters information and make components for them

@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import NavWithDD from '../components/NavWithDropdown';
 import { db } from '../firebase';
 import { child, get, ref, set, push, update, onValue } from "firebase/database";
+import InputGroup from 'react-bootstrap/InputGroup';
 
 // this component houses the content for the general character info
 // input the general character information, the user id and the character id
@@ -40,10 +41,18 @@ const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) =
                     </Col>
                 </Row>
                 <Row>
-                    <Col style={{ borderStyle: "solid", textAlign: "center" }}>
-                        {/* <InputWithLabel category={"Img Url"} label={"Image Url"}   /> */}
-                        <input type="text " value={imgSrc} onChange={(e)=>{setPic(e.target.value)}} />
-                        <img width='200vh' src={imgSrc}/>
+                    <Col>
+                        <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon3">
+                    Image URL
+                </InputGroup.Text>
+                <Form.Control
+                    value={imgSrc}
+                    placeholder={`Enter the Image URL`}
+                    onChange={(e)=>{setPic(e.target.value)}}
+                />
+            </InputGroup>
+                        <img style={{ textAlign: "center", borderStyle: "solid" }} width='200vh' src={imgSrc}/>
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         <InputWithLabel participation={participation} charId={charId} userId={userId} category={"General"} label={"Name"} content={generalInfo?.Name} disabled={false} />
