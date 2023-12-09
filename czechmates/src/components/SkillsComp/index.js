@@ -19,7 +19,7 @@ const descriptions = require('../../utils/skillDesc.json');
 
 // a component to display character skills, it is given the value and two button labels
 // input: the value for the skill, the name of the skill, the character id and the user id
-function SkillsComp({ value, name, charId, skills, attributes, level, userTheme }) {
+function SkillsComp({ value, name, charId, skills, userId, attributes, level, userTheme }) {
     // the reference the the database
     const charRef = ref(db);
 
@@ -106,8 +106,9 @@ function SkillsComp({ value, name, charId, skills, attributes, level, userTheme 
         if (value < 8) {
             const updates = {};
             // const recalc = {};
-            updates['Characters/' + charId + "/Skills/" + name] = increment(1);
+            updates['Characters/' + charId + "/Skills/" + name] = (value+1);
             updates[`Characters/${charId}/General/Level`] = increment(1);
+            updates[`CharacterUserRel/${userId}/${charId}/Level`] = increment(1);
             update(charRef, updates);
             // console.log("INCREASE, NEEDS A RECALC");
             // setRecalcRequired(true);
@@ -121,8 +122,9 @@ function SkillsComp({ value, name, charId, skills, attributes, level, userTheme 
         if (value > 0) {
             const updates = {};
             // const recalc = {};
-            updates['Characters/' + charId + "/Skills/" + name] = increment(-1);
+            updates['Characters/' + charId + "/Skills/" + name] = (value-1);
             updates[`Characters/${charId}/General/Level`] = increment(-1);
+            updates[`CharacterUserRel/${userId}/${charId}/Level`] = increment(-1);
             update(charRef, updates);
             // console.log("DECREASE, NEEDS A RECALC");
             // setRecalcRequired(true);

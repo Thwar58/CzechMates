@@ -12,6 +12,7 @@ import { useEffect } from "react";
 const World = ({ worldName, userId, type, worldId, userTheme }) => {
 
     var [ownOrJoin, setOwnOrJoin] = useState();
+    var displayName = type === 'joined' ? 'Joined' : 'Owned';
     
 
     useEffect(() => {
@@ -33,7 +34,7 @@ const World = ({ worldName, userId, type, worldId, userTheme }) => {
         <>
             <InputGroup className={"mb-3 body_"+userTheme}>
                 <InputGroup.Text id="basic-addon3">
-                    World
+                    {displayName}
                 </InputGroup.Text>
                 {/* input the value and disable the input */}
                 <Form.Control

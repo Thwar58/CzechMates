@@ -20,7 +20,7 @@ import generatePDF, { Resolution, Margin, Options } from "react-to-pdf";
 
 // the character component
 // input: the character name, the character id, the user id, and the character information 
-const Character = ({ charName, charId, userId, userTheme }) => {
+const Character = ({ charName, charId, userId, userTheme, lvl }) => {
 
 
 
@@ -150,7 +150,7 @@ const Character = ({ charName, charId, userId, userTheme }) => {
         <div  className="mb-3">
             <InputGroup>
                 <InputGroup.Text className={""} id="basic-addon3">
-                    Character
+                    Level: {lvl}
                 </InputGroup.Text>
                 {/* sets the value to the character name */}
                 <Form.Control

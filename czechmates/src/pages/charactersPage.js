@@ -62,7 +62,7 @@ const CharactersPage = ({ userId, userTheme}) => {
         if (charInfo !== null) {
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
             for (const [key, value] of Object.entries(charInfo)) {
-                console.log(value.Last_Used);
+                console.log(value);
                 arr.push(<Character userTheme={userTheme} lastUsed={value.Last_Used} lvl={value.Level} userId={userId} key={key} charId={key} charName={value.Name} />);
             }
            

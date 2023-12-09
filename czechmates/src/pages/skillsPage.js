@@ -13,7 +13,7 @@ import NavWithDD from '../components/NavWithDropdown';
 
 // this component houses the content for the character skills
 // input: the skill information for a character, the character id, and the user id
-const SkillsPage = ({ skillInfo, charId, attrInfo, level, userTheme }) => {
+const SkillsPage = ({ skillInfo, charId, attrInfo, userId, level, userTheme }) => {
 
     // variables to track the skills and position them
     var [left, setLeft] = useState([]);
@@ -31,7 +31,7 @@ const SkillsPage = ({ skillInfo, charId, attrInfo, level, userTheme }) => {
                     setLearnedAbilities([<TextareaPage charId={charId} key={"Learned Abilities"} disabled={false} content={value} title={"Learned Abilities"}></TextareaPage>])
                 }
                 else {
-                    arr.push(<SkillsComp userTheme={userTheme} level={level} attributes={attrInfo} skills={skillInfo} key={key} charId={charId} value={value} name={key} />);
+                    arr.push(<SkillsComp userId={userId} userTheme={userTheme} level={level} attributes={attrInfo} skills={skillInfo} key={key} charId={charId} value={value} name={key} />);
                 }
 
             }
