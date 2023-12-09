@@ -18,7 +18,7 @@ import TypeAhead from '../TypeAhead';
 const charTemplate = require('../../utils/characterTemplate.json');
 
 // a component for the modal when you try to join a world from a code, you pass in the world name
-function JoinCodePopup({ name, userTheme, code, setValidCode, userId }) {
+function JoinCodePopup({ name, userTheme, code, setValidCode, userId, setEnteredCode }) {
     // set the initial state to be hidden
     const [show, setShow] = useState(false);
     var [availableCharacters, setAvailableCharacters] = useState();
@@ -27,6 +27,7 @@ function JoinCodePopup({ name, userTheme, code, setValidCode, userId }) {
     var [chosen, setChosen] = useState();
     var [found, setFound] = useState("start");
     var [owner, setOwner] = useState();
+    var [worldName, setWorldName] = useState();
 
     // functions that open and close the modal
     const handleClose = () => setShow(false);
@@ -53,29 +54,38 @@ function JoinCodePopup({ name, userTheme, code, setValidCode, userId }) {
     }
 
     function attemptToJoin() {
-        console.log("entered code", code);
-        // Step 1: check if any of the worlds have this code
-        var there = false;
-        get(child(ref(db), `Worlds`)).then((snapshot) => {
-            for (const [key, value] of Object.entries(snapshot.val())) {
-                // need to check if they are already in the world as well ahhh
-                if (value.Invite_Code === code) {
-                    there = true;
-                    setWorldId(key);
-                    setOwner(value.CreatorId);
+        if (code !== "") {
+            console.log("entered code", code);
+            // Step 1: check if any of the worlds have this code
+            var there = false;
+            get(child(ref(db), `Worlds`)).then((snapshot) => {
+                for (const [key, value] of Object.entries(snapshot.val())) {
+                    // need to check if they are already in the world as well ahhh
+                    if (value.Invite_Code === code) {
+                        console.log("here is the world that matches the code", value);
+                        console.log("here is the code", code)
+                        there = true;
+                        setWorldId(key);
+                        setOwner(value.CreatorId);
+                        setWorldName(value.Name);
+                    }
                 }
-            }
-            if (there === false) {
-                setFound("not found");
-            }
-            else {
-                setFound("found")
-            }
+                if (there === false) {
+                    console.log("set to not found");
+                    setFound("not found");
+                    setValidCode(<div style={{ color: "red" }}>There are no worlds with this code</div>);
+                }
+                else {
+                    console.log("found was found")
+                    setFound("found")
+                }
 
 
-        }).catch((error) => {
-            console.error(error);
-        });
+            }).catch((error) => {
+                console.error(error);
+            });
+        }
+
     }
 
     useEffect(() => {
@@ -88,25 +98,31 @@ function JoinCodePopup({ name, userTheme, code, setValidCode, userId }) {
                 }
                 else {
                     console.log("they are friends")
-                    // check if theyre already in the world here
-                    var worldRef = ref(db, `WorldUserRel/${userId}/Joined/${worldId}`)
-                    onValue(worldRef, (snapshot) => {
+
+                    get(child(ref(db), `WorldUserRel/${userId}/Joined/${worldId}`)).then((snapshot) => {
+                        console.log("its here");
                         if (snapshot.val() !== null) {
                             setValidCode(<div style={{ color: "red" }}>You are already in that world</div>);
                         }
                         else {
-                            var charRef = ref(db, `CharacterUserRel/${userId}`)
-                            // var notParticipating = [];
-                            onValue(charRef, (snapshot) => {
+                            get(child(ref(db), `CharacterUserRel/${userId}`)).then((snapshot) => {
+                                console.log("no it's ehre");
                                 setAvailableCharacters(snapshot.val());
+                
+                            }).catch((error) => {
+                                console.error(error);
                             });
-                            // 
+
+                            console.log("join code popup will be shown");
+                            console.log("reset found");
+                            setFound("start");
+                            setEnteredCode("");
+                            setAvailableCharacters();
                             handleShow();
                         }
-
+                    }).catch((error) => {
+                        console.error(error);
                     });
-
-
                 }
 
             }).catch((error) => {
@@ -115,8 +131,11 @@ function JoinCodePopup({ name, userTheme, code, setValidCode, userId }) {
 
         }
         else if (found === "not found") {
+            console.log("add that wrning");
             setValidCode(<div style={{ color: "red" }}>There are no worlds with this code</div>);
         }
+
+
 
     }, [found]);
 
@@ -134,10 +153,14 @@ function JoinCodePopup({ name, userTheme, code, setValidCode, userId }) {
             const updates = {};
             updates[`Characters/${premadeChosen.key}/Participation`] = worldId;
             updates[`CharacterUserRel/${userId}/${premadeChosen.key}/Participation`] = worldId;
-            updates[`Worlds/${worldId}/Members/${premadeChosen.key}`] = {"CreatorId": userId, "Name": premadeChosen.value}
+            updates[`Worlds/${worldId}/Members/${premadeChosen.key}`] = { "CreatorId": userId, "Name": premadeChosen.value };
+            updates[`WorldUserRel/${userId}/Joined/${worldId}`] = worldName;
             console.log(updates);
+            update(ref(db), updates);
             // change character participation value
             // change world members list
+            setEnteredCode("");
+            setValidCode();
             handleClose();
         }
     }

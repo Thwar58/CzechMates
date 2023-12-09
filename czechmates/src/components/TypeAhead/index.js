@@ -48,8 +48,7 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremade
           setOptionsArr(arr);
         }
         else if (action === "choose character"){
-          console.log("join world");
-          console.log(optionsArr);
+          console.log("its making us choose a character");
           var arr = [];
            for (const [key, value] of Object.entries(optionInfo)) {
             // console.log(key, value);

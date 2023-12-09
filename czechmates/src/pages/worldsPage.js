@@ -100,6 +100,10 @@ const WorldPage = ({ userId, userTheme }) => {
         // console.log(worldInfo);
     }, [worlds]);
 
+    useEffect(() => {
+        // console.log(enteredCode);
+    }, [enteredCode]);
+
 
     // render the blank loading screen if loading is true
     if (loading) {
@@ -145,7 +149,7 @@ const WorldPage = ({ userId, userTheme }) => {
                             />
                             {/* first button */}
 
-                            <JoinCodePopup setValidCode={setValidCode} code={enteredCode} userTheme={userTheme} name={"World Name"} userId={userId} />
+                            <JoinCodePopup setEnteredCode={setEnteredCode} setValidCode={setValidCode} code={enteredCode} userTheme={userTheme} name={"World Name"} userId={userId} />
                         </InputGroup>
                     </Col>
                 </Row>
