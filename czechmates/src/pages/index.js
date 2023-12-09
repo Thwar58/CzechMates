@@ -15,7 +15,7 @@ import { auth } from '../SignIn/firebaseConfig';
 // this is the home page, as of now it is mostly reference material and will be largely removed
 const Login = ({ setUserId }) => {
 
-    var [pretendToken, setPretendToken] = useState("User2");
+    var [pretendToken, setPretendToken] = useState("User1");
 
 
     // useEffect(() => {

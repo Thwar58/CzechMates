@@ -19,6 +19,7 @@ function ControlledTabs({ text, content, userTheme, currPage, setCurrPage }) {
   return (
     // monitor the active tab, set a new tab when a tab is clicked, and set the default tab to the first tab
     <Tabs
+      style={{paddingTop: '10px'}}
       id="tabs"
       activeKey={key}
       onSelect={

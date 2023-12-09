@@ -39,18 +39,30 @@ function JoinCodePopup({ name, userTheme, code, setValidCode, userId, setEntered
     //handles page navigation
     const navigate = useNavigate();
     const navigateToGeneral = () => {
-        // navigate to /subCharacterPages
-        navigate('/subCharacterPages');
-        // console.log("char info ", charInfo);
-        // console.log("chars ", chars);
-        var newId = DBFunctions.newCreateNewCharacter(charTemplate, userId, "");
-        // set their participation to this world here
-        const updates = {};
-        updates[`Characters/${newId}/Participation`] = worldId;
-        updates[`CharacterUserRel/${userId}/${newId}/Participation`] = worldId;
-        // test -NjZ_pgPtqBp2LGYqcIN
-        update(ref(db), updates);
-        sessionStorage.setItem("charId", newId);
+
+        get(child(ref(db), `Worlds/${worldId}/Name`)).then((snapshot) => {
+            // navigate to /subCharacterPages
+            // console.log(snapshot.val());
+           
+            // console.log("char info ", charInfo);
+            // console.log("chars ", chars);
+            var newId = DBFunctions.newCreateNewCharacter(charTemplate, userId, "");
+            // set their participation to this world here
+            const updates = {};
+            updates[`Characters/${newId}/Participation`] = worldId;
+            updates[`CharacterUserRel/${userId}/${newId}/Participation`] = worldId;
+            updates[`WorldUserRel/${userId}/Joined/${worldId}`] = snapshot.val();
+            // test -NjZ_pgPtqBp2LGYqcIN
+            // console.log(updates);
+            update(ref(db), updates);
+            navigate('/subCharacterPages');
+            sessionStorage.setItem("charId", newId);
+
+        }).catch((error) => {
+            console.error(error);
+        });
+
+
     }
 
     function attemptToJoin() {
@@ -108,7 +120,7 @@ function JoinCodePopup({ name, userTheme, code, setValidCode, userId, setEntered
                             get(child(ref(db), `CharacterUserRel/${userId}`)).then((snapshot) => {
                                 console.log("no it's ehre");
                                 setAvailableCharacters(snapshot.val());
-                
+
                             }).catch((error) => {
                                 console.error(error);
                             });

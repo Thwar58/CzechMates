@@ -12,6 +12,7 @@ import UEWithTwoButtons from '../UEWithTwoButtons';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue, update } from "firebase/database";
+import InputGroup from 'react-bootstrap/InputGroup';
 
 // a function for the manage/add world modal, you pass in the title and the button display
 // input: the title of the popup, the button to trigger the modal, and the members to display
@@ -65,19 +66,19 @@ function MWPopup({ title, userId, button, worldId, userTheme }) {
       // console.log("check world info ", worldInfo);
       // loop through the members objects and create components to display them, set the members array at the end
       var arr = [];
-     
+
       if (worldInfo.Members !== null && worldInfo.Members !== undefined) {
         // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(worldInfo.Members)) {
           // console.log("check name ", value);
           // pass in the key, the character name, and the id of who created the character
-          arr.push(<UEWithTwoButtons charCreatorId={value.CreatorId} userTheme={userTheme} key={key} charId={key} worldId={worldId} charName={value.Name} creatorId={value.CreatorId} 
+          arr.push(<UEWithTwoButtons charCreatorId={value.CreatorId} userTheme={userTheme} key={key} charId={key} worldId={worldId} charName={value.Name} creatorId={value.CreatorId}
             setAlign={setAlign} />);
         }
         setMems(arr);
-      } else{
+      } else {
         setMems(<h1>You have no members yet</h1>)
-    }
+      }
 
       // console.log("set them ", worldInfo.Name, worldInfo.Schedule);
       setName(worldInfo.Name);
@@ -87,7 +88,7 @@ function MWPopup({ title, userId, button, worldId, userTheme }) {
 
 
     }
-    else{
+    else {
       console.log("reset loading");
       setLoading(true);
     }
@@ -131,18 +132,18 @@ function MWPopup({ title, userId, button, worldId, userTheme }) {
   return (
     <>
       {/* the button that triggers the modal */}
-      <Button className={"btn_"+userTheme} onClick={handleShow}>
+      <Button className={"btn_" + userTheme} onClick={handleShow}>
         {button}
       </Button>
 
       {/* the modal */}
       <Modal dialogClassName={align} show={show} onHide={handleClose}>
         {/* set the modal header */}
-        <Modal.Header className={"body_"+userTheme}closeButton>
+        <Modal.Header className={"body_" + userTheme} closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         {/* the modal body with the world information (editable by the user) */}
-        <Modal.Body className={"body_"+userTheme}>
+        <Modal.Body className={"body_" + userTheme}>
           <Form>
             {/* world name info */}
             <Form.Group className="mb-3" controlId="Name">
@@ -172,21 +173,30 @@ function MWPopup({ title, userId, button, worldId, userTheme }) {
             {/* future: decide on search bar */}
             <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>
-              <TypeAhead  action={"sendWorldInvite"} optionInfo={friendInfo} userId={userId} worldCode={inviteCode}/> 
+              <TypeAhead action={"sendWorldInvite"} optionInfo={friendInfo} userId={userId} worldCode={inviteCode} />
             </Form.Group>
             {/* the search code */}
             <Form.Group className="mb-3" controlId="Code">
               <Form.Label>Invite Code</Form.Label>
+              <InputGroup>
               <Form.Control
                 value={inviteCode}
                 disabled={true}
-            />
+              />
+              {/* https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
+              <Button className={"btn_" + userTheme}
+                onClick={() => navigator.clipboard.writeText(inviteCode)}
+              >
+              Copy
+              </Button>
+              </InputGroup>
+             
             </Form.Group>
           </Form>
           {/* the footer with the close button */}
         </Modal.Body>
-        <Modal.Footer className={"body_"+userTheme}>
-          <Button className={"btn_"+userTheme} variant="secondary" onClick={handleClose}>
+        <Modal.Footer className={"body_" + userTheme}>
+          <Button className={"btn_" + userTheme} variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

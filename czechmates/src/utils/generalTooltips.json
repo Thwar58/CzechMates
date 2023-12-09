@@ -1,0 +1,23 @@
+[
+    {
+        "Name": "High Concept",
+        "Description": " A character's primary aspect that describes the identity of the character. Examples include 'Fastest guns in the west' or 'Thief with a heart of gold'."
+    },
+    {
+        "Name": "Trouble",
+        "Description": "A character's aspect that can get them into trouble (examples: 'Never backs down from a fight' or 'Drinks like a sailor')"
+    },
+    {
+        "Name": "Aspect 1",
+        "Description": "A two to six (approximately) word phrase describing something about a character"
+    },
+    {
+        "Name": "Aspect 2",
+        "Description": "A two to six (approximately) word phrase describing something about a character"
+    },
+    {
+        "Name": "Fate Points",
+        "Description": "The 'currency' of the game…each player starts each session with 3 fate points and can spend them during the session to power various abilities."
+    }
+   
+]
