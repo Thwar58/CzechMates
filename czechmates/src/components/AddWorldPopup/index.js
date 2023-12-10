@@ -1,7 +1,4 @@
 // https://react-bootstrap.netlify.app/docs/components/modal/
-// i want to do this eventually with the buttons but for now we 
-// https://stackoverflow.com/questions/61749345/add-button-inside-input-field-reactjs
-
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -15,152 +12,168 @@ import DBFunctions from "../../utils/firebaseQueries";
 import InputGroup from 'react-bootstrap/InputGroup';
 const worldTemplate = require('../../utils/worldTemplate.json');
 
-// a function for the manage/add world modal, you pass in the title and the button display
-// input: the title of the popup, the button to trigger the modal, and the members to display
+/**
+ * Purpose: This popup allows the user to create a new world
+ * Params:
+ * title: string, title of the popup
+ * userId: string, the current userId
+ * button: string, the text for the trigger button
+ * userTheme: string, the color mode (light/dark)
+ */
 function AddWorldPopup({ title, userId, button, userTheme }) {
-  // sets the initial state of the modal to hidden
+
+  // useStates for opening and closing the popup
   const [show, setShow] = useState(false);
-  // handles the opening and closing of the modal
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  // a variable to set and track the members of a world
 
+  // useStates regarding information about the world
   var [worldId, setWorldId] = useState();
   var [worldInfo, setWorldInfo] = useState();
   var [mems, setMems] = useState();
-  var [loading, setLoading] = useState(true);
   var [name, setName] = useState();
   var [schedule, setSchedule] = useState();
   var [inviteCode, setInviteCode] = useState();
   var [friendInfo, setFriendInfo] = useState();
+
+  // useState for the loading screen
+  var [loading, setLoading] = useState(true);
+
+  // reference to the database
   const worldRef = ref(db);
 
 
+  /**
+   * Purpose: Adds a world to the database
+   * Params: none
+   */
   function addWorld() {
-    // console.log("add a world")
+    // creates a new world with a random code, belonging to the current user
     if (userId !== undefined) {
-      
       setWorldId(DBFunctions.createNewWorld(worldTemplate, userId, Math.floor(100000 + Math.random() * 900000)));
 
     }
   }
 
-
-
-  
-
+  /**
+   * Purpose: any time the worldId changes, this is triggered and it gets the new world information
+   * and all of the user's friends
+   * Params/Dependencies:
+   * worldId
+   */
   useEffect(() => {
-    // console.log("world id changed");
-    // console.log("check world info ", worldInfo);
-    // check that members is not undefined otherwise it will throw an error
     if (worldId !== undefined) {
-       // use this path and onValue monitors for changes
-       const worldRef = ref(db, 'Worlds/' + worldId);
-       onValue(worldRef, (snapshot) => {
-         setWorldInfo(snapshot.val());
-       });
-      //  console.log("world info ", worldInfo)
+      // get the world information from the database for this user, continue listening with onValue
+      const worldRef = ref(db, 'Worlds/' + worldId);
+      onValue(worldRef, (snapshot) => {
+        setWorldInfo(snapshot.val());
+      });
+
+      // get the user's friends to populate the invite typeahead, continue listening with onValue
       const userFriendRef = ref(db, 'Users/' + userId + "/Friends");
       onValue(userFriendRef, (snapshot) => {
         setFriendInfo(snapshot.val());
       });
 
- 
-       handleShow();
+      // open up the popup
+      handleShow();
 
     }
   }, [worldId]);
 
-  
 
-  // when members changes, this is triggered
+
+  /**
+   * Purpose: any time the worldInfo changes, this is triggered and it updates the world information
+   * and all of the user's friends
+   * Params/Dependencies:
+   * worldInfo
+   */
   useEffect(() => {
-    // console.log("check world info ", worldInfo);
-    // check that members is not undefined otherwise it will throw an error
     if (worldInfo !== undefined && worldInfo !== null) {
+      // set the loading screen to false if information is loading correctly
       setLoading(false);
-      console.log(worldInfo);
-      // console.log("check world info ", worldInfo);
-      // loop through the members objects and create components to display them, set the members array at the end
+
+      // loop through the world members if they exist and add them to the members section as UEWithTwoButton comps
       var arr = [];
-      // console.log("check WI for members ", worldInfo);
       if (worldInfo.Members != null && worldInfo.Members !== undefined) {
         // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(worldInfo.Members)) {
-          // console.log("check name ", value);
-          // pass in the key, the character name, and the id of who created the character
           arr.push(<UEWithTwoButtons key={key} charId={key} charName={value} />);
         }
         setMems(arr);
-      
       }
-      else{
+      // if the world has no members, indicte that to the user
+      else {
         setMems(<h1>You have no members yet</h1>)
+      }
+
+      // set all of the other world information
+      setName(worldInfo.Name);
+      setSchedule(worldInfo.Schedule);
+      setInviteCode(worldInfo.Invite_Code);
     }
-        // console.log("set them ", worldInfo.Name, worldInfo.Schedule);
-        setName(worldInfo.Name);
-        setSchedule(worldInfo.Schedule);
-        setInviteCode(worldInfo.Invite_Code);
-        // console.log("check them ", name, schedule);
 
-
-
-    }
   }, [worldInfo]);
 
-  // // // when the form value changes, this is triggered
+  /**
+   * Purpose: any time the name or schedule changes, this is triggered and it updates the database
+   * Params/Dependencies: 
+   * name
+   * schedule
+   */
   useEffect(() => {
     if (name !== undefined && schedule !== undefined) {
-      // take the label value and replace any spaces with underscores to match the db naming system
-      // var underScoreAdded = label.replace(/ /g, "_");
-      // ignore the modification slots for now (it is broken and needs to be fixed)
-      // if (!underScoreAdded.includes("Slot")){
-      // make an object to store the different paths that need to be updated
       const updates = {};
-      // use the path to the specific property that this form field maps to in the database
-      // and set it to the value in the form
-      // console.log("this is the id right? ", worldId);
-      // console.log("check name one more time ", schedule);
+      // set each of the paths to update in the database using the information in this page
       updates[`Worlds/${worldId}/Name`] = name;
       updates[`Worlds/${worldId}/Schedule`] = schedule;
       updates[`WorldUserRel/${userId}/Created/${worldId}`] = name;
-      // }
+      // actually update the database
       update(worldRef, updates);
-      // } 
     }
-
 
   }, [name, schedule]);
 
 
 
-  // render the blank loading screen if loading is true
+  /**
+  * Purpose: only renders the button, not the popup, if the user information isn't loading correctly
+  * Params/Dependencies:
+  * loading: boolean, whether or not the information is still loading
+  */
   if (loading) {
     return (
-      <Button  className={"btn_"+userTheme} onClick={addWorld}>
+      // the button that would have triggered the modal if it was loaded, purely visual
+      <Button className={"btn_" + userTheme}  onClick={addWorld}>
         {button}
       </Button>
     )
   }
 
-
+  /**
+   * Purpose: this renders whenever all of the world information is correctly loaded
+   * Params/Dependencies:
+   * name
+   * schedule
+   * members
+   * inviteCode
+   */
   return (
     <>
-      {/* the button that triggers the modal */}
-      <Button  className={"btn_"+userTheme} onClick={addWorld}>
+      {/* the button that triggers the popup */}
+      <Button className={"btn_" + userTheme} onClick={addWorld}>
         {button}
       </Button>
-
-      {/* the modal */}
+      {/* the popup itself */}
       <Modal show={show} onHide={handleClose}>
-        {/* set the modal header */}
-        <Modal.Header className={"body_"+userTheme} closeButton>
+        {/* the title of the popup */}
+        <Modal.Header className={"body_" + userTheme} closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
-        {/* the modal body with the world information (editable by the user) */}
-        <Modal.Body className={"body_"+userTheme}>
+        <Modal.Body className={"body_" + userTheme}>
           <Form>
-            {/* world name info */}
+            {/* the world name */}
             <Form.Group className="mb-3" controlId="Name">
               <Form.Label>World Name</Form.Label>
               <Form.Control
@@ -168,8 +181,8 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
                 placeholder='Add World Name'
                 onChange={e => setName(e.target.value)}
               />
-              {/* world schedule */}
             </Form.Group>
+            {/* the schedule */}
             <Form.Group className="mb-3" controlId="Schedule">
               <Form.Label>Schedule</Form.Label>
               <Form.Control
@@ -178,40 +191,38 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
                 onChange={e => setSchedule(e.target.value)}
               />
             </Form.Group>
-            {/* world members, which the user can view the character of or remove */}
-            {/* future: add confirmation modal for remove */}
+            {/* the members */}
             <Form.Label>Members</Form.Label>
-            {/* the array of members components */}
             {
               mems
             }
-            {/* future: decide on search bar */}
+            {/* the typeahead of all the user's friends */}
             <Form.Group className="mb-3" controlId="Friends">
               <Form.Label>Invite Friends</Form.Label>
-            
-              <TypeAhead worldCode={inviteCode} userId={userId} action={"sendWorldInvite"} optionInfo={friendInfo}/> 
+              <TypeAhead worldCode={inviteCode} userId={userId} action={"sendWorldInvite"} optionInfo={friendInfo} />
             </Form.Group>
-            {/* the search code */}
+            {/* the code */}
             <Form.Group className="mb-3" controlId="Code">
-            <Form.Label>Invite Code</Form.Label>
+              <Form.Label>Invite Code</Form.Label>
               <InputGroup>
-              <Form.Control
-                value={inviteCode}
-                disabled={true}
-              />
-              {/* https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
-              <Button className={"btn_" + userTheme}
-                onClick={() => navigator.clipboard.writeText(inviteCode)}
-              >
-              Copy
-              </Button>
+                <Form.Control
+                  value={inviteCode}
+                  disabled={true}
+                />
+                {/* the button that copies to code to the clipboard */}
+                {/* https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
+                <Button className={"btn_" + userTheme}
+                  onClick={() => navigator.clipboard.writeText(inviteCode)}
+                >
+                  Copy
+                </Button>
               </InputGroup>
             </Form.Group>
           </Form>
-          {/* the footer with the close button */}
         </Modal.Body>
-        <Modal.Footer className={"body_"+userTheme}>
-          <Button className={"btn_"+userTheme} variant="secondary" onClick={handleClose}>
+        {/* the footer with the close button */}
+        <Modal.Footer className={"body_" + userTheme}>
+          <Button className={"btn_" + userTheme} variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

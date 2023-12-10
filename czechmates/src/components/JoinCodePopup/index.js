@@ -43,7 +43,7 @@ function JoinCodePopup({ name, userTheme, code, setValidCode, userId, setEntered
         get(child(ref(db), `Worlds/${worldId}/Name`)).then((snapshot) => {
             // navigate to /subCharacterPages
             // console.log(snapshot.val());
-           
+
             // console.log("char info ", charInfo);
             // console.log("chars ", chars);
             var newId = DBFunctions.newCreateNewCharacter(charTemplate, userId, "");
@@ -73,7 +73,8 @@ function JoinCodePopup({ name, userTheme, code, setValidCode, userId, setEntered
             get(child(ref(db), `Worlds`)).then((snapshot) => {
                 for (const [key, value] of Object.entries(snapshot.val())) {
                     // need to check if they are already in the world as well ahhh
-                    if (value.Invite_Code === code) {
+                  
+                    if (value.Invite_Code === parseInt(code)) {
                         console.log("here is the world that matches the code", value);
                         console.log("here is the code", code)
                         there = true;

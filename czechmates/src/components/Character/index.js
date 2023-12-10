@@ -1,5 +1,4 @@
 // https://codesandbox.io/s/infinite-component-onclick-oery4?file=/src/index.js:418-430
-
 import React from "react";
 import ConfirmationPopup from "../ConfirmationPopup";
 import PrintPopup from "../PrintPopup";
@@ -9,146 +8,87 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import DBFunctions from "../../utils/firebaseQueries";
 import { db } from '../../firebase';
-import { child, get, ref, set, push, onValue, update } from "firebase/database";
+import { ref, onValue, update } from "firebase/database";
 import { useState } from "react";
 import { useEffect } from "react";
 import '../themes.css'
-import SheetPage from "../../pages/sheetPage";
-import generatePDF, { Resolution, Margin, Options } from "react-to-pdf";
 
-
-
-// the character component
-// input: the character name, the character id, the user id, and the character information 
+/**
+ * Purpose: This component displays the characters on the character page
+ * Params:
+ * charName: string, the characters name
+ * charId: string, the character id
+ * userId: string, the user id
+ * userTheme: string, the user's color theme
+ * lvl
+ */
 const Character = ({ charName, charId, userId, userTheme, lvl }) => {
-
-
-
-    // used in page navigations
+    // useState used in page navigations
     const navigate = useNavigate();
+    // useState for the character information 
     var [charInfo, setCharInfo] = useState();
 
 
-    // this function redirects the user to the subcharacter page while also passing the character id through the state
-    // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
+    /**
+     * Purpose: This function redirects you to the sub character page when you click on edit
+     * Params/Dependencies: none
+     * Source: https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
+     */
     const toSubPage = () => {
+        // go to the character page and set the character id so that the page knows what character to display
         navigate('/subCharacterPages', { state: { charId: charId } });
         sessionStorage.setItem("charId", charId);
-        // update here? yes
+        // update the database for the characters las used value to show that the character has been accessed
         const charRef = ref(db);
         const updates = {};
         updates[`CharacterUserRel/${userId}/${charId}/Last_Used`] = Date.now();
-        // console.log(updates);
         update(charRef, updates);
-
     }
 
 
-    // this function copies the character in this component
-    // it is added to the database with an automatically generated unique key
-    // the UI is updates automatically
+     /**
+     * Purpose: crate a copy of the character
+     * Params/Dependencies: none
+     */
     const copyChara = event => {
         if (charId !== undefined) {
+            // set the character information to the character at the appropriate place in the database
             const charRef = ref(db, 'Characters/' + charId);
             onValue(charRef, (snapshot) => {
-                // console.log(snapshot.val());
                 setCharInfo(snapshot.val());
             });
         }
     }
 
+    /**
+     * Purpose: any time the character info changes, add a new character
+     * Params/Dependencies: none
+     */
     useEffect(() => {
         if (charInfo !== undefined) {
-            // console.log("check char info ", charInfo);
+            // make a copy of the current character and edit the name to have copy at the end
             var copy = charInfo;
             var charName = charInfo.General.Name;
             copy.General.Name = `${charName} Copy`;
-            // console.log("check copy ", copy);
+            // add that character to the database
             var id = DBFunctions.newCreateNewCharacter(copy, userId, copy.General.Name);
-            // navigate('/subCharacterPages', { state: { charId: id } });
-            // console.log(userId, newId, copy.General.Name);
-            // DBFunctions.updateRel(userId, newId, copy.General.Name);
         }
 
     }, [charInfo]);
 
-    const options = {
-        filename: "advanced-example.pdf",
-        method: "save",
-        // default is Resolution.MEDIUM = 3, which should be enough, higher values
-        // increases the image quality but also the size of the PDF, so be careful
-        // using values higher than 10 when having multiple pages generated, it
-        // might cause the page to crash or hang.
-        resolution: Resolution.EXTREME,
-        page: {
-            // margin is in MM, default is Margin.NONE = 0
-            margin: Margin.SMALL,
-            // default is 'A4'
-            format: "letter",
-            // default is 'portrait'
-            orientation: "landscape"
-        },
-        canvas: {
-            // default is 'image/jpeg' for better size performance
-            mimeType: "image/jpeg",
-            qualityRatio: 1
-        },
-        // Customize any value passed to the jsPDF instance and html2canvas
-        // function. You probably will not need this and things can break,
-        // so use with caution.
-        overrides: {
-            // see https://artskydj.github.io/jsPDF/docs/jsPDF.html for more options
-            pdf: {
-                compress: true
-            },
-            // see https://html2canvas.hertzen.com/configuration for more options
-            canvas: {
-                useCORS: true
-            }
-        }
-    };
 
-    // you can also use a function to return the target element besides using React refs
-    const getTargetElement = () => document.getElementById("container");
-
-    const downloadPdf = () => generatePDF(getTargetElement, options);
-
-
-    function printChar() {
-
-        const printWindow = window.open('', '', 'width=800,height=600');
-        const htmlContent = `
-        <div>
-        <SheetPage sheetInfo={charInfo} />
-        </div>
-  `;
-
-        // Set the content of the new window to the CSV data
-        printWindow.document.open();
-        printWindow.document.write(htmlContent);
-        printWindow.document.close();
-
-        // Trigger the print dialog
-        printWindow.print();
-    }
-
-    const removeOrEdit = event => {
-        // DBFunctions.removeFromDB('Characters/User1/CharID3/General');
-        DBFunctions.editInDB('Characters/User1/CharID3/General/Name', "test2");
-        // DBFunctions.removeFromDB('Users/User1/Followers/User7');
-        // const updates = {};
-        // updates['User/'] = "New Name";
-        // updates['Characters'] = "New Name";
-        // DBFunctions.updateMultPlaces(updates);
-
-    };
-
-  
-
-    // return a div with the character name and buttons for each option
+    /**
+     * Purpose: renders the character component
+     * Params/Dependencies:
+     * lvl
+     * charName
+     * userTheme
+     * userId
+     */
     return (
-        <div  className="mb-3">
+        <div className="mb-3">
             <InputGroup>
+            {/* the character's level */}
                 <InputGroup.Text className={""} id="basic-addon3">
                     Level: {lvl}
                 </InputGroup.Text>
@@ -161,11 +101,11 @@ const Character = ({ charName, charId, userId, userTheme, lvl }) => {
                     onClick={() => { toSubPage() }}
                 />
                 {/* copy button */}
-                <Button className={"btn_"+userTheme} onClick={copyChara} variant="outline-secondary" id="button-addon2">
+                <Button className={"btn_" + userTheme} onClick={copyChara} variant="outline-secondary" id="button-addon2">
                     Copy
                 </Button>
                 {/* edit button */}
-                <Button className={"btn_"+userTheme} onClick={() => { toSubPage() }} variant="outline-secondary" id="button-addon2">
+                <Button className={"btn_" + userTheme} onClick={() => { toSubPage() }} variant="outline-secondary" id="button-addon2">
                     Edit
                 </Button>
                 {/* remove button with confirmation popup */}
