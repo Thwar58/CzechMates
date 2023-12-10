@@ -65,7 +65,7 @@ const Character = ({ charName, charId, userId, userTheme, lvl }) => {
      * Params/Dependencies: none
      */
     useEffect(() => {
-        if (charInfo !== undefined) {
+        if (charInfo !== undefined && charInfo !== null) {
             // make a copy of the current character and edit the name to have copy at the end
             var copy = charInfo;
             var charName = charInfo.General.Name;
