@@ -35,13 +35,17 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
   var [friendInfo, setFriendInfo] = useState();
   const worldRef = ref(db);
 
+
   function addWorld() {
     // console.log("add a world")
     if (userId !== undefined) {
-      setWorldId(DBFunctions.createNewWorld(worldTemplate, userId, "placeholdercode"));
+      
+      setWorldId(DBFunctions.createNewWorld(worldTemplate, userId, Math.floor(100000 + Math.random() * 900000)));
 
     }
   }
+
+
 
   
 
