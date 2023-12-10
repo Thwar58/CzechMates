@@ -1,27 +1,32 @@
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-
+// the JSON object with the attributes descriptions
 const descriptions = require('../../utils/attributeDesc.json');
 
-
-
-
-
-// a component for the attributes of the character
-// input: the attribute name and value
+/**
+ * Purpose: This component displays the attributes
+ * Params:
+ * name: string, name of the attribute
+ * value: int, value of the attribute
+ */
 function AttributesComp({ name, value }) {
 
+  // loops through the JSON object with the attributes descriptions and finds
+  // the appropriate one for this attribute
   var desc;
-    // console.log(descriptions);
     for (let i = 0; i < descriptions.length; i++) {
       if (descriptions[i].Name === name){
         desc = descriptions[i].Description;
       }
     }
 
+/**
+ * Purpose: this popover is the content when you hover over the attribute component for a tooltip
+ * Params/Dependencies:
+ * desc: string, the description for this attribute
+ */
   const popover = (
     <Popover id="popover-basic">
       <Popover.Header as="h3">{name}</Popover.Header>
@@ -32,19 +37,24 @@ function AttributesComp({ name, value }) {
   );
 
   
-  // returns a div with a disabled input group that displays the name and value
+/**
+ * Purpose: renders the attribute component wrapped in the popup
+ * Params/Dependencies:
+ * popover
+ * name
+ * value
+ */
   return (
     <div>
-      {/* assigns the attribute to id for this input group */}
+      {/* the popup */}
       <OverlayTrigger placement="top" overlay={popover}>
       <InputGroup id={"AttributeComp" + name} className="mb-3">
-      {/* <StyledTooltip></StyledTooltip> */}
-        {/* sets the name and disables it so the user cannot change it */}
+        {/* the attribute label (disabled)*/}
         <Form.Control
           value={name}
           disabled={true}
         />
-        {/* add the portion that shows the value for this attribute */}
+        {/* the attribute value */}
         <InputGroup.Text id={"AttributeComp" + name}>{value}</InputGroup.Text>
       </InputGroup>
       </OverlayTrigger>
