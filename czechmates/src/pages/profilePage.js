@@ -87,7 +87,7 @@ const ProfilePage = ({ userId, userTheme }) => {
 
             }
             else {
-                setFriends(<h1>You have no friends yet</h1>)
+                setFriends(<h3>You have no friends yet</h3>)
             }
             
             if (userInfo.Following != null && userInfo.Following  !== undefined) {
@@ -102,7 +102,7 @@ const ProfilePage = ({ userId, userTheme }) => {
 
             }
             else {
-                setFollowing(<h1>You are not following anyone yet</h1>)
+                setFollowing(<h3>You are not following anyone yet</h3>)
             }
            
             if (userInfo.Followers  != null &&userInfo.Followers !== undefined) {
@@ -117,7 +117,7 @@ const ProfilePage = ({ userId, userTheme }) => {
 
             }
             else {
-                setFollowers(<h1>You have no followers yet</h1>)
+                setFollowers(<h3>You have no followers yet</h3>)
             }
             // console.log("followers done");
 

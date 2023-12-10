@@ -83,7 +83,7 @@ function VWPopup({ name, worldId, userTheme }) {
       {/* the modal */}
       <Modal dialogClassName={align} show={show} onHide={handleClose}>
         <Modal.Header className={"body_"+userTheme} closeButton>
-          <Modal.Title>{name}</Modal.Title>
+          <Modal.Title>{worldInfo.Name}</Modal.Title>
         </Modal.Header>
         {/* the body has all of the world information */}
         <Modal.Body className={"body_"+userTheme}>

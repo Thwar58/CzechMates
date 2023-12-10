@@ -77,7 +77,7 @@ function MWPopup({ title, userId, button, worldId, userTheme }) {
         }
         setMems(arr);
       } else {
-        setMems(<h1>You have no members yet</h1>)
+        setMems(<h4>You have no members yet</h4>)
       }
 
       // console.log("set them ", worldInfo.Name, worldInfo.Schedule);
@@ -140,7 +140,7 @@ function MWPopup({ title, userId, button, worldId, userTheme }) {
       <Modal dialogClassName={align} show={show} onHide={handleClose}>
         {/* set the modal header */}
         <Modal.Header className={"body_" + userTheme} closeButton>
-          <Modal.Title>{title}</Modal.Title>
+          <Modal.Title>{name}</Modal.Title>
         </Modal.Header>
         {/* the modal body with the world information (editable by the user) */}
         <Modal.Body className={"body_" + userTheme}>

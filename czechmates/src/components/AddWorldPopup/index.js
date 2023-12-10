@@ -105,8 +105,9 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
       }
       // if the world has no members, indicte that to the user
       else {
-        setMems(<h1>You have no members yet</h1>)
+        setMems(<h4>You have no members yet</h4>)
       }
+
 
       // set all of the other world information
       setName(worldInfo.Name);
