@@ -95,7 +95,7 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
       
       }
       else{
-        setMems(<h1>You have no members yet</h1>)
+        setMems(<h4>You have no members yet</h4>)
     }
         // console.log("set them ", worldInfo.Name, worldInfo.Schedule);
         setName(worldInfo.Name);

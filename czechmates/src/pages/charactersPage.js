@@ -70,7 +70,7 @@ const CharactersPage = ({ userId, userTheme}) => {
             setChars(arr);
         }
         else{
-            setChars(<h1>You have no characters yet</h1>)
+            setChars(<h3>You have no characters yet</h3>)
         }
 
     }, [charInfo, userTheme]);
@@ -120,7 +120,7 @@ const CharactersPage = ({ userId, userTheme}) => {
                 <Row>
                     {/* button that adds a character and redirects to the subchar pages */}
                     <div>
-                        <Button onClick={addChara} className={"btn_"+userTheme}>Plus sign icon</Button>
+                        <Button onClick={addChara} className={"btn_"+userTheme}>Add Character</Button>
                     </div>
                 </Row>
             </Container>

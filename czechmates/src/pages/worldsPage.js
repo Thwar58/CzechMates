@@ -80,7 +80,7 @@ const WorldPage = ({ userId, userTheme }) => {
 
         }
         else {
-            setWorlds(<h1>You have no worlds yet</h1>)
+            setWorlds(<h3>You have no worlds yet</h3>)
         }
 
     }, [worldInfo, userTheme]);
