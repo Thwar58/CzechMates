@@ -11,6 +11,10 @@ import Col from 'react-bootstrap/Col';
 import { auto } from '@popperjs/core';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from '../SignIn/firebaseConfig';
+import { db } from '../firebase';
+import { child, get, ref, set, push, onValue, update } from "firebase/database";
+import DBFunctions from '../utils/firebaseQueries';
+import userTemplate from '../utils/userTemplate.json';
 
 // this is the home page, as of now it is mostly reference material and will be largely removed
 const Login = ({ setUserId }) => {
@@ -38,6 +42,25 @@ const Login = ({ setUserId }) => {
                 console.log("logged in successfully ", user);
                 // IdP data available using getAdditionalUserInfo(result)
                 // ...
+                const dbRef = ref(db);
+        
+        get(child(dbRef, `Users/` + user.uid)).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                setUserId(user.uid);
+                sessionStorage.setItem("User", user.uid);
+                navigate('/home');
+                
+            } else {
+                console.log("No data available");
+                DBFunctions.createNewUser(userTemplate, user.uid, user.email, user.displayName);
+                setUserId(user.uid);
+                sessionStorage.setItem("User", user.uid);
+                navigate('/home');
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
             }).catch((error) => {
                 console.log("error");
                 // Handle Errors here.
@@ -50,7 +73,7 @@ const Login = ({ setUserId }) => {
                 // ...
             });
             console.log("at all?");
-
+            
     }
     // console.log("check url", window.location.href);
     const toSubPage = () => {

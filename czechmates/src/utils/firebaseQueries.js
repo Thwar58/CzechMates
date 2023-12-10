@@ -56,6 +56,21 @@ var DBFunctions = {
         return newPostKey;
     },
 
+    createNewUser: function (userTemplate, uid, Email, Name) {
+        userTemplate.Name = Name;
+        userTemplate.Email = Email;
+        // Get a key for a new Post.
+       
+        // Write the new post's data simultaneously in the posts list and the user's post list.
+        const updates = {};
+        updates['Users/' + uid] = userTemplate;
+       
+        // const newPostKey = push(child(ref(db), 'posts')).key;
+        console.log(updates);
+        update(ref(db), updates);
+      
+    },
+
      // add a character to the database (used for copy as well as addition)
      createNewWorld: function (worldTemplate, userId, inviteCode) {
         // Get a key for a new Post.
