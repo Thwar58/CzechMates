@@ -1,67 +1,70 @@
 // https://ericgio.github.io/react-bootstrap-typeahead/
-
 import { useState } from 'react';
-// import {Form} from 'react';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import Form from 'react-bootstrap/Form';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue, update, get, child } from "firebase/database";
-import * as emailjs from 'emailjs-com';
 
-
+/**
+ * Purpose: the component for the typeahead, used in the profile page and some world popups for selections of users and characters
+ * Params: 
+ * optionInfo: JSON object, carries information to populate the choices and relevent metadata
+ * action: string, the type of typeahead (choose character, send world invite, etc)
+ * userId: string, the user's id
+ * userName: string, the current user's username, used in the following section
+ * worldCode: int, the code for a world
+ * setPremadeChosen: JSON object, the character information for the join world popup typeahead selection
+ */
 const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremadeChosen }) => {
-  const [singleSelections, setSingleSelections] = useState([]);
-  var [optionsArr, setOptionsArr] = useState([]);
+  // useStates to handle the selection in the typeahead
   var [placeholder, setPlaceholder] = useState("");
-  // var [dbInfo, setDBInfo] = useState();
+  const [singleSelections, setSingleSelections] = useState([]);
+  // useState to set the options of the typeahead
+  var [optionsArr, setOptionsArr] = useState([]);
 
 
-  // distinguish which typeahead we are using here, get all users if profile, whenever a selection is made,
-  // check follower list and update accordingly
+  /**
+   * Purpose: sets the options for the typeahead based on the use for the specific typeahead
+   * Params/Dependencies: 
+   * optionInfo:
+   * action
+   * userName
+   */
   useEffect(() => {
-    console.log("options info has changed: ", optionInfo);
-    // console.log("see it change", optionInfo);
     if (optionInfo !== undefined) {
-      // console.log("friendinfo ", friendInfo);
       var arr = [];
       if (optionInfo !== null) {
+        // if this typeahead is being used for sending invite codes
         if (action === "sendWorldInvite") {
           setPlaceholder("Choose a friend to invite");
           // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+          // add their friends to the options
           for (const [key, value] of Object.entries(optionInfo)) {
-            // console.log(key, value);
-            // pass in the key, the character name, and the id of who created the character
             arr.push(value);
-            // console.log("look here?", value);
           }
           setOptionsArr(arr);
         }
+        // if this typeahead is being used for following a user
         else if (action === "follow") {
           setPlaceholder("Search for another user by name")
+          // add all of the usernames except the current user to the options
           for (const [key, value] of Object.entries(optionInfo)) {
-            // console.log(key, value);
-            // pass in the key, the character name, and the id of who created the character
             if (value.Name !== userName) {
               arr.push(value.Name);
             }
-
-            // console.log("look here ", value);
           }
           setOptionsArr(arr);
         }
-        else if (action === "choose character"){
+        // if the typeahead is being used to select a character to join the world
+        else if (action === "choose character") {
           setPlaceholder("Choose from your characters who aren't already in a world")
-          console.log("its making us choose a character");
           var arr = [];
-           for (const [key, value] of Object.entries(optionInfo)) {
-            // console.log(key, value);
-            // pass in the key, the character name, and the id of who created the character
+          // add the characters who aren't already in a world to the options
+          for (const [key, value] of Object.entries(optionInfo)) {
             if (value.Participation === undefined) {
               arr.push(value.Name);
             }
-
-            // console.log("look here ", value);
           }
           setOptionsArr(arr);
         }
@@ -70,70 +73,71 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremade
 
   }, [optionInfo]);
 
-  useEffect(() => {
-    console.log("options arr has changed: ", optionsArr);
 
-  }, [optionsArr]);
-
+  /**
+   * Purpose: handles the actions when the user selects something from the typeahead
+   * Params/Dependencies: 
+   * action
+   * optionInfo
+   * worldCode
+   * userId
+   */
   useEffect(() => {
-    console.log("selection has changed: ", singleSelections);
+    // if a selection has actually been made
     if (singleSelections.length !== 0) {
-      // console.log("this was selected from the typeahead: ", singleSelections);
-
+      // if the user is sending a world invite
       if (action === "sendWorldInvite") {
+        // go through the options and get the metadata for the selection
         for (const [key, value] of Object.entries(optionInfo)) {
           if (value == singleSelections) {
-            console.log("send this user a join code email: ", key);
+            // the name of the current user
             get(child(ref(db), `Users/${userId}/Name`)).then((snapshot) => {
-              console.log("check", snapshot.val());
               const senderName = snapshot.val();
-
+              // get the email of the person who was selected in the typeahead
               get(child(ref(db), `Users/${key}/Email`)).then((snapshot) => {
-                console.log("check", snapshot.val());
                 const memberEmail = snapshot.val();
 
-              
-                  const actualParams = {
-                    member: value,
-                    code: worldCode,
-                    sender: senderName,
-                    email: memberEmail
-                  };
-                  console.log(actualParams);
+                // set up the parameters for the email 
+                const actualParams = {
+                  member: value,
+                  code: worldCode,
+                  sender: senderName,
+                  email: memberEmail
+                };
 
+                // delete this later
+                console.log(actualParams);
 
-                  // emailjs.send('service_5lol5zu', 'template_fumphwg',   
-                  // actualParams, 'nCCc6oQB6cd4n0ljl')
-                  //     .then((result) => {
-                  //       console.log(e.target);
-                  //         alert('email sent successfully');
-                  //     }, (error) => {
-                  //         alert('error sending email');
-                  //     });
-
+                // comment this back in at the end
+                // emailjs.send('service_5lol5zu', 'template_fumphwg',   
+                // actualParams, 'nCCc6oQB6cd4n0ljl')
+                //     .then((result) => {
+                //       console.log(e.target);
+                //         alert('email sent successfully');
+                //     }, (error) => {
+                //         alert('error sending email');
+                //     });
 
               }).catch((error) => {
                 console.error(error);
               });
-
             }).catch((error) => {
               console.error(error);
             });
-
-
-
           }
         }
       }
+      // if the user is trying to follow another user
       else if (action === "follow") {
-        // console.log("follow this user");
+        // clear the selection to prevent an issue where the selection would stay the same and immediately
+        // refollow someone if you unfollowed them right after you followed them
         setSingleSelections([]);
-        // console.log("HOW DO I TURN THIS OFFFF  ", singleSelections);
+        // some variables used to track the information of the user you are trying to follow
         var there = false;
         var id;
         var OtherName;
+        // find the user metadata in the options and save out the info
         for (const [key, value] of Object.entries(optionInfo)) {
-          // console.log("iterated item", optionInfo);
           if (value.Name == singleSelections) {
             there = true;
             id = key;
@@ -141,112 +145,92 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremade
             break;
           }
         }
-
+        // if the user is found in the database (used to prevent errors if a user was removed incorrectly)
         if (there === true) {
-          // console.log("You selected this user", OtherName, singleSelections);
-          // const userRef = ref(db, `Users/${id}/Following`);
-          // console.log("follow this user: ", key, value);
-          // check if this user follows you already
-          // console.log("check id right before", id);
-          // console.log(`Users/${id}/Following`)
+          // get the following list of the user this user wants to follow
           get(child(ref(db), `Users/${id}/Following`)).then((snapshot) => {
-
-            // console.log("requested user info ", snapshot.val());
+            // check if the current user is in their following list as well
             var present = false;
             if (snapshot.val() !== null) {
-              // console.log("this is in onValue, it should be triggered once")
-              // setSingleSelections([]);
               if (snapshot.val()[userId] !== undefined) {
                 present = true;
               }
-
-
             }
-
             const updates = {};
+            // if the user is in their following list, then these users should be mutal followers, and therefore friends
             if (present === true) {
-              // remove requester from requested follower list
+              // remove current user from the other user's follower list
               updates[`Users/${id}/Followers/${userId}`] = null;
               updates[`Users/${userId}/Followers/${id}`] = null;
               updates[`Users/${id}/Following/${userId}`] = null;
-              // add requestor to requested friends list
+              // add current user to the other user's friends list
               updates[`Users/${id}/Friends/${userId}`] = userName;
-              // add requested to requestor friends list
+              // add current user to other users friends list
               updates[`Users/${userId}/Friends/${id}`] = OtherName;
-              // console.log(updates);
               update(ref(db), updates);
             }
-            // this part is working
+            // if the current user is not in the other user's following, then they are either already friends
+            // or it is a one sided following on the current user's part
             else if (present === false) {
-              // console.log("potential follower")
-              // add following
+              // check if the current user has the other user in their friends list
               var alreadyFriends = false;
-
               const currentUser = ref(db, `Users/${userId}/Friends`);
               onValue(currentUser, (snapshot) => {
-                // console.log(snapshot.val());
-                // console.log(key);
                 if (snapshot.val() !== null) {
                   if (snapshot.val()[id] !== undefined) {
                     alreadyFriends = true;
                   }
                 }
-
               });
-              // console.log(alreadyFriends);
+              // if not, then add the current user as a follower and update the other user's followers list
               if (alreadyFriends === false) {
-                // console.log("make following because you're not friends");
-                // add requestor to requested follower list
                 updates[`Users/${id}/Followers/${userId}`] = userName;
                 updates[`Users/${userId}/Following/${id}`] = OtherName;
-                // console.log(updates);
                 update(ref(db), updates);
               }
-              else {
-                // console.log("you can't follow, you're already friends");
-              }
-
-
             }
-
           }).catch((error) => {
             console.error(error);
           });
-
         }
       }
-      if(action === "choose character"){
-        // send back the character that is chosen
+      // if the user is choosing a character for a world
+      if (action === "choose character") {
+        // set premadechosen to the selections information and send it back to the join world popup
         for (const [key, value] of Object.entries(optionInfo)) {
-            if (value.Name === singleSelections[0]){
-              setPremadeChosen({key: key, value: value.Name});
-            }
+          if (value.Name === singleSelections[0]) {
+            setPremadeChosen({ key: key, value: value.Name });
+          }
         }
       }
+      // clear the selection just in case, again we have had issues previously with this
       else {
         setSingleSelections([]);
       }
-      
-
     }
-
-    // console.log(worldInfo);
   }, [singleSelections]);
 
 
 
 
-
+  /**
+   * Purpose: renders the typeahead and it's options
+   * Params/Dependencies: 
+   * optionsArr
+   * placeholder
+   * singleSelections
+   */
   return (
     <>
       <Form.Group>
-        {/* <Form.Label>Search here</Form.Label> */}
+        {/* the typeahead */}
         <Typeahead
           id="basic-typeahead-single"
           labelKey="name"
-
+          // the options in the typeahead
           options={optionsArr}
           placeholder={placeholder}
+          // the current selection and the function that sets it
           selected={singleSelections}
           onChange={setSingleSelections}
         />
