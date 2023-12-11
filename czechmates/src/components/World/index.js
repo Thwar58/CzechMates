@@ -17,9 +17,13 @@ import { useEffect } from "react";
  * userTheme: string, the user's color theme
  */
 const World = ({ worldName, userId, type, worldId, userTheme }) => {
+
     // useState used so that we can set the content depending on joined/owned status
+
     var [ownOrJoin, setOwnOrJoin] = useState();
+    //used to display if the world is owned or joined as the label
     var displayName = type === 'joined' ? 'Joined' : 'Owned';
+
 
     /**
      * Purpose: adds the buttons for the component depending on if its an owned or joined world
@@ -34,6 +38,7 @@ const World = ({ worldName, userId, type, worldId, userTheme }) => {
         if (type === "created") {
             setOwnOrJoin([<ManageWorldPopup userTheme={userTheme} key={"MWP"} userId={userId} worldId={worldId} title="World Name" button={"Manage"} />,
             <ConfirmationPopup userTheme={userTheme} title={"Removing a worlds..."} content={`Are you sure you want to remove ${worldName}?`} type={"removeWorld"} action={{ userId, worldId }} key={"CP"} name={"Remove"} />])
+
         }
         // if it's not owned by the user, add a view world popup and a leave world confirmation popup
         else if (type === "joined") {
@@ -56,6 +61,7 @@ const World = ({ worldName, userId, type, worldId, userTheme }) => {
         <>
             <InputGroup className={"mb-3 body_" + userTheme}>
                 {/* joined or created depending */}
+
                 <InputGroup.Text id="basic-addon3">
                     {displayName}
                 </InputGroup.Text>
@@ -66,6 +72,7 @@ const World = ({ worldName, userId, type, worldId, userTheme }) => {
                 />
                 {/* the buttons for this world depending on ownership */}
                 {ownOrJoin}
+
             </InputGroup>
         </>
     );
