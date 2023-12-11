@@ -1,27 +1,25 @@
 
 import Button from 'react-bootstrap/Button';
-import { db } from '../firebase';
-import { ref, update } from 'firebase/database';
 import { useEffect } from 'react';
 
 
 function LightModeButton({userId, userTheme, setUserTheme}) {
-  
-  // const userRef = ref(db);
 
+  //runs before the button is rendered in
   useEffect(()=>{
+     //if its dark mode
     if(userTheme === 'dark'){
-      var btnElements = document.querySelectorAll('.btn');
+      //we get every rendered component that has the btn class
+      let btnElements = document.querySelectorAll('.btn');
+      //then for each of the btn class components remove the light attribute and add the dark attribute
       btnElements.forEach(function(btn) {
-        // Add a new class "newClass" to each button element
         btn.classList.remove('light');
         btn.classList.add('dark');
     });
-      // updates[`Users/${userId}/Light_Mode`] = userTheme;
+    //otherwise remove the dark attribute of each button component and add the light
     }else{
-      var btnElements = document.querySelectorAll('.btn');
+      let btnElements = document.querySelectorAll('.btn');
       btnElements.forEach(function(btn) {
-        // Add a new class "newClass" to each button element
         btn.classList.remove('dark');
         btn.classList.add('light');
     });
@@ -30,34 +28,25 @@ function LightModeButton({userId, userTheme, setUserTheme}) {
 
     return (
       <Button 
+      //when clicked the button checks the current user's theme and changes it
       onClick={()=>{
-        // if (mode) {
-        //   document.body.classList.add('dark');
-        // } else {
-        //   document.body.classList.remove('dark');
-        // }
-        // const updates = {};
         if(userTheme === 'dark'){
+          //if its dark, set it to light and remove the dark css theme from all btn components then add light to them all
           setUserTheme('light')
-          var btnElements = document.querySelectorAll('.btn');
+          let btnElements = document.querySelectorAll('.btn');
           btnElements.forEach(function(btn) {
-            // Add a new class "newClass" to each button element
             btn.classList.remove('dark');
             btn.classList.add('light');
         });
-          // updates[`Users/${userId}/Light_Mode`] = userTheme;
         }else{
+          //if its light then do the opposite and set it all to dark
           setUserTheme('dark')
-          var btnElements = document.querySelectorAll('.btn');
+          let btnElements = document.querySelectorAll('.btn');
           btnElements.forEach(function(btn) {
-            // Add a new class "newClass" to each button element
             btn.classList.remove('light');
             btn.classList.add('dark');
         });
-          // updates[`Users/${userId}/Light_Mode`] = userTheme;
         }
-      console.log("Toggled theme");
-      // update(userRef, updates);
     }}>
         Light Mode
       </Button>
