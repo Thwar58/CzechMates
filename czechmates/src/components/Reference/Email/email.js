@@ -1,5 +1,8 @@
 import React from 'react';
 import * as emailjs from 'emailjs-com';
+
+// DISCARD
+
 export default function EmbeddedEmail() {
     function sendEmail(e) {
 

@@ -1,7 +1,6 @@
 import User from "../components/User";
 import ControlledTabs from '../components/Tabs';
 import { useState } from "react";
-import TypeAheadWithButton from "../components/TypeAheadWithButton";
 import TypeAhead from "../components/TypeAhead";
 import Social from '../components/Social';
 import Container from 'react-bootstrap/Container';
@@ -180,7 +179,6 @@ const ProfilePage = ({ userId, userTheme }) => {
                     <Col>
                     </Col>
                     <Col md={10}>
-                        {/* <TypeAheadWithButton /> */}
                         <TypeAhead optionInfo={allUsers} userName={userInfo.Name} userId={userId} action={"follow"}></TypeAhead>
                     </Col>
                     <Col>

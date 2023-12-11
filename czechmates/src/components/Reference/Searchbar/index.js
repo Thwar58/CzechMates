@@ -1,5 +1,7 @@
 // https://www.emgoto.com/react-search-bar/
 
+// DISCARD
+
 const SearchBar = ({ searchQuery, setSearchQuery }) => (
     <form>
         <label htmlFor="header-search">

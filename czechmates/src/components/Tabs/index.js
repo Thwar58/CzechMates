@@ -1,41 +1,60 @@
 // https://react-bootstrap.netlify.app/docs/components/tabs
-
 import { useEffect, useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-// a component for when we need tabs in a page
-// input: an array of labels and an array of tab contents
+/**
+ * Purpose: a component for the tabs where the user can change between content on a page
+ * Params: 
+ * text: string, the title of the tab
+ * content: VARIES, whatever the content of the page should be (generally an array of components)
+ * userTheme: string, the user's color theme
+ * currPage: int, the current index of the tab the user is on
+ * setCurrPage: function, sets the current index of the tab the user is on
+ */
 function ControlledTabs({ text, content, userTheme, currPage, setCurrPage }) {
-  // sets the starting state of the tabs to the first tab
+  // useState the sets the default tab
   const [key, setKey] = useState(text[0]);
 
-  useEffect(()=>{
-    if(currPage!==undefined){
+  /**
+  * Purpose: changes the tab to the current page when the current page changes
+  * Params/Dependencies: 
+  * currPage
+  * text
+  */
+  useEffect(() => {
+    if (currPage !== undefined) {
       setKey(text[currPage]);
     }
-  },[currPage])
+  }, [currPage])
 
+  /**
+   * Purpose: renders the tabs component
+   * Params/Dependencies: 
+   * setCurrPage
+   * text
+   * content
+   * userTheme
+   */
   return (
-    // monitor the active tab, set a new tab when a tab is clicked, and set the default tab to the first tab
     <Tabs
-      style={{paddingTop: '10px'}}
+      style={{ paddingTop: '10px' }}
       id="tabs"
       activeKey={key}
       onSelect={
         (k) => {
           setKey(k);
-          if(setCurrPage!==undefined){
+          if (setCurrPage !== undefined) {
             setCurrPage(text.indexOf(k.toString()));
           }
         }
       }
-      className={"mb-3 header_"+userTheme}
+      className={"mb-3 header_" + userTheme}
       defaultActiveKey={text[currPage]}
     >
       {/* populate the tabs with the information passed in, using index to match them */}
       {content?.map((tcontent, index) => (
-        <Tab tabClassName={"header_"+userTheme} className={"mb-3 header_"+userTheme} key={text[index]} eventKey={text[index]} title={text[index]}>
+        <Tab tabClassName={"header_" + userTheme} className={"mb-3 header_" + userTheme} key={text[index]} eventKey={text[index]} title={text[index]}>
           {tcontent}
         </Tab>
       ))}

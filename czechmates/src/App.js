@@ -22,7 +22,7 @@ import { ref, update, onValue } from "firebase/database";
 import NavWithDD from './components/NavWithDropdown';
 import { useEffect } from 'react';
 import HelpPage from './pages/helpPage';
-import EmbeddedEmail from './components/Email/email';
+// import EmbeddedEmail from './components/Email/email';
 
 // anything in this app script will appear/be available on every page
 function App() {
@@ -85,7 +85,7 @@ function App() {
     return (
         <div className={"body_"+userTheme} style={{ fontFamily: 'Anton' }}>
              <div>App says user is {userId}</div>
-             <EmbeddedEmail></EmbeddedEmail>
+             {/* <EmbeddedEmail></EmbeddedEmail> */}
              
             {/* router handles all of the page rerouting */}
             <Router>

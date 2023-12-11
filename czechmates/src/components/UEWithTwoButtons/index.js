@@ -1,49 +1,60 @@
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/Button';
-import { remove } from 'firebase/database';
-import { ref, update } from "firebase/database";
+import { ref } from "firebase/database";
 import { db } from '../../firebase';
 import ConfirmationPopup from '../ConfirmationPopup';
 import ViewCharaPopup from '../ViewCharaPopup';
 
-// a component for an uneditable form input field with two buttons
-// input: the value of the form, the creator id for later, and the labels for the buttons
-function UEWithTwoButtons({charCreatorId, charId, creatorId, worldId, charName, setAlign, userTheme}) {
-    const worldRef = ref(db);
-    // console.log("setAlign in UETB", setAlign);
+/**
+ * Purpose: a component used to display the members of a world in the manage world popup
+ * Params: 
+ * charCreatorId: string, the user id of the member 
+ * charId: string, the character id of the member
+ * creatorId: string, the user id of the world
+ * worldId: string, the id of the world
+ * charName: string, the character's name
+ * setAlign: function, sets the alignment of the popups (center, left, right)
+ * userTheme: the user's color theme
+ */
+function UEWithTwoButtons({ charCreatorId, charId, creatorId, worldId, charName, setAlign, userTheme }) {
 
-
+    /**
+     * Purpose: renders the input field and buttons
+     * Params/Dependencies: 
+     * charName
+     * userTheme
+     * setAlign
+     * charid
+     * creatorId
+     * worldId
+     * charCreatorId
+     */
     return (
         <>
-            {/* set the value and disable the input field */}
+            {/* set the member name and disable the input field */}
             <InputGroup className="mb-3">
                 <Form.Control
                     value={charName}
                     disabled={true}
                 />
-                {/* set the first button */}
-                
+                {/* the view character popup */}
                 <ViewCharaPopup
-                 userTheme={userTheme}
-                 setAlign={setAlign}
-                 charId={charId}
-                 userId={creatorId}
+                    userTheme={userTheme}
+                    setAlign={setAlign}
+                    charId={charId}
+                    userId={creatorId}
                 >
-                   
                 </ViewCharaPopup>
-                {/* set the second button */}
+                {/* the remove member confirmation popup */}
                 <ConfirmationPopup
-                userTheme={userTheme}
-                name={"Remove"}
-                type={"removeMember"}
-                action={{worldId, creatorId, charId, charCreatorId}}
-                title={`Removing a member...`}
-                content={`Are you sure you want to remove ${charName} from the world?`}
+                    userTheme={userTheme}
+                    name={"Remove"}
+                    type={"removeMember"}
+                    action={{ worldId, creatorId, charId, charCreatorId }}
+                    title={`Removing a member...`}
+                    content={`Are you sure you want to remove ${charName} from the world?`}
                 >
-
                 </ConfirmationPopup>
-                
             </InputGroup>
         </>
     );
