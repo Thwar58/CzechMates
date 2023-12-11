@@ -8,7 +8,13 @@ import SheetPage from '../pages/sheetPage';
 import generatePDF, { Resolution, Margin } from "react-to-pdf";
 import "./themes.css"
 
-// a component that makes a button that pops up the preview for printing a character sheet
+/**
+ * Purpose: a component that makes a button that pops up the preview for printing a character sheet
+ * Params/Dependencies: 
+ * props.userTheme: string, the user theme either dark or light
+ * props.userId: string, the id of the current user 
+ * props.charId: string, the id of the selected character 
+ */
 function PrintPopup(props) {
   // set the default state of the modal to hidden
   const [show, setShow] = useState(false);
@@ -22,11 +28,16 @@ function PrintPopup(props) {
   //characer's id is passed in from props
   var [charId] = useState(props.charId);
   //users's id is passed in from props
-  const [userId, setUserId] = useState(props.userId);
+  const userId = (props.userId);
   //this is used to stop the user from clicking the button too quickly
   const [isGenerating, setIsGenerating] = useState(false);
 
-  //before the component renders, it fills in the character info if the is undefined
+  /**
+ * Purpose: before the component renders, it fills in the character info if the is undefined
+ * Params/Dependencies: 
+ * userId
+ * charId
+ */
   useEffect(() => {
     if (charId !== undefined) {
       console.log("check char id in sub", charId);
@@ -35,11 +46,13 @@ function PrintPopup(props) {
       onValue(charRef, (snapshot) => {
         setCharInfo(snapshot.val());
       });
-
     }
   }, [userId, charId]);
 
-  //The method that handles downloading the component as a pdf
+  /**
+   * Purpose: The method that handles downloading the component as a pdf
+   * Params/Dependencies: 
+   */
   const handlePrint = () => {
     //start off by setting the flag to true so then the close and print buttons cannot be clicked twice in a row
     setIsGenerating(true)
@@ -51,7 +64,11 @@ function PrintPopup(props) {
     setIsGenerating(false)
   }
 
-  //options for downloading the pdf DONT TOUCH
+
+  /**
+   * Purpose: options for downloading the pdf DONT TOUCH
+   * Params/Dependencies: 
+   */
   const options = {
     filename: props.name + '.pdf',
     method: "download",
@@ -89,12 +106,22 @@ function PrintPopup(props) {
     // }
   };
 
-  //function that grabs the component with the id given
+  /**
+ * Purpose: function that grabs the component with the id given
+ * Params/Dependencies: 
+ */
   const getTargetElement = () => document.getElementById("printable-container");
 
-  //dowwnloads the pdf
+  /**
+ * Purpose: dowwnloads the pdf
+ * Params/Dependencies: 
+ */
   const downloadPdf = () => generatePDF(getTargetElement, options);
 
+  /**
+ * Purpose: building the print button and modal for the component
+ * Params/Dependencies: 
+ */
   return (
     <>
       {/* the button that triggers the modal */}
@@ -115,7 +142,7 @@ function PrintPopup(props) {
             Close
           </Button>
           {/* This div is the printed component so only the sheet page */}
-          <div id="printable-container"> 
+          <div id="printable-container">
             <SheetPage userTheme={'light'} sheetInfo={charInfo} charId={charId} />
           </div>
           <Button className={"btn_light"} disabled={isGenerating} variant="primary" onClick={handlePrint}>

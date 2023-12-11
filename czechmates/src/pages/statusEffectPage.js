@@ -7,7 +7,6 @@ import StatusEffect from "../components/StatusEffectComp";
 import { useEffect } from "react";
 import { useState } from "react";
 
-
 /**
  * Purpose: renders the statusEffects page within the subcharacterPage
  * Params/Dependencies: 

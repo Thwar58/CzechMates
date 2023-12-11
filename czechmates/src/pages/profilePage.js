@@ -9,129 +9,114 @@ import Col from 'react-bootstrap/Col';
 import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
-import InputWithLabel from "../components/InputWithLabel";
-import NavWithDD from '../components/NavWithDropdown';
-// import { useTheme } from "@emotion/react";
 
-// the profile page for the user
-// input: the user's id
+/**
+ * Purpose: the page that shows the user's information
+ * Params/Dependencies:
+ * userId: string, the id of the current user
+ * userThemeL string, either dark or light depending on the set theme
+ */
 const ProfilePage = ({ userId, userTheme }) => {
-    // variables to track the user id and the loading state
+
+    // variable to track the user's id
     const [userInfo, setUserInfo] = useState();
+
+    // checks the loading state of the page
     const [loading, setLoading] = useState(true);
+
+    //the friends of the given user
     const [friends, setFriends] = useState();
+
+    //the followers of the given user
     const [followers, setFollowers] = useState();
+
+    //the people that the current user is following
     const [following, setFollowing] = useState();
+
+    //the list of all users from the database
     const [allUsers, setAllUsers] = useState();
 
-
-
-
-    // this needs a major revamp
-    // a function that adds a friend/follower/following to the users lists
-    // function addF(type) {
-    //     // console.log(type);
-    //     if (type !== undefined) {
-    //         // loops through the users list and adds social components for each one
-    //         var arr = [];
-    //         // https://flexiple.com/javascript/loop-through-object-javascript
-    //         Object.values(type).forEach(val =>
-    //             arr.push(<Social key={val} content={val}> </Social>));
-    //         return arr;
-    //     }
-    // }
-
-    // gets the user information from the database when the userid changes
+    /**
+     * Purpose: gets the user information from the database when the userid changes
+     * Params/Dependencies:
+     * userId
+     */ 
     useEffect(() => {
         const userRef = ref(db, 'Users/' + userId);
         // IMPORTANT: onValue continues to monitor the database and will update the local value automatically if the db changes
         onValue(userRef, (snapshot) => {
             setUserInfo(snapshot.val());
         });
-
         const users = ref(db, 'Users/');
         // IMPORTANT: onValue continues to monitor the database and will update the local value automatically if the db changes
         onValue(users, (snapshot) => {
             setAllUsers(snapshot.val());
         });
-
-  
-
     }, [userId]);
 
-   
-    // when members changes, this is triggered
+    /**
+     * Purpose: when members changes, this is triggered
+     * Params/Dependencies:
+     * userInfo
+     * userTheme
+     */
     useEffect(() => {
         // console.log("check world info ", worldInfo);
         // check that members is not undefined otherwise it will throw an error
         if (userInfo !== undefined && userInfo !== null) {
             setLoading(false);
-            // console.log(userInfo);
-            // console.log("check world info ", worldInfo);
             // loop through the members objects and create components to display them, set the members array at the end
             var friends = [];
             var followers = [];
             var following = [];
-            // console.log("check WI for members ", worldInfo);
             if (userInfo.Friends != null && userInfo.Friends !== undefined) {
                 // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
                 for (const [key, value] of Object.entries(userInfo.Friends)) {
-                    // console.log("check name ", value);
                     // pass in the key, the character name, and the id of who created the character
-                    // arr.push(<UEWithTwoButtons key={key} charId={key} charName={value} />);
                     friends.push(<Social userTheme={userTheme} userName={userInfo.Name} userId={userId} socialId={key} type={"Friend"} key={value} content={value}> </Social>);
                 }
                 setFriends(friends);
-                // setMems(arr);
-
             }
             else {
                 setFriends(<h3>You have no friends yet</h3>)
             }
-            
-            if (userInfo.Following != null && userInfo.Following  !== undefined) {
+
+            if (userInfo.Following != null && userInfo.Following !== undefined) {
                 // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-                for (const [key, value] of Object.entries(userInfo.Following )) {
-                    // console.log("check name ", value);
+                for (const [key, value] of Object.entries(userInfo.Following)) {
                     // pass in the key, the character name, and the id of who created the character
                     following.push(<Social userTheme={userTheme} userId={userId} socialId={key} type={"Following"} key={value} content={value}> </Social>);
                 }
                 setFollowing(following);
-                // setMems(arr);
-
             }
             else {
                 setFollowing(<h3>You are not following anyone yet</h3>)
             }
-           
-            if (userInfo.Followers  != null &&userInfo.Followers !== undefined) {
+
+            if (userInfo.Followers != null && userInfo.Followers !== undefined) {
                 // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
                 for (const [key, value] of Object.entries(userInfo.Followers)) {
-                    // console.log("check name ", value);
                     // pass in the key, the character name, and the id of who created the character
                     followers.push(<Social userTheme={userTheme} userId={userId} socialId={key} type={"Follower"} key={value} content={value}> </Social>);
                 }
                 setFollowers(followers);
-                // setMems(arr);
-
             }
             else {
                 setFollowers(<h3>You have no followers yet</h3>)
             }
-            // console.log("followers done");
-
-
-
         }
     }, [userInfo, userTheme]);
 
-    // sets the loading state to false when the user info loads
+    /**
+     * Purpose: sets the loading state to false when the user info loads
+     * Params/Dependencies:
+     * userInfo
+     * loading
+     */
     useEffect(() => {
         if (userInfo !== undefined && userInfo !== null) {
             setLoading(false);
-            // console.log(userInfo);
         }
-
     }, [userInfo]);
 
     // returns the blank loading screen if the data is not loaded
@@ -148,7 +133,7 @@ const ProfilePage = ({ userId, userTheme }) => {
                     <Col>
                     </Col>
                     <Col>
-                        <h1 className={"header_"+userTheme}>
+                        <h1 className={"header_" + userTheme}>
                             Account information
                         </h1>
                     </Col>
@@ -162,13 +147,13 @@ const ProfilePage = ({ userId, userTheme }) => {
                 </Row>
                 <Row>
                     <User type={"Email"} label={"Email"} content={userInfo?.Email} userId={userId} />
-                    
+
                 </Row>
                 <Row>
                     <Col>
                     </Col>
                     <Col>
-                        <h1 className={"header_"+userTheme}>
+                        <h1 className={"header_" + userTheme}>
                             Social
                         </h1>
                     </Col>

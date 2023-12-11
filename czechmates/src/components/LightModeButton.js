@@ -2,10 +2,19 @@
 import Button from 'react-bootstrap/Button';
 import { useEffect } from 'react';
 
+/**
+ * Purpose: a button that changes the css of the whole site between light and dark mode
+ * Params: 
+ * userTheme: string, either light or dark depending on what the theme is
+ * setUserTheme: function, sets the userTheme across the whole site
+ */
+function LightModeButton({userTheme, setUserTheme}) {
 
-function LightModeButton({userId, userTheme, setUserTheme}) {
-
-  //runs before the button is rendered in
+  /**
+   * Purpose: runs before the button is rendered in
+   * Params/Dependencies: 
+   * userTheme
+   */
   useEffect(()=>{
      //if its dark mode
     if(userTheme === 'dark'){
@@ -26,6 +35,11 @@ function LightModeButton({userId, userTheme, setUserTheme}) {
   }
   },[userTheme]);
 
+  /**
+   * Purpose: builds the component here
+   * Params/Dependencies: 
+   * userTheme
+   */
     return (
       <Button 
       //when clicked the button checks the current user's theme and changes it
