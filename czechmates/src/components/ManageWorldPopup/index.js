@@ -110,8 +110,15 @@ function MWPopup({ userId, button, worldId, userTheme }) {
   */
   useEffect(() => {
     // update the world name and schedule in the database when they are changed
+    const updates = {};
     if (name !== undefined && schedule !== undefined) {
-      const updates = {};
+      if (worldInfo.Members != undefined){
+        for (const [key, value] of Object.entries(worldInfo.Members)) {
+          updates[`WorldUserRel/${value.CreatorId}/Joined/${worldId}`] = name;
+        }
+
+      }
+      
       updates[`Worlds/${worldId}/Name`] = name;
       updates[`Worlds/${worldId}/Schedule`] = schedule;
       // update the name of the world for the creator
