@@ -25,7 +25,7 @@ function VWPopup({ name, worldId, userTheme }) {
   var [loading, setLoading] = useState(true);
   var [align, setAlign] = useState("mwPopupCenter");
 
-
+  //gets the worldId from the database if it ever updates and when the component renders
   useEffect(() => {
     if (worldId !== undefined) {
       // use this path and onValue monitors for changes
@@ -38,9 +38,8 @@ function VWPopup({ name, worldId, userTheme }) {
 
   }, [worldId]);
 
-
+  //gets the world data and is stores it for the world component when the info is updated or the light/dark mode theme
   useEffect(() => {
-
     if (worldInfo !== undefined) {
       setLoading(false)
       var arr = [];
@@ -56,13 +55,11 @@ function VWPopup({ name, worldId, userTheme }) {
     }
   }, [worldInfo, userTheme]);
 
-
+  //decides if the component renders if the data is available
   useEffect(() => {
     if (worldInfo !== undefined) {
       setLoading(false)
     }
-
-
   }, [worldInfo]);
 
   // render the blank loading screen if loading is true
@@ -72,7 +69,7 @@ function VWPopup({ name, worldId, userTheme }) {
     )
   }
 
-
+  //renders the component with the appropriate world info when available
   return (
     <>
       {/* the button that triggers the modal */}

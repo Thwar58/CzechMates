@@ -11,12 +11,13 @@ import { useEffect } from "react";
 // input: the world name and the members
 const World = ({ worldName, userId, type, worldId, userTheme }) => {
 
+    //this is the placeholder for the component popup that holds either the view button or manage button
     var [ownOrJoin, setOwnOrJoin] = useState();
+    //used to display if the world is owned or joined as the label
     var displayName = type === 'joined' ? 'Joined' : 'Owned';
     
-
+    //puts the correct button in the ownOrJoin variable based on the type passed in
     useEffect(() => {
-
         if (type === "created"){
             setOwnOrJoin([<ManageWorldPopup userTheme={userTheme} key={"MWP"} userId={userId} worldId={worldId}  title="World Name" button={"Manage"} />,
             <ConfirmationPopup userTheme={userTheme} title={"Removing a worlds..."} content={`Are you sure you want to remove ${worldName}?`} type={"removeWorld"} action={{userId, worldId}} key={"CP"} name={"Remove"} />])
@@ -29,10 +30,11 @@ const World = ({ worldName, userId, type, worldId, userTheme }) => {
     }, [type, userTheme]);
 
    
-
+    //this is the world component is being built 
     return (
         <>
             <InputGroup className={"mb-3 body_"+userTheme}>
+                {/* this is where we use the label 'joined' or 'owned' */}
                 <InputGroup.Text id="basic-addon3">
                     {displayName}
                 </InputGroup.Text>
@@ -41,12 +43,8 @@ const World = ({ worldName, userId, type, worldId, userTheme }) => {
                     value={worldName}
                     disabled={true}
                 />
-                {/* pass members to the manage world popup */}
-                {ownOrJoin}
-                {/* pass members to the view world popup */}
-                
-                {/* have a confirmation popup for leaving or removing a world */}
-               
+                {/* pass the correct button into the world component */}
+                {ownOrJoin}               
             </InputGroup>
         </>
     );
