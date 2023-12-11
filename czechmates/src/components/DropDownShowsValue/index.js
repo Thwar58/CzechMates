@@ -3,139 +3,175 @@
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useState } from 'react';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useEffect } from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { db } from '../../firebase';
-import { ref, onValue } from "firebase/database";
 
-// a dropdown that updates the text of the dropdown button with the selected option
-function DropDownShowsValue({worlds, setWorldDisplay, chars, setChars, type, actions, text, userTheme }) {
-
-  // sets the default value of the dropdown button
+/**
+  * Purpose: this is a dropdown component used for sorting and equipment
+  * Params:
+  * worlds: array, an array of world components
+  * setWorldDisplay: function, sets the world display array on the world page
+  * chars: array, an array of character components
+  * setChars: function, sets the characters array in the character page
+  * type: string, designates what actions to take
+  * actions: the options in the dropdown
+  * text: the initial text of the dropdown
+  * userTheme: the user's color theme
+  */
+function DropDownShowsValue({ worlds, setWorldDisplay, chars, setChars, type, actions, text, userTheme }) {
+  // useState for the current selection in the dropdown
   const [value, setValue] = useState(text);
-  // changes the button to match the selection
+  // aids the setValue function when a selection is chosen from the dropdown
   const handleSelect = (e) => {
     setValue(e)
   }
- 
-  useEffect(()=>{
-    if(userTheme === 'dark'){
+
+  /**
+  * Purpose: sets the color for the dropdown and it's options
+  * Params/Dependencies:
+  * userTheme
+  */
+  useEffect(() => {
+    // sets the elements to dark mode
+    if (userTheme === 'dark') {
       var btnElements = document.querySelectorAll('.btn');
-      btnElements.forEach(function(btn) {
+      btnElements.forEach(function (btn) {
         // Add a new class "newClass" to each button element
         btn.classList.remove('light');
         btn.classList.add('dark');
-    });
-      // updates[`Users/${userId}/Light_Mode`] = userTheme;
-    }else{
+      });
+      // sets the elements to light mode
+    } else {
       var btnElements = document.querySelectorAll('.btn');
-      btnElements.forEach(function(btn) {
+      btnElements.forEach(function (btn) {
         // Add a new class "newClass" to each button element
         btn.classList.remove('dark');
         btn.classList.add('light');
-    });
-  }
-  },[userTheme]);
+      });
+    }
+  }, [userTheme]);
 
+  /**
+   * Purpose: sorts the characters alphabetically
+   * Params/Dependencies: none
+   */
   function alphaCharaSort() {
     var newOrder = [...chars];
     setChars(newOrder.sort((a, b) => a.props.charName.localeCompare(b.props.charName)));
   }
 
+  /**
+  * Purpose: sorts the characters by last used
+  * Params/Dependencies: none
+  */
   function lastUsedCharaSort() {
     var newOrder = [...chars];
     setChars(newOrder.sort((a, b) => b.props.lastUsed - a.props.lastUsed));
   }
 
+  /**
+  * Purpose: sorts the worlds alphabetically
+  * Params/Dependencies: none
+  */
   function alphaWorldSort() {
     var newOrder = [...worlds];
     setWorldDisplay(newOrder.sort((a, b) => a.props.worldName.localeCompare(b.props.worldName)));
   }
 
+  /**
+  * Purpose: sorts the worlds by worlds the user owns
+  * Params/Dependencies: none
+  */
   function ownWorldSort() {
     var newOrder = [...worlds];
-    console.log(newOrder);
     for (let i = 0; i < newOrder.length; i++) {
-      console.log(i);
-      if (newOrder[i].props.type == "joined"){
-        console.log("not my world", newOrder[i]);
+      // filters out the worlds that don't belong to the user
+      if (newOrder[i].props.type == "joined") {
         newOrder.splice(i, 1);
         i--;
       }
     }
-    console.log(newOrder);
     setWorldDisplay(newOrder);
   }
 
+  /**
+  * Purpose: sorts the worlds by worlds the  user does not own
+  * Params/Dependencies: none
+  */
   function joinWorldSort() {
     var newOrder = [...worlds];
-    console.log(newOrder);
     for (let i = 0; i < newOrder.length; i++) {
-      console.log(i);
-      if (newOrder[i].props.type == "created"){
+      // filter out the worlds that belong to the user
+      if (newOrder[i].props.type == "created") {
         newOrder.splice(i, 1);
         i--;
       }
     }
-    console.log(newOrder);
     setWorldDisplay(newOrder);
   }
 
-  function levelSort(){
+  /**
+  * Purpose: sorts the characters by level
+  * Params/Dependencies: none
+  */
+  function levelSort() {
     var newOrder = [...chars];
-    console.log(newOrder);
-    setChars(newOrder.sort((a, b) => b.props.lvl - a.props.lvl ));
-   
+    setChars(newOrder.sort((a, b) => b.props.lvl - a.props.lvl));
+
   }
 
+  /**
+  * Purpose: applies the appropriate sorting function when a selection is made
+  * Params/Dependencies:
+  * value
+  */
   useEffect(() => {
     if (type === "character") {
-      if (value == "alphabetically" ){
+      if (value == "alphabetically") {
         alphaCharaSort();
       }
-      else if (value == "level"){
+      else if (value == "level") {
         levelSort();
       }
-      else if (value == "recently used"){
+      else if (value == "recently used") {
         lastUsedCharaSort();
       }
     }
     else if (type === "world") {
-      if (value == "Alphabetically" ){
+      if (value == "Alphabetically") {
         alphaWorldSort();
       }
-      else if (value == "Owned"){
+      else if (value == "Owned") {
         ownWorldSort();
       }
-      else if (value == "Participating"){
+      else if (value == "Participating") {
         joinWorldSort();
       }
-    }
-    else if (type === "availableCharacters"){
-      console.log("available characters");
-      console.log(actions);
-      // do something with it?
     }
 
   }, [value]);
 
 
 
-  // returns a div with the button and it's options according to the actions that are passed in
+  /**
+   * Purpose: renders the dropdown 
+   * Params/Dependencies:
+   * userTheme
+   * value
+   * name
+   * actions
+   */
   return (
     <div>
       {/* adds the title and the onSelect function */}
       <Dropdown onSelect={handleSelect} as={ButtonGroup}>
-      <Dropdown.Toggle className={"btn_"+userTheme} id="dropdown-custom-1">{value}</Dropdown.Toggle>
-      
-      <Dropdown.Menu className={"btn_"+userTheme}>
-      {/* <Dropdown title={value} onSelect={handleSelect}> */}
-        {/* maps each of the options passed in to a dropdown option with the appropriate keys */}
-        {actions?.map((name) => (
-          <Dropdown.Item className={"btn_"+userTheme} key={name} eventKey={name}>{name}
-          </Dropdown.Item>
-        ))}
+        <Dropdown.Toggle className={"btn_" + userTheme} id="dropdown-custom-1">{value}</Dropdown.Toggle>
+        <Dropdown.Menu className={"btn_" + userTheme}>
+          {/* maps each of the options passed in to a dropdown option with the appropriate keys */}
+          {actions?.map((name) => (
+            <Dropdown.Item className={"btn_" + userTheme} key={name} eventKey={name}>{name}
+            </Dropdown.Item>
+          ))}
         </Dropdown.Menu>
       </Dropdown>
     </div>

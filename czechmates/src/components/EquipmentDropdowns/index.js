@@ -3,80 +3,94 @@
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useState } from 'react';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, update } from "firebase/database";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-// a dropdown that updates the text of the dropdown button with the selected option
-function EquipmentDropdown({charId, options, text, type, userTheme }) {
+/**
+  * Purpose: a dropdown component used in the equipment page for weapons, armor, and shields
+  * Params:
+  * charId: string, the character id
+  * options: JSON object, the list of options for this dropdown
+  * text: string, the initial value for the dropdonw (whatever the character has equipped when the page loads)
+  * type: string, the type of dropdown (weapon, armor, shield)
+  * userTheme: the user's color theme
+  */
+function EquipmentDropdown({ charId, options, text, type, userTheme }) {
 
-  // sets the default value of the dropdown button
+  // sets the default value of the dropdown button and the options
   const [value, setValue] = useState(text);
   const [ddOptions, setDdOptions] = useState();
+
+  // database reference
   const charRef = ref(db);
 
   // changes the button to match the selection
   const handleSelect = (e) => {
     setValue(e)
-    
   }
 
+  /**
+  * Purpose: updates the options in the dropdown when the options or userTheme changes
+  * Params/Dependencies:
+  * options
+  * userTheme
+  */
   useEffect(() => {
-    // loop through the characters information and make components for them
     var arr = [];
+    // loop through the character information and make dropdown items for them
     if (ddOptions !== null) {
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-        for (const [key, value] of Object.entries(options)) {
-            arr.push(<Dropdown.Item className={"btn_"+userTheme} key={key} eventKey={key}>{value}</Dropdown.Item>);
-        }
-        // console.log(arr);
-        setDdOptions(arr);
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+      for (const [key, value] of Object.entries(options)) {
+        arr.push(<Dropdown.Item className={"btn_" + userTheme} key={key} eventKey={key}>{value}</Dropdown.Item>);
+      }
+      setDdOptions(arr);
     }
 
-}, [options, userTheme]);
+  }, [options, userTheme]);
 
-useEffect(() => {
-  // loop through the characters information and make components for them
-  if (value !== null) {
-    const updates = {};
 
-    if (type == "Weapon"){
-      updates[`Characters/${charId}/Equipment/Weapon_Equipped`] = value;
+/**
+* Purpose: updates the database for what weapon the character has equipped when value changes
+* Params/Dependencies:
+* value
+*/
+  useEffect(() => {
+    if (value !== null) {
+      const updates = {};
+      //  update the datase in the correct place for each type
+      if (type == "Weapon") {
+        updates[`Characters/${charId}/Equipment/Weapon_Equipped`] = value;
+      }
+      else if (type == "Shield") {
+        updates[`Characters/${charId}/Equipment/Shield_Equipped`] = value;
+      }
+      else if (type == "Armor") {
+        updates[`Characters/${charId}/Equipment/Armor_Equipped`] = value;
+      }
+      update(charRef, updates);
+
     }
-    else if (type == "Shield"){
-      updates[`Characters/${charId}/Equipment/Shield_Equipped`] = value;
-    }
-    else if (type == "Armor"){
-      updates[`Characters/${charId}/Equipment/Armor_Equipped`] = value;
-    }
-    update(charRef, updates);
-   
-  }
 
-}, [value]);
-  
+  }, [value]);
 
 
-  
-
-
-  // returns a div with the button and it's options according to the actions that are passed in
+/**
+ * Purpose: renders the dropdown
+ * Params/Dependencies:
+ * userTheme
+ * value
+ * ddOptions
+ */
   return (
     <div>
       {/* adds the title and the onSelect function */}
-      {/* <DropdownButton title={value} onSelect={handleSelect}>
-        maps each of the options passed in to a dropdown option with the appropriate keys
-       {ddOptions}
-      </DropdownButton> */}
       <Dropdown onSelect={handleSelect} as={ButtonGroup}>
-      <Dropdown.Toggle className={"btn_"+userTheme} id="dropdown-custom-1">{value}</Dropdown.Toggle>
-      
-      <Dropdown.Menu className={"btn_"+userTheme}>
-      {/* <Dropdown title={value} onSelect={handleSelect}> */}
-        {/* maps each of the options passed in to a dropdown option with the appropriate keys */}
-        {ddOptions}
+        <Dropdown.Toggle className={"btn_" + userTheme} id="dropdown-custom-1">{value}</Dropdown.Toggle>
+        <Dropdown.Menu className={"btn_" + userTheme}>
+          {/* the dropdown options */}
+          {ddOptions}
         </Dropdown.Menu>
       </Dropdown>
     </div>

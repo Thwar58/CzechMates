@@ -2,6 +2,8 @@ import { render } from '@react-email/render';
 import nodemailer from 'nodemailer';
 import { Email } from './email';
 
+// DISCARD
+
 var callEmail = {
 
   email: async function () {
