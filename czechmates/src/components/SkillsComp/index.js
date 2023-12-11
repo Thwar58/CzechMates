@@ -1,41 +1,48 @@
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import DBFunctions from "../../utils/firebaseQueries";
 import { db } from '../../firebase';
 import { increment, ref, update } from "firebase/database";
-import { useEffect, useTransition } from 'react';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import { useResolvedPath } from 'react-router-dom';
 
+// the JSON object with the skill descriptions for the tooltips
 const descriptions = require('../../utils/skillDesc.json');
 
 
-// import Func from '../../utils/attributeFunctions';
-
-
-
-// a component to display character skills, it is given the value and two button labels
-// input: the value for the skill, the name of the skill, the character id and the user id
+/**
+ * Purpose: the component that displays the skills and their tooltips
+ * Params: 
+ * value: int, the number of points in the skill
+ * name: string, the name of the skill
+ * charId: string, the character id
+ * skills: JSON object, all of the user's skills
+ * userId: the user's id
+ * attributes: JSON object, all of the user's skills
+ * level: int, the character's level
+ * userTheme: the user's color theme
+ */
 function SkillsComp({ value, name, charId, skills, userId, attributes, level, userTheme }) {
     // the reference the the database
     const charRef = ref(db);
 
+    // gets the tooltip description for the skill being displayed
     var desc;
-    // console.log(descriptions);
     for (let i = 0; i < descriptions.length; i++) {
         if (descriptions[i].Name === name) {
             desc = descriptions[i].Description;
         }
     }
-    // var [recalcRequired, setRecalcRequired] = useState(false);
 
-    // FUTURE: We should add limits to these
+    /**
+     * Purpose: functions for calculating all of the attributes
+     * Params/Dependencies:
+     * skills
+     * attributes
+     * level
+     */
     // https://stackoverflow.com/questions/18899873/multiple-functions-inside-variable
-    // these all use the global skills and attributes for ease right now, that will change in the future
-    // future: decide how to map these functions to attributes and recalculating
     var Func = {
         calcAwareness: function () {
             return { "Awareness": skills.Burglary + skills.Hunting + 2 * skills.Shooting };
@@ -77,122 +84,123 @@ function SkillsComp({ value, name, charId, skills, userId, attributes, level, us
             return { 'Max_Action_Points_(AP)': 2 + Math.floor((attributes.Knowledge + attributes.Endurance) * .2) };
         },
         calcMaxVigor: function () {
-            // console.log("check level in vigor", level);
-            // console.log("check magic reach in vigor", attributes['Magic_Reach']);
-            // console.log("check endurance in vigor", attributes.Endurance);
             return { "Max_Vigor": 2 * (attributes['Magic_Reach'] + attributes.Endurance) + level };
         },
         calcMaxResolve: function () {
-            // console.log("check level in resolve", level);
-            // console.log("check health in resolve", attributes.Health);
             return { "Max_Resolve": 2 * attributes.Health + 3 * level };
         },
         calcMagicRange: function () {
-            // console.log("check magic reach in magic range", attributes["Magic_Reach"]);
             return { "Magic_Range": Math.floor(attributes['Magic_Reach'] * .5) };
         },
         calcMovement: function () {
-            // console.log("check awareness in movement", attributes.Awareness);
-            // console.log("check charisma in movement", attributes.Charisma);
-            // console.log("check endurance in movement", attributes.Endurance);
             return { "Movement": Math.floor(2 + (attributes.Awareness + attributes.Charisma + attributes.Endurance) * .1) };
         }
     }
 
 
-    // increases the value for the specific skill in the database
+    /**
+     * Purpose: increases the skill level by 1
+     * Params/Dependencies:
+     * name
+     * charId
+     * value
+     * userId
+     */
     // https://firebase.google.com/docs/database/web/read-and-write
     function increase() {
+        // limits the value to 8 and updates the appropriate skill and the character level
         if (value < 8) {
             const updates = {};
-            // const recalc = {};
-            updates['Characters/' + charId + "/Skills/" + name] = (value+1);
+            updates['Characters/' + charId + "/Skills/" + name] = (value + 1);
             updates[`Characters/${charId}/General/Level`] = increment(1);
             updates[`CharacterUserRel/${userId}/${charId}/Level`] = increment(1);
             update(charRef, updates);
-            // console.log("INCREASE, NEEDS A RECALC");
-            // setRecalcRequired(true);
         }
-
     }
 
-    // decreases the skill for the specific skill in the database
+    /**
+     * Purpose: decreases the skill level by 1
+     * Params/Dependencies:
+     * name
+     * charId
+     * value
+     * userId
+     */
     // https://firebase.google.com/docs/database/web/read-and-write
     function decrease() {
+        // limits the value to 0 and updates the appropriate skill and the character level
         if (value > 0) {
             const updates = {};
-            // const recalc = {};
-            updates['Characters/' + charId + "/Skills/" + name] = (value-1);
+            updates['Characters/' + charId + "/Skills/" + name] = (value - 1);
             updates[`Characters/${charId}/General/Level`] = increment(-1);
             updates[`CharacterUserRel/${userId}/${charId}/Level`] = increment(-1);
             update(charRef, updates);
-            // console.log("DECREASE, NEEDS A RECALC");
-            // setRecalcRequired(true);
 
         }
 
 
     }
 
+    /**
+     * Purpose: determined what attributes to recalculate when a skill or the level is changed
+     * Params/Dependencies:
+     * attributes
+     * level
+     * name
+     * charId
+     */
     useEffect(() => {
-
-        // recalcRequired === true
         if (level !== undefined) {
-
-            // console.log(level);
-            // console.log("BEGIN RECALC");
             const recalc = {};
-            // recalc attr
-            // set to false
+            // a function that maps each of the functions and used them to determine what to recalculate
             // https://stackoverflow.com/questions/49552862/is-there-a-way-to-call-all-functions-inside-an-object-in-javascript
             var callAll = function () {
                 Object.values(Func).map(value => {
-                    //  console.log(value);
+                    // get the formula for this calc function
                     // https://stackoverflow.com/questions/573145/get-everything-after-the-dash-in-a-string-in-javascript
                     const formula = value.toString().split(':').pop();
-                    //  console.log("Formula", formula);
+                    // check if this attribute function contains the level or the name of the skill changing
                     if ((typeof value === 'function') && (formula.includes("level") || formula.includes(name))) {
-                        // console.log(value);
-                        // console.log("name is: ", name);
+                        // if it does then call the recalc function
                         var result = value.call();
-                        // console.log("got it?", result);
+                        // for the result of the function (a JSON object with the attribute name and new value)
                         for (const [key, value] of Object.entries(result)) {
-                            // console.log("new value should be ", key, value + 5);
+                            // if the calculated value plus the default value of 5 doesnt match the current matching attributes
                             if (value + 5 !== attributes[`${key}`]) {
-                                // console.log(`update the db for ${key}`, value + 5, attributes[`${key}`]);
+                                // update the attribute in the database
                                 recalc[`Characters/${charId}/Attributes/${key}`] = 5 + value;
-                                // console.log("check of 3 triggers", key);
+                                // below are two edge cases for attributes that rely on other attributes in their calculations
+                                // if this attribute is charisma, awareness, or endurance, then recalc movement as well
                                 if (key.localeCompare("Charisma" === 0) ||
                                     key.localeCompare("Awareness" === 0) ||
                                     key.localeCompare("Endurance" === 0)) {
                                     var calc = Func.calcMovement();
-                                    // console.log("check what's being set", calc);
                                     recalc[`Characters/${charId}/Attributes/Movement`] = 5 + calc.Movement;
                                 }
+                                // if this attribute is magic reach, recalc magic range as well
                                 if (key.localeCompare("Magic_Reach" === 0)) {
                                     var calc = Func.calcMagicRange();
-                                    // console.log(calc);
                                     recalc[`Characters/${charId}/Attributes/Magic_Range`] = 5 + calc["Magic_Range"];
                                 }
-
                             }
-
                         }
-
                     }
                 })
             };
+            // call the above function and update the skills
             callAll();
             update(charRef, recalc);
-            // setRecalcRequired(false);
-            // console.log("END RECALC");
-
         }
-
 
     }, [level, attributes]);
 
 
+    /**
+     * Purpose: the content for the tooltip
+     * Params/Dependencies:
+     * name
+     * desc
+     */
     const popover = (
         <Popover id="popover-basic">
             <Popover.Header as="h3">{name}</Popover.Header>
@@ -203,10 +211,17 @@ function SkillsComp({ value, name, charId, skills, userId, attributes, level, us
     );
 
 
+    /**
+     * Purpose: renders the skill component and the tooltip associated with it
+     * Params/Dependencies:
+     * name
+     * userTheme
+     * value
+     */
     return (
         <>
-
             <InputGroup className="mb-3">
+                {/* the overlay for the tooltip */}
                 <OverlayTrigger placement="top" overlay={popover}>
                     {/* input the value and disable the input */}
                     <Form.Control
@@ -214,14 +229,14 @@ function SkillsComp({ value, name, charId, skills, userId, attributes, level, us
                         disabled={true}
                     />
                 </OverlayTrigger>
-                {/* first button */}
-                <Button className={"btn_"+userTheme} onClick={increase} variant="outline-secondary" id="button-addon2">
+                {/* the button that increases the skill */}
+                <Button className={"btn_" + userTheme} onClick={increase} variant="outline-secondary" id="button-addon2">
                     up
                 </Button>
-                {/* display the number */}
+                {/* the display for the skill amount */}
                 <InputGroup.Text id="basic-addon2">{value}</InputGroup.Text>
-                {/* second button */}
-                <Button className={"btn_"+userTheme} onClick={decrease} variant="outline-secondary" id="button-addon2">
+                {/* the button that decreased the skill */}
+                <Button className={"btn_" + userTheme} onClick={decrease} variant="outline-secondary" id="button-addon2">
                     down
                 </Button>
             </InputGroup>

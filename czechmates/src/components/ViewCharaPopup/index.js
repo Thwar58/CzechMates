@@ -1,73 +1,94 @@
 // https://react-bootstrap.netlify.app/docs/components/modal/
-
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { getDatabase, ref, child, update, get, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import { db } from '../../firebase';
 import SheetPage from '../../pages/sheetPage';
 import { useEffect } from 'react';
 
-// a component for the confirmation modal
-function ViewCharaPopup({setAlign, charId, userId, userTheme}) {
-  // get char info in here with db query similar to sub pages for sheet
-  // console.log("set align in viewchara", setAlign);
-  // sets the default state of the modal
+/**
+ * Purpose: pops up the character sheet for members in a world
+ * Params: 
+ * setAlign: function, sets the alignment of the popup (left, right, center)
+ * charId: the character id for this member
+ * userId: the current user's id
+ * userTheme: the user's color theme
+ */
+function ViewCharaPopup({ setAlign, charId, userId, userTheme }) {
+  // useStates to hide and show the popup
   const [show, setShow] = useState(false);
-
-  // handles opening and closing the modal
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  // useState to track the character information
   var [charInfo, setCharInfo] = useState("");
 
+  /**
+   * Purpose: gets the character information for the member being displayed
+   * Params/Dependencies: 
+   * userId
+   * charId
+   */
   useEffect(() => {
-    if (charId !== undefined){
-        // console.log("check char id in sub", charId);
-         // use this path and onValue monitors for changes
-    const charRef = ref(db, 'Characters/' + charId);
-    onValue(charRef, (snapshot) => {
+    if (charId !== undefined) {
+      const charRef = ref(db, 'Characters/' + charId);
+      onValue(charRef, (snapshot) => {
         setCharInfo(snapshot.val());
-    });
-
+      });
     }
-   
 
-}, [userId, charId]);
+  }, [userId, charId]);
 
-  function closeAndAlign(){
+  /**
+   * Purpose: realigns the manage or view world popup to the center when the view member is closed
+   * Params/Dependencies: 
+   * setAlign
+   */
+  function closeAndAlign() {
     handleClose();
     setAlign("mwPopupCenter");
   }
 
-  function openAndAlign(){
+  /**
+   * Purpose: aligns the manage or view world popup to the left when the view member is opened
+   * Params/Dependencies: 
+   * setAlign
+   */
+  function openAndAlign() {
     handleShow();
     setAlign("mwPopupLeft");
   }
 
 
-  // returns a div with the button that triggers the modal as well as the modal content
+  /**
+   * Purpose: renders the view member popup
+   * Params/Dependencies: 
+   * userTheme
+   * charId
+   * userId
+   */
   return (
     <>
-      {/* the button that triggers the modal */}
-      <Button className={"btn_"+userTheme} id={"ModalButton" + "name"} onClick={openAndAlign}>
+      {/* the button that triggers the popup */}
+      <Button className={"btn_" + userTheme} id={"ModalButton" + "name"} onClick={openAndAlign}>
         {"View"}
       </Button>
-      {/* the modal with the information */}
+      {/* the popup with the information, styled to align to the right side */}
       <Modal dialogClassName={"mwPopupRight modal-90w "} id={"Modal" + "name"} show={show} onHide={closeAndAlign}>
-        <Modal.Header className={"body_"+userTheme} closeButton>
-          {/* modal title */}
+        <Modal.Header className={"body_" + userTheme} closeButton>
+          {/* popup title */}
           <Modal.Title>Confirm (action)</Modal.Title>
         </Modal.Header>
-        {/* modal body */}
-        <Modal.Body className={"body_"+userTheme}>
-        <SheetPage className={"body_"+userTheme} sheetInfo={charInfo} charId={charId} userId={userId} />
+        {/* popup body, it contains a full sheet for the member's character */}
+        <Modal.Body className={"body_" + userTheme}>
+          <SheetPage className={"body_" + userTheme} sheetInfo={charInfo} charId={charId} userId={userId} />
         </Modal.Body>
-        {/* modal footer with the closing buttons */}
-        <Modal.Footer className={"body_"+userTheme}>
-          <Button className={"btn_"+userTheme} onClick={closeAndAlign}>
+        {/* popup footer with the closing buttons */}
+        <Modal.Footer className={"body_" + userTheme}>
+          <Button className={"btn_" + userTheme} onClick={closeAndAlign}>
             Close
           </Button>
-        
+
         </Modal.Footer>
       </Modal>
     </>
