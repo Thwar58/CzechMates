@@ -15,86 +15,107 @@ import { useEffect } from "react";
 import { db } from '../firebase';
 import { ref, onValue } from "firebase/database";
 import { useState } from "react";
-import { useLocation } from 'react-router-dom';
 import StatusEffectPage from "./statusEffectPage";
-import NavWithDD from '../components/NavWithDropdown';
 
-
-// a page that contains all of the sub character pages as tabs (i.e. equipment, general)
-// input: the user id AND location stores the character id
+/**
+ * Purpose: the sub characters page is where a character can be edited
+ * Params/Dependencies: 
+ * userId: string, the id of the user logged in 
+ * userTheme: string, the theme, eitehr light or dark, of the current user
+ */
 const SubCharacterPages = ({ userId, userTheme }) => {
+
     // handles page changes
     const navigate = useNavigate();
+
+    //navigates to the characters page when the done button is hit
     const navigateToCharPage = () => {
         navigate('/charactersPage');
     }
+
+    //the current page is the tab the user is viewing starts at 0 meaning general page
     const [currPage, setCurrPage] = useState(0)
-    // location is used to pass information from the character page to the sub page
-    // https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
-    const location = useLocation();
+
     // variables to track the character information and the loading state
     var [charInfo, setCharInfo] = useState("");
+
+    //used to allow the change of userTheme while on this page
     var [charId] = useState(sessionStorage.getItem("charId"));
+
+    //decides whether there is the proper data to render otherwise its loading
     const [loading, setLoading] = useState(true);
 
-    useEffect(()=>{
-        if(userTheme === 'dark'){
-          var btnElements = document.querySelectorAll('.btn');
-          btnElements.forEach(function(btn) {
-            // Add a new class "newClass" to each button element
-            btn.classList.add('dark');
-        });
-          // updates[`Users/${userId}/Light_Mode`] = userTheme;
-        }else{
-          var btnElements = document.querySelectorAll('.btn');
-          btnElements.forEach(function(btn) {
-            // Add a new class "newClass" to each button element
-            btn.classList.add('light');
-        });
-      }
-      },[]);
-
-    // when the userid or the character id change, this is triggered and queries the database
+    /**
+     * Purpose: when the userid or the character id change, this is triggered and queries the database
+     * Params/Dependencies: 
+     * userId
+     * charId
+     */
     useEffect(() => {
-        console.log("char id: ", charId);
-        if (charId !== undefined){
-            // console.log("check char id in sub", charId);
-             // use this path and onValue monitors for changes
-        const charRef = ref(db, 'Characters/' + charId);
-        onValue(charRef, (snapshot) => {
-            setCharInfo(snapshot.val());
-        });
-
+        if (charId !== undefined) {
+            // use this path and onValue monitors for changes
+            const charRef = ref(db, 'Characters/' + charId);
+            onValue(charRef, (snapshot) => {
+                setCharInfo(snapshot.val());
+            });
         }
-       
-
     }, [userId, charId]);
 
-    // set the loading state to false when the information loads
+    /**
+     * Purpose: when the charInfo isnt empty then we render, otheriwise we are loading
+     * Params/Dependencies: 
+     * charInfo
+     */
     useEffect(() => {
         if (charInfo !== "") {
             setLoading(false);
         }
-        // console.log(charInfo);
     }, [charInfo]);
 
-    // render the blank loading screen if the data hasn't loaded yet
-    // https://www.reddit.com/r/reactjs/comments/z3ue4o/useeffect_and_map_function_not_working_well/
+    /**
+     * Purpose: sets to render nothing if the variable is set only when there is no worldsinfo data
+     * Params/Dependencies: 
+     * loading
+     */
     if (loading) {
         return (
             <div></div>
         )
     }
 
+    /**
+     * Purpose: sets the currently viewed tab to the next one and if its on the last one then loop to 0 again
+     * Params/Dependencies: 
+     */
     function goNext() {
-        setCurrPage(currPage+1);
+        if (currPage + 1 == 6) {
+            setCurrPage(0);
+        } else {
+            setCurrPage(currPage + 1);
+        }
     }
 
+    /**
+     * Purpose: sets the currently viewed tab to the previous one and if its on the first one then loop to the end
+     * Params/Dependencies: 
+     */
     function goBack() {
-        setCurrPage(currPage-1);
+        if (currPage - 1 == -1) {
+            setCurrPage(5);
+        } else {
+            setCurrPage(currPage - 1);
+        }
     }
 
-    // returns a div with the character name and the tabs for each of the pages
+    /**
+     * Purpose: renders the cub characters page
+     * Params/Dependencies: 
+     * userTheme
+     * currPage
+     * charInfo
+     * charId
+     * userId
+     */
     return (
         <div>
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10 fullWindow">
@@ -103,7 +124,7 @@ const SubCharacterPages = ({ userId, userTheme }) => {
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
                         {/* title */}
-                        <h1 className={"text-center label_"+userTheme}>
+                        <h1 className={"text-center label_" + userTheme}>
                             Character Name
                         </h1>
                     </Col>
@@ -114,20 +135,20 @@ const SubCharacterPages = ({ userId, userTheme }) => {
                     {/* tabs for each page, passing in the relevant character information */}
                     <ControlledTabs currPage={currPage} setCurrPage={setCurrPage} userTheme={userTheme} text={["General", "Status Effects", "Equipment", "Skills", "Attributes", "Sheet"]}
                         content={[
-                        <GeneralPage userTheme={userTheme} participation={charInfo.Participation} generalInfo={charInfo.General} charId={charId} userId={userId} />,
-                        <StatusEffectPage userTheme={userTheme} statusInfo={charInfo.Status_Effects} charId={charId} userId={userId} />,
-                        <EquipmentPage userTheme={userTheme} equipInfo={charInfo.Equipment} charId={charId} userId={userId} />,
-                        <SkillsPage userTheme={userTheme} level={charInfo.General.Level} skillInfo={charInfo.Skills} attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
-                        <AttributesPage userTheme={userTheme} attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
-                        <SheetPage userTheme={userTheme} sheetInfo={charInfo} charId={charId} userId={userId} />
+                            <GeneralPage userTheme={userTheme} participation={charInfo.Participation} generalInfo={charInfo.General} charId={charId} userId={userId} />,
+                            <StatusEffectPage userTheme={userTheme} statusInfo={charInfo.Status_Effects} charId={charId} userId={userId} />,
+                            <EquipmentPage userTheme={userTheme} equipInfo={charInfo.Equipment} charId={charId} userId={userId} />,
+                            <SkillsPage userTheme={userTheme} level={charInfo.General.Level} skillInfo={charInfo.Skills} attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
+                            <AttributesPage userTheme={userTheme} attrInfo={charInfo.Attributes} charId={charId} userId={userId} />,
+                            <SheetPage userTheme={userTheme} sheetInfo={charInfo} charId={charId} userId={userId} />
                         ]} />
                 </Row>
                 <Row>
                     <Col className="text-end">
                         {/* a button that redirects to the character page when clicked */}
-                        <Button className={"btn_"+userTheme} onClick={goBack}>Previous</Button>
-                        <Button className={"btn_"+userTheme} onClick={navigateToCharPage}>Done</Button>
-                        <Button className={"btn_"+userTheme} onClick={goNext}>Next</Button>
+                        <Button className={"btn_" + userTheme} onClick={goBack}>Previous</Button>
+                        <Button className={"btn_" + userTheme} onClick={navigateToCharPage}>Done</Button>
+                        <Button className={"btn_" + userTheme} onClick={goNext}>Next</Button>
                     </Col>
                 </Row>
             </Container>

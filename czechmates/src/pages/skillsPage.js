@@ -1,26 +1,37 @@
 
 import React, { useEffect } from "react";
 import SkillsComp from "../components/SkillsComp";
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from "react";
 import TextareaPage from "../components/TextArea";
-import NavWithDD from '../components/NavWithDropdown';
 
-
-
-// this component houses the content for the character skills
-// input: the skill information for a character, the character id, and the user id
+/**
+ * Purpose: renders the skills page within the subChara page
+ * Params/Dependencies: 
+ * skillInfo: object {string:int}, the list of all skills and their values
+ * charId: string, the id of the character being viewed
+ * attrInfo: object {string:int}, the list of all attributes with their values
+ * userId: string, the id of the current user
+ * level: int, the level of the character stored in the characterUserRel in the database
+ * userTheme: string, either light or dark based off the users preference
+ */
 const SkillsPage = ({ skillInfo, charId, attrInfo, userId, level, userTheme }) => {
 
     // variables to track the skills and position them
     var [left, setLeft] = useState([]);
     var [right, setRight] = useState([]);
+
+    //the learned abilities is a component that is just a large text box
     var [learnedAbilties, setLearnedAbilities] = useState([]);
 
-    // when the skills information changes, this is triggered
+    /**
+     * Purpose: renders the skills and their values when the page renders and maps each skill to its own skillComp component
+     * Params/Dependencies:
+     * skillInfo
+     * userTheme
+     */
     useEffect(() => {
         if (skillInfo !== undefined) {
             // loop through all the character's skills and make components for them
@@ -45,6 +56,14 @@ const SkillsPage = ({ skillInfo, charId, attrInfo, userId, level, userTheme }) =
 
     }, [skillInfo, userTheme]);
 
+    /**
+     * Purpose: renders the skills page
+     * Params/Dependencies:
+     * left
+     * right
+     * learnedAbilities
+     * userTheme
+     */
     return (
         <div>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -53,7 +72,7 @@ const SkillsPage = ({ skillInfo, charId, attrInfo, userId, level, userTheme }) =
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         {/* title */}
-                        <h1 className={"text-center body_"+userTheme}>
+                        <h1 className={"text-center body_" + userTheme}>
                             Skills
                         </h1>
 
@@ -72,7 +91,7 @@ const SkillsPage = ({ skillInfo, charId, attrInfo, userId, level, userTheme }) =
                 </Row>
                 <Row>
                     <Col>
-                    {learnedAbilties}
+                        {learnedAbilties}
                     </Col>
                 </Row>
             </Container>

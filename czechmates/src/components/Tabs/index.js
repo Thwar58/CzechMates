@@ -17,12 +17,13 @@ function ControlledTabs({ text, content, userTheme, currPage, setCurrPage }) {
   const [key, setKey] = useState(text[0]);
 
   /**
-  * Purpose: changes the tab to the current page when the current page changes
+  * Purpose: changes the tab to the current page when the current page changes 
   * Params/Dependencies: 
   * currPage
   * text
   */
   useEffect(() => {
+    //only activates if the buttons are used in the character edit page that change the current page passed in 
     if (currPage !== undefined) {
       setKey(text[currPage]);
     }
@@ -43,7 +44,9 @@ function ControlledTabs({ text, content, userTheme, currPage, setCurrPage }) {
       activeKey={key}
       onSelect={
         (k) => {
+          //set the key to the selected tab when clicking on the tabs at the top
           setKey(k);
+          //sets the current page to make sure the value that the buttons use is also changed when the tabs are changed
           if (setCurrPage !== undefined) {
             setCurrPage(text.indexOf(k.toString()));
           }
