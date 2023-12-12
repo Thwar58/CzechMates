@@ -61,12 +61,12 @@ const StatusEffectPage = ({ statusInfo, charId, userTheme }) => {
     return (
         <div>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
                 {/* title */}
                 <h1 className={"text-center body_"+userTheme}>
                     Status Effects
                 </h1>
                 <div>
+                    {/* each of the status effect sections */}
                     <Row>
                         <Col>
                             {
@@ -88,11 +88,8 @@ const StatusEffectPage = ({ statusInfo, charId, userTheme }) => {
                                 statusEffectsFour
                             }
                         </Col>
-
                     </Row>
-
                 </div>
-
             </Container>
         </div>
     );
