@@ -2,21 +2,27 @@
 import React from "react";
 import InputWithLabel from "../components/InputWithLabel";
 import Form from 'react-bootstrap/Form';
-import DropDownShowsValue from "../components/DropDownShowsValue";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TextareaPage from "../components/TextArea";
 import EquipmentDropdown from "../components/EquipmentDropdowns";
-import NavWithDD from '../components/NavWithDropdown';
 const equipmentInfo = require('./../utils/equipment.json');
 
-// this component houses the content for the character equipment
-// input: the equipment information for a character
+/**
+ * Purpose: the component for the equipment page
+ * Params: 
+ * equipInfo: JSON object, the character's equipment information 
+ * charId: string, the character's id
+ * userId: string, the user's id
+ * userTheme: string, the user's color theme
+ */
 const EquipmentPage = ({ equipInfo, charId, userId, userTheme }) => {
 
-    // future: pass in information instead of using dummy data
-
+    /**
+     * Purpose:
+     * Params/Dependencies: 
+     */
     return (
         <div>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -25,7 +31,7 @@ const EquipmentPage = ({ equipInfo, charId, userId, userTheme }) => {
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         {/* title */}
-                        <h1 className={"text-center body_"+userTheme}>
+                        <h1 className={"text-center body_" + userTheme}>
                             Equipment
                         </h1>
 
@@ -37,7 +43,6 @@ const EquipmentPage = ({ equipInfo, charId, userId, userTheme }) => {
                     <Col>
                         {/* dropdown for the weapons */}
                         <Form.Label>Weapon</Form.Label>
-                        {/* <DropDownShowsValue text="Equipped Weapon" actions={dummyWep} /> */}
                         <EquipmentDropdown userTheme={userTheme} type={"Weapon"} userId={userId} charId={charId} options={equipmentInfo.Weapons} text={equipInfo.Weapon_Equipped} ></EquipmentDropdown>
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
@@ -73,6 +78,7 @@ const EquipmentPage = ({ equipInfo, charId, userId, userTheme }) => {
                         <InputWithLabel charId={charId} type={"Armor"} category={"Equipment"} label={"Slot 2"} content={equipInfo?.Armor_Modification_Slots.Slot_2} disabled={false} />
                     </Col>
                 </Row>
+                {/* the inventory */}
                 <Row>
                     <TextareaPage disabled={false} charId={charId} userId={userId} content={equipInfo?.Inventory} title={"Inventory"}></TextareaPage>
                 </Row>

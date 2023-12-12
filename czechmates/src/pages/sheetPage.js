@@ -117,6 +117,7 @@ const SheetPage = ({ sheetInfo, charId, userTheme }) => {
                     arr.push(<StatusEffect disabled={true} key={key} checked={value} statusName={key} />);
                 }
             }
+            // split the array so that we can position each of the status effects separately
             if (arr.length > 0) {
                 var one = arr.slice(0, arr.length * .4);
                 var two = arr.slice(arr.length * .4, arr.length * .7);
@@ -126,6 +127,7 @@ const SheetPage = ({ sheetInfo, charId, userTheme }) => {
                 setStatusEffectsTwo(two);
                 setStatusEffectsThree(three);
             }
+            // inform the user that they have no status effects
             else {
                 setStatusEffectsOne("")
                 setStatusEffectsTwo("No effects are active");
@@ -270,6 +272,7 @@ const SheetPage = ({ sheetInfo, charId, userTheme }) => {
                     <TextareaPage disabled={true} content={sheetInfo?.Skills.Learned_Abilities} title={"Learned Abilities"}></TextareaPage>
                 </Row>
                 <Row>
+                    {/* attributes information in a table */}
                     <p style={{ textAlign: "center" }}>Equipment</p>
                     <Col>
                         <NewTable type={"Attribute"} data={leftAttr}></NewTable>

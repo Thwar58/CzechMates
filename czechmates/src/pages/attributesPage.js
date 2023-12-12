@@ -6,18 +6,25 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from "react";
 import { useEffect } from "react";
-import NavWithDD from '../components/NavWithDropdown';
 
-// this component houses the content for the character attributes
-// input: the character attributes
-const AttributesPage = ({ attrInfo, userTheme }) => { 
-    // these arrays and set methods are used to display the different sections of the attributes
-    // in different sections of the page
+/**
+ * Purpose: the component for the entire character attribute page
+ * Params: 
+ * attrInfo: JSON object, all of the attributes and their values for this character
+ * userTheme: string, the user's color theme
+*/
+const AttributesPage = ({ attrInfo, userTheme }) => {
+    // useStates to position the attributes
     var [left, setLeft] = useState([]);
     var [right, setRight] = useState([]);
     var [bottom, setBottom] = useState([]);
 
 
+   /**
+     * Purpose: loads each of the attributes and positions them on the page
+     * Params/Dependencies: 
+     * attrInfo
+    */
     useEffect(() => {
         if (attrInfo !== undefined) {
             // loop through the attributes and make components for each of them
@@ -40,6 +47,14 @@ const AttributesPage = ({ attrInfo, userTheme }) => {
 
     }, [attrInfo]);
 
+    /**
+     * Purpose: render the page
+     * Params/Dependencies: 
+     * userTheme
+     * left
+     * right
+     * bottom
+     */
     return (
         <div>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -48,7 +63,7 @@ const AttributesPage = ({ attrInfo, userTheme }) => {
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         {/* title */}
-                        <h1 className={"text-center body_"+userTheme}>
+                        <h1 className={"text-center body_" + userTheme}>
                             Attributes
                         </h1>
 
