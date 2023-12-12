@@ -1,169 +1,72 @@
 import { db } from '../firebase';
-import { child, get, ref, set, push, onValue, update } from "firebase/database";
+import { child, ref, push, update } from "firebase/database";
 
-
+/**
+ * Purpose: a JSOn object that stores some of the database functions that we use throughout the website
+ * Params: none
+ */
 var DBFunctions = {
 
-    // https://firebase.google.com/docs/database/web/read-and-write
-    // add a user to the database
-    writeUserData: function (userId, adminStatus, email, followers, following, friends, mode, name) {
-        set(ref(db, 'Users/' + userId), {
-            Admin_Status: adminStatus,
-            Email: email,
-            Followers: followers,
-            Following: following,
-            Friends: friends,
-            Light_Mode: mode,
-            Name: name
-        });
-    },
-
-    // add a world to the database (future: possibly change to template)
-    writeWorldData: function (userId, worldId, inviteCode, members, name, schedule) {
-        set(ref(db, 'Worlds/' + userId + "/" + worldId),
-            {
-                Invite_Code: inviteCode,
-                Members: members,
-                Name: name,
-                Schedule: schedule
-            });
-    },
-
-    // add a character to the database (used for copy as well as addition)
-    createNewCharacter: function (userID, charTemplate) {
-        const newPostKey = push(child(ref(db), 'posts')).key;
-        set(ref(db, 'Characters/' + userID + "/" + newPostKey),
-            charTemplate
-        );
-        return newPostKey;
-    },
-
-    // add a character to the database (used for copy as well as addition)
+    /**
+     * Purpose: creates a new character in the database
+     * Params:
+     * template: JSON object, a blank template for a character
+     * userId: string, the user's id
+     * charName: string, the character's name
+     */
     newCreateNewCharacter: function (charTemplate, userId, charName) {
-        // Get a key for a new Post.
+        // make a new key in the database
         const newPostKey = push(child(ref(db), 'posts')).key;
-
-        // Write the new post's data simultaneously in the posts list and the user's post list.
+        // add the character to the database with the correct information 
         const updates = {};
         updates['Characters/' + newPostKey] = charTemplate;
         updates[`CharacterUserRel/${userId}/${newPostKey}`] = {
             "Name": charName,
             "Level": 0,
             "Last_Used": Date.now()
-          } ;
-        // const newPostKey = push(child(ref(db), 'posts')).key;
+        };
         update(ref(db), updates);
         return newPostKey;
     },
 
+    /**
+    * Purpose: creates a new user in the database
+    * Params:
+    * userTemplate: JSON object, the blank template for a user
+    * uid: int, the user id from the google oauth sign in
+    * Email: string, teh user's email
+    * Name: string, the user's name from the google oauth sign in
+    */
     createNewUser: function (userTemplate, uid, Email, Name) {
+        // create a new user and set their information into the template
+        // use the uid as the key in the database
         userTemplate.Name = Name;
         userTemplate.Email = Email;
-        // Get a key for a new Post.
-       
-        // Write the new post's data simultaneously in the posts list and the user's post list.
         const updates = {};
         updates['Users/' + uid] = userTemplate;
-       
-        // const newPostKey = push(child(ref(db), 'posts')).key;
-        console.log(updates);
         update(ref(db), updates);
-      
     },
 
-     // add a character to the database (used for copy as well as addition)
-     createNewWorld: function (worldTemplate, userId, inviteCode) {
-        // Get a key for a new Post.
+    /**
+    * Purpose: creates a new world and adds it to the database
+    * Params:
+    * worldTemplate: JSON object, the blank template for the world
+    * userId: string, the user's id
+    * inviteCode: int, the invite code for the world
+    */
+    createNewWorld: function (worldTemplate, userId, inviteCode) {
+        // make a unique key
         const newPostKey = push(child(ref(db), 'posts')).key;
+        // give the world the correct information
         worldTemplate.Invite_Code = inviteCode;
         worldTemplate.CreatorId = userId;
-        console.log("check the world template", worldTemplate);
-        // Write the new post's data simultaneously in the posts list and the user's post list.
+        // update the database with this new world
         const updates = {};
         updates['Worlds/' + newPostKey] = worldTemplate;
         updates[`WorldUserRel/${userId}/Created/${newPostKey}`] = "";
-        // const newPostKey = push(child(ref(db), 'posts')).key;
         update(ref(db), updates);
         return newPostKey;
     },
-
-    //   // add a character to the database (used for copy as well as addition)
-    //   newCreateCopy: function (charTemplate, userId, charId) {
-    //     // Get a key for a new Post.
-    //     const newPostKey = push(child(ref(db), 'posts')).key;
-
-    //     // Write the new post's data simultaneously in the posts list and the user's post list.
-    //     const updates = {};
-    //     updates['ZaraTest/Characters/' + newPostKey] = charTemplate;
-    //     updates[`ZaraTest/CharacterUserRel/${userId}/${charId}`] = charName;
-    //     // const newPostKey = push(child(ref(db), 'posts')).key;
-    //     set(ref(db, 'ZaraTest/Characters/' + newPostKey),
-    //         charTemplate
-    //     );z
-    // // add a character to the database (used for copy as well as addition)
-    // updateRel: function (userId, charId, charName) {
-    //     set(ref(db, `ZaraTest/CharacterUserRel/${userId}/${charId}`),
-    //         charName
-    //     );
-    // },
-
-    // you pass in the path to what you want to remove and it sets it to null, which removes it from the database
-    removeFromDB: function (path) {
-        set(ref(db, path),
-            null
-        );
-    },
-
-    // you pass in the path to what you want to remove and it sets it to the value you provide
-    // future: potentially combine remove and edit
-    editInDB: function (path, value) {
-        set(ref(db, path),
-            value
-        );
-    },
-
-    // https://firebase.google.com/docs/database/web/read-and-write
-    // read user data
-    readUserData: function (userId) {
-        const dbRef = ref(db);
-        var data = null;
-        get(child(dbRef, `Users/` + userId)).then((snapshot) => {
-            if (snapshot.exists()) {
-                data = snapshot.val();
-                return data;
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
-    },
-
-    // read world data
-    readWorldData: function (userId) {
-        const dbRef = ref(db);
-        var data = null;
-        get(child(dbRef, `Worlds/` + userId)).then((snapshot) => {
-            if (snapshot.exists()) {
-                data = snapshot.val();
-                return data;
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
-    },
-
-    readCharacterData: function (charId) {
-        const charRef = ref(db, 'Characters/' + charId);
-        var result;
-        onValue(charRef, (snapshot) => {
-            console.log(snapshot.val());
-            result = snapshot.val();
-        });
-        return result;
-    }
 }
 
 export default DBFunctions;

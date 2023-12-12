@@ -77,7 +77,7 @@ function ViewCharaPopup({ setAlign, charId, userId, userTheme }) {
       <Modal dialogClassName={"mwPopupRight modal-90w "} id={"Modal" + "name"} show={show} onHide={closeAndAlign}>
         <Modal.Header className={"body_" + userTheme} closeButton>
           {/* popup title */}
-          <Modal.Title>Confirm (action)</Modal.Title>
+          <Modal.Title>charInfo.General.Name</Modal.Title>
         </Modal.Header>
         {/* popup body, it contains a full sheet for the member's character */}
         <Modal.Body className={"body_" + userTheme}>
