@@ -102,7 +102,7 @@ const Login = ({ setUserId }) => {
                 </Row>
                 <Row>
                     <Col>
-                    <Button style={{display:'block', margin:auto}} onClick={() => { toSubPage() }}>Test button</Button>
+                    {/* <Button style={{display:'block', margin:auto}} onClick={() => { toSubPage() }}>Test button</Button> */}
                     <Button style={{display:'block', margin:auto}}  onClick={handleGoogle}>Sign in with Google </Button>
                     </Col>
                   

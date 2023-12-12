@@ -68,7 +68,7 @@ function App() {
         console.log("this is the session variable when reload is false", sessionStorage.getItem("User"));
         return (
             <div style={{ fontFamily: 'Anton' }}>
-                 <div>App says user is {userId}</div>
+                 {/* <div>App says user is {userId}</div> */}
                  
                 {/* router handles all of the page rerouting */}
                 <Router>
@@ -84,7 +84,7 @@ function App() {
     // console.log("app is rerendering");
     return (
         <div className={"body_"+userTheme} style={{ fontFamily: 'Anton' }}>
-             <div>App says user is {userId}</div>
+             {/* <div>z {userId}</div> */}
              {/* <EmbeddedEmail></EmbeddedEmail> */}
              
             {/* router handles all of the page rerouting */}

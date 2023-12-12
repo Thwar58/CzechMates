@@ -41,6 +41,8 @@ function EquipmentDropdown({ charId, options, text, type, userTheme }) {
     var arr = [];
     // loop through the character information and make dropdown items for them
     if (ddOptions !== null) {
+      //we need an option to unequip the equipment
+      arr.push(<Dropdown.Item className={"btn_" + userTheme} key='empty' eventKey='Empty'>Empty</Dropdown.Item>);
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
       for (const [key, value] of Object.entries(options)) {
         arr.push(<Dropdown.Item className={"btn_" + userTheme} key={key} eventKey={key}>{value}</Dropdown.Item>);

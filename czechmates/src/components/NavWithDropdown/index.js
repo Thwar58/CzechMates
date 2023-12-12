@@ -101,13 +101,15 @@ function NavWithDD({ userId, setUserId, userTheme, setUserTheme }) {
         <Navbar.Brand href="charactersPage">Characters</Navbar.Brand>
         <Navbar.Brand href="worldsPage">Worlds</Navbar.Brand>
         <Navbar.Brand href="profilePage">Profiles</Navbar.Brand>
+        {/* the help page if the user needs more instructions */}
+        <Navbar.Brand href="helpPage">Help Page</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse id="navbar-dark-example">
           <Nav>
             {/* the dropdown with more options */}
             <NavDropdown
               id="nav-dropdown-dark-example"
-              title="Dropdown"
+              title="Settings"
               menuVariant="dark"
             >
               <NavDropdown.Item>
@@ -122,8 +124,6 @@ function NavWithDD({ userId, setUserId, userTheme, setUserTheme }) {
               {adminButton}
             </NavDropdown>
           </Nav>
-          {/* the help page if the user needs more instructions */}
-          <Navbar.Brand href="helpPage">Help Page</Navbar.Brand>
         </Navbar.Collapse>
       </Container>
     </Navbar>
