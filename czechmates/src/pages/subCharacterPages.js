@@ -124,8 +124,8 @@ const SubCharacterPages = ({ userId, userTheme }) => {
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
                         {/* title */}
-                        <h1 className={"text-center label_" + userTheme}>
-                            Character Name
+                        <h1 style={{padding: "10px"}} className={"text-center label_" + userTheme}>
+                        {charInfo.General.Name}
                         </h1>
                     </Col>
                     <Col>
