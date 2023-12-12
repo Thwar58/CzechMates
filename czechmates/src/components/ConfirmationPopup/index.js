@@ -144,6 +144,78 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme }) {
       updates[`Users/${action.socialId}/Friends/${action.userId}`] = null;
       update(userRef, updates);
 
+      // now we need to edit their world relationships and character participation
+      var thisUsersWorldRels;
+      var otherUsersWorldRels;
+      // get the world user relation for both users so we can use them to cross reference to find the worlds
+      // they are both related to
+      get(child(worldRef, `WorldUserRel/${action.userId}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+          thisUsersWorldRels = snapshot.val();
+          get(child(worldRef, `WorldUserRel/${action.socialId}`)).then((snapshot) => {
+            if (snapshot.exists()) {
+              otherUsersWorldRels = snapshot.val();
+
+              // go through the results of both above queries to find the worlds to update
+              var sharedWorlds = [];
+              const updates = {};
+              // check that the users have joined and created worlds, we don't need to do anything if they don't
+              if (thisUsersWorldRels.Joined !== undefined && otherUsersWorldRels.Created !== undefined) {
+                // for each world the current user has joined, if the other user is the creator then mark the
+                // joined relationship to be deleted and record the world id for later
+                for (const [key, value] of Object.entries(thisUsersWorldRels.Joined)) {
+                  if (otherUsersWorldRels.Created[key] !== undefined) {
+                    sharedWorlds.push(key);
+                    updates[`WorldUserRel/${action.userId}/Joined/${key}`] = null;
+                  }
+                }
+              }
+              // check again that the two results exist
+              if (thisUsersWorldRels.Created !== undefined && otherUsersWorldRels.Joined !== undefined) {
+                // for each world the current user has created, if the other user has joined it then mark the
+                // joined relationship to be deleted and record the world id for later
+                for (const [key, value] of Object.entries(thisUsersWorldRels.Created)) {
+                  if (otherUsersWorldRels.Joined[key] !== undefined) {
+                    sharedWorlds.push(key);
+                    updates[`WorldUserRel/${action.socialId}/Joined/${key}`] = null;
+                  }
+                }
+              }
+              // go through each of the world id's we marked earlier and update the correct member info
+              for (let index = 0; index < sharedWorlds.length; index++) {
+                const worldId = sharedWorlds[index];
+                // get the members for the world and check each member
+                get(child(worldRef, `Worlds/${worldId}/Members`)).then((snapshot) => {
+                  for (const [key, value] of Object.entries(snapshot.val())) {
+                    // if the member is affiliated with the current user, then we need to remove 
+                    // the user from the world and update the character's participation
+                    if (value.CreatorId === action.userId){
+                      updates[`Worlds/${worldId}/Members/${key}`] = null;
+                      updates[`Characters/${key}/Participation`] = null;
+                      updates[`CharacterUserRel/${action.userId}/${key}/Participation`] = null;
+                    }
+                    // if the member is affiliated with the other user, then we need to remove 
+                    // the user from the world and update the character's participation
+                    else if (value.CreatorId === action.socialId){
+                      updates[`Worlds/${worldId}/Members/${key}`] = null;
+                      updates[`Characters/${key}/Participation`] = null;
+                      updates[`CharacterUserRel/${action.socialId}/${key}/Participation`] = null;
+                    }
+                  }
+                  update(userRef, updates);
+                }).catch((error) => {
+                  console.error(error);
+                });
+
+              }
+            }
+          }).catch((error) => {
+            console.error(error);
+          });
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
     }
     // close the confirmation popup since the action is done
     handleClose();
