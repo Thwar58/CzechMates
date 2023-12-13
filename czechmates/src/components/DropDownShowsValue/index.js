@@ -9,6 +9,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 /**
   * Purpose: this is a dropdown component used for sorting and equipment
   * Params:
+  * hasItems: boolean, if the thing being sorted is empty, this diables the dropdown
   * worlds: array, an array of world components
   * setWorldDisplay: function, sets the world display array on the world page
   * chars: array, an array of character components
@@ -18,7 +19,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
   * text: the initial text of the dropdown
   * userTheme: the user's color theme
   */
-function DropDownShowsValue({ worlds, setWorldDisplay, chars, setChars, type, actions, text, userTheme }) {
+function DropDownShowsValue({ hasItems, worlds, setWorldDisplay, chars, setChars, type, actions, text, userTheme }) {
   // useState for the current selection in the dropdown
   const [value, setValue] = useState(text);
   // aids the setValue function when a selection is chosen from the dropdown
@@ -165,7 +166,7 @@ function DropDownShowsValue({ worlds, setWorldDisplay, chars, setChars, type, ac
     <div>
       {/* adds the title and the onSelect function */}
       <Dropdown onSelect={handleSelect} as={ButtonGroup}>
-        <Dropdown.Toggle className={"btn_" + userTheme} id="dropdown-custom-1">{value}</Dropdown.Toggle>
+        <Dropdown.Toggle disabled={!hasItems} className={"btn_" + userTheme} id="dropdown-custom-1">{value}</Dropdown.Toggle>
         <Dropdown.Menu className={"btn_" + userTheme}>
           {/* maps each of the options passed in to a dropdown option with the appropriate keys */}
           {actions?.map((name) => (

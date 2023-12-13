@@ -40,6 +40,9 @@ const WorldPage = ({ userId, userTheme }) => {
     // used to decide what message to display if the join code is valid or not
     var [validCode, setValidCode] = useState();
 
+    // decides wheter the dropdown for sorting is diabled or not
+    const [hasWorlds, setHasWorlds] = useState(false);
+
 
     /**
      * Purpose: load in the world info when the userId changes or if the worldsRef changes value
@@ -80,10 +83,12 @@ const WorldPage = ({ userId, userTheme }) => {
                 }
             }
             setWorlds(arr);
+            setHasWorlds(true);
         }
         // inform the user that they have no worlds
         else {
             setWorlds(<h3>You have no worlds yet</h3>)
+            setHasWorlds(false);
         }
     }, [worldInfo, userTheme]);
 
@@ -144,7 +149,7 @@ const WorldPage = ({ userId, userTheme }) => {
                 <Row>
                     {/* dropdown for world sorting options */}
                     <Col md={5}>
-                        <DropDownShowsValue userTheme={userTheme} type={"world"} worlds={worlds} worldDisplay={worldDisplay} setWorldDisplay={setWorldDisplay} text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
+                        <DropDownShowsValue hasItems={hasWorlds} userTheme={userTheme} type={"world"} worlds={worlds} worldDisplay={worldDisplay} setWorldDisplay={setWorldDisplay} text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
                     </Col>
                     <Col style={{ textAlign: "center" }} md={7}>
                         {/* a message for if the code is valid or not */}

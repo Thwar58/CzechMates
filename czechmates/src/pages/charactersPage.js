@@ -30,6 +30,8 @@ const CharactersPage = ({ userId, userTheme }) => {
     var [chars, setChars] = useState([]);
     // a usestate for the loading conditional rendering
     const [loading, setLoading] = useState(true);
+    // decides wheter the dropdown for sorting is diabled or not
+    const [hasChars, setHasChars] = useState(false);
 
     /**
      * Purpose: adds a character to the database in association with the user and brings you to
@@ -79,10 +81,12 @@ const CharactersPage = ({ userId, userTheme }) => {
                 arr.push(<Character userTheme={userTheme} lastUsed={value.Last_Used} lvl={value.Level} userId={userId} key={key} charId={key} charName={value.Name} />);
             }
             setChars(arr);
+            setHasChars(true);
         }
         // inform the user that they don't have any characters
         else {
             setChars(<h3>You have no characters yet</h3>)
+            setHasChars(false);
         }
     }, [charInfo, userTheme]);
 
@@ -131,7 +135,7 @@ const CharactersPage = ({ userId, userTheme }) => {
 
                 <Row className="mb-3">
                     {/* the dropdown for sorting selection */}
-                    <DropDownShowsValue userTheme={userTheme} chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} />
+                    <DropDownShowsValue hasItems={hasChars} userTheme={userTheme} chars={chars} setChars={setChars} type={"character"} text="Order by..." actions={["level", "recently used", "alphabetically"]} />
                 </Row>
                 {/* loading in the character components */}
                 <Row>
