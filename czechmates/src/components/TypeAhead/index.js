@@ -103,11 +103,11 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremade
                   member: value,
                   code: worldCode,
                   sender: senderName,
-                  email: memberEmail
+                  memberEmail: memberEmail
                 };
 
                 // delete this later
-                // console.log(actualParams);
+                console.log(actualParams);
 
                 // comment this back in at the end
                 emailjs.send('service_5lol5zu', 'template_fumphwg',   
