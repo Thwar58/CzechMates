@@ -7,7 +7,7 @@ import TypeAhead from '../TypeAhead';
 import UEWithTwoButtons from '../UEWithTwoButtons';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
-import { ref, onValue, update } from "firebase/database";
+import { ref, get, onValue, update } from "firebase/database";
 import DBFunctions from "../../utils/firebaseQueries";
 import InputGroup from 'react-bootstrap/InputGroup';
 const worldTemplate = require('../../utils/worldTemplate.json');
@@ -51,7 +51,8 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
     // creates a new world with a random code, belonging to the current user
     if (userId !== undefined) {
       setWorldId(DBFunctions.createNewWorld(worldTemplate, userId, Math.floor(100000 + Math.random() * 900000)));
-
+      
+      console.log("Refreshed 3");
     }
   }
 
@@ -77,7 +78,11 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
 
       // open up the popup
       handleShow();
-
+      if(name!='' && schedule!=''){
+        setName('');
+        setSchedule('');
+      }
+      console.log("Refreshed 2");
     }
   }, [worldId]);
 
@@ -107,11 +112,6 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
       else {
         setMems(<h4>You have no members yet</h4>)
       }
-
-
-      // set all of the other world information
-      setName(worldInfo.Name);
-      setSchedule(worldInfo.Schedule);
       setInviteCode(worldInfo.Invite_Code);
     }
 
@@ -124,7 +124,7 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
    * schedule
    */
   useEffect(() => {
-    if (name !== undefined && schedule !== undefined) {
+    if (name !== undefined || schedule !== undefined) {
       const updates = {};
       // set each of the paths to update in the database using the information in this page
       updates[`Worlds/${worldId}/Name`] = name;

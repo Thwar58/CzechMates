@@ -1,1 +1,70 @@
-[{"Name":"Awareness","Description":"TO DO: Add"},{"Name":"Charisma","Description":"TO DO: Add"},{"Name":"Defense","Description":"TO DO: Add"},{"Name":"Endurance","Description":"TO DO: Add"},{"Name":"Health","Description":"TO DO: Add"},{"Name":"Knowledge","Description":"TO DO: Add"},{"Name":"Magic Attack","Description":"TO DO: Add"},{"Name":"Magic Defense","Description":"TO DO: Add"},{"Name":"Magic Heal","Description":"TO DO: Add"},{"Name":"Magic Reach","Description":"TO DO: Add"},{"Name":"Melee Attack","Description":"TO DO: Add"},{"Name":"Ranged Attack","Description":"TO DO: Add"},{"Name":"Maximum Resolve","Description":"TO DO: Add"},{"Name":"Maximum Vigor","Description":"TO DO: Add"},{"Name":"Magic Range","Description":"TO DO: Add"},{"Name":"Movement","Description":"TO DO: Add"},{"Name":"Action Points","Description":"TO DO: Add"}]
+[
+    {
+        "Name": "Awareness",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Charisma",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Defense",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Endurance",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Health",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Knowledge",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Magic Attack",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Magic Defense",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Magic Heal",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Magic Reach",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Melee Attack",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Ranged Attack",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Max Resolve",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Max Vigor",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Magic Range",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Movement",
+        "Description": "TO DO: Add"
+    },
+    {
+        "Name": "Max Action Points AP",
+        "Description": "TO DO: Add"
+    }
+]
