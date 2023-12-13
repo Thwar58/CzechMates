@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { useEffect } from 'react';
 import { db } from '../../firebase';
 import { ref, onValue, update, get, child } from "firebase/database";
+import * as emailjs from 'emailjs-com';
 
 /**
  * Purpose: the component for the typeahead, used in the profile page and some world popups for selections of users and characters
