@@ -81,7 +81,7 @@ const SkillsPage = ({ skillInfo, charId, attrInfo, userId, level, userTheme }) =
                     </Col>
                 </Row>
                 <Row>
-                    {/* the acutal positioning of the skill components */}
+                    {/* the actual positioning of the skill components */}
                     <Col>
                         {left}
                     </Col>
@@ -89,6 +89,7 @@ const SkillsPage = ({ skillInfo, charId, attrInfo, userId, level, userTheme }) =
                         {right}
                     </Col>
                 </Row>
+                {/* the learned abilities */}
                 <Row>
                     <Col>
                         {learnedAbilties}

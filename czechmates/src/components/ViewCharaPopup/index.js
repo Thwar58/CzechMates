@@ -61,6 +61,18 @@ function ViewCharaPopup({ setAlign, charId, userId, userTheme }) {
 
 
   /**
+   * Purpose: renders blank if the character infor hasn't been set yet
+   * Params/Dependencies: 
+   * charInfo
+   */
+  if (charInfo === ""){
+    return(
+      <>no info</>
+    );
+  }
+  console.log(charInfo);
+
+  /**
    * Purpose: renders the view member popup
    * Params/Dependencies: 
    * userTheme

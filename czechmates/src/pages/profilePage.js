@@ -40,7 +40,7 @@ const ProfilePage = ({ userId, userTheme }) => {
      * Purpose: gets the user information from the database when the userid changes
      * Params/Dependencies:
      * userId
-     */ 
+     */
     useEffect(() => {
         const userRef = ref(db, 'Users/' + userId);
         // IMPORTANT: onValue continues to monitor the database and will update the local value automatically if the db changes
@@ -61,46 +61,45 @@ const ProfilePage = ({ userId, userTheme }) => {
      * userTheme
      */
     useEffect(() => {
-        // console.log("check world info ", worldInfo);
         // check that members is not undefined otherwise it will throw an error
         if (userInfo !== undefined && userInfo !== null) {
             setLoading(false);
-            // loop through the members objects and create components to display them, set the members array at the end
+            // loop through the friends objects and create components to display them, set the friends array at the end
             var friends = [];
             var followers = [];
             var following = [];
             if (userInfo.Friends != null && userInfo.Friends !== undefined) {
                 // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
                 for (const [key, value] of Object.entries(userInfo.Friends)) {
-                    // pass in the key, the character name, and the id of who created the character
                     friends.push(<Social userTheme={userTheme} userName={userInfo.Name} userId={userId} socialId={key} type={"Friend"} key={value} content={value}> </Social>);
                 }
                 setFriends(friends);
             }
+            // inform the user that they have no friends
             else {
                 setFriends(<h3>You have no friends yet</h3>)
             }
-
+            // loop through the following objects and create components to display them, set the following array at the end
             if (userInfo.Following != null && userInfo.Following !== undefined) {
                 // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
                 for (const [key, value] of Object.entries(userInfo.Following)) {
-                    // pass in the key, the character name, and the id of who created the character
                     following.push(<Social userTheme={userTheme} userId={userId} socialId={key} type={"Following"} key={value} content={value}> </Social>);
                 }
                 setFollowing(following);
             }
+            // inform the user that they have no following
             else {
                 setFollowing(<h3>You are not following anyone yet</h3>)
             }
-
+            // loop through the followers objects and create components to display them, set the followers array at the end
             if (userInfo.Followers != null && userInfo.Followers !== undefined) {
                 // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
                 for (const [key, value] of Object.entries(userInfo.Followers)) {
-                    // pass in the key, the character name, and the id of who created the character
                     followers.push(<Social userTheme={userTheme} userId={userId} socialId={key} type={"Follower"} key={value} content={value}> </Social>);
                 }
                 setFollowers(followers);
             }
+            // inform the user that they have no followers
             else {
                 setFollowers(<h3>You have no followers yet</h3>)
             }
@@ -126,12 +125,22 @@ const ProfilePage = ({ userId, userTheme }) => {
             <div></div>
         )
     }
+
+    /**
+     * Purpose: render the profile page component
+     * Params/Dependencies:
+     * userInfo
+     * following
+     * followers friends
+     * userTheme
+     */
     return (
         <div>
             <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10 fullWindow">
                 <Row>
                     <Col>
                     </Col>
+                    {/* the account information section */}
                     <Col>
                         <h1 className={"mb-4 header_" + userTheme}>
                             Account information
@@ -140,18 +149,18 @@ const ProfilePage = ({ userId, userTheme }) => {
                     <Col>
                     </Col>
                 </Row>
+                {/* the user name and email */}
                 <Row>
                     {/* https://daveceddia.com/react-before-render/ */}
-                    {/* these lines produce the control error, we can fix it by moving it out into useeffects */}
                     <User userTheme={userTheme} userInfo={userInfo} invalidNames={allUsers} type={"Name"} label={"Username"} content={userInfo?.Name} userId={userId} />
                 </Row>
                 <Row>
                     <User type={"Email"} label={"Email"} content={userInfo?.Email} userId={userId} />
-
                 </Row>
                 <Row>
                     <Col>
                     </Col>
+                    {/* the social section */}
                     <Col>
                         <h1 className={"mb-4 mt-5 header_" + userTheme}>
                             Social
@@ -161,6 +170,7 @@ const ProfilePage = ({ userId, userTheme }) => {
                     </Col>
                 </Row>
                 <Row>
+                    {/* the typeahead for following someone */}
                     <Col>
                     </Col>
                     <Col md={10}>
@@ -170,21 +180,18 @@ const ProfilePage = ({ userId, userTheme }) => {
                     </Col>
                 </Row>
                 <Row>
-                    {/* tabs for each of the users lists, calling add for each */}
+                    {/* tabs for each of the users lists (friends, following, followers) */}
                     <ControlledTabs userTheme={userTheme} text={["Friends", "Following", "Followers"]}
                         content={[[
                             <div key={"Friends"} >
-                                {/* {addF(userInfo.Friends)} */}
                                 {friends}
                             </div>
                         ], [
                             <div key={"Following"} >
-                                {/* {addF(userInfo.Following)} */}
                                 {following}
                             </div>
                         ], [
                             <div key={"Followers"}>
-                                {/* {addF(userInfo.Followers)} */}
                                 {followers}
                             </div>
                         ]]} />

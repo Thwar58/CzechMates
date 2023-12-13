@@ -1,34 +1,45 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InputWithLabel from "../components/InputWithLabel";
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import NavWithDD from '../components/NavWithDropdown';
 import { db } from '../firebase';
-import { child, get, ref, set, push, update, onValue } from "firebase/database";
+import { ref, update } from "firebase/database";
 import InputGroup from 'react-bootstrap/InputGroup';
 
 
 
-// this component houses the content for the general character info
-// input the general character information, the user id and the character id
-const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) => {
+/**
+ * Purpose: a component that renders the character's general page
+ * Params/Dependencies: 
+ */
+const GeneralPage = ({ participation, generalInfo, userId, charId, userTheme }) => {
+    // a useState for the character's picture
+    var [imgSrc, setImgSrc] = useState(generalInfo.ImageURL);
 
-    var [ imgSrc, setImgSrc ] = useState(generalInfo.ImageURL);
-
-    function setPic(newImg){
+    /**
+     * Purpose: sets the picture for the character
+     * Params/Dependencies: 
+     * newImg
+     * charId
+     */
+    function setPic(newImg) {
         setImgSrc(newImg);
-        console.log(newImg);
         var userRef = ref(db);
         const updates = {};
-        updates['Characters/'+charId+'/General/ImageURL'] = newImg;
+        updates['Characters/' + charId + '/General/ImageURL'] = newImg;
         update(userRef, updates);
     }
 
 
-
+    /**
+     * Purpose: renders the general character information 
+     * Params/Dependencies: 
+     * userTheme
+     * imgSrc
+     */
     return (
         <div>
             <Container fluid="md" className="col-xs-12 col-sm-12 col-md-12 col-lg-12 fullWindow">
@@ -37,7 +48,7 @@ const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) =
                     </Col>
                     <Col className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         {/* title */}
-                        <h1 className={"text-center body_"+userTheme}>
+                        <h1 className={"text-center body_" + userTheme}>
                             General
                         </h1>
                     </Col>
@@ -46,17 +57,18 @@ const GeneralPage = ({participation, generalInfo, userId, charId, userTheme }) =
                 </Row>
                 <Row>
                     <Col>
+                        {/* the image for the character */}
                         <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon3">
-                    Image URL
-                </InputGroup.Text>
-                <Form.Control
-                    value={imgSrc}
-                    placeholder={`Enter the Image URL`}
-                    onChange={(e)=>{setPic(e.target.value)}}
-                />
-            </InputGroup>
-                        <img style={{ textAlign: "center", borderStyle: "solid" }} width='200vh' src={imgSrc}/>
+                            <InputGroup.Text id="basic-addon3">
+                                Image URL
+                            </InputGroup.Text>
+                            <Form.Control
+                                value={imgSrc}
+                                placeholder={`Enter the Image URL`}
+                                onChange={(e) => { setPic(e.target.value) }}
+                            />
+                        </InputGroup>
+                        <img style={{ textAlign: "center", borderStyle: "solid" }} width='200vh' src={imgSrc} />
                     </Col>
                     <Col className="col-sm-8 col-md-8 col-lg-8">
                         <InputWithLabel participation={participation} charId={charId} userId={userId} category={"General"} label={"Name"} content={generalInfo?.Name} disabled={false} />

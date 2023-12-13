@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-
 import Button from 'react-bootstrap/Button';
-// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-// import { auth } from '../SignIn/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -12,48 +8,42 @@ import { auto } from '@popperjs/core';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from '../SignIn/firebaseConfig';
 import { db } from '../firebase';
-import { child, get, ref, set, push, onValue, update } from "firebase/database";
+import { child, get, ref } from "firebase/database";
 import DBFunctions from '../utils/firebaseQueries';
 import userTemplate from '../utils/userTemplate.json';
 import logo from '../NUDGE_Logo.png';
 
-// this is the home page, as of now it is mostly reference material and will be largely removed
+/**
+ * Purpose: the component for the login page
+ * Params: 
+ * setUserId: function, sets the user id for the rest of the pages
+ */
 const Login = ({ setUserId }) => {
-
-    var [pretendToken, setPretendToken] = useState("User1");
-
-
-    // useEffect(() => {
-
-    // }, [setUserId]);
-
-
+    // used in page navigation
     const navigate = useNavigate();
 
-
+/**
+ * Purpose: logs in the user (existing or new) and stores the information that we need from them
+ * Params/Dependencies: none
+ */
     const handleGoogle = (e) => {
+        // give the user a popup and have them choose an account
         const provider =  new GoogleAuthProvider();
         signInWithPopup(auth, provider)
             .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
+                // get the user info from the login and set up the database reference
                 const user = result.user;
-                console.log("logged in successfully ", user);
-                // IdP data available using getAdditionalUserInfo(result)
-                // ...
                 const dbRef = ref(db);
-        
+        // see if the user is in the database already or not
         get(child(dbRef, `Users/` + user.uid)).then((snapshot) => {
+            // if they are, then set the id and go to the home page for this user
             if (snapshot.exists()) {
-                console.log(snapshot.val());
                 setUserId(user.uid);
                 sessionStorage.setItem("User", user.uid);
                 navigate('/home');
-                
+            // if they are not, then make a new user and go to the home page for this user
             } else {
-                console.log("No data available");
+                // use the uid from the login for the key
                 DBFunctions.createNewUser(userTemplate, user.uid, user.email, user.displayName);
                 setUserId(user.uid);
                 sessionStorage.setItem("User", user.uid);
@@ -63,34 +53,15 @@ const Login = ({ setUserId }) => {
             console.error(error);
         });
             }).catch((error) => {
-                console.log("error");
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
+                console.log(error);
             });
-            console.log("at all?");
-            
-    }
-    // console.log("check url", window.location.href);
-    const toSubPage = () => {
-        // setUserId("User1");
-
-        // sessionStorage.setItem("User", "User1");
-        // setReload(true);
-        // console.log("this is set reload ", setReload);
-        // console.log("session should be set to a user ", sessionStorage.getItem("User"));
-
-        setUserId(pretendToken);
-        sessionStorage.setItem("User", pretendToken);
-        navigate('/home');
     }
 
 
+/**
+ * Purpose: renders the login page
+ * Params/Dependencies: none
+ */
     return (
         <>
         <div className='mb-5'></div>
@@ -104,14 +75,11 @@ const Login = ({ setUserId }) => {
                     </Col>
                 </Row>
                 <Row>
+                    {/* the button to log in */}
                     <Col>
-                    {/* <Button style={{display:'block', margin:auto}} onClick={() => { toSubPage() }}>Test button</Button> */}
                     <Button style={{display:'block', margin:auto}}  onClick={handleGoogle}>Sign in with Google </Button>
                     </Col>
-                  
                 </Row>
-
-
             </Container>
         </>
 

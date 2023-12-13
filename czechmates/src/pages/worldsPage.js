@@ -66,12 +66,14 @@ const WorldPage = ({ userId, userTheme }) => {
     useEffect(() => {
         if (worldInfo !== undefined && worldInfo !== null) {
             var arr = [];
+            // add a world component for each of the worlds that the user has created
             if (worldInfo.Created !== undefined) {
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
                 for (const [key, value] of Object.entries(worldInfo.Created)) {
                     arr.push(<World userTheme={userTheme} key={key} userId={userId} worldId={key} worldName={value} type={"created"} > </World>);
                 }
             }
+            // add a world component for each of the worlds that the user has joined
             if (worldInfo.Joined !== undefined) {
                 for (const [key, value] of Object.entries(worldInfo.Joined)) {
                     arr.push(<World userTheme={userTheme} key={key} userId={userId} worldId={key} worldName={value} type={"joined"} > </World>);
@@ -79,10 +81,10 @@ const WorldPage = ({ userId, userTheme }) => {
             }
             setWorlds(arr);
         }
+        // inform the user that they have no worlds
         else {
             setWorlds(<h3>You have no worlds yet</h3>)
         }
-
     }, [worldInfo, userTheme]);
 
     /**
@@ -145,13 +147,13 @@ const WorldPage = ({ userId, userTheme }) => {
                         <DropDownShowsValue userTheme={userTheme} type={"world"} worlds={worlds} worldDisplay={worldDisplay} setWorldDisplay={setWorldDisplay} text="Order by..." actions={["Owned", "Participating", "Alphabetically"]} />
                     </Col>
                     <Col style={{ textAlign: "center" }} md={7}>
+                        {/* a message for if the code is valid or not */}
                         {validCode}
                         {/* the invite code input section */}
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="basic-addon3">
                                 Invite Code
                             </InputGroup.Text>
-
                             {/* input the value and disable the input */}
                             <Form.Control
                                 placeholder="Enter Code"
@@ -159,21 +161,20 @@ const WorldPage = ({ userId, userTheme }) => {
                                 value={enteredCode}
                                 onChange={e => {setEnteredCode(e.target.value); setValidCode();} }
                             />
-                            {/* first button */}
-
+                            {/* the join code button */}
                             <JoinCodePopup setEnteredCode={setEnteredCode} setValidCode={setValidCode} code={enteredCode} userTheme={userTheme} name={"World Name"} userId={userId} />
                         </InputGroup>
                     </Col>
                 </Row>
+                {/* the worlds being displayed */}
                 <Row className="mb-3">
                     <div>
                         {
                             worldDisplay
                         }
                     </div>
-                    {/* this brings up the modal for creating a world */}
-
                 </Row>
+                {/* the button for the add world popup */}
                 <Row>
                     <Col>
                         <AddWorldPopup userTheme={userTheme} userId={userId} title="World Name" button={"Add World"} />

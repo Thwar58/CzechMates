@@ -145,7 +145,7 @@ const SubCharacterPages = ({ userId, userTheme }) => {
                 </Row>
                 <Row>
                     <Col className="text-end">
-                        {/* a button that redirects to the character page when clicked */}
+                        {/* buttons to go to the previous page, the next pace, and back to the character page */}
                         <Button className={"btn_" + userTheme} onClick={goBack}>Previous</Button>
                         <Button className={"btn_" + userTheme} onClick={navigateToCharPage}>Done</Button>
                         <Button className={"btn_" + userTheme} onClick={goNext}>Next</Button>
