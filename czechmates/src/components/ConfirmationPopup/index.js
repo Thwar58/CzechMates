@@ -188,7 +188,7 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme }) {
                 get(child(worldRef, `Worlds/${worldId}/Members`)).then((snapshot) => {
                   for (const [key, value] of Object.entries(snapshot.val())) {
                     // if the member is affiliated with the current user, then we need to remove 
-                    // the user from the world and update the character's participation
+                    // the user from the world and update the character's participation                    
                     if (value.CreatorId === action.userId){
                       updates[`Worlds/${worldId}/Members/${key}`] = null;
                       updates[`Characters/${key}/Participation`] = null;

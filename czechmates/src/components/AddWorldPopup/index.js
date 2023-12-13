@@ -51,8 +51,6 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
     // creates a new world with a random code, belonging to the current user
     if (userId !== undefined) {
       setWorldId(DBFunctions.createNewWorld(worldTemplate, userId, Math.floor(100000 + Math.random() * 900000)));
-      
-      console.log("Refreshed 3");
     }
   }
 
@@ -78,11 +76,10 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
 
       // open up the popup
       handleShow();
-      if(name!='' && schedule!=''){
+      if (name != '' && schedule != '') {
         setName('');
         setSchedule('');
       }
-      console.log("Refreshed 2");
     }
   }, [worldId]);
 
@@ -146,7 +143,7 @@ function AddWorldPopup({ title, userId, button, userTheme }) {
   if (loading) {
     return (
       // the button that would have triggered the modal if it was loaded, purely visual
-      <Button className={"btn_" + userTheme}  onClick={addWorld}>
+      <Button className={"btn_" + userTheme} onClick={addWorld}>
         {button}
       </Button>
     )

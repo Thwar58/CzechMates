@@ -112,7 +112,6 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremade
                 // emailjs.send('service_5lol5zu', 'template_fumphwg',   
                 // actualParams, 'nCCc6oQB6cd4n0ljl')
                 //     .then((result) => {
-                //       console.log(e.target);
                 //         alert('email sent successfully');
                 //     }, (error) => {
                 //         alert('error sending email');

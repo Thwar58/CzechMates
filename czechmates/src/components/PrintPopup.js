@@ -40,7 +40,6 @@ function PrintPopup(props) {
  */
   useEffect(() => {
     if (charId !== undefined) {
-      console.log("check char id in sub", charId);
       // use this path and onValue monitors for changes
       const charRef = ref(db, 'Characters/' + charId);
       onValue(charRef, (snapshot) => {

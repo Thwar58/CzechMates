@@ -70,7 +70,6 @@ function ViewCharaPopup({ setAlign, charId, userId, userTheme }) {
       <>no info</>
     );
   }
-  console.log(charInfo);
 
   /**
    * Purpose: renders the view member popup

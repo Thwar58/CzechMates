@@ -63,6 +63,7 @@ function JoinCodePopup({ name, userTheme, code, setValidCode, userId, setEntered
             updates[`CharacterUserRel/${userId}/${newId}/Participation`] = worldId;
             // add this world the the user's world relation
             updates[`WorldUserRel/${userId}/Joined/${worldId}`] = snapshot.val();
+            updates[`Worlds/${worldId}/Members/${newId}`] = { "CreatorId": userId};
             update(ref(db), updates);
             // navigate to the subcharacter page and set the character id to this new character
             navigate('/subCharacterPages');
