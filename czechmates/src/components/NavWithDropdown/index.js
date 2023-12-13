@@ -118,7 +118,7 @@ function NavWithDD({ userId, setUserId, userTheme, setUserTheme }) {
               </NavDropdown.Item>
               {/* button to log out */}
               <NavDropdown.Item>
-                <Button onClick={logout}>Log Out</Button>
+                <Button className={"btn_"+userTheme} onClick={logout}>Log Out</Button>
               </NavDropdown.Item>
               {/* the admin button if the user is an admin */}
               {adminButton}
