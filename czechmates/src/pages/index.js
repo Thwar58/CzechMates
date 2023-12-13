@@ -15,6 +15,7 @@ import { db } from '../firebase';
 import { child, get, ref, set, push, onValue, update } from "firebase/database";
 import DBFunctions from '../utils/firebaseQueries';
 import userTemplate from '../utils/userTemplate.json';
+import logo from '../NUDGE_Logo.png';
 
 // this is the home page, as of now it is mostly reference material and will be largely removed
 const Login = ({ setUserId }) => {
@@ -92,11 +93,13 @@ const Login = ({ setUserId }) => {
 
     return (
         <>
-            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        <div className='mb-5'></div>
+            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10 fullWindow">
                 <Row>
                     <Col>
-                        <div  style={{textAlign:'center'}}>
-                            <h1>Nudge Character Management Login</h1>
+                        <div className='mb-5' style={{textAlign:'center'}}>
+                            <h1 className='mb-5'>Nudge Character Management Login</h1>
+                            <div><img style={{width:'50vh', mb:'3'}} src={logo} alt="Logo" /></div>
                         </div>
                     </Col>
                 </Row>

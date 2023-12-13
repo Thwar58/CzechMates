@@ -131,7 +131,7 @@ const WorldPage = ({ userId, userTheme }) => {
                 <Row>
                     <Col>
                     </Col>
-                    <Col>
+                    <Col className="mb-4">
                         <h1 className={"text-center label_" + userTheme}>
                             World List
                         </h1>

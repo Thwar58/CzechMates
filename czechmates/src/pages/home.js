@@ -23,7 +23,7 @@ const Home = ({setUserId}) => {
         <div className='text-center fullWindow'>
        
             <div>
-                <h1 className={'text-color-yellow text-center'}>Welcome to the NUDGE TTRPG aid</h1>
+                <h1 className={'text-color-yellow mb-5 text-center'}>Welcome to the NUDGE TTRPG aid</h1>
             </div>
             <div><img style={{width:'50vh', mb:'3'}} src={logo} alt="Logo" /></div>
             {/* <div><Button className={'mb-3'} onClick={handleGoogle}>Sign in with Google </Button></div> */}

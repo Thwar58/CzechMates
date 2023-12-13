@@ -232,7 +232,7 @@ function ConfirmationPopup({ title, content, name, type, action, userTheme }) {
   return (
     <div className={"btn_" + userTheme}>
       {/* the button that triggers the modal */}
-      <Button className={"btn_" + userTheme} id={"ModalButton" + name} variant="primary" onClick={handleShow}>
+      <Button className={"btn_" + userTheme} id={"ModalButton" + name} onClick={handleShow}>
         {name}
       </Button>
       {/* the modal with the information */}

@@ -133,7 +133,7 @@ const ProfilePage = ({ userId, userTheme }) => {
                     <Col>
                     </Col>
                     <Col>
-                        <h1 className={"header_" + userTheme}>
+                        <h1 className={"mb-4 header_" + userTheme}>
                             Account information
                         </h1>
                     </Col>
@@ -153,7 +153,7 @@ const ProfilePage = ({ userId, userTheme }) => {
                     <Col>
                     </Col>
                     <Col>
-                        <h1 className={"header_" + userTheme}>
+                        <h1 className={"mb-4 mt-5 header_" + userTheme}>
                             Social
                         </h1>
                     </Col>

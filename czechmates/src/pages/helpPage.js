@@ -14,7 +14,7 @@ const HelpPage = ({ }) => {
 
     return (
         <div>
-            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <Container fluid="md" className="col-xs-10 col-sm-10 col-md-10 col-lg-10 fullWindow">
                 <Row>
                     <Col>
                         <div style={{ textAlign: 'center' }}>

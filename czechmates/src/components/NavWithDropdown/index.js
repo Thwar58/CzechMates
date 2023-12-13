@@ -94,15 +94,15 @@ function NavWithDD({ userId, setUserId, userTheme, setUserTheme }) {
   * adminButton
   */
   return (
-    <Navbar variant="dark" bg="dark" sticky='top'>
-      <Container fluid>
+    <Navbar variant="dark" className='mb-5' bg="dark" sticky='top'>
+      <Container fluid >
         {/* the regular pages */}
-        <Navbar.Brand href="home">Home</Navbar.Brand>
-        <Navbar.Brand href="charactersPage">Characters</Navbar.Brand>
-        <Navbar.Brand href="worldsPage">Worlds</Navbar.Brand>
-        <Navbar.Brand href="profilePage">Profiles</Navbar.Brand>
+        <Navbar.Brand className='navWithDropDown' href="home">Home</Navbar.Brand>
+        <Navbar.Brand className='navWithDropDown' href="charactersPage">Characters</Navbar.Brand>
+        <Navbar.Brand className='navWithDropDown' href="worldsPage">Worlds</Navbar.Brand>
+        <Navbar.Brand className='navWithDropDown' href="profilePage">Profiles</Navbar.Brand>
         {/* the help page if the user needs more instructions */}
-        <Navbar.Brand href="helpPage">Help Page</Navbar.Brand>
+        <Navbar.Brand className='navWithDropDown' href="helpPage">Help Page</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse id="navbar-dark-example">
           <Nav>
