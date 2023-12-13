@@ -125,7 +125,7 @@ const User = ({ label, content, type, invalidNames, userInfo, userId, userTheme 
         // if the user is changing their name, revert the component to it's original buttons and clear the messages
         if (changeName === true) {
             setDisabled(true);
-            setEditable(<Button onClick={click} variant="outline-secondary" id="button-addon2">
+            setEditable(<Button className={"btn_" + userTheme}  onClick={click} variant="outline-secondary" id="button-addon2">
                 Edit
             </Button>);
             setValidityMessage();

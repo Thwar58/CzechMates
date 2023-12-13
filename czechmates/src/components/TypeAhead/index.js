@@ -106,16 +106,16 @@ const TypeAhead = ({ optionInfo, action, userId, userName, worldCode, setPremade
                 };
 
                 // delete this later
-                console.log(actualParams);
+                // console.log(actualParams);
 
                 // comment this back in at the end
-                // emailjs.send('service_5lol5zu', 'template_fumphwg',   
-                // actualParams, 'nCCc6oQB6cd4n0ljl')
-                //     .then((result) => {
-                //         alert('email sent successfully');
-                //     }, (error) => {
-                //         alert('error sending email');
-                //     });
+                emailjs.send('service_5lol5zu', 'template_fumphwg',   
+                actualParams, 'nCCc6oQB6cd4n0ljl')
+                    .then((result) => {
+                        alert('email sent successfully');
+                    }, (error) => {
+                        alert('error sending email');
+                    });
 
               }).catch((error) => {
                 console.error(error);
