@@ -190,6 +190,12 @@ function SkillsComp({ value, name, charId, skills, userId, attributes, level, us
                                     var calc = Func.calcMagicRange();
                                     recalc[`Characters/${charId}/Attributes/Magic_Range`] = 5 + calc["Magic_Range"];
                                 }
+                                // recalculates the Max Action Points 
+                                if(key.localeCompare("Knowledege" === 0) ||
+                                key.localeCompare("Endurance" === 0)){
+                                    var calc = Func.calcMaxAP();
+                                    recalc[`Character/${charId}/Attributes/Max_Action_Points_AP`] = 5 + calc['Max_Action_Points_AP'];
+                                }
                             }
                         }
                     }
