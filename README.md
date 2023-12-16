@@ -7,11 +7,14 @@ This application was built using React, Javascript, CSS, and Firebase.
 `npm install`
 3. Start Server:
 `npm start`
+
+Link to Deployed Website:
+https://nudge-ttrpg.web.app
+## User Resources
+All project documentation, including the User Manual, can be found in the Project Documentation folder in this repository.
 ## Project Preview
 ![image](https://github.com/Thwar58/CzechMates/assets/105389603/cb443181-e6a2-4747-a2b9-5d245cd5c277)
 ![image](https://github.com/Thwar58/CzechMates/assets/105389603/6dd4fcf5-4c49-422d-9737-baff1c649ff5)
 
-.
-.
-.
+
 
