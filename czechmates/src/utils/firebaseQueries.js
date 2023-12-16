@@ -14,7 +14,10 @@ var DBFunctions = {
      * userId: string, the user's id
      * charName: string, the character's name
      */
-    newCreateNewCharacter: function (charTemplate, userId, charName) {
+    newCreateNewCharacter: function (charTemplate, userId, charName, charLvl) {
+        // the level of the char being copied
+        const newLevel = charLvl===undefined ? 0 : charLvl;
+        console.log(charLvl);
         // make a new key in the database
         const newPostKey = push(child(ref(db), 'posts')).key;
         // add the character to the database with the correct information 
@@ -22,7 +25,7 @@ var DBFunctions = {
         updates['Characters/' + newPostKey] = charTemplate;
         updates[`CharacterUserRel/${userId}/${newPostKey}`] = {
             "Name": charName,
-            "Level": 0,
+            "Level": newLevel,
             "Last_Used": Date.now()
         };
         update(ref(db), updates);

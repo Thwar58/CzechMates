@@ -56,13 +56,13 @@ function NavWithDD({ userId, setUserId, userTheme, setUserTheme }) {
               href="https://console.firebase.google.com/project/nudge-ttrpg/database/nudge-ttrpg-default-rtdb/data?utm_source=welcome&utm_medium=email&utm_campaign=welcome_2021_CTA_A"
               target="_blank"
               rel="noreferrer">
-              <Button>Admin</Button>
+              <Button className={'btn_'+userTheme}>Admin</Button>
             </NavDropdown.Item>);
         }
       });
     }
 
-  }, [userId]);
+  }, [userId, userTheme]);
 
   /**
   * Purpose: changes the user's color theme

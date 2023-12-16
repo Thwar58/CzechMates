@@ -71,7 +71,7 @@ const Character = ({ charName, charId, userId, userTheme, lvl }) => {
             var charName = charInfo.General.Name;
             copy.General.Name = `${charName} Copy`;
             // add that character to the database
-            var id = DBFunctions.newCreateNewCharacter(copy, userId, copy.General.Name);
+            var id = DBFunctions.newCreateNewCharacter(copy, userId, copy.General.Name, copy.General.Level);
         }
 
     }, [charInfo]);
