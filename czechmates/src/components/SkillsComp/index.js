@@ -81,16 +81,24 @@ function SkillsComp({ value, name, charId, skills, userId, attributes, level, us
             return { 'Ranged_Attack': skills.Athletics + skills.Burglary + skills.Hunting + skills.Shooting };
         },
         calcMaxAP: function () {
-            return { 'Max_Action_Points_(AP)': 2 + Math.floor((attributes.Knowledge + attributes.Endurance) * .2) };
+            // Knowledge = skills.Alchemy + skills.Engineering + 2 * skills.Lore
+            // Endurance = 2 * skills.Athletics + skills.Fight + skills.Survival
+            return { 'Max_Action_Points_AP': 2 + Math.floor((((skills.Alchemy + skills.Engineering + 2 * skills.Lore)+5) +
+             ((2 * skills.Athletics + skills.Fight + skills.Survival)+5)) * .2) };
         },
         calcMaxVigor: function () {
-            return { "Max_Vigor": 2 * (attributes['Magic_Reach'] + attributes.Endurance) + level };
+            // Magic_Reach = skills.Alchemy + skills.Empathy + skills.Rapport + skills.Will
+            // Endurance = 2 * skills.Athletics + skills.Fight + skills.Survival
+            return { "Max_Vigor": 2 * (((skills.Alchemy + skills.Empathy + skills.Rapport + skills.Will)+5) + 
+            ((2 * skills.Athletics + skills.Fight + skills.Survival)+5)) + level };
         },
         calcMaxResolve: function () {
-            return { "Max_Resolve": 2 * attributes.Health + 3 * level };
+            // skills.Alchemy + skills.Physique + 2 * skills.Survival = health
+            return { "Max_Resolve": 2 * ((skills.Alchemy + skills.Physique + 2 * skills.Survival)+5) + 3 * level };
         },
         calcMagicRange: function () {
-            return { "Magic_Range": Math.floor(attributes['Magic_Reach'] * .5) };
+            // Magic_Reach = skills.Alchemy + skills.Empathy + skills.Rapport + skills.Will
+            return { "Magic_Range": Math.floor(((skills.Alchemy + skills.Empathy + skills.Rapport + skills.Will)+5) * .5) };
         },
         calcMovement: function () {
             return { "Movement": Math.floor(2 + (attributes.Awareness + attributes.Charisma + attributes.Endurance) * .1) };
@@ -160,7 +168,7 @@ function SkillsComp({ value, name, charId, skills, userId, attributes, level, us
                     // https://stackoverflow.com/questions/573145/get-everything-after-the-dash-in-a-string-in-javascript
                     const formula = value.toString().split(':').pop();
                     // check if this attribute function contains the level or the name of the skill changing
-                    if ((typeof value === 'function') && (formula.includes("level") || formula.includes(name))) {
+                    if ((typeof value === 'function') && (formula.includes("level") ||  formula.includes(name))) {
                         // if it does then call the recalc function
                         var result = value.call();
                         // for the result of the function (a JSON object with the attribute name and new value)
@@ -191,8 +199,7 @@ function SkillsComp({ value, name, charId, skills, userId, attributes, level, us
             callAll();
             update(charRef, recalc);
         }
-
-    }, [level, attributes]);
+    }, [level, attributes, skills, value]);
 
 
     /**

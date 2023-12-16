@@ -53,8 +53,7 @@ const SkillsPage = ({ skillInfo, charId, attrInfo, userId, level, userTheme }) =
             setLeft(left);
             setRight(right);
         }
-
-    }, [skillInfo, userTheme]);
+    }, [skillInfo, userTheme, level]);
 
     /**
      * Purpose: renders the skills page
