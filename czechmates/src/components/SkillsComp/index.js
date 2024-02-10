@@ -83,8 +83,8 @@ function SkillsComp({ value, name, charId, skills, userId, attributes, level, us
         calcMaxAP: function () {
             // Knowledge = skills.Alchemy + skills.Engineering + 2 * skills.Lore
             // Endurance = 2 * skills.Athletics + skills.Fight + skills.Survival
-            return { 'Max_Action_Points_AP': 2 + Math.floor((((skills.Alchemy + skills.Engineering + 2 * skills.Lore)+5) +
-             ((2 * skills.Athletics + skills.Fight + skills.Survival)+5)) * .2) };
+            return { 'Max_Action_Points_AP': 2 + Math.floor(((skills.Alchemy + skills.Engineering + 2 * skills.Lore)*0.1) +
+             ((2 * skills.Athletics + skills.Fight + skills.Survival)*0.1)) };
         },
         calcMaxVigor: function () {
             // Magic_Reach = skills.Alchemy + skills.Empathy + skills.Rapport + skills.Will
