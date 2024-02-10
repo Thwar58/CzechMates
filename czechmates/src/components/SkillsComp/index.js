@@ -98,7 +98,7 @@ function SkillsComp({ value, name, charId, skills, userId, attributes, level, us
         },
         calcMagicRange: function () {
             // Magic_Reach = skills.Alchemy + skills.Empathy + skills.Rapport + skills.Will
-            return { "Magic_Range": Math.floor(((skills.Alchemy + skills.Empathy + skills.Rapport + skills.Will)+5) * .5) };
+            return { "Magic_Range": Math.floor(((skills.Alchemy + skills.Empathy + skills.Rapport + skills.Will)*.5) + 5) };
         },
         calcMovement: function () {
             return { "Movement": Math.floor(2 + (attributes.Awareness + attributes.Charisma + attributes.Endurance) * .1) };
